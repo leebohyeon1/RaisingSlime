@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,31 +6,111 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public GameObject enemyPrefab; // 적 프리팹
+    public int step = 0;
+    public SpawnObjectsList[] spawnObjectsList;
+
     public float spawnRadius = 50f; // 생성 반경 (맵 밖에서 얼마나 떨어진 곳에 적을 생성할지 결정)
     public float spawnHeight = 3f; // 적이 생성될 때의 높이
 
-    [Header("Spawn Frequency")]
-    public float spawnInterval = 5f; // 적 생성 주기 (초 단위)
-    private float spawnTimer = 0f; // 적 생성 타이머
+    private List<GameObject> currentStepEnemyList = new List<GameObject>(); // 현재 스텝에서 스폰된 적 리스트
+    private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // 이전에 스폰된 적 리스트
+    private bool isSceneClosing = false; // 씬이 닫히는 중인지 여부를 확인하는 플래그
+
+    private Transform slimeTrans;
+
+    private void Start()
+    {
+        slimeTrans = FindFirstObjectByType<Player>().transform;
+
+        SpawnEnemiesForCurrentStep();
+    }
 
     void Update()
     {
-        spawnTimer += Time.deltaTime;
+        // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정
+        transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
 
-        if (spawnTimer >= spawnInterval)
+    }
+
+    // 현재 스텝의 적들을 스폰하는 함수
+    private void SpawnEnemiesForCurrentStep()
+    {
+        // 현재 스텝에 있는 적을 스폰
+        foreach (GameObject enemyPrefab in spawnObjectsList[step].SpawnObjects)
         {
-            SpawnEnemy();
-            spawnTimer = 0f;
+            SpawnEnemy(enemyPrefab);
         }
     }
 
-    private void SpawnEnemy()
+    // 스텝 변경 시 호출되는 함수
+    [Button]
+    public void ChangeStep(int newStep)
+    {
+        // 현재 스텝의 적들을 모두 beforeStepEnemyList에 추가
+        foreach (GameObject enemy in currentStepEnemyList)
+        {
+            if (enemy != null)
+            {
+                beforeStepEnemyList.Add(enemy); // 이전 스텝의 적으로 기록
+            }
+        }
+
+        // 현재 스텝 적 리스트 초기화
+        currentStepEnemyList.Clear();
+
+        // 새로운 스텝으로 변경
+        step = newStep;
+
+        // 새로운 스텝의 적들을 스폰
+        SpawnEnemiesForCurrentStep();
+    }
+
+    // 적을 스폰하는 함수
+    private void SpawnEnemy(GameObject enemyPrefab)
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-        //GameManager.Instance.enemyList.Add(enemy);
+        // 스폰된 적을 현재 스텝 리스트에 추가
+        currentStepEnemyList.Add(newEnemy);
+
+        // 적이 파괴되었을 때 다시 스폰하지 않도록 이전 스텝의 적인지 확인
+        EnemyBase enemyComponent = newEnemy.GetComponent<EnemyBase>();
+        if (enemyComponent != null)
+        {
+            enemyComponent.OnDestroyed += () =>
+            {
+                // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
+                if (this != null && newEnemy != null && !isSceneClosing)
+                {
+
+                    // 적이 이전 스텝에 속하지 않으면 다시 스폰
+                    if (!beforeStepEnemyList.Contains(newEnemy))
+                    {
+                        SpawnEnemy(enemyPrefab); // 다시 스폰 (현재 스텝의 적만)
+                    }
+
+                    // 적이 파괴되었을 때 리스트에서 제거
+                    RemoveEnemyFromList(newEnemy);
+                }
+            };
+        }
+    }
+
+    // 리스트에서 적 제거 함수
+    private void RemoveEnemyFromList(GameObject enemy)
+    {
+        // 현재 스텝 리스트에서 제거
+        if (currentStepEnemyList.Contains(enemy))
+        {
+            currentStepEnemyList.Remove(enemy);
+        }
+
+        // 이전 스텝 리스트에서 제거 (만약 있을 경우)
+        if (beforeStepEnemyList.Contains(enemy))
+        {
+            beforeStepEnemyList.Remove(enemy);
+        }
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -44,10 +125,29 @@ public class SpawnManager : MonoBehaviour
         return spawnPosition;
     }
 
+    // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
+    private void OnApplicationQuit()
+    {
+        isSceneClosing = true;
+    }
+
+    private void OnDestroy()
+    {
+        isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
+    }
+
+
     // 기즈모로 생성 범위를 시각적으로 표시
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red; // 기즈모 색상을 빨간색으로 설정
         Gizmos.DrawWireSphere(transform.position, spawnRadius); // 생성 범위를 원으로 표시
     }
+}
+
+[System.Serializable]
+public struct SpawnObjectsList
+{
+    [LabelText("단계별 스폰되는 오브젝트")]
+    public GameObject[] SpawnObjects;
 }

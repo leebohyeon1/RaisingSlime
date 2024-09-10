@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = true; // 땅에 있는지 확인하는 플래그
 
+    private float hpDecreaseTimer = 0.0f;
+    private float hpDecreaseInterval = 0.1f;
 
     void Start()
     {
@@ -27,6 +31,8 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
         HandleJump();
+
+        AutoDecreaseHp();
     }
 
     private void HandleMovement()
@@ -51,12 +57,6 @@ public class Player : MonoBehaviour
     // 적을 흡수하는 기능
     private void AbsorbEnemy(GameObject enemy)
     {
-        if (isGrounded)
-        {
-            //Destroy(gameObject);
-
-            return;
-        }
 
         EatAbleObjectBase eatAbleObjectBase = enemy.GetComponentInParent<EatAbleObjectBase>();
 
@@ -64,43 +64,27 @@ public class Player : MonoBehaviour
         if (eatAbleObjectBase.size < playerStat.curSize)
         {
             // 슬라임의 크기를 증가시키기
-            eatAbleObjectBase.GetEaten();
+            eatAbleObjectBase.Eaten(transform);
+
             transform.localScale += eatAbleObjectBase.SlimeIncreaseSize();
             playerStat.curSize = transform.localScale.x;
             playerStat.hp += eatAbleObjectBase.slimeRecoveryAmount;
-         
-            PlaceEnemyInsideSlime(enemy);
+        
         }
     }
 
-    // 적을 슬라임 내부의 랜덤 위치에 배치하는 기능
-    private void PlaceEnemyInsideSlime(GameObject enemy)
+    // 자동 체력 감소 기능
+    private void AutoDecreaseHp()
     {
-        Transform enemyParent = enemy.transform.parent;
-        // 슬라임의 크기에 따른 내부 공간 계산
-        Vector3 slimeSize = transform.localScale;
+        hpDecreaseTimer += Time.deltaTime;
 
-        // 슬라임 내부의 랜덤한 위치 계산 (슬라임 중앙을 기준으로 배치)
-        Vector3 randomPosition = new Vector3(
-            Random.Range(-slimeSize.x / 20, slimeSize.x / 20),
-            Random.Range(-slimeSize.y / 20, slimeSize.y / 20),
-            Random.Range(-slimeSize.z / 20, slimeSize.z / 20)
-        );
-
-        // 적의 위치를 슬라임 내부로 이동
-        enemyParent.transform.localScale /= 1.5f;
-        enemyParent.transform.SetParent(transform); // 적을 슬라임의 자식으로 설정하여 함께 이동하도록 함
-        enemyParent.transform.localPosition = randomPosition; // 로컬 좌표로 슬라임 내부에 배치
-
-        // 적을 비활성화하거나 물리적으로 영향을 받지 않도록 설정
-        enemy.GetComponent<Collider>().enabled = false; // 충돌 비활성화
-        if (enemy.GetComponent<Rigidbody>() != null)
+        if (hpDecreaseTimer > hpDecreaseInterval)
         {
-            enemy.GetComponent<Rigidbody>().isKinematic = true; // Rigidbody가 있으면 비활성화
+            hpDecreaseTimer = 0.0f;
+            playerStat.DecreaseHp();
         }
     }
 
-    // 땅에 닿았는지 확인하는 함수
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -108,14 +92,13 @@ public class Player : MonoBehaviour
             isGrounded = true; // 땅에 닿으면 다시 점프 가능
         }
 
-        // 적과 충돌했는지 확인
-        if (collision.gameObject.CompareTag("Enemy"))
+        // 흡수할 수 있는 오브젝트와 충돌했는지 확인
+        if (collision.gameObject.GetComponentInParent<EatAbleObjectBase>())
         {
             AbsorbEnemy(collision.gameObject);
         }
     }
 
-    // 땅에 닿았는지 확인하는 함수
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -123,4 +106,5 @@ public class Player : MonoBehaviour
             isGrounded = false; // 땅에 닿으면 다시 점프 가능
         }
     }
+
 }
