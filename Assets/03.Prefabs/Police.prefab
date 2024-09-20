@@ -118,9 +118,9 @@ GameObject:
   - component: {fileID: 4134262887055985714}
   - component: {fileID: 7033487755575871650}
   - component: {fileID: 9028169494053478227}
-  - component: {fileID: -3534414695138738391}
+  - component: {fileID: -1361186661236024963}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Police
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.1
   slimeRecoveryAmount: 5
   shrinkSpeed: 0.2
---- !u!114 &-3534414695138738391
+--- !u!114 &-1361186661236024963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,6 +189,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6571931840114449821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b2247ac9b7c1204080b8ca1c8d5fbb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d49e40d9f46be4e837b20d0b58e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 4
+  attackDamage: 10
+  attackSpeed: 2
+  attackRange: 10
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 10

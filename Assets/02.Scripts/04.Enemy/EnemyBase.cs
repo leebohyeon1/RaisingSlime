@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,37 +6,49 @@ using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    private EatAbleObjectBase eatAbleObjectBase;
+    protected NavMeshAgent agent;
+    protected EatAbleObjectBase eatAbleObjectBase;
 
-    private Transform target;
+    protected Transform target;
 
     public delegate void DestroyedHandler();
     public event DestroyedHandler OnDestroyed;
 
-    // Start is called before the first frame update
-    void Start()
+    [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
+    private float moveSpeed = 4f;
+
+    protected virtual void Start()
     {
+        //Nav Mesh Agent 초기화
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = moveSpeed;
+
+
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
 
         target = FindFirstObjectByType<Player>().transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-       if(eatAbleObjectBase.GetEaten())
-       {
+        enemyAction();
+    }
+
+    protected virtual void enemyAction() // 적 종류별 행동 부모 함수
+    {
+        // 기본은 플레이어 따라 감 
+        if (eatAbleObjectBase.GetEaten()) 
+        {
             return;
-       }
+        }
 
         agent.SetDestination(targetPos());
     }
 
-    private Vector3 targetPos()
+    protected virtual Vector3 targetPos() // 플레이어 포지션 값
     {
-        return new Vector3(target.position.x,0.0f,target.position.z);
+        //플레이어 사이즈가 계속 커지기 때문에 y축 값은 0으로 초기화
+        return new Vector3(target.position.x, 0.0f, target.position.z);
     }
 
 
