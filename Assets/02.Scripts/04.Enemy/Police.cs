@@ -7,7 +7,7 @@ public class Police : EnemyBase
 {
 
 
-    [BoxGroup("경찰"), LabelText("공격 속도"), SerializeField, Range(1f, 20f)]
+    [BoxGroup("경찰"), LabelText("공격 속도"), SerializeField, Range(0.1f, 20f)]
     private float attackSpeed = 2f;
     private float fireCooldown;
 
@@ -23,7 +23,7 @@ public class Police : EnemyBase
     [BoxGroup("경찰"), LabelText("총알 속도"), SerializeField, Range(1f, 20f)]
     private float bulletSpeed = 10f;
 
-    [BoxGroup("경찰"), LabelText("총알 데미지"), SerializeField, Range(1f, 20f)]
+    [BoxGroup("경찰"), LabelText("총알 데미지"), SerializeField, Range(0.1f, 20f)]
     private float bulletDamage = 1.0f;
 
     protected override void Start()
@@ -47,8 +47,6 @@ public class Police : EnemyBase
 
         if (distanceToPlayer < attackRange)
         {
-            //agent.isStopped = true;
-
             // 타겟과 일정 거리를 유지하면서 움직임
             MaintainDistanceAndMove(distanceToPlayer);
 
@@ -107,19 +105,6 @@ public class Police : EnemyBase
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
 
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
-        }
-        // 현재 타겟과 너무 멀다면 가까이 다가감
-        else if (distanceToPlayer > desiredMaxDistance)
-        {
-            agent.SetDestination(targetPos());  // 타겟에게 가까이 이동
-        }
-        else
-        {
-            // 일정 거리 내에서 플레이어 주위를 원형으로 움직임
-            Vector3 directionAroundTarget = Quaternion.Euler(0, 90, 0) * (targetPos() - transform.position).normalized;
-            Vector3 movePosition = transform.position + directionAroundTarget * 1.5f;  // 플레이어 주위를 돌면서 이동
-
-            agent.SetDestination(movePosition);  // 타겟 주변을 움직임
         }
     }
 }

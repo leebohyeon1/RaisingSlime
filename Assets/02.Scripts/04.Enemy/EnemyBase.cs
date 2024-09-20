@@ -6,13 +6,13 @@ using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
+    public delegate void DestroyedHandler();
+    public event DestroyedHandler OnDestroyed;
+
     protected NavMeshAgent agent;
     protected EatAbleObjectBase eatAbleObjectBase;
 
-    protected Transform target;
-
-    public delegate void DestroyedHandler();
-    public event DestroyedHandler OnDestroyed;
+    protected Transform target; // 플레이어 위치
 
     [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
     private float moveSpeed = 4f;
