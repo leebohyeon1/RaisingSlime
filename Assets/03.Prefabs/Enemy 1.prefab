@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0.9
+  size: 2
   slimeIncreaseSize: 0.1
   slimeRecoveryAmount: 5
   shrinkSpeed: 0.2
@@ -192,5 +192,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2247ac9b7c1204080b8ca1c8d5fbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 10
   attackDamage: 10

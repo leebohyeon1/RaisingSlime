@@ -152,7 +152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 316598975}
@@ -277,12 +277,11 @@ MonoBehaviour:
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
-    - {fileID: 6571931840114449821, guid: a798b24f4be2c6646ae570beaed264e4, type: 3}
+    - {fileID: 6571931840114449821, guid: 1e41866cf1c5ff44d810b623c7265c25, type: 3}
   - SpawnObjects:
     - {fileID: 6571931840114449821, guid: 1e41866cf1c5ff44d810b623c7265c25, type: 3}
-  spawnDistance: 2
+  spawnRadius: 50
   spawnHeight: 3
-  spawnAngleOffset: 15
 --- !u!1 &264025066
 GameObject:
   m_ObjectHideFlags: 0

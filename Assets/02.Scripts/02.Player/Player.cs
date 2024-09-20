@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         {
             if(eatAble.GetComponentInParent<EnemyBase>())
             {
-                TakeDamage(eatAble.GetComponentInParent<EnemyBase>().attackDamage);
+                TakeDamage(eatAble.GetComponentInParent<EnemyBase>().collisionDamage);
             }
         }
     }
