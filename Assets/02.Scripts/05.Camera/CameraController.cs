@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
 
         // 기본 카메라 거리를 설정 (초기화)
-        UpdateCameraDistance();
+        //UpdateCameraDistance();
     }
 
     void Update()

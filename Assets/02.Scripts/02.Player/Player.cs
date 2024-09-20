@@ -14,12 +14,6 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = true; // 땅에 있는지 확인하는 플래그
 
-    private float hpDecreaseTimer = 0.0f;
-    private float hpDecreaseInterval = 0.1f;
-
-    [Header("Size Decrease Settings")]
-    public float sizeDecreasePerSecond = 0.01f; // 매초마다 줄어드는 크기
-
     void Start()
     {
         // 컴포넌트 초기화
@@ -61,7 +55,7 @@ public class Player : MonoBehaviour
     private void AutoDecreaseSize()
     {
         // 매 프레임마다 초당 줄어드는 크기를 적용
-        float sizeDecreaseAmount = sizeDecreasePerSecond * Time.deltaTime;
+        float sizeDecreaseAmount = playerStat.sizeDecreasePerSecond * Time.deltaTime;
 
         // 현재 크기에서 줄어든 크기 계산
         Vector3 newScale = transform.localScale - new Vector3(sizeDecreaseAmount, sizeDecreaseAmount, sizeDecreaseAmount);
@@ -88,25 +82,26 @@ public class Player : MonoBehaviour
         // 슬라임과 오브젝트의 size 변수 비교
         if (eatAbleObjectBase.size < playerStat.curSize)
         {
+            // 자신보다 사이즈가 작으면 먹는다.
             Eat(eatAbleObjectBase);
         }
         else
         {
-            if(eatAble.GetComponentInParent<EnemyBase>())
+            if(eatAble.GetComponentInParent<EnemyBase>()) // 자신 보다 사이즈가 크고, 적일 경우
             {
                 TakeDamage(eatAble.GetComponentInParent<EnemyBase>().collisionDamage);
             }
         }
     }
 
-    private void Eat(EatAbleObjectBase eatAbleObjectBase) {
+    private void Eat(EatAbleObjectBase eatAbleObjectBase) 
+    {
 
         // 슬라임의 크기를 증가시키기
         eatAbleObjectBase.Eaten(transform);
 
         transform.localScale += eatAbleObjectBase.SlimeIncreaseSize();
         playerStat.curSize = transform.localScale.x;
-        playerStat.hp += eatAbleObjectBase.slimeRecoveryAmount;
     }
 
     public void TakeDamage(float damage)

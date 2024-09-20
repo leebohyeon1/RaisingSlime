@@ -38,15 +38,14 @@ public class Bullet : MonoBehaviour
         {
             // 적에게 피해를 주거나 다른 효과를 추가할 수 있음
 
-            Debug.Log(1);
             Player player = other.GetComponentInParent<Player>();
             if (player != null)
             {
                 player.TakeDamage(damage);
             }
 
-            Destroy(gameObject); // 총알 파괴
         }
 
+        Destroy(gameObject); // 총알 파괴
     }
 }
