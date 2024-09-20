@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Police : EnemyBase
 {
-    [BoxGroup("경찰"), LabelText("공격력"), SerializeField, Range(1f, 20f)]
-    private float attackDamage = 10f;
+
 
     [BoxGroup("경찰"), LabelText("공격 속도"), SerializeField, Range(1f, 20f)]
     private float attackSpeed = 2f;
@@ -42,12 +41,12 @@ public class Police : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(transform.position, targetPos());
 
-        if (distanceToPlayer < attackDamage)
+        if (distanceToPlayer < attackRange)
         {
             agent.isStopped = true;
 
         }
-        else if(distanceToPlayer >= attackSpeed) 
+        else if(distanceToPlayer >= attackRange) 
         {
             agent.isStopped = false;
         

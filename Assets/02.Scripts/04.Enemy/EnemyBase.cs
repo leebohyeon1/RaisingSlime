@@ -16,6 +16,8 @@ public class EnemyBase : MonoBehaviour
 
     [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
     private float moveSpeed = 4f;
+    [BoxGroup("기본"), LabelText("공격력"), SerializeField]
+    public float attackDamage = 10f;
 
     protected virtual void Start()
     {
@@ -50,6 +52,17 @@ public class EnemyBase : MonoBehaviour
         //플레이어 사이즈가 계속 커지기 때문에 y축 값은 0으로 초기화
         return new Vector3(target.position.x, 0.0f, target.position.z);
     }
+
+
+    //protected virtual void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Player player = collision.gameObject.GetComponent<Player>();
+
+    //        player.TakeDamage(attackDamage);
+    //    }
+    //}
 
 
     private void OnDestroy()
