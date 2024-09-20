@@ -16,8 +16,8 @@ public class EnemyBase : MonoBehaviour
 
     [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
     private float moveSpeed = 4f;
-    [BoxGroup("기본"), LabelText("공격력"), SerializeField]
-    public float attackDamage = 10f;
+    [BoxGroup("기본"), LabelText("충돌 데미지"), SerializeField]
+    public float collisionDamage = 10f;
 
     protected virtual void Start()
     {
