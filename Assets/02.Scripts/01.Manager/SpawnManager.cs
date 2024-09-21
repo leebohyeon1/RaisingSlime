@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -9,12 +10,12 @@ public class SpawnManager : MonoBehaviour
     public int step = 0;
     public SpawnObjectsList[] spawnObjectsList;
 
-    public float spawnRadius = 50f; // »ı¼º ¹İ°æ (¸Ê ¹Û¿¡¼­ ¾ó¸¶³ª ¶³¾îÁø °÷¿¡ ÀûÀ» »ı¼ºÇÒÁö °áÁ¤)
-    public float spawnHeight = 3f; // ÀûÀÌ »ı¼ºµÉ ¶§ÀÇ ³ôÀÌ
+    public float spawnRadius = 50f; // ìƒì„± ë°˜ê²½ (ë§µ ë°–ì—ì„œ ì–¼ë§ˆë‚˜ ë–¨ì–´ì§„ ê³³ì— ì ì„ ìƒì„±í• ì§€ ê²°ì •)
+    public float spawnHeight = 3f; // ì ì´ ìƒì„±ë  ë•Œì˜ ë†’ì´
 
-    private List<GameObject> currentStepEnemyList = new List<GameObject>(); // ÇöÀç ½ºÅÜ¿¡¼­ ½ºÆùµÈ Àû ¸®½ºÆ®
-    private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // ÀÌÀü¿¡ ½ºÆùµÈ Àû ¸®½ºÆ®
-    private bool isSceneClosing = false; // ¾ÀÀÌ ´İÈ÷´Â ÁßÀÎÁö ¿©ºÎ¸¦ È®ÀÎÇÏ´Â ÇÃ·¡±×
+    private List<GameObject> currentStepEnemyList = new List<GameObject>(); // í˜„ì¬ ìŠ¤í…ì—ì„œ ìŠ¤í°ëœ ì  ë¦¬ìŠ¤íŠ¸
+    private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // ì´ì „ì— ìŠ¤í°ëœ ì  ë¦¬ìŠ¤íŠ¸
+    private bool isSceneClosing = false; // ì”¬ì´ ë‹«íˆëŠ” ì¤‘ì¸ì§€ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” í”Œë˜ê·¸
 
     private Transform slimeTrans;
 
@@ -27,86 +28,116 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        // ½ºÆù¸Å´ÏÀúÀÇ À§Ä¡¸¦ ÇÃ·¹ÀÌ¾î(½½¶óÀÓ) À§Ä¡·Î ¼³Á¤
+        // ìŠ¤í°ë§¤ë‹ˆì €ì˜ ìœ„ì¹˜ë¥¼ í”Œë ˆì´ì–´(ìŠ¬ë¼ì„) ìœ„ì¹˜ë¡œ ì„¤ì •
         transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
 
     }
 
-    // ÇöÀç ½ºÅÜÀÇ ÀûµéÀ» ½ºÆùÇÏ´Â ÇÔ¼ö
+    // í˜„ì¬ ìŠ¤í…ì˜ ì ë“¤ì„ ìŠ¤í°í•˜ëŠ” í•¨ìˆ˜
     private void SpawnEnemiesForCurrentStep()
     {
-        // ÇöÀç ½ºÅÜ¿¡ ÀÖ´Â ÀûÀ» ½ºÆù
+        // í˜„ì¬ ìŠ¤í…ì— ìˆëŠ” ì ì„ ìŠ¤í°
         foreach (GameObject enemyPrefab in spawnObjectsList[step].SpawnObjects)
         {
             SpawnEnemy(enemyPrefab);
         }
     }
 
-    // ½ºÅÜ º¯°æ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // ìŠ¤í… ë³€ê²½ ì‹œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     [Button]
     public void ChangeStep(int newStep)
     {
-        // ÇöÀç ½ºÅÜÀÇ ÀûµéÀ» ¸ğµÎ beforeStepEnemyList¿¡ Ãß°¡
+        // í˜„ì¬ ìŠ¤í…ì˜ ì ë“¤ì„ ëª¨ë‘ beforeStepEnemyListì— ì¶”ê°€
         foreach (GameObject enemy in currentStepEnemyList)
         {
             if (enemy != null)
             {
-                beforeStepEnemyList.Add(enemy); // ÀÌÀü ½ºÅÜÀÇ ÀûÀ¸·Î ±â·Ï
+                beforeStepEnemyList.Add(enemy); // ì´ì „ ìŠ¤í…ì˜ ì ìœ¼ë¡œ ê¸°ë¡
             }
         }
 
-        // ÇöÀç ½ºÅÜ Àû ¸®½ºÆ® ÃÊ±âÈ­
+        // í˜„ì¬ ìŠ¤í… ì  ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
         currentStepEnemyList.Clear();
 
-        // »õ·Î¿î ½ºÅÜÀ¸·Î º¯°æ
+        // ìƒˆë¡œìš´ ìŠ¤í…ìœ¼ë¡œ ë³€ê²½
         step = newStep;
 
-        // »õ·Î¿î ½ºÅÜÀÇ ÀûµéÀ» ½ºÆù
+        // ìƒˆë¡œìš´ ìŠ¤í…ì˜ ì ë“¤ì„ ìŠ¤í°
         SpawnEnemiesForCurrentStep();
     }
 
-    // ÀûÀ» ½ºÆùÇÏ´Â ÇÔ¼ö
+    // ì ì„ ìŠ¤í°í•˜ëŠ” í•¨ìˆ˜
     private void SpawnEnemy(GameObject enemyPrefab)
     {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Vector3 spawnPosition = GetValidNavMeshPosition();
 
-        // ½ºÆùµÈ ÀûÀ» ÇöÀç ½ºÅÜ ¸®½ºÆ®¿¡ Ãß°¡
-        currentStepEnemyList.Add(newEnemy);
-
-        // ÀûÀÌ ÆÄ±«µÇ¾úÀ» ¶§ ´Ù½Ã ½ºÆùÇÏÁö ¾Êµµ·Ï ÀÌÀü ½ºÅÜÀÇ ÀûÀÎÁö È®ÀÎ
-        EnemyBase enemyComponent = newEnemy.GetComponent<EnemyBase>();
-        if (enemyComponent != null)
+        // ìœ íš¨í•œ NavMesh ìœ„ì˜ ìœ„ì¹˜ë¥¼ ì°¾ì•˜ì„ ë•Œë§Œ ì ì„ ìŠ¤í°
+        if (spawnPosition != Vector3.zero)
         {
-            enemyComponent.OnDestroyed += () =>
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+            // ìŠ¤í°ëœ ì ì„ í˜„ì¬ ìŠ¤í… ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
+            currentStepEnemyList.Add(newEnemy);
+
+            // ì ì´ íŒŒê´´ë˜ì—ˆì„ ë•Œ ë‹¤ì‹œ ìŠ¤í°í•˜ì§€ ì•Šë„ë¡ ì´ì „ ìŠ¤í…ì˜ ì ì¸ì§€ í™•ì¸
+            NPCBase enemyComponent = newEnemy.GetComponent<NPCBase>();
+            if (enemyComponent != null)
             {
-                // ÀûÀÌ ÆÄ±«µÈ ÀÌÈÄ¿¡µµ ½ºÆù¸Å´ÏÀú°¡ ÆÄ±«µÇÁö ¾Ê¾Ò´ÂÁö È®ÀÎ
-                if (this != null && newEnemy != null && !isSceneClosing)
+                enemyComponent.OnDestroyed += () =>
                 {
-
-                    // ÀûÀÌ ÀÌÀü ½ºÅÜ¿¡ ¼ÓÇÏÁö ¾ÊÀ¸¸é ´Ù½Ã ½ºÆù
-                    if (!beforeStepEnemyList.Contains(newEnemy))
+                    // ì ì´ íŒŒê´´ëœ ì´í›„ì—ë„ ìŠ¤í°ë§¤ë‹ˆì €ê°€ íŒŒê´´ë˜ì§€ ì•Šì•˜ëŠ”ì§€ í™•ì¸
+                    if (this != null && newEnemy != null && !isSceneClosing)
                     {
-                        SpawnEnemy(enemyPrefab); // ´Ù½Ã ½ºÆù (ÇöÀç ½ºÅÜÀÇ Àû¸¸)
-                    }
+                        // ì ì´ ì´ì „ ìŠ¤í…ì— ì†í•˜ì§€ ì•Šìœ¼ë©´ ë‹¤ì‹œ ìŠ¤í°
+                        if (!beforeStepEnemyList.Contains(newEnemy))
+                        {
+                            SpawnEnemy(enemyPrefab); // ë‹¤ì‹œ ìŠ¤í° (í˜„ì¬ ìŠ¤í…ì˜ ì ë§Œ)
+                        }
 
-                    // ÀûÀÌ ÆÄ±«µÇ¾úÀ» ¶§ ¸®½ºÆ®¿¡¼­ Á¦°Å
-                    RemoveEnemyFromList(newEnemy);
-                }
-            };
+                        // ì ì´ íŒŒê´´ë˜ì—ˆì„ ë•Œ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°
+                        RemoveEnemyFromList(newEnemy);
+                    }
+                };
+            }
         }
     }
 
-    // ¸®½ºÆ®¿¡¼­ Àû Á¦°Å ÇÔ¼ö
+    // NavMesh ìœ„ì˜ ìœ íš¨í•œ ìŠ¤í° ìœ„ì¹˜ë¥¼ ì°¾ëŠ” í•¨ìˆ˜
+    private Vector3 GetValidNavMeshPosition()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        int maxAttempts = 10; // ìœ íš¨í•œ ìœ„ì¹˜ë¥¼ ì°¾ê¸° ìœ„í•œ ìµœëŒ€ ì‹œë„ íšŸìˆ˜
+        int attempts = 0;
+        float maxDistance = 10f; // ìƒ˜í”Œë§í•  ìµœëŒ€ ê±°ë¦¬
+
+        while (attempts < maxAttempts)
+        {
+            Vector3 randomPosition = GetRandomSpawnPosition();
+            NavMeshHit hit;
+
+            // NavMesh ìœ„ì˜ ìœ íš¨í•œ ìœ„ì¹˜ì¸ì§€ í™•ì¸
+            if (NavMesh.SamplePosition(randomPosition, out hit, maxDistance, NavMesh.AllAreas))
+            {
+                spawnPosition = hit.position;
+                break;
+            }
+
+            attempts++;
+        }
+
+        return spawnPosition;
+    }
+
+    // ë¦¬ìŠ¤íŠ¸ì—ì„œ ì  ì œê±° í•¨ìˆ˜
     private void RemoveEnemyFromList(GameObject enemy)
     {
-        // ÇöÀç ½ºÅÜ ¸®½ºÆ®¿¡¼­ Á¦°Å
+        // í˜„ì¬ ìŠ¤í… ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°
         if (currentStepEnemyList.Contains(enemy))
         {
             currentStepEnemyList.Remove(enemy);
         }
 
-        // ÀÌÀü ½ºÅÜ ¸®½ºÆ®¿¡¼­ Á¦°Å (¸¸¾à ÀÖÀ» °æ¿ì)
+        // ì´ì „ ìŠ¤í… ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±° (ë§Œì•½ ìˆì„ ê²½ìš°)
         if (beforeStepEnemyList.Contains(enemy))
         {
             beforeStepEnemyList.Remove(enemy);
@@ -115,17 +146,17 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        // XZ Æò¸é¿¡¼­ ·£´ıÇÑ ¹æÇâÀ» ¼±ÅÃÇÏ¿© »ı¼º ¹üÀ§ ¿ÜºÎÀÇ ·£´ı À§Ä¡¸¦ °è»ê
+        // XZ í‰ë©´ì—ì„œ ëœë¤í•œ ë°©í–¥ì„ ì„ íƒí•˜ì—¬ ìƒì„± ë²”ìœ„ ì™¸ë¶€ì˜ ëœë¤ ìœ„ì¹˜ë¥¼ ê³„ì‚°
         Vector2 randomDirection = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
 
-        // ÇÃ·¹ÀÌ¾î ¶Ç´Â ¸Ê Áß¾Ó¿¡¼­ ¸Õ À§Ä¡¿¡ ½ºÆùµÇµµ·Ï ¼³Á¤
+        // í”Œë ˆì´ì–´ ë˜ëŠ” ë§µ ì¤‘ì•™ì—ì„œ ë¨¼ ìœ„ì¹˜ì— ìŠ¤í°ë˜ë„ë¡ ì„¤ì •
         spawnPosition += transform.position;
 
         return spawnPosition;
     }
 
-    // ¾ÀÀÌ ´İÈú ¶§ ½ºÆùÀ» Áß´ÜÇÏ±â À§ÇØ ÇÃ·¡±× ¼³Á¤
+    // ì”¬ì´ ë‹«í ë•Œ ìŠ¤í°ì„ ì¤‘ë‹¨í•˜ê¸° ìœ„í•´ í”Œë˜ê·¸ ì„¤ì •
     private void OnApplicationQuit()
     {
         isSceneClosing = true;
@@ -133,21 +164,21 @@ public class SpawnManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        isSceneClosing = true; // ¿ÀºêÁ§Æ®°¡ ÆÄ±«µÉ ¶§µµ ÇÃ·¡±× ¼³Á¤
+        isSceneClosing = true; // ì˜¤ë¸Œì íŠ¸ê°€ íŒŒê´´ë  ë•Œë„ í”Œë˜ê·¸ ì„¤ì •
     }
 
 
-    // ±âÁî¸ğ·Î »ı¼º ¹üÀ§¸¦ ½Ã°¢ÀûÀ¸·Î Ç¥½Ã
+    // ê¸°ì¦ˆëª¨ë¡œ ìƒì„± ë²”ìœ„ë¥¼ ì‹œê°ì ìœ¼ë¡œ í‘œì‹œ
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; // ±âÁî¸ğ »ö»óÀ» »¡°£»öÀ¸·Î ¼³Á¤
-        Gizmos.DrawWireSphere(transform.position, spawnRadius); // »ı¼º ¹üÀ§¸¦ ¿øÀ¸·Î Ç¥½Ã
+        Gizmos.color = Color.red; // ê¸°ì¦ˆëª¨ ìƒ‰ìƒì„ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ì„¤ì •
+        Gizmos.DrawWireSphere(transform.position, spawnRadius); // ìƒì„± ë²”ìœ„ë¥¼ ì›ìœ¼ë¡œ í‘œì‹œ
     }
 }
 
 [System.Serializable]
 public struct SpawnObjectsList
 {
-    [LabelText("´Ü°èº° ½ºÆùµÇ´Â ¿ÀºêÁ§Æ®")]
+    [LabelText("ë‹¨ê³„ë³„ ìŠ¤í°ë˜ëŠ” ì˜¤ë¸Œì íŠ¸")]
     public GameObject[] SpawnObjects;
 }

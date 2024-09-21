@@ -1,9 +1,10 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Police : EnemyBase
+public class Police : NPCBase
 {
 
 
@@ -43,7 +44,7 @@ public class Police : EnemyBase
             return;
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, targetPos());
+        float distanceToPlayer = Vector3.Distance(transform.position, targetGroundPos());
 
         if (distanceToPlayer < attackRange)
         {
@@ -56,14 +57,14 @@ public class Police : EnemyBase
         else if(distanceToPlayer >= attackRange) 
         {
             agent.isStopped = false;
-            agent.SetDestination(targetPos());
+            agent.SetDestination(targetGroundPos());
         }
     }
 
     // 공격 메커니즘
     void Attack()
     {
-        transform.LookAt(targetPos());
+        transform.LookAt(targetPosSameYPos());
 
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
@@ -101,7 +102,7 @@ public class Police : EnemyBase
         if (distanceToPlayer < desiredMinDistance)
         {
             // 타겟 반대 방향으로 이동
-            Vector3 directionAwayFromTarget = (transform.position - targetPos()).normalized;
+            Vector3 directionAwayFromTarget = (transform.position - targetGroundPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
 
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
