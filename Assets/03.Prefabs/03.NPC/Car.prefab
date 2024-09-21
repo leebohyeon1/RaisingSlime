@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4134262887055985714}
   - component: {fileID: 7033487755575871650}
   - component: {fileID: 9028169494053478227}
-  - component: {fileID: 9011907827944459366}
+  - component: {fileID: -9164273664764925491}
   m_Layer: 0
   m_Name: Car
   m_TagString: Enemy
@@ -180,7 +180,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.1
   slimeRecoveryAmount: 5
   shrinkSpeed: 0.2
---- !u!114 &9011907827944459366
+--- !u!114 &-9164273664764925491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,8 +189,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6571931840114449821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7b2ffdc23b43644aed048d58b03730, type: 3}
+  m_Script: {fileID: 11500000, guid: a9eb374648db90c4890e81e53e8f46d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  collisionDamage: 0.5
+  moveSpeed: 15
+  collisionDamage: 1
+  acceleration: 5
+  turnSpeed: 5

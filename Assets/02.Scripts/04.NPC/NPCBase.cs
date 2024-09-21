@@ -15,9 +15,9 @@ public class NPCBase : MonoBehaviour
     protected Transform target; // 플레이어 위치
 
     [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
-    private float moveSpeed = 4f;
+    protected float moveSpeed = 4f;
     [BoxGroup("기본"), LabelText("충돌 데미지"), SerializeField]
-    public float collisionDamage = 10f;
+    public float collisionDamage = 1f;
 
     protected virtual void Start()
     {
@@ -44,15 +44,20 @@ public class NPCBase : MonoBehaviour
             return;
         }
 
-        agent.SetDestination(targetPos());
+        agent.SetDestination(targetGroundPos());
     }
 
-    protected virtual Vector3 targetPos() // 플레이어 포지션 값
+    protected virtual Vector3 targetGroundPos() // 플레이어 포지션 값
     {
         //플레이어 사이즈가 계속 커지기 때문에 y축 값은 0으로 초기화
         return new Vector3(target.position.x, 0.0f, target.position.z);
     }
 
+    protected virtual Vector3 targetPosSameYPos() // 플레이어 포지션 값
+    {
+        //플레이어 사이즈가 계속 커지기 때문에 y축 값은 0으로 초기화
+        return new Vector3(target.position.x, transform.position.y, target.position.z);
+    }
 
     //protected virtual void OnCollisionEnter(Collision collision)
     //{

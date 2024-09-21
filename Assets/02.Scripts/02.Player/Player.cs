@@ -34,10 +34,10 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (!isGrounded)
-        {
-            return;
-        }
+        //if (!isGrounded)
+        //{
+        //    return;
+        //}
 
         rb.velocity = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed); 
     }
