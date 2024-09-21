@@ -87,9 +87,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if(eatAble.GetComponentInParent<EnemyBase>()) // 자신 보다 사이즈가 크고, 적일 경우
+            if(eatAble.GetComponentInParent<NPCBase>()) // 자신 보다 사이즈가 크고, 적일 경우
             {
-                TakeDamage(eatAble.GetComponentInParent<EnemyBase>().collisionDamage);
+                TakeDamage(eatAble.GetComponentInParent<NPCBase>().collisionDamage);
             }
         }
     }

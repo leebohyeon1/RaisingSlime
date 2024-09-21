@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBase : MonoBehaviour
+public class NPCBase : MonoBehaviour
 {
     public delegate void DestroyedHandler();
     public event DestroyedHandler OnDestroyed;
