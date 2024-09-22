@@ -681,13 +681,12 @@ GameObject:
   - component: {fileID: 3074204201629103931}
   - component: {fileID: 1104883873363256745}
   - component: {fileID: 86087122184117434}
-  - component: {fileID: 1544583362862378508}
   - component: {fileID: 7609340563273615855}
   - component: {fileID: 5085830992363419843}
   - component: {fileID: 239959963310856105}
   m_Layer: 0
   m_Name: PoliceCar
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -783,35 +782,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.172129, y: 1.5151018, z: 5.2474527}
-  m_Center: {x: 0.00000035762787, y: 1, z: 0.15558517}
---- !u!54 &1544583362862378508
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192421587042942229}
-  serializedVersion: 4
-  m_Mass: 1000
-  m_Drag: 10
-  m_AngularDrag: 2
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Size: {x: 2.172129, y: 1.9, z: 5.5}
+  m_Center: {x: 0.00000035762787, y: 1, z: 0.1}
 --- !u!195 &7609340563273615855
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -820,20 +792,20 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7192421587042942229}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 2.7793117
+  m_AgentTypeID: 1479372276
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_WalkableMask: 7
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &5085830992363419843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,12 +834,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9eb374648db90c4890e81e53e8f46d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  isEnemy: 1
+  moveSpeed: 20
   collisionDamage: 0.001
   acceleration: 10
-  turnSpeed: 2
   reverseAcceleration: 5
   maxReverseSpeed: 10
-  stopDuration: 1
+  turnSpeed: 2
+  maxTurnAngle: 40
   reverseTime: 2
-  maxTurnAngle: 35
+  stopDuration: 1

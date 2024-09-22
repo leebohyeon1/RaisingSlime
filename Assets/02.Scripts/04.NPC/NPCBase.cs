@@ -14,6 +14,8 @@ public class NPCBase : MonoBehaviour
 
     protected Transform target; // 플레이어 위치
 
+    [BoxGroup("기본"), LabelText("공격형 NPC")]
+    public bool isEnemy = false;
     [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
     protected float moveSpeed = 4f;
     [BoxGroup("기본"), LabelText("충돌 데미지"), SerializeField]

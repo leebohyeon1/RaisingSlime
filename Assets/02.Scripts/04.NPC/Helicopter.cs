@@ -27,6 +27,7 @@ public class Helicopter : NPCBase
 
         agent.updatePosition = false;  // NavMeshAgent가 Y 축으로 자동 이동하지 않도록 설정
         agent.updateRotation = true;   // 회전은 여전히 NavMeshAgent에 맡김
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;  // 회피 기능 비활성화
     }
 
     protected override void Update()

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 435604900370528745}
   - component: {fileID: 4192200116424269771}
   m_Layer: 0
-  m_Name: Police_test
-  m_TagString: Untagged
+  m_Name: Police_Test
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d49e40d9f46be4e837b20d0b58e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 1
   moveSpeed: 4
   collisionDamage: 10
   attackSpeed: 0.5
