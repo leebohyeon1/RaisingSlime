@@ -62,7 +62,7 @@ public class EatAbleObjectBase : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         if (GetComponent<Rigidbody>() != null)
         {
-            GetComponent<Rigidbody>().isKinematic = true; // Rigidbody가 있으면 비활성화
+            Destroy(GetComponent<Rigidbody>()); // Rigidbody가 있으면 비활성화
         }
     }
 

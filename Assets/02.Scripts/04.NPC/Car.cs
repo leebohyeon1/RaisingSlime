@@ -1,10 +1,10 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Car : NPCBase
 {
-    private Rigidbody rb;
 
     [TabGroup("자동차", "이동"), LabelText("가속도"), SerializeField, Range(0f, 20f)]
     public float acceleration = 5f;         // 가속도
@@ -33,12 +33,11 @@ public class Car : NPCBase
     protected override void Start()
     {
         base.Start();
+
         agent.angularSpeed = 0f; // 자동차는 직접 회전 처리하므로 NavMesh의 회전을 비활성화
-        agent.updatePosition = false;   
         agent.updateRotation = false; // 에이전트의 회전은 수동으로 처리함
         agent.updateUpAxis = false; // 자동차의 회전은 XZ 평면에서만 이루어지도록 설정
 
-        rb = GetComponent<Rigidbody>(); 
     }
 
     protected override void Update()
@@ -52,6 +51,7 @@ public class Car : NPCBase
         {
             return;
         }
+
 
         if (target != null && !isReversing && !isStoppedAfterCollision)
         {   
@@ -76,7 +76,8 @@ public class Car : NPCBase
         // 이동해야 할 거리가 매우 짧다면, 속도를 0으로 설정
         if (direction.magnitude < 0.5f)
         {
-            currentSpeed = 0f;
+            currentSpeed = 0f; 
+            agent.speed = currentSpeed;
             return;
         }
 
@@ -88,6 +89,7 @@ public class Car : NPCBase
 
         if (currentSpeed >= 1f)
         {
+            agent.speed = currentSpeed;
             // 자동차 회전 처리 (속도에 비례하여 부드럽게 회전)
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
@@ -98,7 +100,8 @@ public class Car : NPCBase
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
         }
 
-        rb.velocity = transform.forward * currentSpeed;
+        // Rigidbody의 속도를 사용하여 이동 처리
+        // rb.velocity = transform.forward * currentSpeed;
     }
 
 
@@ -107,11 +110,13 @@ public class Car : NPCBase
         // 후진 타이머 관리
         if (reverseTimer < reverseTime)
         {
+                
             // 현재 위치에서 목적지까지의 방향 계산
             Vector3 direction = targetPosSameYPos() - transform.position;
 
             if (reverseSpeed >= 1f)
             {
+                agent.speed = reverseSpeed;
                 // 자동차 회전 처리 (속도에 비례하여 부드럽게 회전)
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
 
@@ -131,7 +136,7 @@ public class Car : NPCBase
 
             reverseSpeed = Mathf.Min(reverseSpeed + reverseAcceleration * Time.deltaTime, maxReverseSpeed);
 
-            rb.velocity = -transform.forward * reverseSpeed;
+            //rb.velocity = -transform.forward * reverseSpeed;
 
             // 후진 시간 카운트
             reverseTimer += Time.deltaTime;
@@ -168,11 +173,18 @@ public class Car : NPCBase
     IEnumerator HandleCollision()
     {
         isStoppedAfterCollision = true;
-        currentSpeed = 0f;
 
+        if(currentSpeed < 5)
+        {
+            agent.isStopped = true;
+        }
+
+        currentSpeed = 0f;
+        agent.speed = currentSpeed;
         // 충돌 후 잠시 멈춤
         yield return new WaitForSeconds(stopDuration);
 
+        agent.isStopped = false;
         // 후진 로직
         isReversing = true;
     }
@@ -180,7 +192,7 @@ public class Car : NPCBase
     // 충돌 이벤트 처리
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground"))
+        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("NPC"))
         {
             StartCoroutine(HandleCollision());
         }
