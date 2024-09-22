@@ -50,8 +50,8 @@ MonoBehaviour:
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
     - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
-    - {fileID: 4380738019162708727, guid: ffdc63baa5e92f34a96f938b00664c44, type: 3}
-  - SpawnObjects:
-    - {fileID: 0}
+    - {fileID: 1057038200755074153, guid: 3558fe70e0df4764b9037fd7be58240a, type: 3}
+    - {fileID: 8187447822436829024, guid: 06b82213b0b026a47806908a208bd259, type: 3}
+    - {fileID: 7192421587042942229, guid: 18221a5024cc08b45816d62bad0269ba, type: 3}
   spawnRadius: 50
   spawnHeight: 3
