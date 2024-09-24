@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
     // 적을 스폰하는 함수
     private void SpawnEnemy(GameObject enemyPrefab)
     {
-        Vector3 spawnPosition = GetValidNavMeshPosition();
+        Vector3 spawnPosition = GetValidSpawnPosition();
 
         // 유효한 NavMesh 위의 위치를 찾았을 때만 적을 스폰
         if (spawnPosition != Vector3.zero)
@@ -80,7 +80,7 @@ public class SpawnManager : MonoBehaviour
             currentStepEnemyList.Add(newEnemy);
 
             // 적이 파괴되었을 때 다시 스폰하지 않도록 이전 스텝의 적인지 확인
-            NPCBase enemyComponent = newEnemy.GetComponent<NPCBase>();
+            NPCParent enemyComponent = newEnemy.GetComponent<NPCParent>();
             if (enemyComponent != null)
             {
                 enemyComponent.OnDestroyed += () =>
@@ -98,32 +98,52 @@ public class SpawnManager : MonoBehaviour
                         RemoveEnemyFromList(newEnemy);
                     }
                 };
+
+                enemyComponent.SetNPCTarget(slimeTrans);
             }
         }
     }
 
-    // NavMesh 위의 유효한 스폰 위치를 찾는 함수
-    private Vector3 GetValidNavMeshPosition()
+    private Vector3 GetValidSpawnPosition()
     {
         Vector3 spawnPosition = Vector3.zero;
         int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
         int attempts = 0;
-        float maxDistance = 10f; // 샘플링할 최대 거리
+        float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
 
         while (attempts < maxAttempts)
         {
+            // 랜덤한 위치를 생성
             Vector3 randomPosition = GetRandomSpawnPosition();
-            NavMeshHit hit;
 
-            // NavMesh 위의 유효한 위치인지 확인
-            if (NavMesh.SamplePosition(randomPosition, out hit, maxDistance, NavMesh.AllAreas))
+            // 충돌체와 겹치지 않는지 확인
+            if (!IsPositionOccupied(randomPosition, spawnCheckRadius))
             {
-                spawnPosition = hit.position;
+                spawnPosition = randomPosition;
                 break;
             }
 
             attempts++;
         }
+
+        return spawnPosition;
+    }
+
+    private bool IsPositionOccupied(Vector3 position, float radius)
+    {
+        // 주어진 위치에 일정 반경 내에 충돌체가 있는지 확인
+        Collider[] colliders = Physics.OverlapSphere(position, radius);
+        return colliders.Length > 0; // 만약 충돌체가 하나라도 있으면 위치가 점유된 것으로 판단
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * spawnRadius;
+        Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
+
+        // 플레이어 또는 맵 중앙에서 먼 위치에 스폰되도록 설정
+        spawnPosition += transform.position;
 
         return spawnPosition;
     }
@@ -144,17 +164,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private Vector3 GetRandomSpawnPosition()
-    {
-        // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * spawnRadius;
-        Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
-
-        // 플레이어 또는 맵 중앙에서 먼 위치에 스폰되도록 설정
-        spawnPosition += transform.position;
-
-        return spawnPosition;
-    }
+  
 
     // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
     private void OnApplicationQuit()

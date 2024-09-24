@@ -47,11 +47,9 @@ MonoBehaviour:
   step: 0
   spawnObjectsList:
   - SpawnObjects:
-    - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
-    - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
-    - {fileID: 6571931840114449821, guid: bb0b97d12b2a2f7459c8147f88017ecd, type: 3}
-    - {fileID: 1057038200755074153, guid: 3558fe70e0df4764b9037fd7be58240a, type: 3}
-    - {fileID: 8187447822436829024, guid: 06b82213b0b026a47806908a208bd259, type: 3}
-    - {fileID: 7192421587042942229, guid: 18221a5024cc08b45816d62bad0269ba, type: 3}
+    - {fileID: 2421129217990319429, guid: 7c4fd4af40e76a843adb75a51af032ee, type: 3}
+    - {fileID: 6617566681201729464, guid: 0f68389463ae5c1428ce483f3016be35, type: 3}
+    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
+    - {fileID: 2421129217990319429, guid: 7c4fd4af40e76a843adb75a51af032ee, type: 3}
   spawnRadius: 50
-  spawnHeight: 3
+  spawnHeight: 2.5

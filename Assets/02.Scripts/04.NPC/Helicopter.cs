@@ -21,6 +21,12 @@ public class Helicopter : NPCBase
     [TabGroup("헬리콥터", "장식"), LabelText("프로펠러 회전속도"), SerializeField]
     private float propellerRotationSpeed = 500f; // 프로펠러 회전 속도
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -44,15 +50,19 @@ public class Helicopter : NPCBase
             return;
         }
 
+        CheckNavMesh(15f);
+
         if (target != null)
         {
-            float distance = Vector3.Distance(transform.position, targetPosSameYPos());
+            float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
 
             // NavMeshAgent가 경로를 따라 이동하는 부분을 직접 제어
             if (distance > attackRange)
             {
                 agent.isStopped = false;
-                agent.SetDestination(targetPosSameYPos());
+
+                MoveToTarget();
+
 
                 Vector3 nextPosition = agent.nextPosition;
 
@@ -61,7 +71,7 @@ public class Helicopter : NPCBase
                 transform.position = nextPosition;
 
                 // 부드럽게 목표 지점을 향해 회전 (DoTween 사용)
-                Quaternion targetRotation = Quaternion.LookRotation(targetPosSameYPos() - transform.position);
+                Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
 
                 // X축 회전을 제한하는 로직 추가
                 targetRotation = LimitXRotation(targetRotation, maxXAngle);
@@ -73,7 +83,7 @@ public class Helicopter : NPCBase
                 MaintainDistanceAndMove(distance);
 
                 // 가까운 경우 부드럽게 회전
-                Quaternion targetRotation = Quaternion.LookRotation(targetGroundPos() - transform.position);
+                Quaternion targetRotation = Quaternion.LookRotation(TargetGroundPos() - transform.position);
 
                 // X축 회전을 제한하는 로직 추가
                 targetRotation = LimitXRotation(targetRotation, maxXAngle);
@@ -111,7 +121,7 @@ public class Helicopter : NPCBase
         if (distanceToPlayer < desiredMinDistance)
         {
             // 타겟 반대 방향으로 이동
-            Vector3 directionAwayFromTarget = (transform.position - targetPosSameYPos()).normalized;
+            Vector3 directionAwayFromTarget = (transform.position - TargetPosSameYPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 3f; // 일정 거리 벌리기
 
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동

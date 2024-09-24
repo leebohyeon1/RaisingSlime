@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Police : NPCBase
 {
@@ -27,6 +28,12 @@ public class Police : NPCBase
     [BoxGroup("경찰"), LabelText("총알 데미지"), SerializeField, Range(0.1f, 20f)]
     private float bulletDamage = 1.0f;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -44,7 +51,9 @@ public class Police : NPCBase
             return;
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, targetGroundPos());
+        CheckNavMesh();
+
+        float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
         if (distanceToPlayer < attackRange)
         {
@@ -57,14 +66,15 @@ public class Police : NPCBase
         else if(distanceToPlayer >= attackRange) 
         {
             agent.isStopped = false;
-            agent.SetDestination(targetGroundPos());
+
+            MoveToTarget();
         }
     }
 
     // 공격 메커니즘
     void Attack()
     {
-        transform.LookAt(targetPosSameYPos());
+        transform.LookAt(TargetPosSameYPos());
 
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
@@ -102,10 +112,12 @@ public class Police : NPCBase
         if (distanceToPlayer < desiredMinDistance)
         {
             // 타겟 반대 방향으로 이동
-            Vector3 directionAwayFromTarget = (transform.position - targetGroundPos()).normalized;
+            Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
 
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
         }
     }
+
+
 }

@@ -29,6 +29,10 @@ public class Car : NPCBase
     private bool isStoppedAfterCollision = false;  // 충돌 후 멈춤 여부
     private float reverseTimer = 0f;        // 후진 시간 타이머
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     protected override void Start()
     {
@@ -52,6 +56,7 @@ public class Car : NPCBase
             return;
         }
 
+        CheckNavMesh();
 
         if (target != null && !isReversing && !isStoppedAfterCollision)
         {   
@@ -67,7 +72,8 @@ public class Car : NPCBase
     void MoveCar()
     {
         // 목적지 설정
-        agent.SetDestination(targetGroundPos());
+        MoveToTarget();
+     
 
         // 현재 위치에서 목적지까지의 방향 계산
         Vector3 direction = agent.steeringTarget - transform.position;
@@ -99,9 +105,6 @@ public class Car : NPCBase
             float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, currentSpeed / moveSpeed); // 속도에 따른 회전 속도 조정
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
         }
-
-        // Rigidbody의 속도를 사용하여 이동 처리
-        // rb.velocity = transform.forward * currentSpeed;
     }
 
 
@@ -112,7 +115,7 @@ public class Car : NPCBase
         {
                 
             // 현재 위치에서 목적지까지의 방향 계산
-            Vector3 direction = targetPosSameYPos() - transform.position;
+            Vector3 direction = TargetPosSameYPos() - transform.position;
 
             if (reverseSpeed >= 1f)
             {
@@ -135,8 +138,6 @@ public class Car : NPCBase
             agent.SetDestination(reverseTarget);
 
             reverseSpeed = Mathf.Min(reverseSpeed + reverseAcceleration * Time.deltaTime, maxReverseSpeed);
-
-            //rb.velocity = -transform.forward * reverseSpeed;
 
             // 후진 시간 카운트
             reverseTimer += Time.deltaTime;
@@ -173,6 +174,8 @@ public class Car : NPCBase
     IEnumerator HandleCollision()
     {
         isStoppedAfterCollision = true;
+
+        agent.nextPosition = transform.position;// 위치 초기화
 
         if(currentSpeed < 5)
         {
