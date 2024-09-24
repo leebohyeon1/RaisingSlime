@@ -24,27 +24,25 @@ public class NPCBase : MonoBehaviour
 
 
     protected virtual void Awake()
-    {
-        //Nav Mesh Agent 초기화
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
-        agent.enabled = false;
-
+    {                
         // surface 생성
         surface.GetComponent<NavMeshSurface>().BuildNavMesh();
-        agent.enabled = true;
+        
+        //Nav Mesh Agent 초기화
+        agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;   
+        agent.speed = moveSpeed;
 
         // 먹을 수 있는 오브젝트
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
     }
+
     protected virtual void Start()
     {
         if(target == null)
         {
-            target = FindFirstObjectByType<Player>().transform;
-            Debug.Log("find Player"); 
+            target = FindFirstObjectByType<Player>().transform; 
         }
-        
     }
 
     protected virtual void Update()
