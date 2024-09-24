@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance { get; private set; }    
+
     [Header("Enemy Settings")]
     public int step = 0;
     public SpawnObjectsList[] spawnObjectsList;
@@ -18,6 +20,18 @@ public class SpawnManager : MonoBehaviour
     private bool isSceneClosing = false; // 씬이 닫히는 중인지 여부를 확인하는 플래그
 
     private Transform slimeTrans;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -164,7 +178,20 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-  
+    public void RemoveAllEnemy()
+    {
+        foreach(GameObject enemy in currentStepEnemyList)
+        {
+            DestroyImmediate(enemy);
+        }
+        currentStepEnemyList.Clear();
+    
+        foreach(GameObject enemy in beforeStepEnemyList)
+        {
+            DestroyImmediate(enemy);
+        }
+        beforeStepEnemyList.Clear();
+    }
 
     // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
     private void OnApplicationQuit()
@@ -175,6 +202,10 @@ public class SpawnManager : MonoBehaviour
     private void OnDestroy()
     {
         isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
+        RemoveAllEnemy(); // 모든 적 제거
+
+        // 씬이 닫힐 때 불필요한 오브젝트를 정리하여 메모리 관리
+        Resources.UnloadUnusedAssets();
     }
 
 

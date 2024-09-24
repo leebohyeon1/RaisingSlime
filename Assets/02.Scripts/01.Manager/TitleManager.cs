@@ -7,13 +7,24 @@ using UnityEngine.SceneManagement;
 public class TitleManager : MonoBehaviour
 {
     [LabelText("타이틀 UI"), SerializeField]
-    private GameObject TitleUI;
+    private GameObject titleUI;
     [LabelText("메인 UI"), SerializeField]
-    private GameObject MainUI;
+    private GameObject mainUI;
+    [LabelText("옵션 UI"), SerializeField]
+    private GameObject optionUI;
 
     void Start()
     {
         InputManager.Instance.SwitchToActionMap("Title"); // InputManager 액션 맵 Title로 교체
+
+        if (optionUI == null)
+        {
+            optionUI = OptionManager.Instance.OptionUI;
+        }
+
+        titleUI.SetActive(true);
+        mainUI.SetActive(false);
+        optionUI.SetActive(false);
     }
 
     void Update()
@@ -23,10 +34,28 @@ public class TitleManager : MonoBehaviour
 
     private void InputKey()
     {
-        if ( TitleUI.activeSelf && InputManager.Instance.anyKeyInput)
+        if ( titleUI.activeSelf && InputManager.Instance.anyKeyInput)
         {
-            TitleUI.SetActive(false);
-            MainUI.SetActive(true);
+            titleUI.SetActive(false);
+            mainUI.SetActive(true);
+        }
+    }
+
+    public void StartButton()  // 게임 시작 버튼
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void ExitButton()   // 게임 종료 버튼
+    {
+        Application.Quit();
+    }
+
+    public void OptionButton() // 설정 버튼
+    {
+        if (!optionUI.activeSelf)
+        {
+            optionUI.SetActive(true);
         }
     }
 }
