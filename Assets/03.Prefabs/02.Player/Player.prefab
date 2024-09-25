@@ -85,6 +85,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2979303047614215453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3046093514886471382}
+  m_Layer: 0
+  m_Name: GroundCheckPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3046093514886471382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979303047614215453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1598001478342974844}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5205943882124876127
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +317,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 566038129550653124}
+  - {fileID: 3046093514886471382}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &3125901278371449260
@@ -295,7 +327,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6467965117235312377}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b4c7ea66dbf43ff45877588920598733, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -318,8 +350,8 @@ Rigidbody:
   m_GameObject: {fileID: 6467965117235312377}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -334,7 +366,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &9108918529806812904
 MonoBehaviour:
@@ -348,6 +380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85588f796c3524449e4e6e2dea19bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 1
+  groundCheckDistance: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 63
+  groundCheckPosition: {fileID: 3046093514886471382}
 --- !u!114 &6652811797731747403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,5 +412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSize: 1
   sizeDecreasePerSecond: 0.01
-  moveSpeed: 5
-  jumpForce: 5
+  moveSpeed: 20
+  rotationSpeed: 5
+  canJump: 0
+  jumpForce: 10
+  extraGravityForce: 9.81
+  knockbackForce: 20

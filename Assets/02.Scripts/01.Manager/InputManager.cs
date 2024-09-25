@@ -72,11 +72,6 @@ public class InputManager : MonoBehaviour
         {
             // 현재 맵을 변경
             playerInput.SwitchCurrentActionMap(actionMapName);
-            Debug.Log($"Action Map switched to: {actionMapName}");
-        }
-        else
-        {
-            Debug.LogError("PlayerInput 컴포넌트를 찾을 수 없습니다.");
         }
     }
 }
