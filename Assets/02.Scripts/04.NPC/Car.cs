@@ -15,7 +15,7 @@ public class Car : NPCBase
 
     [TabGroup("자동차", "이동"), LabelText("회전 속도"), SerializeField, Range(0f, 20f)]
     public float turnSpeed = 2f;            // 회전 속도
-    [TabGroup("자동차", "이동"), LabelText("최대 회전 각도"), SerializeField, Range(0f, 45f)]
+    [TabGroup("자동차", "이동"), LabelText("최대 회전 각도"), SerializeField, Range(0f, 60f)]
     public float maxTurnAngle = 45f;        // 최대 회전 각도
 
     [TabGroup("자동차", "이동"), LabelText("충돌 후 후진 시간"), SerializeField, Range(0f, 4f)]
@@ -71,21 +71,15 @@ public class Car : NPCBase
 
     void MoveCar()
     {
-        // 목적지 설정
+        // MoveToTarget() 호출: 타겟을 추적하도록 NavMeshAgent에 경로 설정
         MoveToTarget();
-     
 
-        // 현재 위치에서 목적지까지의 방향 계산
-        Vector3 direction = agent.steeringTarget - transform.position;
-        direction.y = 0; // Y축 이동은 무시 (XZ 평면에서만 이동)
+        // 현재 위치에서 타겟까지의 방향 계산
+        Vector3 directionToTarget = agent.steeringTarget - transform.position;
+        directionToTarget.y = 0; // Y축 이동은 무시 (XZ 평면에서만 이동)
 
-        // 이동해야 할 거리가 매우 짧다면, 속도를 0으로 설정
-        if (direction.magnitude < 0.5f)
-        {
-            currentSpeed = 0f; 
-            agent.speed = currentSpeed;
-            return;
-        }
+        // 자동차가 정면으로 이동하도록 설정 (transform.forward 사용)
+        Vector3 forward = transform.forward; // 자동차가 현재 바라보고 있는 정면 방향
 
         // 현재 속도를 가속도에 맞춰 증가
         if (currentSpeed < moveSpeed)
@@ -93,16 +87,17 @@ public class Car : NPCBase
             currentSpeed += acceleration * Time.deltaTime;
         }
 
+        // 이동 처리 (자신이 바라보는 방향으로만 이동)
         if (currentSpeed >= 1f)
         {
-            agent.speed = currentSpeed;
-            // 자동차 회전 처리 (속도에 비례하여 부드럽게 회전)
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            // 타겟 방향으로 자동차가 부드럽게 회전하도록 처리
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-            // 현재 회전 각도를 제한 (최대 각도 제한 적용)
+            // 회전 각도 제한 (최대 각도 제한 적용)
             targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, currentSpeed / moveSpeed); // 속도에 따른 회전 속도 조정
+            // 속도에 따른 회전 속도 조정
+            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, currentSpeed / moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
         }
     }

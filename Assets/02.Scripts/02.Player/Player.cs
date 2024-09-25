@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,17 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     private Renderer slimeRenderer;
 
+    private Vector3 movement;
+    
+    [BoxGroup("땅 체크"),LabelText("땅에 있는가?"), SerializeField]
     private bool isGrounded = true; // 땅에 있는지 확인하는 플래그
+    [BoxGroup("땅 체크"), LabelText("땅 체크 거리"), SerializeField]
+    private float groundCheckDistance = 0.1f; // Raycast의 거리
+    [BoxGroup("땅 체크"), LabelText("땅 레이어"), SerializeField]
+    private LayerMask groundLayer; // 땅 체크를 위한 레이어 마스크
+    [BoxGroup("땅 체크"), LabelText("땅 체크 위치"), SerializeField]
+    private Transform groundCheckPosition; // Raycast 시작 위치 (플레이어 발밑)
+    
 
     void Start()
     {
@@ -22,32 +33,75 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         slimeRenderer = GetComponentInChildren<Renderer>();
+
     }
 
     void Update()
     {
-        HandleMovement();
-        HandleJump();
-
         AutoDecreaseSize();
+        HandleJump();
+    }
+
+    private void FixedUpdate()
+    {
+        GroundCheck();
+
+        HandleMovement();
+
+        ApplyExtraGravity(); // 공중에 있을 때 중력 가속도 적용
+    }
+
+    // 땅에 닿았는지 확인하는 함수
+    private void GroundCheck()
+    {
+        // 플레이어 발밑으로 Ray를 쏘아서 땅에 닿았는지 확인
+        isGrounded = Physics.Raycast(groundCheckPosition.position, Vector3.down, groundCheckDistance, groundLayer);
+        
+        if (!isGrounded && !playerStat.canJump)
+        {
+            playerStat.canJump = true; // 점프 초기화
+        }
+
+        Debug.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckDistance, Color.red); // Ray가 잘 그려지는지 디버그 확인
     }
 
     private void HandleMovement()
     {
-        //if (!isGrounded)
-        //{
-        //    return;
-        //}
+        if (!isGrounded)
+        {
+            rb.AddForce(movement * Time.deltaTime, ForceMode.VelocityChange);
+            return;
+        }
 
-        rb.velocity = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed); 
+        // 이동 시 관성 고려하여 rb.velocity로 직접 이동 처리
+        movement = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed);
+
+        // 플레이어 이동 방향으로 회전
+        if (movement != Vector3.zero) // 이동 중인 경우에만 회전
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement); // 이동 방향을 바라보도록 회전 목표 설정
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * playerStat.rotationSpeed); // 부드럽게 회전
+        }
+
+        rb.AddForce(movement * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     private void HandleJump()
     {
-        if (InputManager.Instance.jumpInput && isGrounded) 
+        if (InputManager.Instance.jumpInput && isGrounded && playerStat.canJump) 
         {
             rb.AddForce(playerMovement.Jump(playerStat.jumpForce), ForceMode.Impulse);
-            isGrounded = false; // 점프 후 땅에 있지 않음
+            playerStat.canJump = false; // 점프 후 땅에 있지 않음
+        }
+    }
+
+    // 공중에 있을 때 추가 중력 가속도를 적용
+    private void ApplyExtraGravity()
+    {
+        if (!isGrounded)
+        {
+            // 공중에 있을 때 중력 가속도를 더 크게 적용
+            rb.AddForce(Vector3.down * playerStat.extraGravityForce, ForceMode.Acceleration);
         }
     }
 
@@ -68,8 +122,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Die");
-            Destroy(gameObject);
+            GameManager.Instance.GameOver();
+
+            // 죽는 이벤트 추가?
         }
     }
 
@@ -87,9 +142,10 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if(eatAble.GetComponentInParent<NPCBase>()) // 자신 보다 사이즈가 크고, 적일 경우
+            if(eatAble.GetComponentInParent<NPCBase>().isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
             {
                 TakeDamage(eatAble.GetComponentInParent<NPCBase>().collisionDamage);
+                KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
             }
         }
     }
@@ -109,25 +165,29 @@ public class Player : MonoBehaviour
         transform.localScale -= new Vector3(damage, damage, damage);
     }
 
+    // 적과 충돌했을 때 밀려나는 기능
+    private void KnockbackFromEnemy(GameObject enemy)
+    {
+        // 적의 위치에서 플레이어 위치로 향하는 반대 방향 벡터 계산
+        Vector3 enemyPosition = enemy.transform.position;
+        Vector3 knockbackDirection = (transform.position - enemyPosition).normalized;
+
+        // 현재 이동 방향을 가져와서 더함
+        Vector3 currentMoveDirection = ( movement / 5) ;
+
+        // 적의 반대 방향과 현재 이동 방향을 합산한 방향으로 밀려남
+        Vector3 combinedKnockbackDirection = (knockbackDirection  + Vector3.up).normalized;
+
+        // 해당 방향으로 힘을 가해 밀어냄
+        rb.AddForce(combinedKnockbackDirection * playerStat.knockbackForce, ForceMode.Impulse);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true; // 땅에 닿으면 다시 점프 가능
-        }
-
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
         if (collision.gameObject.GetComponentInParent<EatAbleObjectBase>())
         {
             CompareSize(collision.gameObject);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false; // 땅에 닿으면 다시 점프 가능
         }
     }
 
