@@ -28,13 +28,10 @@ public class Tank : NPCBase
     private float bodyRotationSpeed = 3f;  // 몸체 회전 속도 제한
 
     [BoxGroup("탱크"), LabelText("포신"), SerializeField]
-    private Transform fireBarrel;
+    private Transform turret;
 
     [BoxGroup("탱크"), LabelText("포신 회전 속도"), SerializeField, Range(0.1f, 20f)]
     private float turretRotationSpeed = 5f;  // 포신 회전 속도 제한
-
-    [BoxGroup("탱크"), LabelText("포신 최대 각도"), SerializeField, Range(0f, 90f)]
-    private float maxTurretAngle = 45f;  // 포신의 최대 회전 각도
 
     protected override void Awake()
     {
@@ -64,6 +61,7 @@ public class Tank : NPCBase
 
         if (distanceToPlayer < attackRange)
         {
+            agent.isStopped = true;
             // 타겟과 일정 거리를 유지하면서 움직임
             MaintainDistanceAndMove(distanceToPlayer);
 
@@ -110,23 +108,36 @@ public class Tank : NPCBase
         }
     }
 
-    // 포신을 LookAt을 이용해 X축으로만 회전시켜 플레이어의 Y축 위치에 맞추도록 함
     void RotateTurretTowardsPlayer()
     {
-        // 타겟의 위치를 계산
-        Vector3 targetPosition = target.position;
+        // 현재 터렛의 회전 각도를 가져옴
+        float currentAngle = turret.localEulerAngles.x;
 
-        // LookAt을 사용하여 포신이 목표를 향해 회전하게 함
-        firePosistion.LookAt(targetPosition);
+        // 회전 각도를 -180도에서 180도 범위로 변환
+        if (currentAngle > 180) currentAngle -= 360;
 
-        // Z축 기본값을 -90도로 유지하고, X축 회전값만 적용
-        Vector3 currentEulerAngles = firePosistion.localEulerAngles;
+        // 회전 각도를 제한할 최소 및 최대 값 설정
+        float minRotationAngle = -24f;  // 최소 각도 제한
+        float maxRotationAngle = 3f;   // 최대 각도 제한
 
-        // X축만 회전하도록 설정, Y축 및 Z축은 고정 또는 제한
-        float clampedX = Mathf.Clamp(currentEulerAngles.x, -maxTurretAngle, maxTurretAngle);
+        // 타겟의 y 좌표에 따라 터렛을 회전시키는 로직
+        if (turret.position.y > target.position.y)
+        {
+            // 회전하기 전에 각도 제한을 확인
+            if (currentAngle < maxRotationAngle)
+            {
+                turret.Rotate(Vector3.right * turretRotationSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            // 회전하기 전에 각도 제한을 확인
+            if (currentAngle > minRotationAngle)
+            {
+                turret.Rotate(-Vector3.right * turretRotationSpeed * Time.deltaTime);
+            }
+        }
 
-        // Z축은 -90도로 고정
-        firePosistion.localEulerAngles = new Vector3(clampedX, firePosistion.localEulerAngles.y, -90f);
     }
 
     // 총알 발사fe
@@ -150,12 +161,13 @@ public class Tank : NPCBase
     void MaintainDistanceAndMove(float distanceToPlayer)
     {
         // 원하는 최소 거리와 최대 거리
-        float desiredMinDistance = attackRange * 0.7f;  // 최소 거리를 공격 범위의 70%으로 설정
+        float desiredMinDistance = attackRange * 0.4f;  // 최소 거리를 공격 범위의 70%으로 설정
         float desiredMaxDistance = attackRange;         // 최대 거리는 공격 범위
 
         // 현재 타겟과 너무 가깝다면 거리를 벌림
         if (distanceToPlayer < desiredMinDistance)
         {
+            agent.isStopped = false;
             // 타겟 반대 방향으로 이동
             Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
