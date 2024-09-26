@@ -110,13 +110,13 @@ Transform:
   m_GameObject: {fileID: 1163658950257525049}
   serializedVersion: 2
   m_LocalRotation: {x: -0.06291916, y: -0.06291916, z: -0.70430195, w: 0.70430195}
-  m_LocalPosition: {x: -1.8047785e-16, y: 1.2516131, z: 1.5959629}
-  m_LocalScale: {x: 4.093678, y: 4.093678, z: 4.093678}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4.093678, y: 4.093678, z: 4.0936785}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1399142337996369024}
   - {fileID: 4481683379886921635}
-  m_Father: {fileID: 1754947385227945227}
+  m_Father: {fileID: 750358656774657941}
   m_LocalEulerAnglesHint: {x: -10.21, y: 0, z: -90}
 --- !u!33 &8394849397003500716
 MeshFilter:
@@ -293,6 +293,38 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!1 &4450153369083947659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750358656774657941}
+  m_Layer: 0
+  m_Name: Turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750358656774657941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4450153369083947659}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.8047785e-16, y: 1.2516131, z: 1.5959629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 712686806292396826}
+  m_Father: {fileID: 1754947385227945227}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8457121686247692891
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +406,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3368728965585347669}
-  - {fileID: 712686806292396826}
+  - {fileID: 750358656774657941}
   m_Father: {fileID: 850176024411625569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8342110527304794986
@@ -459,6 +491,6 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletDamage: 1
   bodyRotationSpeed: 7
-  fireBarrel: {fileID: 712686806292396826}
+  turret: {fileID: 0}
   turretRotationSpeed: 10
   maxTurretAngle: 45
