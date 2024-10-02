@@ -31,6 +31,15 @@ public class Tank : NPCBase
     [TabGroup("탱크", "회전"), LabelText("포탑 회전 속도"), SerializeField, Range(0.1f, 40f)]
     private float turretRotationSpeed = 5f;  // 포신 회전 속도 제한
 
+    [TabGroup("탱크", "폭발"), LabelText("폭발 에너지"), SerializeField, Range(0.1f, 100f)]
+    public float explosionForce = 5f; // 폭발할 때 가해지는 힘
+    [TabGroup("탱크", "폭발"), LabelText("폭발 범위"), SerializeField, Range(0.1f, 100f)]
+    public float explosionRadius = 5f; // 폭발 범위
+    [TabGroup("탱크", "폭발"), LabelText("폭발 시 위로 튕기는 힘"), SerializeField, Range(0.1f, 20f)]
+    public float upwardsModifier = 1f; // 폭발 시 위로 튕겨나가는 힘의 비율
+    [TabGroup("탱크", "폭발"), LabelText("폭발에 영향받는 레이어"), SerializeField]
+    public LayerMask explosionLayerMask; // 폭발의 영향을 받을 레이어 마스크 (플레이어, NPC 등)
+
     [TabGroup("탱크", "장식"), LabelText("포탑"), SerializeField]
     private Transform turret;
 
@@ -38,10 +47,8 @@ public class Tank : NPCBase
     private Transform[] barrel;
 
     private int barrelIndex = 0;         // 포신 인덱스
-    private float fireAngle = 10f;       // 발사 각도 (도 단위)
-    [ SerializeField] private float gravity = 9.81f;       // 중력 가속도
 
-
+    private Coroutine coroutine;
 
     protected override void Awake()
     {
@@ -66,26 +73,29 @@ public class Tank : NPCBase
         }
 
         CheckNavMesh();
+        RotateTurretTowardsPlayer();  // 포탑 회전 추가
 
         float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
         if (distanceToPlayer < attackRange)
         {
             agent.isStopped = true;
-            // 타겟과 일정 거리를 유지하면서 움직임
-            //MaintainDistanceAndMove(distanceToPlayer);
 
-            // 몸체 회전 및 공격 실행
-            //RotateBodyTowardsPlayer();  // 몸체 회전 추가
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+
             Attack();
         }
         else if (distanceToPlayer >= attackRange)
         {
-            agent.isStopped = false;
-            agent.updateRotation = true;
+            coroutine = StartCoroutine(TankMoveOn());
 
             MoveToTarget();
         }
+
+
     }
 
     // 몸체 회전 메커니즘
@@ -108,7 +118,7 @@ public class Tank : NPCBase
     // 공격 메커니즘
     void Attack()
     {
-        RotateTurretTowardsPlayer();  // 포탑 회전 추가
+     
 
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
@@ -193,7 +203,8 @@ public class Tank : NPCBase
         if (bulletScript != null)
         {
             bulletScript.damage = bulletDamage;
-            bulletScript.InitialTarget(new Vector3(firePosistion[barrelIndex].position.x, 0, firePosistion[barrelIndex].position.z) + (firePosistion[barrelIndex].forward * distance));
+            bulletScript.InitialTarget(new Vector3(firePosistion[barrelIndex].position.x, 0, firePosistion[barrelIndex].position.z) + (firePosistion[barrelIndex].forward * distance)
+                ,explosionForce,explosionRadius,upwardsModifier,explosionLayerMask);
         }
 
         // 발사 방향 설정 (일단 직선으로 발사)
@@ -202,5 +213,17 @@ public class Tank : NPCBase
 
     }
 
+    IEnumerator TankMoveOn()
+    {
+        yield return new WaitForSeconds(2f);
 
+        float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
+
+        if (distanceToPlayer >= attackRange)
+        {
+            agent.isStopped = false;
+            agent.updateRotation = true;
+
+        }
+    }
 }
