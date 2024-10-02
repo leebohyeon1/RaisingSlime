@@ -19,12 +19,12 @@ public class FerrisWheel : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         wheel.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
         for (int i = 0; i < ferris.Length; i++)
         {
-             ferris[i].rotation = initialRotation[i];
+             ferris[i].Rotate(-Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
         }
     }
 }

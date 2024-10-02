@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - NPC
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
