@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,33 +6,42 @@ using UnityEngine;
 
 public class Tank : NPCBase
 {
-    [BoxGroup("탱크"), LabelText("공격 속도"), SerializeField, Range(0.1f, 20f)]
+    [TabGroup("탱크","공격"), LabelText("공격 속도"), SerializeField, Range(0.1f, 20f)]
     private float attackSpeed = 2f;
     private float fireCooldown;
 
-    [BoxGroup("탱크"), LabelText("공격 범위"), SerializeField, Range(1f, 20f)]
+    [TabGroup("탱크", "공격"), LabelText("공격 범위"), SerializeField, Range(1f, 20f)]
     private float attackRange = 10f;
 
-    [BoxGroup("탱크"), LabelText("포탄 프리팹"), SerializeField]
+    [TabGroup("탱크", "공격"), LabelText("포탄 프리팹"), SerializeField]
     private GameObject bulletPrefab;
 
-    [BoxGroup("탱크"), LabelText("총구 위치"), SerializeField]
-    private Transform firePosistion;
+    [TabGroup("탱크", "공격"), LabelText("포탄 속도"), SerializeField, Range(1f, 20f)]
+    private float bulletSpeed;
 
-    [BoxGroup("탱크"), LabelText("포탄 속도"), SerializeField, Range(1f, 20f)]
-    private float bulletSpeed = 10f;
-
-    [BoxGroup("탱크"), LabelText("포탄 데미지"), SerializeField, Range(0.1f, 20f)]
+    [TabGroup("탱크", "공격"), LabelText("포탄 데미지"), SerializeField, Range(0.1f, 20f)]
     private float bulletDamage = 1.0f;
 
-    [BoxGroup("탱크"), LabelText("몸체 회전 속도"), SerializeField, Range(0.1f, 20f)]
+    [TabGroup("탱크", "공격"), LabelText("총구 위치"), SerializeField]
+    private Transform[] firePosistion;
+
+    [TabGroup("탱크", "회전"), LabelText("몸체 회전 속도"), SerializeField, Range(0.1f, 20f)]
     private float bodyRotationSpeed = 3f;  // 몸체 회전 속도 제한
 
-    [BoxGroup("탱크"), LabelText("포신"), SerializeField]
+    [TabGroup("탱크", "회전"), LabelText("포탑 회전 속도"), SerializeField, Range(0.1f, 40f)]
+    private float turretRotationSpeed = 5f;  // 포신 회전 속도 제한
+
+    [TabGroup("탱크", "장식"), LabelText("포탑"), SerializeField]
     private Transform turret;
 
-    [BoxGroup("탱크"), LabelText("포신 회전 속도"), SerializeField, Range(0.1f, 20f)]
-    private float turretRotationSpeed = 5f;  // 포신 회전 속도 제한
+    [TabGroup("탱크", "장식"), LabelText("포신"), SerializeField]
+    private Transform[] barrel;
+
+    private int barrelIndex = 0;         // 포신 인덱스
+    private float fireAngle = 10f;       // 발사 각도 (도 단위)
+    [ SerializeField] private float gravity = 9.81f;       // 중력 가속도
+
+
 
     protected override void Awake()
     {
@@ -63,10 +73,10 @@ public class Tank : NPCBase
         {
             agent.isStopped = true;
             // 타겟과 일정 거리를 유지하면서 움직임
-            MaintainDistanceAndMove(distanceToPlayer);
+            //MaintainDistanceAndMove(distanceToPlayer);
 
             // 몸체 회전 및 공격 실행
-            RotateBodyTowardsPlayer();  // 몸체 회전 추가
+            //RotateBodyTowardsPlayer();  // 몸체 회전 추가
             Attack();
         }
         else if (distanceToPlayer >= attackRange)
@@ -98,7 +108,7 @@ public class Tank : NPCBase
     // 공격 메커니즘
     void Attack()
     {
-        RotateTurretTowardsPlayer();  // 포신 회전 추가
+        RotateTurretTowardsPlayer();  // 포탑 회전 추가
 
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
@@ -110,50 +120,42 @@ public class Tank : NPCBase
 
     void RotateTurretTowardsPlayer()
     {
-        // 현재 터렛의 회전 각도를 가져옴
-        float currentAngle = turret.localEulerAngles.x;
+        // 플레이어의 이동 방향을 고려한 목표 위치 계산
+        Rigidbody playerRb = target.GetComponent<Rigidbody>();  // 중복 호출 방지
+        
+        Vector3 directionToPlayer = TargetGroundPos() + (new Vector3(playerRb.velocity.x,0,playerRb.velocity.z));
 
-        // 회전 각도를 -180도에서 180도 범위로 변환
-        if (currentAngle > 180) currentAngle -= 360;
+        // Y축 회전만 적용하기 위해 높이 값을 터렛의 높이로 고정
+        Vector3 lookPosition = new Vector3(directionToPlayer.x, turret.position.y, directionToPlayer.z);
 
-        // 회전 각도를 제한할 최소 및 최대 값 설정
-        float minRotationAngle = -24f;  // 최소 각도 제한
-        float maxRotationAngle = 3f;   // 최대 각도 제한
-
-        // 타겟의 y 좌표에 따라 터렛을 회전시키는 로직
-        if (turret.position.y > target.position.y)
-        {
-            // 회전하기 전에 각도 제한을 확인
-            if (currentAngle < maxRotationAngle)
-            {
-                turret.Rotate(Vector3.right * turretRotationSpeed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            // 회전하기 전에 각도 제한을 확인
-            if (currentAngle > minRotationAngle)
-            {
-                turret.Rotate(-Vector3.right * turretRotationSpeed * Time.deltaTime);
-            }
-        }
-
+        // 플레이어를 바라보는 목표 회전 값 계산 및 부드럽게 회전
+        Quaternion targetRotation = Quaternion.LookRotation(lookPosition - turret.position);
+        turret.rotation = Quaternion.RotateTowards(turret.rotation, targetRotation, turretRotationSpeed * Time.deltaTime);
     }
 
-    // 총알 발사fe
+
+    // 총알 발사
     void Shoot()
     {
         if (bulletPrefab != null && firePosistion != null)
         {
-            GameObject bulletInstance = Instantiate(bulletPrefab, firePosistion.position, firePosistion.rotation);
-            Bullet bulletScript = bulletInstance.GetComponent<Bullet>();
+            // 포신이 뒤로 갔다가 다시 원래 위치로 돌아오는 애니메이션 추가
+            Transform currentBarrel = barrel[barrelIndex];
+            Vector3 originalPosition = currentBarrel.localPosition;  // 원래 포신 위치 저장
+            Vector3 recoilPosition = originalPosition - new Vector3(0.3f, 0, 0.05f);  // 뒤로 움직일 위치 설정
 
-            if (bulletScript != null)
+            // 포신이 뒤로 가는 애니메이션 (0.1초 동안)
+            currentBarrel.DOLocalMove(recoilPosition, 0.2f).OnComplete(() =>
             {
-                // 총알의 값을 터렛에서 설정한 값으로 변경
-                bulletScript.damage = bulletDamage;
-                bulletScript.speed = bulletSpeed;
-            }
+                // 포신이 다시 원래 위치로 돌아오는 애니메이션 (0.2초 동안)
+                currentBarrel.DOLocalMove(originalPosition, 0.9f / attackSpeed);
+            });
+
+            Fire();
+
+            
+
+            barrelIndex = (barrelIndex + 1) % 2;
         }
     }
 
@@ -175,4 +177,30 @@ public class Tank : NPCBase
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
         }
     }
+    void Fire()
+    {  
+        // 플레이어의 위치와 탱크의 수평 거리 계산
+        Vector3 targetPosition = target.position;
+        float distance = Vector3.Distance(new Vector3(firePosistion[barrelIndex].position.x, 0, firePosistion[barrelIndex].position.z), new Vector3(targetPosition.x, 0, targetPosition.z));
+        
+        // 포탄 생성 및 발사
+        GameObject projectile = Instantiate(bulletPrefab, firePosistion[barrelIndex].position, firePosistion[barrelIndex].rotation);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+        TankBullet bulletScript = projectile.GetComponent<TankBullet>();
+
+        // 총알의 데미지 설정
+        if (bulletScript != null)
+        {
+            bulletScript.damage = bulletDamage;
+            bulletScript.InitialTarget(new Vector3(firePosistion[barrelIndex].position.x, 0, firePosistion[barrelIndex].position.z) + (firePosistion[barrelIndex].forward * distance));
+        }
+
+        // 발사 방향 설정 (일단 직선으로 발사)
+        Vector3 launchDirection = firePosistion[barrelIndex].forward;
+        rb.velocity = launchDirection * bulletSpeed;
+
+    }
+
+
 }

@@ -54,15 +54,19 @@ public class Player : MonoBehaviour
     // 땅에 닿았는지 확인하는 함수
     private void GroundCheck()
     {
-        // 플레이어 발밑으로 Ray를 쏘아서 땅에 닿았는지 확인
-        isGrounded = Physics.Raycast(groundCheckPosition.position, Vector3.down, groundCheckDistance, groundLayer);
-        
+        // 플레이어의 현재 크기에 따라 groundCheckDistance를 동적으로 조정
+        float adjustedGroundCheckDistance = groundCheckDistance * transform.localScale.y;
+
+        // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, adjustedGroundCheckDistance, groundLayer);
+
         if (!isGrounded && !playerStat.canJump)
         {
             playerStat.canJump = true; // 점프 초기화
         }
 
-        Debug.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckDistance, Color.red); // Ray가 잘 그려지는지 디버그 확인
+        // 디버그용 Ray 그리기 (위치와 크기에 맞춰 땅 체크가 잘 되는지 확인)
+        Debug.DrawRay(transform.position, Vector3.down * adjustedGroundCheckDistance, Color.blue);
     }
 
     private void HandleMovement()
@@ -77,11 +81,11 @@ public class Player : MonoBehaviour
         movement = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed);
 
         // 플레이어 이동 방향으로 회전
-        if (movement != Vector3.zero) // 이동 중인 경우에만 회전
+        /*if (movement != Vector3.zero) // 이동 중인 경우에만 회전
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement); // 이동 방향을 바라보도록 회전 목표 설정
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * playerStat.rotationSpeed); // 부드럽게 회전
-        }
+        }*/
 
         rb.AddForce(movement * Time.deltaTime, ForceMode.VelocityChange);
     }
@@ -189,6 +193,11 @@ public class Player : MonoBehaviour
         {
             CompareSize(collision.gameObject);
         }
+
     }
 
+    public Vector3 GetMovement()
+    {
+        return movement;
+    }
 }
