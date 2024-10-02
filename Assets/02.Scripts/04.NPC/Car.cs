@@ -55,7 +55,10 @@ public class Car : NPCBase
         {
             return;
         }
-
+        if (isExplosion)
+        {
+            return;
+        }
         CheckNavMesh();
 
         if (target != null && !isReversing && !isStoppedAfterCollision)
@@ -67,6 +70,8 @@ public class Car : NPCBase
         {
              MoveReverse();
         }
+
+      
     }
 
     void MoveCar()

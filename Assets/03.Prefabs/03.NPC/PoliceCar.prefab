@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 951196814160182494}
   - component: {fileID: 3662878988324557863}
   - component: {fileID: 7878115160467445831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: warning light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2322590969899662926}
   - component: {fileID: 911150902694302331}
   - component: {fileID: 6888287370295823661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7689393862198711085}
   - component: {fileID: 5063883995043040979}
   - component: {fileID: 3425400131759946914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3393940272732425100}
   - component: {fileID: 1803313445487478917}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PoliceCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,10 +306,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3172420060742394896}
   - component: {fileID: 3343514672020846917}
+  - component: {fileID: 375861955242148470}
   - component: {fileID: 4511817142885281070}
   - component: {fileID: 8586787710516292508}
   - component: {fileID: 6397100267191262823}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: police_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +356,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.66, y: 0.5, z: 1.27}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!54 &375861955242148470
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870770740910580844}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!195 &4511817142885281070
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -409,6 +437,7 @@ MonoBehaviour:
   moveSpeed: 18
   collisionDamage: 0.01
   surface: {fileID: 2003359097403019892}
+  isExplosion: 0
   acceleration: 10
   reverseAcceleration: 5
   maxReverseSpeed: 10
@@ -426,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003359097403019892}
   - component: {fileID: 6106838463593657657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}

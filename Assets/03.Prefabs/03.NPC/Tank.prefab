@@ -112,22 +112,28 @@ MonoBehaviour:
   moveSpeed: 7
   collisionDamage: 1
   surface: {fileID: 3449594477961130545}
+  isExplosion: 0
   attackSpeed: 0.3
   attackRange: 20
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
   bulletSpeed: 8
-  bulletDamage: 1
+  bulletDamage: 0.1
   firePosistion:
   - {fileID: 6278885908297485397}
   - {fileID: 3711075952877415873}
   bodyRotationSpeed: 3
   turretRotationSpeed: 30
+  explosionForce: 7
+  explosionRadius: 7
+  upwardsModifier: 2
+  explosionLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   turret: {fileID: 7188089152578840115}
   barrel:
   - {fileID: 8513445611869404369}
   - {fileID: 2602643975046621077}
-  gravity: 9.81
 --- !u!1 &1009788810300782970
 GameObject:
   m_ObjectHideFlags: 0

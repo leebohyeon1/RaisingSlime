@@ -51,6 +51,11 @@ public class Police : NPCBase
             return;
         }
 
+        if (isExplosion)
+        {
+            return;
+        }
+
         CheckNavMesh();
 
         float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
@@ -68,6 +73,11 @@ public class Police : NPCBase
             agent.isStopped = false;
 
             MoveToTarget();
+        }
+
+        if (isExplosion)
+        {
+            StartCoroutine(OnAgent());
         }
     }
 

@@ -22,6 +22,7 @@ public class NPCBase : MonoBehaviour
     [BoxGroup("기본"), LabelText("네비매쉬 표면"), SerializeField]
     private Transform surface;
 
+    public bool isExplosion = false;
 
     protected virtual void Awake()
     {                
@@ -48,6 +49,8 @@ public class NPCBase : MonoBehaviour
     protected virtual void Update()
     {
         enemyAction();
+
+    
     }
 
     protected virtual void enemyAction() // 적 종류별 행동 부모 함수
@@ -57,9 +60,18 @@ public class NPCBase : MonoBehaviour
         {
             return;
         }
+
+
+        if (isExplosion)
+        {
+           
+            return;
+        }
+
         CheckNavMesh();
 
         MoveToTarget();
+
     }
 
     protected virtual Vector3 TargetGroundPos() // 플레이어 포지션 값
@@ -111,4 +123,22 @@ public class NPCBase : MonoBehaviour
         }
     }
 
+    protected virtual IEnumerator OnAgent()
+    {
+        yield return new WaitForSeconds(1f);
+
+        agent.enabled = true;
+        GetComponent<Rigidbody>().isKinematic = true;
+        isExplosion = false;
+        
+    }
+
+    public virtual void Explosion()
+    {
+        agent.enabled = false;
+        GetComponent<Rigidbody>().isKinematic = false;
+        isExplosion = true;
+
+        StartCoroutine(OnAgent());
+    }
 }
