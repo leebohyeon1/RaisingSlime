@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 10
   slimeIncreaseSize: 0
-  slimeRecoveryAmount: 0
+  plusScore: 0
   shrinkSpeed: 0.5
 --- !u!114 &9166313863121015202
 MonoBehaviour:
@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 6278885908297485397}
   - {fileID: 3711075952877415873}
   bodyRotationSpeed: 3
-  turretRotationSpeed: 30
+  turretRotationSpeed: 360
   explosionForce: 7
   explosionRadius: 7
   upwardsModifier: 2

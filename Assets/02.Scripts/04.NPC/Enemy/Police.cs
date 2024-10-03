@@ -1,43 +1,29 @@
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Police : NPCBase
 {
+    [BoxGroup("경찰"), LabelText("진압봉"), SerializeField]
+    private GameObject baton;
 
+    [BoxGroup("경찰"), LabelText("진압봉 흔드는 속도"), SerializeField]
+    private float batonRotateSpeed;
 
-    [BoxGroup("경찰"), LabelText("공격 속도"), SerializeField, Range(0.1f, 20f)]
-    private float attackSpeed = 2f;
-    private float fireCooldown;
-
-    [BoxGroup("경찰"), LabelText("공격 범위"), SerializeField, Range(1f, 20f)]
-    private float attackRange = 10f;
-
-    [BoxGroup("경찰"), LabelText("총알 프리팹"), SerializeField]
-    private GameObject bulletPrefab;
-
-    [BoxGroup("경찰"), LabelText("총구 위치"), SerializeField]
-    private Transform firePosistion;
-
-    [BoxGroup("경찰"), LabelText("총알 속도"), SerializeField, Range(1f, 20f)]
-    private float bulletSpeed = 10f;
-
-    [BoxGroup("경찰"), LabelText("총알 데미지"), SerializeField, Range(0.1f, 20f)]
-    private float bulletDamage = 1.0f;
-
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    [BoxGroup("경찰"), LabelText("진압봉 흔드는 각도"), SerializeField]
+    private float maxRotationAngle;
+    
+    private float currentRotationSpeed; // 현재 회전 속도
 
     protected override void Start()
     {
         base.Start();
+
+        // 초기 회전 속도 설정
+        currentRotationSpeed = batonRotateSpeed;
     }
+
 
     protected override void Update()
     {
@@ -46,86 +32,27 @@ public class Police : NPCBase
 
     protected override void enemyAction()
     {
-        if (eatAbleObjectBase.GetEaten())
+        // 현재 X축 회전 각도 계산
+        float currentXRotation = baton.transform.localEulerAngles.x;
+
+        // 회전 각도가 180도를 넘어가면 이를 보정
+        if (currentXRotation > 180f)
         {
-            return;
+            currentXRotation -= 360f;
         }
 
-        if (isExplosion)
+        // 회전 각도가 최대 각도에 도달하면 회전 방향을 반대로 변경
+        if (Mathf.Abs(currentXRotation) >= maxRotationAngle)
         {
-            return;
+            currentRotationSpeed = -currentRotationSpeed;
         }
 
-        CheckNavMesh();
+        // 진압봉을 X축을 기준으로 회전
+        baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
 
-        float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
-        if (distanceToPlayer < attackRange)
-        {
-            // 타겟과 일정 거리를 유지하면서 움직임
-            MaintainDistanceAndMove(distanceToPlayer);
+        base.enemyAction();
 
-            // 공격 실행
-            Attack();
-        }
-        else if(distanceToPlayer >= attackRange) 
-        {
-            agent.isStopped = false;
-
-            MoveToTarget();
-        }
-
-        if (isExplosion)
-        {
-            StartCoroutine(OnAgent());
-        }
+    
     }
-
-    // 공격 메커니즘
-    void Attack()
-    {
-        transform.LookAt(TargetPosSameYPos());
-
-        fireCooldown -= Time.deltaTime;
-        if (fireCooldown <= 0f)
-        {
-            Shoot();
-            fireCooldown = 1f / attackSpeed;
-        }
-    }
-
-    // 총알 발사
-    void Shoot()
-    {
-        if (bulletPrefab != null && firePosistion != null)
-        {
-            GameObject bulletInstance = Instantiate(bulletPrefab, firePosistion.position, firePosistion.rotation);
-            Bullet bulletScript = bulletInstance.GetComponent<Bullet>();
-
-            if (bulletScript != null)
-            {
-                bulletScript.InitalBullet(bulletDamage, bulletSpeed);
-            }
-        }
-    }
-
-    // 타겟과 일정 거리를 유지하면서 움직이는 함수
-    void MaintainDistanceAndMove(float distanceToPlayer)
-    {
-        // 원하는 최소 거리와 최대 거리
-        float desiredMinDistance = attackRange * 0.5f;  // 최소 거리를 공격 범위의 절반으로 설정
-        float desiredMaxDistance = attackRange;         // 최대 거리는 공격 범위
-
-        // 현재 타겟과 너무 가깝다면 거리를 벌림
-        if (distanceToPlayer < desiredMinDistance)
-        {
-            // 타겟 반대 방향으로 이동
-            Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
-            Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
-
-            agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
-        }
-    }
-
-
 }
