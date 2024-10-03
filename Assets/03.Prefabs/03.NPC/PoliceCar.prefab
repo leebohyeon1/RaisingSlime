@@ -395,7 +395,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 0
   m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -404,7 +404,7 @@ NavMeshAgent:
   m_Height: 0.52
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &8586787710516292508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 3.5
   slimeIncreaseSize: 0.1
-  slimeRecoveryAmount: 5
+  plusScore: 0
   shrinkSpeed: 0.2
 --- !u!114 &6397100267191262823
 MonoBehaviour:

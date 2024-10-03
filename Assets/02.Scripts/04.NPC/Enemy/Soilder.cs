@@ -74,11 +74,6 @@ public class Soilder : NPCBase
 
             MoveToTarget();
         }
-
-        if (isExplosion)
-        {
-            StartCoroutine(OnAgent());
-        }
     }
 
     // 공격 메커니즘
