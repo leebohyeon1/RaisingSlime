@@ -4,19 +4,11 @@ using UnityEngine.AI;
 
 public class TankBullet : Bullet
 {
-    [TabGroup("포탄", "이동"), LabelText("중력"), SerializeField, Range(0.1f, 20f)]
-    private float gravity = 9.81f; // 하강할 때 적용될 가속도
-    // [TabGroup("포탄", "이동"), LabelText("떨어질 때 플레이어와의 거리"), SerializeField, Range(0.1f, 20f)]
-    // public float fallDistance = 3f; // 플레이어와의 거리가 이 값보다 작아지면 포탄이 떨어지기 시작
-    
-    [TabGroup("포탄", "폭발"), LabelText("폭발 에너지"), SerializeField, Range(0.1f, 100f)]
-    public float explosionForce = 5f; // 폭발할 때 가해지는 힘
-    [TabGroup("포탄", "폭발"), LabelText("폭발 범위"), SerializeField, Range(0.1f, 100f)]
-    public float explosionRadius = 5f; // 폭발 범위
-    [TabGroup("포탄", "폭발"), LabelText("폭발 시 위로 튕기는 힘"), SerializeField, Range(0.1f, 20f)]
-    public float upwardsModifier = 1f; // 폭발 시 위로 튕겨나가는 힘의 비율
-    [TabGroup("포탄", "폭발"), LabelText("폭발에 영향받는 레이어"), SerializeField]
-    public LayerMask explosionLayerMask; // 폭발의 영향을 받을 레이어 마스크 (플레이어, NPC 등)
+    private float gravity = 9.81f; // 하강할 때 적용될 가속도   
+    private float explosionForce = 5f; // 폭발할 때 가해지는 힘
+    private float explosionRadius = 5f; // 폭발 범위
+    private float upwardsModifier = 1f; // 폭발 시 위로 튕겨나가는 힘의 비율
+    private LayerMask explosionLayerMask; // 폭발의 영향을 받을 레이어 마스크 (플레이어, NPC 등)
 
     private Vector3 targetPos = Vector3.zero; // 타겟이 되는 플레이어 또는 목적지
     private Vector3 fallPos;
@@ -65,15 +57,14 @@ public class TankBullet : Bullet
     {
         // 포탄의 Y축 속도에 중력 가속도를 추가하여 하강하게 만듦
         rb.useGravity = true;
-     
-        float x = 0;
-        if (rb.velocity.magnitude >= gravity)
-        {
-            x = rb.velocity.magnitude - gravity;
 
+        // 일정 속도 이상일 때 추가 중력 적용
+        if (rb.velocity.magnitude > gravity)
+        {
+            // 속도가 높으면 중력을 더 많이 적용
+            rb.velocity += Vector3.down * (rb.velocity.magnitude - gravity) * 1.5f;
         }
-        
-        rb.velocity += Vector3.down * x;
+   
     }
 
     // 폭발 처리
