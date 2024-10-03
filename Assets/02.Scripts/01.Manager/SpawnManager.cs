@@ -1,25 +1,33 @@
 using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager Instance { get; private set; }    
+    public static SpawnManager Instance { get; private set; }
 
-    [Header("Enemy Settings")]
-    public int step = 0;
-    public SpawnObjectsList[] spawnObjectsList;
+    [BoxGroup("점수 세팅"), LabelText("점수별 단계"), SerializeField]
+    private int[] stepByScore;
 
-    public float spawnRadius = 50f; // 생성 반경 (맵 밖에서 얼마나 떨어진 곳에 적을 생성할지 결정)
-    public float spawnHeight = 3f; // 적이 생성될 때의 높이
+    [BoxGroup("적 세팅"), LabelText("현재 레벨"), SerializeField]
+    private int step = 0;
+    [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
+    private SpawnObjectsList[] spawnObjectsList;
+
+    [BoxGroup("위치 세팅"), LabelText("스폰 반경"), SerializeField]
+    private float spawnRadius = 50f; // 생성 반경 (맵 밖에서 얼마나 떨어진 곳에 적을 생성할지 결정)
+    [BoxGroup("위치 세팅"), LabelText("스폰 높이"), SerializeField]
+    private float spawnHeight = 3f; // 적이 생성될 때의 높이
+
+    [BoxGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
+    private GameObject bomberPrefab;
 
     private List<GameObject> currentStepEnemyList = new List<GameObject>(); // 현재 스텝에서 스폰된 적 리스트
     private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // 이전에 스폰된 적 리스트
     private bool isSceneClosing = false; // 씬이 닫히는 중인지 여부를 확인하는 플래그
 
     private Transform slimeTrans;
+    private float bomberSpawnTimer = 0f;
 
     private void Awake()
     {
@@ -35,6 +43,11 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        if (stepByScore.Length != spawnObjectsList.Length)
+        {
+            Debug.LogError("점수별 단계와 단계별 적 리스트의 길이가 다릅니다.");
+        }
+
         slimeTrans = FindFirstObjectByType<Player>().transform;
 
         SpawnEnemiesForCurrentStep();
@@ -45,6 +58,11 @@ public class SpawnManager : MonoBehaviour
         // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정
         transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
 
+        //폭격기 스폰
+        SpawnBomber();
+
+        // 점수 체크
+        CheckScore();
     }
 
     // 현재 스텝의 적들을 스폰하는 함수
@@ -54,6 +72,23 @@ public class SpawnManager : MonoBehaviour
         foreach (GameObject enemyPrefab in spawnObjectsList[step].SpawnObjects)
         {
             SpawnEnemy(enemyPrefab);
+        }
+    }
+
+    // 점수를 체크하는 함수
+    public void CheckScore()
+    {
+        // 마지막 단계에서는 아무 효과도 일어나지 않는다.
+        if(GameManager.Instance.GetScore() > stepByScore[stepByScore.Length - 1])
+        {
+            return;
+        }
+
+        // 현재 점수가 다음 단계 별 점수보다 크면 다음 단계로 넘어간다.
+        if (stepByScore[step] < GameManager.Instance.GetScore())
+        {
+            step++;
+            ChangeStep(step);
         }
     }
 
@@ -118,6 +153,31 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // 폭격기 스폰 함수
+    private void SpawnBomber()
+    {
+        bomberSpawnTimer += Time.deltaTime;
+
+        if ( spawnObjectsList[step].isBomber && 
+            bomberSpawnTimer >= spawnObjectsList[step].spawnInterval )
+        {
+            bomberSpawnTimer = 0f;
+
+            Vector3 spawnPosition = GetValidSpawnPosition();
+
+            // 유효한 NavMesh 위의 위치를 찾았을 때만 적을 스폰
+            if (spawnPosition != Vector3.zero)
+            {
+                GameObject newEnemy = Instantiate(bomberPrefab, spawnPosition, Quaternion.identity);
+                
+                // 적이 파괴되었을 때 다시 스폰하지 않도록 이전 스텝의 적인지 확인
+                NPCParent enemyComponent = newEnemy.GetComponent<NPCParent>();
+                enemyComponent.SetNPCTarget(slimeTrans);
+            }
+        }
+    }
+
+    // 랜덤한 위치가 없을 때 다시 찾는 함수
     private Vector3 GetValidSpawnPosition()
     {
         Vector3 spawnPosition = Vector3.zero;
@@ -143,6 +203,7 @@ public class SpawnManager : MonoBehaviour
         return spawnPosition;
     }
 
+    // position에 충돌하는 것이 있는지 확인
     private bool IsPositionOccupied(Vector3 position, float radius)
     {
         // 주어진 위치에 일정 반경 내에 충돌체가 있는지 확인
@@ -150,6 +211,7 @@ public class SpawnManager : MonoBehaviour
         return colliders.Length > 0; // 만약 충돌체가 하나라도 있으면 위치가 점유된 것으로 판단
     }
 
+    // 랜덤한 위치
     private Vector3 GetRandomSpawnPosition()
     {
         // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
@@ -178,6 +240,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // 모든 적을 제거하는 함수
     public void RemoveAllEnemy()
     {
         foreach(GameObject enemy in currentStepEnemyList)
@@ -222,4 +285,9 @@ public struct SpawnObjectsList
 {
     [LabelText("단계별 스폰되는 오브젝트")]
     public GameObject[] SpawnObjects;
+
+    [FoldoutGroup("폭격기"), LabelText("폭격기 On"), Space(10f)]
+    public bool isBomber;
+    [FoldoutGroup("폭격기"), LabelText("스폰 주기(초)")]
+    public float spawnInterval;
 }

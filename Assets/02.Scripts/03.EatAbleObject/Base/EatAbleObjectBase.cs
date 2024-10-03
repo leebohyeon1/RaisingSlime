@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,18 +6,19 @@ using UnityEngine.AI;
 
 public class EatAbleObjectBase : MonoBehaviour
 {
-    public float size;
+    [LabelText("사이즈"), SerializeField]
+    private float size;
 
-    [SerializeField] private float slimeIncreaseSize;
+    [BoxGroup("먹혔을 때"), LabelText("슬라임 사이즈 증가량"), SerializeField] 
+    private float slimeIncreaseSize;
 
-    public float slimeRecoveryAmount;
+    [BoxGroup("먹혔을 때"), LabelText("점수 증가량"), SerializeField]
+    private float plusScore;
+
+    [BoxGroup("먹혔을 때"), LabelText("초당 줄어드는 속도"), SerializeField] 
+    private float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
 
     private bool isGetEaten = false;
-
-    // 추가: 크기 감소 속도를 조정하는 변수
-    [SerializeField] private float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
-
-
 
     protected virtual void Start()
     {
@@ -29,11 +31,6 @@ public class EatAbleObjectBase : MonoBehaviour
             Digested();
         }
 
-    }
-
-    public Vector3 SlimeIncreaseSize()
-    {
-        return new Vector3(slimeIncreaseSize, slimeIncreaseSize, slimeIncreaseSize);
     }
 
     public void Eaten(Transform slimeTrans) // 먹히는 함수
@@ -95,5 +92,20 @@ public class EatAbleObjectBase : MonoBehaviour
             targetWorldScale.y / parentScale.y,
             targetWorldScale.z / parentScale.z
         );
+    }
+   
+    public float GetSize()
+    {
+        return size;
+    }
+
+    public Vector3 SlimeIncreaseSize()
+    {
+        return new Vector3(slimeIncreaseSize, slimeIncreaseSize, slimeIncreaseSize);
+    }
+
+    public float GetPlusScore()
+    {
+        return plusScore;
     }
 }

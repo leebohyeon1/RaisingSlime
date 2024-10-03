@@ -47,9 +47,10 @@ MonoBehaviour:
   step: 0
   spawnObjectsList:
   - SpawnObjects:
-    - {fileID: 2421129217990319429, guid: 7c4fd4af40e76a843adb75a51af032ee, type: 3}
-    - {fileID: 6617566681201729464, guid: 0f68389463ae5c1428ce483f3016be35, type: 3}
-    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
-    - {fileID: 2421129217990319429, guid: 7c4fd4af40e76a843adb75a51af032ee, type: 3}
+    - {fileID: 0}
+    isBomber: 1
+    spawnInterval: 10
   spawnRadius: 50
   spawnHeight: 2.5
+  bomberPrefab: {fileID: 4795624700528817056, guid: 2b7366b25626f0341a381fd86ba6561c,
+    type: 3}

@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [BoxGroup("Setting"), LabelText("총알 데미지")]
-    public float damage = 5;
-    [BoxGroup("Setting"), LabelText("총알 속도")]
-    public float speed = 20f;  // 총알의 기본 속도
-    [BoxGroup("Setting"), LabelText("총알 수명(초)")]
-    public float lifetime = 5f; // 총알이 사라지기 전까지의 시간
+    [BoxGroup("Setting"), LabelText("총알 데미지"), SerializeField]
+    protected float damage = 5;
+    [BoxGroup("Setting"), LabelText("총알 속도"), SerializeField]
+    protected float speed = 20f;  // 총알의 기본 속도
+    [BoxGroup("Setting"), LabelText("총알 수명(초)"), SerializeField]
+    protected float lifetime = 5f; // 총알이 사라지기 전까지의 시간
 
     protected Rigidbody rb;       // Rigidbody 컴포넌트 참조
     protected float lifeTimer;    // 총알의 수명 타이머
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbody 컴포넌트 가져오기
         rb.velocity = transform.forward * speed; // 총알을 전방으로 발사
@@ -47,5 +47,11 @@ public class Bullet : MonoBehaviour
         }
 
         Destroy(gameObject); // 총알 파괴
+    }
+
+    public virtual void InitalBullet(float damage, float speed)
+    {
+        this.damage = damage;
+        this.speed = speed;
     }
 }

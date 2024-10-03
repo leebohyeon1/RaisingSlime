@@ -104,9 +104,7 @@ public class Police : NPCBase
 
             if (bulletScript != null)
             {
-                // 총알의 값을 터렛에서 설정한 값으로 변경
-                bulletScript.damage = bulletDamage;
-                bulletScript.speed = bulletSpeed;
+                bulletScript.InitalBullet(bulletDamage, bulletSpeed);
             }
         }
     }

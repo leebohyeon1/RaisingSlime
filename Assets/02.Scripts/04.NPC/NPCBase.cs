@@ -49,8 +49,6 @@ public class NPCBase : MonoBehaviour
     protected virtual void Update()
     {
         enemyAction();
-
-    
     }
 
     protected virtual void enemyAction() // 적 종류별 행동 부모 함수
@@ -60,7 +58,6 @@ public class NPCBase : MonoBehaviour
         {
             return;
         }
-
 
         if (isExplosion)
         {

@@ -202,7 +202,7 @@ public class Tank : NPCBase
         // 총알의 데미지 설정
         if (bulletScript != null)
         {
-            bulletScript.damage = bulletDamage;
+            bulletScript.InitalBullet(bulletDamage, 0f);
             bulletScript.InitialTarget(new Vector3(firePosistion[barrelIndex].position.x, 0, firePosistion[barrelIndex].position.z) + (firePosistion[barrelIndex].forward * distance)
                 ,explosionForce,explosionRadius,upwardsModifier,explosionLayerMask);
         }
