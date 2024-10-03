@@ -65,15 +65,14 @@ public class TankBullet : Bullet
     {
         // 포탄의 Y축 속도에 중력 가속도를 추가하여 하강하게 만듦
         rb.useGravity = true;
-     
-        float x = 0;
-        if (rb.velocity.magnitude >= gravity)
-        {
-            x = rb.velocity.magnitude - gravity;
 
+        // 일정 속도 이상일 때 추가 중력 적용
+        if (rb.velocity.magnitude > gravity)
+        {
+            // 속도가 높으면 중력을 더 많이 적용
+            rb.velocity += Vector3.down * (rb.velocity.magnitude - gravity) * 1.5f;
         }
-        
-        rb.velocity += Vector3.down * x;
+   
     }
 
     // 폭발 처리
