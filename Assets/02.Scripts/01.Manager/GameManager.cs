@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString("F0");
     }
 
-    public void IncreaseScore(int plusScore)
+    public void IncreaseScore(float plusScore)
     {
         score += plusScore;
     }
