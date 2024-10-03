@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Car : NPCBase
+public class PoliceCar : NPCBase
 {
 
     [TabGroup("자동차", "이동"), LabelText("가속도"), SerializeField, Range(0f, 20f)]

@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
         score += Time.deltaTime;
         scoreText.text = score.ToString("F0");
     }
+
+    public void IncreaseScore(int plusScore)
+    {
+        score += plusScore;
+    }
     #endregion
 
 
@@ -89,8 +94,6 @@ public class GameManager : MonoBehaviour
     public void RetryBtn()  // 게임 재시작
     {
         SceneManager.LoadScene(1);
-
-
     }
 
     public void ExitBtn()   // 메인화면으로 돌아감
@@ -106,5 +109,10 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         totalScoreText.text = scoreText.text;
         Time.timeScale = 0f;
+    }
+
+    public int GetScore()
+    {
+        return (int)score;
     }
 }

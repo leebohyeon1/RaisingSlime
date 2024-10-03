@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3378677057427999775}
   - component: {fileID: 2533801098137286588}
   - component: {fileID: 2623048900355728244}
+  - component: {fileID: 853924787020085370}
   m_Layer: 0
   m_Name: Building_Sotre1_Simple1
   m_TagString: Untagged
@@ -83,6 +84,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &853924787020085370
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849596021622677876}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1946512989962702318, guid: ca58e270e770d5743a94b999e9435d48, type: 3}
 --- !u!1 &928170037475803386
 GameObject:
   m_ObjectHideFlags: 0
