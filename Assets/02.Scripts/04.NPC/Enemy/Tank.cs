@@ -28,7 +28,7 @@ public class Tank : NPCBase
     [TabGroup("탱크", "회전"), LabelText("몸체 회전 속도"), SerializeField, Range(0.1f, 20f)]
     private float bodyRotationSpeed = 3f;  // 몸체 회전 속도 제한
 
-    [TabGroup("탱크", "회전"), LabelText("포탑 회전 속도"), SerializeField, Range(0.1f, 40f)]
+    [TabGroup("탱크", "회전"), LabelText("포탑 회전 속도"), SerializeField, Range(0.1f, 360f)]
     private float turretRotationSpeed = 5f;  // 포신 회전 속도 제한
 
     [TabGroup("탱크", "폭발"), LabelText("폭발 에너지"), SerializeField, Range(0.1f, 100f)]
@@ -133,7 +133,7 @@ public class Tank : NPCBase
         // 플레이어의 이동 방향을 고려한 목표 위치 계산
         Rigidbody playerRb = target.GetComponent<Rigidbody>();  // 중복 호출 방지
         
-        Vector3 directionToPlayer = TargetGroundPos() + (new Vector3(playerRb.velocity.x,0,playerRb.velocity.z));
+        Vector3 directionToPlayer = TargetGroundPos();
 
         // Y축 회전만 적용하기 위해 높이 값을 터렛의 높이로 고정
         Vector3 lookPosition = new Vector3(directionToPlayer.x, turret.position.y, directionToPlayer.z);
