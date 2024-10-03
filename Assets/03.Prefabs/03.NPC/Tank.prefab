@@ -117,16 +117,16 @@ MonoBehaviour:
   attackRange: 20
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
-  bulletSpeed: 8
+  bulletSpeed: 20
   bulletDamage: 0.1
   firePosistion:
   - {fileID: 6278885908297485397}
   - {fileID: 3711075952877415873}
   bodyRotationSpeed: 3
   turretRotationSpeed: 360
-  explosionForce: 7
-  explosionRadius: 7
-  upwardsModifier: 2
+  explosionForce: 25
+  explosionRadius: 15
+  upwardsModifier: 8
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64
