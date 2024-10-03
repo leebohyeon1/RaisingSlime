@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
         EatAbleObjectBase eatAbleObjectBase = eatAble.GetComponentInParent<EatAbleObjectBase>();
 
         // 슬라임과 오브젝트의 size 변수 비교
-        if (eatAbleObjectBase.size < playerStat.curSize)
+        if (eatAbleObjectBase.GetSize() < playerStat.curSize)
         {
             // 자신보다 사이즈가 작으면 먹는다.
             Eat(eatAbleObjectBase);
@@ -156,11 +156,16 @@ public class Player : MonoBehaviour
 
     private void Eat(EatAbleObjectBase eatAbleObjectBase) 
     {
-
-        // 슬라임의 크기를 증가시키기
+        // 먹을 수 있는 오브젝트를 자식 오브젝트에 추가
         eatAbleObjectBase.Eaten(transform);
 
+        // 슬라임의 크기를 증가
         transform.localScale += eatAbleObjectBase.SlimeIncreaseSize();
+
+        // 점수 증가
+        GameManager.Instance.IncreaseScore(eatAbleObjectBase.GetPlusScore());
+
+        // 크기를 체크하는 변수 초기화
         playerStat.curSize = transform.localScale.x;
     }
 
