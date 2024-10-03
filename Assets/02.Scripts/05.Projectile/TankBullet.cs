@@ -6,8 +6,8 @@ public class TankBullet : Bullet
 {
     [TabGroup("포탄", "이동"), LabelText("중력"), SerializeField, Range(0.1f, 20f)]
     private float gravity = 9.81f; // 하강할 때 적용될 가속도
-    [TabGroup("포탄", "이동"), LabelText("떨어질 때 플레이어와의 거리"), SerializeField, Range(0.1f, 20f)]
-    public float fallDistance = 3f; // 플레이어와의 거리가 이 값보다 작아지면 포탄이 떨어지기 시작
+    // [TabGroup("포탄", "이동"), LabelText("떨어질 때 플레이어와의 거리"), SerializeField, Range(0.1f, 20f)]
+    // public float fallDistance = 3f; // 플레이어와의 거리가 이 값보다 작아지면 포탄이 떨어지기 시작
     
     [TabGroup("포탄", "폭발"), LabelText("폭발 에너지"), SerializeField, Range(0.1f, 100f)]
     public float explosionForce = 5f; // 폭발할 때 가해지는 힘
@@ -19,6 +19,7 @@ public class TankBullet : Bullet
     public LayerMask explosionLayerMask; // 폭발의 영향을 받을 레이어 마스크 (플레이어, NPC 등)
 
     private Vector3 targetPos = Vector3.zero; // 타겟이 되는 플레이어 또는 목적지
+    private Vector3 fallPos;
     private bool isFalling = false;
 
     // Start is called before the first frame update
@@ -35,10 +36,11 @@ public class TankBullet : Bullet
 
         if (!isFalling)
         {
-            float distanceToPlayer = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z));
+            // float distanceToPlayer = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z));
 
+            float distanceSqrd = (new Vector3(transform.position.x, 0, transform.position.z) - fallPos).sqrMagnitude;
             // 플레이어와의 거리가 설정한 fallDistance보다 작아지면 하강 시작
-            if (distanceToPlayer <= fallDistance)
+            if (distanceSqrd <= 0.3f)
             {
                 isFalling = true;
                 StartFalling();
@@ -52,7 +54,9 @@ public class TankBullet : Bullet
         explosionForce = force;
         explosionRadius = radius;
         upwardsModifier = upModifier;
-        explosionLayerMask = layer;     
+        explosionLayerMask = layer;
+
+        fallPos = Vector3.Lerp(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z), 0.5f);
     }
 
     // 포탄이 떨어지도록 만드는 함수
