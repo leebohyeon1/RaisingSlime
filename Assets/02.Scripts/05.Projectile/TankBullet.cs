@@ -38,7 +38,7 @@ public class TankBullet : Bullet
         {
             // float distanceToPlayer = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z));
 
-            float distanceSqrd = (new Vector3(transform.position.x, 0, transform.position.z) - fallPos).sqrMagnitude;
+            float distanceSqrd = (new Vector3(transform.position.x, fallPos.y, transform.position.z) - fallPos).sqrMagnitude;
             // 플레이어와의 거리가 설정한 fallDistance보다 작아지면 하강 시작
             if (distanceSqrd <= 0.3f)
             {
@@ -56,7 +56,8 @@ public class TankBullet : Bullet
         upwardsModifier = upModifier;
         explosionLayerMask = layer;
 
-        fallPos = Vector3.Lerp(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z), 0.5f);
+        fallPos = Vector3.Lerp(transform.position, new Vector3(targetPos.x, 0, targetPos.z), 0.5f);
+   
     }
 
     // 포탄이 떨어지도록 만드는 함수
@@ -64,7 +65,15 @@ public class TankBullet : Bullet
     {
         // 포탄의 Y축 속도에 중력 가속도를 추가하여 하강하게 만듦
         rb.useGravity = true;
-        rb.velocity += Vector3.down * gravity;
+     
+        float x = 0;
+        if (rb.velocity.magnitude >= gravity)
+        {
+            x = rb.velocity.magnitude - gravity;
+
+        }
+        
+        rb.velocity += Vector3.down * x;
     }
 
     // 폭발 처리
@@ -107,6 +116,8 @@ public class TankBullet : Bullet
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
+
+        Gizmos.DrawLine(fallPos, Vector3.up);
     }
 
     protected override void OnTriggerEnter(Collider collision)

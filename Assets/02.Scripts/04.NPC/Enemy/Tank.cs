@@ -10,7 +10,7 @@ public class Tank : NPCBase
     private float attackSpeed = 2f;
     private float fireCooldown;
 
-    [TabGroup("탱크", "공격"), LabelText("공격 범위"), SerializeField, Range(1f, 20f)]
+    [TabGroup("탱크", "공격"), LabelText("공격 범위"), SerializeField, Range(1f, 100f)]
     private float attackRange = 10f;
 
     [TabGroup("탱크", "공격"), LabelText("포탄 프리팹"), SerializeField]
@@ -118,8 +118,6 @@ public class Tank : NPCBase
     // 공격 메커니즘
     void Attack()
     {
-     
-
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
         {
@@ -187,6 +185,7 @@ public class Tank : NPCBase
             agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
         }
     }
+
     void Fire()
     {  
         // 플레이어의 위치와 탱크의 수평 거리 계산
