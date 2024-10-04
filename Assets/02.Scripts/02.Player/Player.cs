@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour
     private LayerMask groundLayer; // 땅 체크를 위한 레이어 마스크
     [BoxGroup("땅 체크"), LabelText("땅 체크 위치"), SerializeField]
     private Transform groundCheckPosition; // Raycast 시작 위치 (플레이어 발밑)
-    
 
     void Start()
     {
@@ -33,13 +33,14 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         slimeRenderer = GetComponentInChildren<Renderer>();
-
     }
 
     void Update()
     {
         AutoDecreaseSize();
         HandleJump();
+
+       // CheckNavMesh(30f);
     }
 
     private void FixedUpdate()

@@ -386,6 +386,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 63
   groundCheckPosition: {fileID: 3046093514886471382}
+  surface: {fileID: 181071859893875499, guid: 33929d9168038574d88ebcacf9429b79, type: 3}
 --- !u!114 &6652811797731747403
 MonoBehaviour:
   m_ObjectHideFlags: 0

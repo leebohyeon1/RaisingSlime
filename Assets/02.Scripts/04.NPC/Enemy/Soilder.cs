@@ -56,8 +56,6 @@ public class Soilder : NPCBase
             return;
         }
 
-        CheckNavMesh();
-
         float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
         if (distanceToPlayer < attackRange)

@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
     [BoxGroup("위치 세팅"), LabelText("스폰 높이"), SerializeField]
     private float spawnHeight = 3f; // 적이 생성될 때의 높이
 
-    [BoxGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
+    [TabGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
     private GameObject bomberPrefab;
 
     private List<GameObject> currentStepEnemyList = new List<GameObject>(); // 현재 스텝에서 스폰된 적 리스트
