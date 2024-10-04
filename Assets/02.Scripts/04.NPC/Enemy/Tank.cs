@@ -72,7 +72,6 @@ public class Tank : NPCBase
             return;
         }
 
-        CheckNavMesh();
         RotateTurretTowardsPlayer();  // 포탑 회전 추가
 
         float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
