@@ -48,7 +48,9 @@ MonoBehaviour:
   step: 0
   spawnObjectsList:
   - SpawnObjects:
-    - {fileID: 739172332764853768, guid: 1d805af3516a4de4b8b3b2a3756d0cc6, type: 3}
+    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
+    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
+    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
     isBomber: 0
     spawnInterval: 0
   - SpawnObjects: []
