@@ -414,7 +414,6 @@ MonoBehaviour:
   curSize: 1
   sizeDecreasePerSecond: 0.01
   moveSpeed: 20
-  rotationSpeed: 5
   canJump: 0
   jumpForce: 10
   extraGravityForce: 9.81

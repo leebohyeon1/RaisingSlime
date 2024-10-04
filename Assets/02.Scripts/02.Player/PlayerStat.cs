@@ -12,8 +12,6 @@ public class PlayerStat : MonoBehaviour
 
     [TabGroup("스탯", "이동"), LabelText("이동 속도")]
     public float moveSpeed = 5.0f;
-    [TabGroup("스탯", "이동"), LabelText("회전 속도")]
-    public float rotationSpeed = 5f;
 
     [TabGroup("스탯", "점프"), LabelText("점프할 수 있는가")]
     public bool canJump;

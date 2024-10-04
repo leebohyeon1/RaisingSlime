@@ -42,7 +42,6 @@ public class PoliceCar : NPCBase
         agent.angularSpeed = 0f; // 자동차는 직접 회전 처리하므로 NavMesh의 회전을 비활성화
         agent.updateRotation = false; // 에이전트의 회전은 수동으로 처리함
         agent.updateUpAxis = false; // 자동차의 회전은 XZ 평면에서만 이루어지도록 설정
-
     }
 
     protected override void Update()
@@ -98,15 +97,14 @@ public class PoliceCar : NPCBase
 
     void MoveCar()
     {
+
         // MoveToTarget() 호출: 타겟을 추적하도록 NavMeshAgent에 경로 설정
         MoveToTarget();
+
 
         // 현재 위치에서 타겟까지의 방향 계산
         Vector3 directionToTarget = agent.steeringTarget - transform.position;
         directionToTarget.y = 0; // Y축 이동은 무시 (XZ 평면에서만 이동)
-
-        // 자동차가 정면으로 이동하도록 설정 (transform.forward 사용)
-        Vector3 forward = transform.forward; // 자동차가 현재 바라보고 있는 정면 방향
 
         // 현재 속도를 가속도에 맞춰 증가
         if (currentSpeed < moveSpeed)
@@ -194,21 +192,32 @@ public class PoliceCar : NPCBase
     // 충돌 후 멈춤, 후진, 재개하는 코루틴
     IEnumerator HandleCollision()
     {
+      
+
         isStoppedAfterCollision = true;
 
-        agent.nextPosition = transform.position;// 위치 초기화
-
-        if(currentSpeed < 5)
+        if (agent != null)
         {
-            agent.isStopped = true;
-        }
 
-        currentSpeed = 0f;
-        agent.speed = currentSpeed;
-        // 충돌 후 잠시 멈춤
+            agent.nextPosition = transform.position;// 위치 초기화
+
+            if (currentSpeed < 5)
+            {
+                agent.isStopped = true;
+            }
+
+            currentSpeed = 0f;
+            agent.speed = currentSpeed;
+        }
+            // 충돌 후 잠시 멈춤
         yield return new WaitForSeconds(stopDuration);
 
-        agent.isStopped = false;
+        if (agent != null && agent.isOnNavMesh)
+        {
+
+            agent.isStopped = false;
+        }
+
         // 후진 로직
         isReversing = true;
     }

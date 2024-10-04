@@ -32,6 +32,10 @@ public class Police : NPCBase
 
     protected override void enemyAction()
     {
+
+        base.enemyAction();
+
+
         // 현재 X축 회전 각도 계산
         float currentXRotation = baton.transform.localEulerAngles.x;
 
@@ -50,8 +54,6 @@ public class Police : NPCBase
         // 진압봉을 X축을 기준으로 회전
         baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
 
-
-        base.enemyAction();
 
     
     }

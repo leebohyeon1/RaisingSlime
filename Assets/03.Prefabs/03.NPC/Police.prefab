@@ -238,6 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5241088915748244070}
+  - component: {fileID: 8902197911458488098}
   m_Layer: 6
   m_Name: Police
   m_TagString: Untagged
@@ -261,6 +262,19 @@ Transform:
   - {fileID: 1728066562100302210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8902197911458488098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5217547892028285725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa9ab16a9a1b8f4c9a3792c3f661f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 4047514639647085261}
 --- !u!1 &6182033007582255687
 GameObject:
   m_ObjectHideFlags: 0
