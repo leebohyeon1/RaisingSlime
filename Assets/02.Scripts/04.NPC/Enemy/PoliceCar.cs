@@ -27,6 +27,7 @@ public class PoliceCar : NPCBase
     private float reverseSpeed = 0f;        // 현재 후진 속도
     private bool isReversing = false;       // 후진 중 여부
     private bool isStoppedAfterCollision = false;  // 충돌 후 멈춤 여부
+    private bool isRush = false;
     private float reverseTimer = 0f;        // 후진 시간 타이머
 
     protected override void Awake()
@@ -58,19 +59,40 @@ public class PoliceCar : NPCBase
         {
             return;
         }
-        CheckNavMesh();
 
-        if (target != null && !isReversing && !isStoppedAfterCollision)
+        if (target != null && !isReversing && !isStoppedAfterCollision && !isRush)
         {   
             // 자동차 이동 처리
             MoveCar();         
         }
-        else if(target != null && isReversing)
+        else if(target != null && isReversing && !isRush)
         {
              MoveReverse();
         }
-
       
+    }
+
+    protected override void MoveToTarget()
+    {
+        // 타겟 위치에서 가장 가까운 유효한 NavMesh 위치를 찾는다.
+        NavMeshHit hit;
+        Vector3 targetPosition = TargetGroundPos();
+
+        // 유효한 NavMesh 위치를 찾으면 그 위치로 이동
+        if (NavMesh.SamplePosition(targetPosition, out hit, 11.0f, NavMesh.AllAreas))
+        {
+            targetPosition = hit.position;
+        }
+
+        // NavMesh 상의 유효한 위치로 이동 시도
+        if (!agent.SetDestination(targetPosition))
+        {
+            // 경로 설정 실패 시, 타겟 방향으로 일정 거리를 더해 이동
+            Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
+            Vector3 fallbackPosition = transform.position + direction * 5f; // 5는 타겟 방향으로 이동할 거리
+
+            agent.SetDestination(fallbackPosition);
+        }
     }
 
     void MoveCar()
@@ -104,7 +126,6 @@ public class PoliceCar : NPCBase
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
         }
     }
-
 
     void MoveReverse()
     {

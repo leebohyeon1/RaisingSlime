@@ -19,16 +19,10 @@ public class NPCBase : MonoBehaviour
     [BoxGroup("기본"), LabelText("충돌 데미지"), SerializeField]
     public float collisionDamage = 1f;
 
-    [BoxGroup("기본"), LabelText("네비매쉬 표면"), SerializeField]
-    private Transform surface;
-
     public bool isExplosion = false;
 
     protected virtual void Awake()
     {                
-        // surface 생성
-        surface.GetComponent<NavMeshSurface>().BuildNavMesh();
-        
         //Nav Mesh Agent 초기화
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;   
@@ -65,8 +59,6 @@ public class NPCBase : MonoBehaviour
             return;
         }
 
-        CheckNavMesh();
-
         MoveToTarget();
 
     }
@@ -86,15 +78,6 @@ public class NPCBase : MonoBehaviour
     public virtual void SetTarget(Transform transform) // 타겟 설정
     {
         target = transform;
-    }
-
-    protected virtual void CheckNavMesh(float distance = 9f) 
-    {
-        if (Vector3.Distance(transform.position, surface.position) > distance)
-        {
-            surface.transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
-            surface.GetComponent<NavMeshSurface>().BuildNavMesh();
-        }
     }
 
     protected virtual void MoveToTarget()

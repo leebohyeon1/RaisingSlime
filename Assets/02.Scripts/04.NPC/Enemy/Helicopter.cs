@@ -50,8 +50,6 @@ public class Helicopter : NPCBase
             return;
         }
 
-        CheckNavMesh(15f);
-
         if (target != null)
         {
             float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
