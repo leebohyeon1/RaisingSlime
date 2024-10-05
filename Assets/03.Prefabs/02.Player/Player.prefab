@@ -384,7 +384,7 @@ MonoBehaviour:
   groundCheckDistance: 0.6
   groundLayer:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 127
   groundCheckPosition: {fileID: 3046093514886471382}
 --- !u!114 &6652811797731747403
 MonoBehaviour:

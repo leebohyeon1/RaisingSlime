@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &83001535202420354
 Transform:
   m_ObjectHideFlags: 0
@@ -47,10 +47,7 @@ MonoBehaviour:
   stepByScore: e8030000d0070000b80b0000a00f00008813000010270000
   step: 0
   spawnObjectsList:
-  - SpawnObjects:
-    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
-    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
-    - {fileID: 3959466649144947536, guid: 63b34fee659176c40ae8960066c35b2f, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
   - SpawnObjects: []
@@ -70,5 +67,5 @@ MonoBehaviour:
     spawnInterval: 0
   spawnRadius: 50
   spawnHeight: 2.5
-  bomberPrefab: {fileID: 4795624700528817056, guid: 2b7366b25626f0341a381fd86ba6561c,
+  bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}

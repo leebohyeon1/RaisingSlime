@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1077826885566837979}
   - component: {fileID: 7726631333973119133}
   m_Layer: 0
-  m_Name: PoliceBullet_Test
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

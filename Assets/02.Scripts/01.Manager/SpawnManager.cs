@@ -129,7 +129,7 @@ public class SpawnManager : MonoBehaviour
             currentStepEnemyList.Add(newEnemy);
 
             // 적이 파괴되었을 때 다시 스폰하지 않도록 이전 스텝의 적인지 확인
-            NPCParent enemyComponent = newEnemy.GetComponent<NPCParent>();
+            NPCBase enemyComponent = newEnemy.GetComponent<NPCBase>();
             if (enemyComponent != null)
             {
                 enemyComponent.OnDestroyed += () =>
@@ -148,7 +148,7 @@ public class SpawnManager : MonoBehaviour
                     }
                 };
 
-                enemyComponent.SetNPCTarget(slimeTrans);
+                enemyComponent.SetTarget(slimeTrans);
             }
         }
     }
