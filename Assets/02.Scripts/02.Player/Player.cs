@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+
         AutoDecreaseSize();
         HandleJump();
 
@@ -129,6 +131,7 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.GameOver();
 
+            Destroy(gameObject);
             // 죽는 이벤트 추가?
         }
     }
