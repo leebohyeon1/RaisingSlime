@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,26 +6,48 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [LabelText("일시정지 UI"), SerializeField]
+    [TabGroup("UI", "게임"), LabelText("점수 Text"), SerializeField]
+    private TMP_Text scoreText;
+
+    [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
 
-    [LabelText("옵션 UI"), SerializeField]
+    [TabGroup("UI", "옵션"), LabelText("옵션 UI"), SerializeField]
     private GameObject optionUI;
 
-    [LabelText("게임 오버 UI"), SerializeField]
+    [TabGroup("UI","게임오버"), LabelText("게임 오버 UI"), SerializeField]
     private GameObject gameOverUI;
 
-    [LabelText("점수 UI"), SerializeField]
-    private TMP_Text scoreText;
-    [LabelText("최종 점수 UI"), SerializeField]
+    [TabGroup("UI", "게임오버"), LabelText("최종 점수 Text"), SerializeField]
     private TMP_Text totalScoreText;
 
+    [TabGroup("UI", "게임오버"), LabelText("재시작 버튼"), SerializeField]
+    private Button restartBtn;
+    [TabGroup("UI", "게임오버"), LabelText("나가기 버튼"), SerializeField]
+    private Button exitBtn;
+
     private float score = 0f;
+
+    [BoxGroup("게임 상태"), LabelText("게임 오버"), SerializeField]
+    private bool isGameOver = false;
+    [BoxGroup("게임 상태"), LabelText("일시정지"), SerializeField]
+    private bool isPause = false;
+    [BoxGroup("게임 상태"), LabelText("설정"), SerializeField]
+    private bool isOption = false;
+
+    // 일시정지 UI 기본 위치
+    private Vector2 pauseOriginalPos;
+    private bool canResume = true;
+
+    // 게임오버 UI 기본 위치
+    private Vector2 gamOverOriginalPos;
 
     private void Awake()
     {
@@ -46,13 +69,31 @@ public class GameManager : MonoBehaviour
 
         if (optionUI == null)
         {
-            optionUI = OptionManager.Instance.OptionUI;
+            optionUI = OptionManager.Instance.optionUI;
         }
+
+        // 원래 UI의 위치
+        pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition; 
+        gamOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
+
+        restartBtn.onClick.AddListener(() => RetryBtn());
+        exitBtn.onClick.AddListener(() => ExitBtn());
+
     }
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         UpdateScore();
+
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     #region 점수
@@ -60,9 +101,10 @@ public class GameManager : MonoBehaviour
     public void UpdateScore()
     {
         score += Time.deltaTime;
-        scoreText.text = score.ToString("F0");
+        scoreText.text = GetScore().ToString("F0");
     }
 
+    [Button]
     public void IncreaseScore(float plusScore)
     {
         score += plusScore;
@@ -73,22 +115,76 @@ public class GameManager : MonoBehaviour
     #region 버튼
     public void PauseGame() // 일시정지
     {
-        if (!pauseUI.activeSelf)
+        if (isGameOver || isOption)
         {
-            pauseUI.SetActive(true);
-            Time.timeScale = 0.0f;
+            return;
         }
-        else
+
+        RectTransform pauseRect = pauseUI.GetComponent<RectTransform>();
+
+        if (!pauseUI.activeSelf && !isPause)
         {
-            Time.timeScale = 1.0f;
-            pauseUI.SetActive(false);
+            canResume = false;
+            pauseRect.anchoredPosition = pauseOriginalPos;
+            pauseUI.SetActive(true);
+         
+            Time.timeScale = 0.0f;
+      
+
+            Vector2 offScreenPos = new Vector2(pauseRect.anchoredPosition.x, Screen.height / 2 + pauseRect.rect.height); // 화면 위의 임의 위치
+
+            // 애니메이션 시퀀스
+            Sequence pauseSequence = DOTween.Sequence();
+
+            // 화면 위에서 원래 위치로 떨어지는 애니메이션 
+            pauseRect.anchoredPosition = offScreenPos;
+            pauseSequence.Append(pauseRect.DOAnchorPos(pauseOriginalPos, 0.8f).SetEase(Ease.OutElastic, 1.2f,0.6f));
+            pauseSequence.InsertCallback(0.2f, () => { canResume = true; isPause = true; });
+
+            // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
+            pauseSequence.SetUpdate(true);
+        }
+        else if(canResume && isPause) 
+        {
+            canResume = false;
+            // UI가 화면 위로 올라간 후 아래로 떨어지는 애니메이션
+            Vector2 belowScreenPos = new Vector2(pauseRect.anchoredPosition.x, -(Screen.height / 2 + pauseRect.rect.height)); // 화면 아래로 임의 위치
+
+            // 애니메이션 시퀀스
+            Sequence resumeSequence = DOTween.Sequence();
+
+            // 화면 위로 살짝 올라갔다가 아래로 떨어지는 애니메이션
+            resumeSequence.Append(pauseRect.DOAnchorPos(belowScreenPos, 0.6f).SetEase(Ease.InBack)); // 화면 아래로 떨어짐
+
+            // 애니메이션 완료 후 Pause UI 비활성화
+            resumeSequence.OnComplete(() =>
+            {          
+                // 위치를 즉시 원래 자리로 설정
+                pauseRect.anchoredPosition = pauseOriginalPos;
+                
+                pauseUI.SetActive(false);
+
+                isPause = false;
+                Time.timeScale = 1.0f;
+        
+
+            });
+
+            // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
+            resumeSequence.SetUpdate(true);
         }
     }
 
     public void OptionBtn() // 옵션 
     {
-        optionUI.SetActive(true);
-        pauseUI.SetActive(false);
+        SetOption();
+
+        OptionManager.Instance.EnterOption();
+    }
+
+    public void SetOption()
+    {
+        isOption = !isOption;
     }
 
     public void RetryBtn()  // 게임 재시작
@@ -106,10 +202,50 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameOver = true;
         gameOverUI.SetActive(true);
-        totalScoreText.text = scoreText.text;
+
+        //버튼 제어 끄기
+        restartBtn.interactable = false;
+        exitBtn.interactable = false;
+
         Time.timeScale = 0f;
+
+        // UI가 화면 위에서 내려오는 애니메이션
+        RectTransform gameOverRect = gameOverUI.GetComponent<RectTransform>();
+        Vector2 offScreenPos = new Vector2(gameOverRect.anchoredPosition.x, Screen.height / 2 + gameOverRect.rect.height); // 화면 위의 임의 위치
+
+        // 애니메이션 시퀀스
+        Sequence gameOverSequence = DOTween.Sequence();
+
+        // 화면 위에서 원래 위치로 떨어지는 애니메이션 (1초 동안)
+        gameOverRect.anchoredPosition = offScreenPos;
+
+        // 튕기는 듯한 애니메이션 효과
+        gameOverSequence.Append(gameOverRect.DOAnchorPos(gamOverOriginalPos, 0.8f).SetEase(Ease.OutBounce, 10));
+
+        // 0.1초 대기
+        gameOverSequence.AppendInterval(0.1f).OnStart(() => totalScoreText.text = null);
+
+        // 총점 카운터와 텍스트 흔들림 애니메이션 추가
+        gameOverSequence.Append(totalScoreText.DOCounter(0, GetScore(), 1f));
+        gameOverSequence.Join(totalScoreText.GetComponent<RectTransform>()
+            .DOShakePosition(1f, new Vector3(0f, 2.5f, 0f), 20, 90, false, true));
+
+        gameOverSequence.OnComplete(() =>
+        {
+            restartBtn.interactable = true;
+            exitBtn.interactable = true;
+        });
+
+        // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
+        gameOverSequence.SetUpdate(true);
+
+        gameOverSequence.Play();
+
+        
     }
+
 
     public int GetScore()
     {
