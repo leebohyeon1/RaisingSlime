@@ -93,12 +93,12 @@ public class GameManager : MonoBehaviour
 
     public void RetryBtn()  // 게임 재시작
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void ExitBtn()   // 메인화면으로 돌아감
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
         Time.timeScale = 1.0f;
     }

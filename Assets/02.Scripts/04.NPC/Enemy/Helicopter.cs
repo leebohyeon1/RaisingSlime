@@ -8,8 +8,8 @@ public class Helicopter : NPCBase
 {
     [TabGroup("헬리콥터", "이동"), LabelText("날아다니는 높이"), SerializeField, Range(5f, 20f)]
     private float flyHeight = 10f;  // 공중에서의 높이
-    [TabGroup("헬리콥터", "이동"), LabelText("x축 최대 회전각도"), SerializeField, Range(5f, 45f)]
-    private float maxXAngle = 35f;  // x축 최대 회전각도
+    //[TabGroup("헬리콥터", "이동"), LabelText("x축 최대 회전각도"), SerializeField, Range(5f, 45f)]
+    //private float maxXAngle = 35f;  // x축 최대 회전각도
 
     [TabGroup("헬리콥터", "공격"), LabelText("공격 범위"), SerializeField, Range(5f, 20f)]
     private float attackRange = 10f;
