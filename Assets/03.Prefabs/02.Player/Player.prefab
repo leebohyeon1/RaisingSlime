@@ -313,7 +313,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 566038129550653124}
@@ -384,9 +384,8 @@ MonoBehaviour:
   groundCheckDistance: 0.6
   groundLayer:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 127
   groundCheckPosition: {fileID: 3046093514886471382}
-  surface: {fileID: 181071859893875499, guid: 33929d9168038574d88ebcacf9429b79, type: 3}
 --- !u!114 &6652811797731747403
 MonoBehaviour:
   m_ObjectHideFlags: 0

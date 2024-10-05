@@ -7,6 +7,9 @@ using UnityEngine.AI;
 
 public class NPCBase : MonoBehaviour
 {
+    public delegate void DestroyedHandler();
+    public event DestroyedHandler OnDestroyed;
+
     protected NavMeshAgent agent;
     protected EatAbleObjectBase eatAbleObjectBase;
 
@@ -120,5 +123,13 @@ public class NPCBase : MonoBehaviour
         isExplosion = true;
 
         StartCoroutine(OnAgent());
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (OnDestroyed != null)
+        {
+            OnDestroyed.Invoke(); // 적이 파괴될 때 이벤트 발생
+        }
     }
 }
