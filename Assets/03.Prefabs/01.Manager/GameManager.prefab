@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ccacebbe8384944828c31807b90bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseUI: {fileID: 0}
+  optionUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  scoreText: {fileID: 0}
+  totalScoreText: {fileID: 0}
