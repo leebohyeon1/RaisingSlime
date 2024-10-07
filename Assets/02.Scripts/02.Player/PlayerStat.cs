@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
+
     [TabGroup("스탯", "사이즈"), LabelText("현재 크기")]
     public float curSize = 1.0f;
     [TabGroup("스탯", "사이즈"), LabelText("초 당 줄어드는 크기")]
@@ -21,6 +22,5 @@ public class PlayerStat : MonoBehaviour
     public float extraGravityForce = 9.81f; // 추가 중력 가속도
     [TabGroup("스탯", "점프"), LabelText("적한테 튕기는 힘")]
     public float knockbackForce = 20f; // 적과 부딪혔을 때 밀려나는 힘
-
 
 }
