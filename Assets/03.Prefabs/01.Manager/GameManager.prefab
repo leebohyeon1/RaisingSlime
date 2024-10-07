@@ -44,8 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ccacebbe8384944828c31807b90bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
   pauseUI: {fileID: 0}
   optionUI: {fileID: 0}
   gameOverUI: {fileID: 0}
-  scoreText: {fileID: 0}
   totalScoreText: {fileID: 0}
+  restartBtn: {fileID: 0}
+  exitBtn: {fileID: 0}
+  isGameOver: 0
+  isPause: 0
+  isOption: 0
+  globalVolume: {fileID: 0}
