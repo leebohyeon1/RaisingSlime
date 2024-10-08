@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class MainManager : MonoBehaviour
     private GameObject optionUI;
 
     [LabelText("메인 버튼"), SerializeField]
-    private GameObject[] mainBtn;
+    private Button[] mainBtn;
+    [LabelText("시작 누른 후 버튼"), SerializeField]
+    private Button startPushBtn;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class MainManager : MonoBehaviour
 
         mainUI.SetActive(true);
 
+        startPushBtn.gameObject.SetActive(false);
     }
 
     void Update()
@@ -33,7 +37,14 @@ public class MainManager : MonoBehaviour
 
     public void StartButton()  // 게임 시작 버튼
     {
+        foreach(Button btn in mainBtn)
+        {
+            btn.interactable = false; //버튼 비 동기화
+        }
 
+        startPushBtn.gameObject.SetActive(true);
+
+        /*
         RectTransform btnRect1 = mainBtn[0].GetComponent<RectTransform>();
         RectTransform btnRect2 = mainBtn[1].GetComponent<RectTransform>();
         RectTransform btnRect3 = mainBtn[2].GetComponent<RectTransform>();
@@ -53,10 +64,12 @@ public class MainManager : MonoBehaviour
 
         // 애니메이션 완료 후 Pause UI 비활성화
         startSequence.OnComplete(() =>
-        {
-            SceneManager.LoadScene(2);
+        {*/
 
-        });
+        
+        //SceneManager.LoadScene(2);
+
+        /*});*/
 
 
     }
