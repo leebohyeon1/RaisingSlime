@@ -56,8 +56,13 @@ public class EatAbleObjectBase : MonoBehaviour
         transform.localPosition = Vector3.zero + randomPosition;
 
         GetComponentInChildren<Collider>().enabled = false; // 충돌 비활성화
-        GetComponent<NavMeshAgent>().enabled = false;
-        if (GetComponent<Rigidbody>() != null)
+        
+        if(GetComponent<NavMeshAgent>())
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
+        }
+        
+        if (GetComponent<Rigidbody>())
         {
             Destroy(GetComponent<Rigidbody>()); // Rigidbody가 있으면 비활성화
         }
