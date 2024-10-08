@@ -1,4 +1,3 @@
-using INab.Dissolve;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,9 +19,6 @@ public class UFO : NPCBase
 
     private Player player;
 
-    [SerializeField]
-    private Dissolver[] dissolvers;
-
     protected override void Awake()
     {
 
@@ -33,11 +29,6 @@ public class UFO : NPCBase
         base.Start();
 
         player = target.GetComponent<Player>();
-
-        foreach (Dissolver dissolver in dissolvers)
-        {
-            dissolver.Materialize();
-        }
     }
 
     protected override void Update()
@@ -84,17 +75,10 @@ public class UFO : NPCBase
 
     private void OnTriggerEnter(Collider other)
     {
-        foreach(Dissolver dissolver in dissolvers)
-        {
-            dissolver.Dissolve();
-        }
         
     }
     private void OnTriggerExit(Collider other)
     {
-        foreach (Dissolver dissolver in dissolvers)
-        {
-            dissolver.Materialize();
-        }
+
     }
 }
