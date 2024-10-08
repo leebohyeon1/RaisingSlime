@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private PlayerStat playerStat;
 
     private Rigidbody rb;
-    private Renderer slimeRenderer;
 
     private Vector3 movement;
     
@@ -22,8 +21,10 @@ public class Player : MonoBehaviour
     private float groundCheckDistance = 0.1f; // Raycast의 거리
     [BoxGroup("땅 체크"), LabelText("땅 레이어"), SerializeField]
     private LayerMask groundLayer; // 땅 체크를 위한 레이어 마스크
-    [BoxGroup("땅 체크"), LabelText("땅 체크 위치"), SerializeField]
-    private Transform groundCheckPosition; // Raycast 시작 위치 (플레이어 발밑)
+
+
+    public Material shadowMaterial;
+    public float planeHeight = 0.0f; // planeHeight 값
 
     void Start()
     {
@@ -32,7 +33,9 @@ public class Player : MonoBehaviour
         playerStat = GetComponent<PlayerStat>();
 
         rb = GetComponent<Rigidbody>();
-        slimeRenderer = GetComponentInChildren<Renderer>();
+
+        //그림자 초기 높이 설정
+        shadowMaterial.SetFloat("_PlaneHeight", 0.05f);
     }
 
     void Update()
@@ -61,12 +64,21 @@ public class Player : MonoBehaviour
         float adjustedGroundCheckDistance = groundCheckDistance * transform.localScale.y;
 
         // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, adjustedGroundCheckDistance, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer);
 
         if (!isGrounded && !playerStat.canJump)
         {
             playerStat.canJump = true; // 점프 초기화
         }
+
+        // planeHeight 값을 Raycast로 구한 지점의 y좌표로 설정
+        if (isGrounded)
+        {
+            planeHeight = hit.point.y + 0.03f;  // 레이캐스트로 얻은 히트 포인트의 y 좌표를 사용
+        }
+
+        shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
+
 
         // 디버그용 Ray 그리기 (위치와 크기에 맞춰 땅 체크가 잘 되는지 확인)
         Debug.DrawRay(transform.position, Vector3.down * adjustedGroundCheckDistance, Color.blue);
