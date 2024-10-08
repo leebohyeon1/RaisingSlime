@@ -2937,6 +2937,11 @@ PrefabInstance:
       objectReference: {fileID: 196450022}
     - target: {fileID: 8292412904854020249, guid: 713d6bf705785ef4aa37ad3136762a36,
         type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 2064193931}
+    - target: {fileID: 8292412904854020249, guid: 713d6bf705785ef4aa37ad3136762a36,
+        type: 3}
       propertyPath: totalScoreText
       value: 
       objectReference: {fileID: 572876154}

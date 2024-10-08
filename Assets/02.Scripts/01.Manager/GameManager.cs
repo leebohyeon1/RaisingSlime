@@ -1,13 +1,11 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +40,10 @@ public class GameManager : MonoBehaviour
     [BoxGroup("게임 상태"), LabelText("설정"), SerializeField]
     private bool isOption = false;
 
+    [BoxGroup("글로벌 볼륨"), SerializeField]
+    private Volume globalVolume; // 글로벌 볼륨을 할당
+    private DepthOfField depthOfField;
+
     // 일시정지 UI 기본 위치
     private Vector2 pauseOriginalPos;
     private bool canResume = true;
@@ -72,6 +74,13 @@ public class GameManager : MonoBehaviour
             optionUI = OptionManager.Instance.optionUI;
         }
 
+        // Volume 프로파일에서 Depth of Field 컴포넌트를 가져오기
+        if (globalVolume.profile.TryGet(out depthOfField))
+        {
+            // Bokeh 효과를 기본적으로 비활성화
+            depthOfField.active = false;
+        }
+
         // 원래 UI의 위치
         pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition; 
         gamOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
@@ -92,7 +101,7 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            PauseGame();
+            PauseBtn();
         }
     }
 
@@ -113,7 +122,7 @@ public class GameManager : MonoBehaviour
 
 
     #region 버튼
-    public void PauseGame() // 일시정지
+    public void PauseBtn() // 일시정지
     {
         if (isGameOver || isOption)
         {
@@ -129,7 +138,8 @@ public class GameManager : MonoBehaviour
             pauseUI.SetActive(true);
          
             Time.timeScale = 0.0f;
-      
+
+            ToggleBokeh(true);
 
             Vector2 offScreenPos = new Vector2(pauseRect.anchoredPosition.x, Screen.height / 2 + pauseRect.rect.height); // 화면 위의 임의 위치
 
@@ -143,6 +153,7 @@ public class GameManager : MonoBehaviour
 
             // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
             pauseSequence.SetUpdate(true);
+
         }
         else if(canResume && isPause) 
         {
@@ -166,7 +177,9 @@ public class GameManager : MonoBehaviour
 
                 isPause = false;
                 Time.timeScale = 1.0f;
-        
+
+                ToggleBokeh(false);
+
 
             });
 
@@ -185,7 +198,7 @@ public class GameManager : MonoBehaviour
     public void SetOption()
     {
         isOption = !isOption;
-    }
+    } 
 
     public void RetryBtn()  // 게임 재시작
     {
@@ -200,15 +213,18 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void GameOver()
+    public void GameOver() // 게임 오버됐을 때 작동하는 함수
     {
         isGameOver = true;
         gameOverUI.SetActive(true);
+
+        ToggleBokeh(true); // 블러 온
 
         //버튼 제어 끄기
         restartBtn.interactable = false;
         exitBtn.interactable = false;
 
+        //시간 정지
         Time.timeScale = 0f;
 
         // UI가 화면 위에서 내려오는 애니메이션
@@ -234,6 +250,7 @@ public class GameManager : MonoBehaviour
 
         gameOverSequence.OnComplete(() =>
         {
+            // 모든 UI 애니메이션 후 버튼 작동
             restartBtn.interactable = true;
             exitBtn.interactable = true;
         });
@@ -246,6 +263,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void ToggleBokeh(bool enable)
+    {
+        if (depthOfField != null)
+        {
+            depthOfField.active = enable;
+        }
+    }
 
     public int GetScore()
     {

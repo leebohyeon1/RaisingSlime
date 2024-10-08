@@ -312,7 +312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2013876321523688787}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PauseGame
+        m_MethodName: PauseBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2219,7 +2219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2013876321523688787}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PauseGame
+        m_MethodName: PauseBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3105,6 +3105,11 @@ PrefabInstance:
       propertyPath: restartBtn
       value: 
       objectReference: {fileID: 913945644}
+    - target: {fileID: 8292412904854020249, guid: 713d6bf705785ef4aa37ad3136762a36,
+        type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 832575518}
     - target: {fileID: 8292412904854020249, guid: 713d6bf705785ef4aa37ad3136762a36,
         type: 3}
       propertyPath: totalScoreText
