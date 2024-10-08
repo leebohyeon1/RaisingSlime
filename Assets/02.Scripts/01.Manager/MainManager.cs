@@ -67,7 +67,7 @@ public class MainManager : MonoBehaviour
         {*/
 
         
-        //SceneManager.LoadScene(2);
+        SceneManager.LoadScene(2);
 
         /*});*/
 
