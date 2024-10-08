@@ -356,7 +356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6520623067175645707}
-  - component: {fileID: 8469409896127139667}
   m_Layer: 6
   m_Name: PoliceCar
   m_TagString: Untagged
@@ -380,19 +379,6 @@ Transform:
   - {fileID: 8529052409404220149}
   m_Father: {fileID: 44378145446259002}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &8469409896127139667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127980516923458348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa9ab16a9a1b8f4c9a3792c3f661f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 5683504144970798994}
 --- !u!1 &1392201041060309399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +996,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5750168919056648884}
-  - component: {fileID: 8166959799601652101}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -1034,19 +1019,6 @@ Transform:
   - {fileID: 6480523633145190809}
   m_Father: {fileID: 44378145446259002}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &8166959799601652101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2764002288965316211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa9ab16a9a1b8f4c9a3792c3f661f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 8998599489472913165}
 --- !u!1 &2882196304737995906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1028,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2121966044707658061}
-  - component: {fileID: 6587405816700175171}
   m_Layer: 0
   m_Name: Helicopter
   m_TagString: Untagged
@@ -1080,19 +1051,6 @@ Transform:
   - {fileID: 3025060788229597477}
   m_Father: {fileID: 44378145446259002}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6587405816700175171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2882196304737995906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa9ab16a9a1b8f4c9a3792c3f661f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 5178193884836511136}
 --- !u!1 &3013871791948415135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3655157074609645442}
-  - component: {fileID: 3348712936081517956}
   m_Layer: 0
   m_Name: Bomber
   m_TagString: Untagged
@@ -2332,19 +2289,6 @@ Transform:
   - {fileID: 8577564577266924065}
   m_Father: {fileID: 44378145446259002}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &3348712936081517956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6590020868306458233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa9ab16a9a1b8f4c9a3792c3f661f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 3381596456597293927}
 --- !u!1 &6630619297655894168
 GameObject:
   m_ObjectHideFlags: 0
