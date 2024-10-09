@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IUpdateable
 {
     private PlayerMovement playerMovement;
     private PlayerStat playerStat;
@@ -34,18 +34,7 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
-        //그림자 초기 높이 설정
-        shadowMaterial.SetFloat("_PlaneHeight", 0.05f);
-    }
-
-    void Update()
-    {
-
-
-        AutoDecreaseSize();
-        HandleJump();
-
-       // CheckNavMesh(30f);
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
     private void FixedUpdate()
@@ -57,6 +46,12 @@ public class Player : MonoBehaviour
         ApplyExtraGravity(); // 공중에 있을 때 중력 가속도 적용
     }
 
+    public virtual void OnUpdate(float dt)
+    {
+        AutoDecreaseSize();
+        HandleJump();
+    }
+    
     // 땅에 닿았는지 확인하는 함수
     private void GroundCheck()
     {
@@ -66,18 +61,22 @@ public class Player : MonoBehaviour
         // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer);
 
-        if (!isGrounded && !playerStat.canJump)
+        if (!isGrounded && !playerStat.canJump )
         {
             playerStat.canJump = true; // 점프 초기화
         }
+        else if(isGrounded && !playerStat.canJump && rb.velocity.y < 0f)
+        {
+            playerStat.canJump = true; // 점프 초기화
 
+        }
         // planeHeight 값을 Raycast로 구한 지점의 y좌표로 설정
         if (isGrounded)
         {
-            planeHeight = hit.point.y + 0.03f;  // 레이캐스트로 얻은 히트 포인트의 y 좌표를 사용
+           // planeHeight = hit.point.y + 0.03f;  // 레이캐스트로 얻은 히트 포인트의 y 좌표를 사용
         }
 
-        shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
+      //  shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
 
 
         // 디버그용 Ray 그리기 (위치와 크기에 맞춰 땅 체크가 잘 되는지 확인)
@@ -165,8 +164,10 @@ public class Player : MonoBehaviour
             if(eatAble.GetComponentInParent<NPCBase>().isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
             {
                 TakeDamage(eatAble.GetComponentInParent<NPCBase>().collisionDamage);
-                KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
+             
             }
+
+            KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
         }
     }
 
@@ -207,6 +208,11 @@ public class Player : MonoBehaviour
         rb.AddForce(combinedKnockbackDirection * playerStat.knockbackForce, ForceMode.Impulse);
     }
 
+    public Vector3 GetMovement()
+    {
+        return movement;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
@@ -217,8 +223,9 @@ public class Player : MonoBehaviour
 
     }
 
-    public Vector3 GetMovement()
+    void OnDestroy()
     {
-        return movement;
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
+    
 }

@@ -58,11 +58,6 @@ public class Helicopter : NPCBase
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;  // 회피 기능 비활성화
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void enemyAction()
     {
         RotatePropeller();

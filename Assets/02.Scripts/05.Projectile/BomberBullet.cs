@@ -20,12 +20,6 @@ public class BomberBullet : Bullet
         lifeTimer = lifetime; // 수명 타이머 초기화
     }
 
-    protected override void Update()
-    {
-        base.Update();
-
-    }
-
     public void InitalBullet(float damage, float speed, float explosionForce, float explosionRadius, float upwardsModifier, LayerMask explosionLayerMask)
     {
         base.InitalBullet(damage, speed);

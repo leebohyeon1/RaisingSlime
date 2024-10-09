@@ -24,12 +24,6 @@ public class Police : NPCBase
         currentRotationSpeed = batonRotateSpeed;
     }
 
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void enemyAction()
     {
 

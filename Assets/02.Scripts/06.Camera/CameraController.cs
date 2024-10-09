@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IUpdateable
 {
     [SerializeField] private Transform player; // 플레이어의 Transform (추적 대상)
     private CinemachineVirtualCamera virtualCamera; // Cinemachine 가상 카메라
@@ -31,11 +31,12 @@ public class CameraController : MonoBehaviour
 
         // 기본 카메라 거리를 설정 (초기화)
         //UpdateCameraDistance();
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    void Update()
+    public void OnUpdate(float dt)
     {
-        // 매 프레임마다 플레이어 스케일에 맞춰 카메라 거리 업데이트
         UpdateCameraDistance();
     }
 
@@ -50,5 +51,10 @@ public class CameraController : MonoBehaviour
         // CinemachineTransposer의 Follow Offset에서 Z축(거리) 조정
         transposer.m_FollowOffset.z = -newCameraDistance; // 음수 값으로 멀어지도록 설정
         transposer.m_FollowOffset.y = newCameraDistance;
+    }
+
+    void OnDestroy()
+    {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

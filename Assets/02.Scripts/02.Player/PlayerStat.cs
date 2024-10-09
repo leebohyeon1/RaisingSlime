@@ -20,7 +20,8 @@ public class PlayerStat : MonoBehaviour
     public float jumpForce = 10.0f;
     [TabGroup("스탯", "점프"), LabelText("중력 가속도")]
     public float extraGravityForce = 9.81f; // 추가 중력 가속도
-    [TabGroup("스탯", "점프"), LabelText("적한테 튕기는 힘")]
+
+    [TabGroup("스탯", "충돌"), LabelText("적한테 튕기는 힘")]
     public float knockbackForce = 20f; // 적과 부딪혔을 때 밀려나는 힘
 
 }

@@ -5,7 +5,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCBase : MonoBehaviour
+public class NPCBase : MonoBehaviour, IUpdateable
 {
     public delegate void DestroyedHandler();
     public event DestroyedHandler OnDestroyed;
@@ -33,6 +33,8 @@ public class NPCBase : MonoBehaviour
 
         // 먹을 수 있는 오브젝트
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
+
+       
     }
 
     protected virtual void Start()
@@ -41,13 +43,15 @@ public class NPCBase : MonoBehaviour
         {
             target = FindFirstObjectByType<Player>().transform; 
         }
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    protected virtual void Update()
+    public virtual void OnUpdate(float dt)
     {
         enemyAction();
     }
-
+    
     protected virtual void enemyAction() // 적 종류별 행동 부모 함수
     {
 
@@ -128,6 +132,7 @@ public class NPCBase : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
         if (OnDestroyed != null)
         {
             OnDestroyed.Invoke(); // 적이 파괴될 때 이벤트 발생

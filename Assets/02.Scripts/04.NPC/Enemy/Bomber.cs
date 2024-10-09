@@ -25,7 +25,7 @@ public class Bomber : NPCBase
     [TabGroup("폭격기", "폭발"), LabelText("폭발에 영향받는 레이어"), SerializeField]
     public LayerMask explosionLayerMask; // 폭발의 영향을 받을 레이어 마스크 (플레이어, NPC 등)
 
-    [LabelText("폭탄") , SerializeField]
+    [LabelText("폭탄"), SerializeField]
     private GameObject bulletPrefab;
 
     private Vector3 targetOnYPos; // 타겟의 땅위의 위치
@@ -34,7 +34,7 @@ public class Bomber : NPCBase
 
     protected override void Awake()
     {
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();
 
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
     }
@@ -56,11 +56,22 @@ public class Bomber : NPCBase
 
         // 이동 방향으로 즉시 바라봄
         transform.rotation = Quaternion.LookRotation(velocity);
-        transform.Rotate(new Vector3(-90f,transform.rotation.y, 0));
+        transform.Rotate(new Vector3(-90f, transform.rotation.y, 0));
     }
 
-    protected override void Update()
+    protected override void enemyAction()
     {
+        if (eatAbleObjectBase.GetEaten())
+        {
+            return;
+        }
+
+        if (isExplosion)
+        {
+
+            return;
+        }
+
         CheckPosition();
     }
 
@@ -69,18 +80,18 @@ public class Bomber : NPCBase
     {
         float distanceSqrd = (new Vector3(transform.position.x, 0, transform.position.z) - targetOnYPos).sqrMagnitude;
 
-        if ( !isBombing && distanceSqrd < 0.1f )
+        if (!isBombing && distanceSqrd < 0.1f)
         {
             Bombing();
         }
     }
 
     // 폭격하는 함수
-    private void Bombing() 
+    private void Bombing()
     {
         isBombing = true;
 
-        GameObject bullet  = Instantiate(bulletPrefab, bombingTrans.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bombingTrans.position, Quaternion.identity);
 
         bullet.GetComponent<BomberBullet>().InitalBullet(bulletDamage, bulletSpeed,
             explosionForce, explosionRadius, upwardsModifier, explosionLayerMask);
@@ -100,5 +111,4 @@ public class Bomber : NPCBase
             Destroy(gameObject);
         }
     }
-
 }

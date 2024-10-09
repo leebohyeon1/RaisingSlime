@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IUpdateable
 {
     [BoxGroup("Setting"), LabelText("총알 데미지"), SerializeField]
     protected float damage = 5;
@@ -22,7 +22,12 @@ public class Bullet : MonoBehaviour
         lifeTimer = lifetime; // 수명 타이머 초기화
     }
 
-    protected virtual void Update()
+    protected virtual void Start()
+    {
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
+    }
+
+    public virtual void OnUpdate(float dt)
     {
         // 수명이 다하면 총알 파괴
         lifeTimer -= Time.deltaTime;
@@ -53,5 +58,10 @@ public class Bullet : MonoBehaviour
     {
         this.damage = damage;
         this.speed = speed;
+    }
+
+    public virtual void OnDestroy()
+    {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

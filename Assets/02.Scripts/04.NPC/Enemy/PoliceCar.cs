@@ -44,11 +44,6 @@ public class PoliceCar : NPCBase
         agent.updateUpAxis = false; // 자동차의 회전은 XZ 평면에서만 이루어지도록 설정
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void enemyAction()
     {
         if (eatAbleObjectBase.GetEaten())
