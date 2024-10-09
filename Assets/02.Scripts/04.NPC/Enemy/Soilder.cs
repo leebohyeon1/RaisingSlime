@@ -39,11 +39,6 @@ public class Soilder : NPCBase
         base.Start();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void enemyAction()
     {
         if (eatAbleObjectBase.GetEaten())

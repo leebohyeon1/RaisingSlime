@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, IUpdateable
 {
     public static InputManager Instance { get; private set; } // 싱글턴 선언
 
@@ -42,9 +42,11 @@ public class InputManager : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         SetUpInputActions();
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    void Update()
+    public virtual void OnUpdate(float dt)
     {
         HandleActions();
     }
@@ -73,5 +75,10 @@ public class InputManager : MonoBehaviour
             // 현재 맵을 변경
             playerInput.SwitchCurrentActionMap(actionMapName);
         }
+    }
+
+    void OnDestroy()
+    {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

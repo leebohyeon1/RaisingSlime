@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IUpdateable
 {
     public static GameManager Instance { get; private set; }
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [TabGroup("UI", "옵션"), LabelText("옵션 UI"), SerializeField]
     private GameObject optionUI;
 
-    [TabGroup("UI","게임오버"), LabelText("게임 오버 UI"), SerializeField]
+    [TabGroup("UI", "게임오버"), LabelText("게임 오버 UI"), SerializeField]
     private GameObject gameOverUI;
 
     [TabGroup("UI", "게임오버"), LabelText("최종 점수 Text"), SerializeField]
@@ -82,15 +82,16 @@ public class GameManager : MonoBehaviour
         }
 
         // 원래 UI의 위치
-        pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition; 
+        pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition;
         gamOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
 
         restartBtn.onClick.AddListener(() => RetryBtn());
         exitBtn.onClick.AddListener(() => ExitBtn());
 
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    private void Update()
+    public virtual void OnUpdate(float dt) 
     {
         if (isGameOver)
         {
@@ -99,12 +100,12 @@ public class GameManager : MonoBehaviour
 
         UpdateScore();
 
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             PauseBtn();
         }
     }
-
+    
     #region 점수
 
     public void UpdateScore()
@@ -274,5 +275,10 @@ public class GameManager : MonoBehaviour
     public int GetScore()
     {
         return (int)score;
+    }
+
+    void OnDestroy()
+    {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

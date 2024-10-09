@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EatAbleObjectBase : MonoBehaviour
+public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 {
     [LabelText("사이즈"), SerializeField]
     private float size;
@@ -22,17 +22,17 @@ public class EatAbleObjectBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    protected virtual void Update()
+    public virtual void OnUpdate(float dt)
     {
-        if(isGetEaten)
+        if (isGetEaten)
         {
             Digested();
         }
-
     }
-
+ 
     public void Eaten(Transform slimeTrans) // 먹히는 함수
     {
         isGetEaten = !isGetEaten;
@@ -112,5 +112,10 @@ public class EatAbleObjectBase : MonoBehaviour
     public float GetPlusScore()
     {
         return plusScore;
+    }
+
+    void OnDestroy()
+    {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

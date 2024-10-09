@@ -31,11 +31,6 @@ public class UFO : NPCBase
         player = target.GetComponent<Player>();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void enemyAction()
     {
         if (target ==  null)

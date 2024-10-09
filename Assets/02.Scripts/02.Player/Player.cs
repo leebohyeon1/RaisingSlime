@@ -6,13 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IUpdateable
 {
     private PlayerMovement playerMovement;
     private PlayerStat playerStat;
 
     private Rigidbody rb;
-    private Renderer slimeRenderer;
 
     private Vector3 movement;
     
@@ -22,8 +21,10 @@ public class Player : MonoBehaviour
     private float groundCheckDistance = 0.1f; // Raycast의 거리
     [BoxGroup("땅 체크"), LabelText("땅 레이어"), SerializeField]
     private LayerMask groundLayer; // 땅 체크를 위한 레이어 마스크
-    [BoxGroup("땅 체크"), LabelText("땅 체크 위치"), SerializeField]
-    private Transform groundCheckPosition; // Raycast 시작 위치 (플레이어 발밑)
+
+
+    public Material shadowMaterial;
+    public float planeHeight = 0.0f; // planeHeight 값
 
     void Start()
     {
@@ -32,17 +33,8 @@ public class Player : MonoBehaviour
         playerStat = GetComponent<PlayerStat>();
 
         rb = GetComponent<Rigidbody>();
-        slimeRenderer = GetComponentInChildren<Renderer>();
-    }
 
-    void Update()
-    {
-
-
-        AutoDecreaseSize();
-        HandleJump();
-
-       // CheckNavMesh(30f);
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
     private void FixedUpdate()
@@ -54,6 +46,12 @@ public class Player : MonoBehaviour
         ApplyExtraGravity(); // 공중에 있을 때 중력 가속도 적용
     }
 
+    public virtual void OnUpdate(float dt)
+    {
+        AutoDecreaseSize();
+        HandleJump();
+    }
+    
     // 땅에 닿았는지 확인하는 함수
     private void GroundCheck()
     {
@@ -61,12 +59,25 @@ public class Player : MonoBehaviour
         float adjustedGroundCheckDistance = groundCheckDistance * transform.localScale.y;
 
         // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, adjustedGroundCheckDistance, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer);
 
-        if (!isGrounded && !playerStat.canJump)
+        if (!isGrounded && !playerStat.canJump )
         {
             playerStat.canJump = true; // 점프 초기화
         }
+        else if(isGrounded && !playerStat.canJump && rb.velocity.y < 0f)
+        {
+            playerStat.canJump = true; // 점프 초기화
+
+        }
+        // planeHeight 값을 Raycast로 구한 지점의 y좌표로 설정
+        if (isGrounded)
+        {
+           // planeHeight = hit.point.y + 0.03f;  // 레이캐스트로 얻은 히트 포인트의 y 좌표를 사용
+        }
+
+      //  shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
+
 
         // 디버그용 Ray 그리기 (위치와 크기에 맞춰 땅 체크가 잘 되는지 확인)
         Debug.DrawRay(transform.position, Vector3.down * adjustedGroundCheckDistance, Color.blue);
@@ -153,8 +164,10 @@ public class Player : MonoBehaviour
             if(eatAble.GetComponentInParent<NPCBase>().isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
             {
                 TakeDamage(eatAble.GetComponentInParent<NPCBase>().collisionDamage);
-                KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
+             
             }
+
+            KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
         }
     }
 
@@ -195,6 +208,11 @@ public class Player : MonoBehaviour
         rb.AddForce(combinedKnockbackDirection * playerStat.knockbackForce, ForceMode.Impulse);
     }
 
+    public Vector3 GetMovement()
+    {
+        return movement;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
@@ -205,8 +223,9 @@ public class Player : MonoBehaviour
 
     }
 
-    public Vector3 GetMovement()
+    void OnDestroy()
     {
-        return movement;
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
+    
 }

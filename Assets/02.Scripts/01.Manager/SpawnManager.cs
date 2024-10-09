@@ -2,25 +2,32 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour, IUpdateable
 {
     public static SpawnManager Instance { get; private set; }
 
     [BoxGroup("점수 세팅"), LabelText("점수별 단계"), SerializeField]
     private int[] stepByScore;
 
-    [BoxGroup("적 세팅"), LabelText("현재 레벨"), SerializeField]
-    private int step = 0;
-    [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
-    private SpawnObjectsList[] spawnObjectsList;
-
     [BoxGroup("위치 세팅"), LabelText("스폰 반경"), SerializeField]
     private float spawnRadius = 50f; // 생성 반경 (맵 밖에서 얼마나 떨어진 곳에 적을 생성할지 결정)
     [BoxGroup("위치 세팅"), LabelText("스폰 높이"), SerializeField]
     private float spawnHeight = 3f; // 적이 생성될 때의 높이
 
-    [TabGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
+    [BoxGroup("적 세팅"), LabelText("현재 레벨"), SerializeField]
+    private int step = 0;
+    [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
+    private SpawnObjectsList[] spawnObjectsList;
+
+    [FoldoutGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
     private GameObject bomberPrefab;
+
+    [BoxGroup("시민 세팅"), LabelText("모든 시민"), SerializeField]
+    private GameObject[] allCitizen;
+    [BoxGroup("시민 세팅"), LabelText("게임에 시민 수"),SerializeField]
+    private int maxCitizen;
+
+    private List<GameObject> currentCitizens = new List<GameObject>(); // 현재 게임 내 시민 리스트
 
     private List<GameObject> currentStepEnemyList = new List<GameObject>(); // 현재 스텝에서 스폰된 적 리스트
     private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // 이전에 스폰된 적 리스트
@@ -51,30 +58,29 @@ public class SpawnManager : MonoBehaviour
         slimeTrans = FindFirstObjectByType<Player>().transform;
 
         SpawnEnemiesForCurrentStep();
+        SpawnCitizens(); // 시민 스폰 초기화
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
-    void Update()
+    public virtual void OnUpdate(float dt)
     {
-        // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정
-        transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
+        if (slimeTrans != null)
+        {
+            // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정
+            transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
+        }
 
         //폭격기 스폰
         SpawnBomber();
 
         // 점수 체크
         CheckScore();
-    }
 
-    // 현재 스텝의 적들을 스폰하는 함수
-    private void SpawnEnemiesForCurrentStep()
-    {
-        // 현재 스텝에 있는 적을 스폰
-        foreach (GameObject enemyPrefab in spawnObjectsList[step].SpawnObjects)
-        {
-            SpawnEnemy(enemyPrefab);
-        }
+        // 시민 수 관리
+        ManageCitizenSpawn();
     }
-
+    
     // 점수를 체크하는 함수
     public void CheckScore()
     {
@@ -115,6 +121,16 @@ public class SpawnManager : MonoBehaviour
         SpawnEnemiesForCurrentStep();
     }
 
+    #region 적
+    // 현재 스텝의 적들을 스폰하는 함수
+    private void SpawnEnemiesForCurrentStep()
+    {
+        // 현재 스텝에 있는 적을 스폰
+        foreach (GameObject enemyPrefab in spawnObjectsList[step].SpawnObjects)
+        {
+            SpawnEnemy(enemyPrefab);
+        }
+    }
     // 적을 스폰하는 함수
     private void SpawnEnemy(GameObject enemyPrefab)
     {
@@ -255,7 +271,48 @@ public class SpawnManager : MonoBehaviour
         }
         beforeStepEnemyList.Clear();
     }
+    #endregion
 
+    #region 시민
+
+    // 시민을 스폰하는 함수
+    private void SpawnCitizens()
+    {
+        // 최대 시민 수보다 적으면 시민을 스폰
+        while (currentCitizens.Count < maxCitizen)
+        {
+            GameObject citizenPrefab = allCitizen[Random.Range(0, allCitizen.Length)];
+            Vector3 spawnPosition = GetValidSpawnPosition();
+            GameObject newCitizen = Instantiate(citizenPrefab, spawnPosition, Quaternion.Euler(slimeTrans.position - spawnPosition));
+            currentCitizens.Add(newCitizen);
+
+            // 시민 파괴 시 다시 스폰
+            NPCBase citizenComponent = newCitizen.GetComponent<NPCBase>();
+            if (citizenComponent != null)
+            {
+                citizenComponent.OnDestroyed += () =>
+                { 
+                    // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
+                    if (this != null && newCitizen != null && !isSceneClosing)
+                    {
+                        currentCitizens.Remove(newCitizen);
+                        SpawnCitizens(); // 시민이 사라지면 다시 스폰
+                    }
+                };
+            }
+        }
+    }
+
+    // 시민 수 관리 (시민이 사라졌을 때 다시 스폰)
+    private void ManageCitizenSpawn()
+    {
+        if (currentCitizens.Count < maxCitizen)
+        {
+            SpawnCitizens();
+        }
+    }
+
+    #endregion
     // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
     private void OnApplicationQuit()
     {
@@ -264,6 +321,8 @@ public class SpawnManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
+
         isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
         RemoveAllEnemy(); // 모든 적 제거
 
@@ -277,6 +336,7 @@ public class SpawnManager : MonoBehaviour
     {
         Gizmos.color = Color.red; // 기즈모 색상을 빨간색으로 설정
         Gizmos.DrawWireSphere(transform.position, spawnRadius); // 생성 범위를 원으로 표시
+
     }
 }
 

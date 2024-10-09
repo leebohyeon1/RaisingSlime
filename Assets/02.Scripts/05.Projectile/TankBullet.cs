@@ -22,10 +22,8 @@ public class TankBullet : Bullet
         lifeTimer = lifetime; // 수명 타이머 초기화
     }
 
-    protected override void Update()
+    public override void OnUpdate(float dt)
     {
-        base.Update();
-
         if (!isFalling)
         {
             // float distanceToPlayer = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z));
@@ -38,6 +36,8 @@ public class TankBullet : Bullet
                 StartFalling();
             }
         }
+
+        base.OnUpdate(dt);
     }
 
     public void InitialTarget(Vector3 target, float force, float radius, float upModifier, LayerMask layer)

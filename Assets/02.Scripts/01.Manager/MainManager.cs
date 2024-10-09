@@ -30,11 +30,6 @@ public class MainManager : MonoBehaviour
         startPushBtn.gameObject.SetActive(false);
     }
 
-    void Update()
-    {
-        
-    }
-
     public void StartButton()  // 게임 시작 버튼
     {
         foreach(Button btn in mainBtn)
