@@ -61,17 +61,11 @@ public class Bomber : NPCBase
 
     protected override void enemyAction()
     {
-        if (eatAbleObjectBase.GetEaten())
+        if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
             return;
         }
-
-        if (isExplosion)
-        {
-
-            return;
-        }
-
+        
         CheckPosition();
     }
 
