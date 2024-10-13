@@ -41,12 +41,7 @@ public class Soilder : NPCBase
 
     protected override void enemyAction()
     {
-        if (eatAbleObjectBase.GetEaten())
-        {
-            return;
-        }
-
-        if (isExplosion)
+        if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
             return;
         }

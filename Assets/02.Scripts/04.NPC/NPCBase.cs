@@ -53,17 +53,10 @@ public class NPCBase : MonoBehaviour, IUpdateable
     }
     
     protected virtual void enemyAction() // 적 종류별 행동 부모 함수
-    {
-
+    {    
         // 기본은 플레이어 따라 감 
-        if (eatAbleObjectBase.GetEaten()) 
+        if (eatAbleObjectBase.GetEaten() || target == null || isExplosion) 
         {
-            return;
-        }
-
-        if (isExplosion)
-        {
-           
             return;
         }
 
