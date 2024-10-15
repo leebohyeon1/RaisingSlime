@@ -11,6 +11,7 @@ public class GameLogicManager : MonoBehaviour
 
     private void Awake()
     {
+        // 싱글턴 선언
         if (Instance == null)
         {
             Instance = this;
@@ -24,6 +25,7 @@ public class GameLogicManager : MonoBehaviour
 
     void Update()
     {
+        // 리스트의 모든 업데이트 실행
         float dt = Time.deltaTime;
         for (int i = 0; i < Instance._updateableObjects.Count; i++) 
         {
@@ -31,6 +33,7 @@ public class GameLogicManager : MonoBehaviour
         }
     }
 
+    // 리스트에 오브젝트 추가
     public void RegisterUpdatableObject(IUpdateable obj)
     {
         if (!Instance._updateableObjects.Contains(obj))
@@ -39,6 +42,7 @@ public class GameLogicManager : MonoBehaviour
         }
     }
 
+    // 리스트에 오브젝트 삭제
     public void DeregisterUpdatableObject(IUpdateable obj)
     {
         if (Instance._updateableObjects.Contains(obj))
