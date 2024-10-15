@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour, IUpdateable
     [TabGroup("UI", "게임오버"), LabelText("게임 오버 UI"), SerializeField]
     private GameObject gameOverUI;
 
+
+    [TabGroup("UI", "게임오버"), LabelText("최고 점수 Text"), SerializeField]
+    private TMP_Text bestScoreText;
     [TabGroup("UI", "게임오버"), LabelText("최종 점수 Text"), SerializeField]
     private TMP_Text totalScoreText;
 
@@ -249,7 +252,9 @@ public class GameManager : MonoBehaviour, IUpdateable
         //시간 정지
         Time.timeScale = 0f;
 
-        if(gameData.score < (uint)GetScore()) // 최고 점수 갱신 시
+        bestScoreText.text = gameData.score.ToString();
+
+        if (gameData.score < (uint)GetScore()) // 최고 점수 갱신 시
         {
             gameData.score = (uint)GetScore();
         }

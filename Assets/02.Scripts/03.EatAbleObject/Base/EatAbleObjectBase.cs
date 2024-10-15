@@ -16,7 +16,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     private float plusScore;
 
     [BoxGroup("먹혔을 때"), LabelText("초당 줄어드는 속도"), SerializeField] 
-    private float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
+    protected float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
 
     protected bool isGetEaten = false;
 
@@ -77,8 +77,6 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     {
 
         transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
-
-        Debug.Log(transform.localScale.magnitude);
 
         if (transform.localScale.magnitude < 0.1f)
         {

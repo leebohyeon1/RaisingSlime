@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4356582149008306569}
   - component: {fileID: 3609382528052163036}
   - component: {fileID: 2480279862533859929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OldMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5394856349694618134}
   - component: {fileID: 1432357353329432549}
   - component: {fileID: 4427903146379690385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Citizen_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
