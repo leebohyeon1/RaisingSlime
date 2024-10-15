@@ -37,6 +37,11 @@ public class CameraController : MonoBehaviour, IUpdateable
 
     public void OnUpdate(float dt)
     {
+        if (player == null)
+        {
+            return;
+        }
+
         UpdateCameraDistance();
     }
 
