@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8207558442041316553}
   - component: {fileID: 4096982497035939919}
   - component: {fileID: 1993001944133720277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Citizen_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5029099960476528442}
   - component: {fileID: 761629510329681674}
   - component: {fileID: 1108241377795618496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Girl02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

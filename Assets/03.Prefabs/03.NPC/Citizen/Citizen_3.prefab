@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1211984037187652574}
   - component: {fileID: 2771888597506094932}
   - component: {fileID: 6172652367177225871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Citizen_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 865162782280536455}
   - component: {fileID: 4125021690882906972}
   - component: {fileID: 6826368814569780349}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Child
   m_TagString: Untagged
   m_Icon: {fileID: 0}

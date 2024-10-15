@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour, IUpdateable
 {
@@ -19,16 +20,17 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
     private SpawnObjectsList[] spawnObjectsList;
 
-    [FoldoutGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
-    private GameObject bomberPrefab;
-
-    [BoxGroup("시민 세팅"), LabelText("모든 시민"), SerializeField]
-    private GameObject[] allCitizen;
     [BoxGroup("시민 세팅"), LabelText("게임에 시민 수"),SerializeField]
     private int maxCitizen;
 
-    private List<GameObject> currentCitizens = new List<GameObject>(); // 현재 게임 내 시민 리스트
+    [FoldoutGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
+    private GameObject bomberPrefab;
+    [FoldoutGroup("특수 오브젝트"), LabelText("모든 시민"), SerializeField]
+    private GameObject[] allCitizen;
+    [FoldoutGroup("특수 오브젝트"), LabelText("돈"), SerializeField]
+    private GameObject goldPrefab;
 
+    private List<GameObject> currentCitizens = new List<GameObject>(); // 현재 게임 내 시민 리스트
     private List<GameObject> currentStepEnemyList = new List<GameObject>(); // 현재 스텝에서 스폰된 적 리스트
     private List<GameObject> beforeStepEnemyList = new List<GameObject>(); // 이전에 스폰된 적 리스트
     private bool isSceneClosing = false; // 씬이 닫히는 중인지 여부를 확인하는 플래그
@@ -65,11 +67,13 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
     public virtual void OnUpdate(float dt)
     {
-        if (slimeTrans != null)
+        if(slimeTrans == null)
         {
-            // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정
-            transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
+            return;
         }
+        
+        // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정 (나중에 삭제)
+        transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
 
         //폭격기 스폰
         SpawnBomber();
@@ -119,6 +123,57 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         // 새로운 스텝의 적들을 스폰
         SpawnEnemiesForCurrentStep();
+    }
+
+    // position에 충돌하는 것이 있는지 확인
+    private bool IsPositionOccupied(Vector3 position, float radius)
+    {
+        // 주어진 위치에 일정 반경 내에 충돌체가 있는지 확인
+        Collider[] colliders = Physics.OverlapSphere(position, radius);
+        return colliders.Length > 0; // 만약 충돌체가 하나라도 있으면 위치가 점유된 것으로 판단
+    }
+
+    // 랜덤한 위치가 없을 때 다시 찾는 함수
+    private Vector3 GetValidSpawnPosition()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
+        int attempts = 0;
+        float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
+
+        while (attempts < maxAttempts)
+        {
+            // 랜덤한 위치를 생성
+            Vector3 randomPosition = GetRandomSpawnPosition();
+
+            // 충돌체와 겹치지 않는지 확인
+            if (!IsPositionOccupied(randomPosition, spawnCheckRadius))
+            {
+                spawnPosition = randomPosition;
+                break;
+            }
+
+            attempts++;
+        }
+
+        return spawnPosition;
+    }
+
+
+
+    // 랜덤한 위치
+    private Vector3 GetRandomSpawnPosition()
+    {
+        // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * spawnRadius;
+        Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
+
+        // 플레이어 또는 맵 중앙에서 먼 위치에 스폰되도록 설정
+        spawnPosition += slimeTrans.position;
+
+        spawnPosition.y = spawnHeight;
+        return spawnPosition;
+
     }
 
     #region 적
@@ -193,52 +248,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         }
     }
 
-    // 랜덤한 위치가 없을 때 다시 찾는 함수
-    private Vector3 GetValidSpawnPosition()
-    {
-        Vector3 spawnPosition = Vector3.zero;
-        int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
-        int attempts = 0;
-        float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
-
-        while (attempts < maxAttempts)
-        {
-            // 랜덤한 위치를 생성
-            Vector3 randomPosition = GetRandomSpawnPosition();
-
-            // 충돌체와 겹치지 않는지 확인
-            if (!IsPositionOccupied(randomPosition, spawnCheckRadius))
-            {
-                spawnPosition = randomPosition;
-                break;
-            }
-
-            attempts++;
-        }
-
-        return spawnPosition;
-    }
-
-    // position에 충돌하는 것이 있는지 확인
-    private bool IsPositionOccupied(Vector3 position, float radius)
-    {
-        // 주어진 위치에 일정 반경 내에 충돌체가 있는지 확인
-        Collider[] colliders = Physics.OverlapSphere(position, radius);
-        return colliders.Length > 0; // 만약 충돌체가 하나라도 있으면 위치가 점유된 것으로 판단
-    }
-
-    // 랜덤한 위치
-    private Vector3 GetRandomSpawnPosition()
-    {
-        // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * spawnRadius;
-        Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
-
-        // 플레이어 또는 맵 중앙에서 먼 위치에 스폰되도록 설정
-        spawnPosition += transform.position;
-
-        return spawnPosition;
-    }
 
     // 리스트에서 적 제거 함수
     private void RemoveEnemyFromList(GameObject enemy)
@@ -295,8 +304,12 @@ public class SpawnManager : MonoBehaviour, IUpdateable
                     // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
                     if (this != null && newCitizen != null && !isSceneClosing)
                     {
-                        currentCitizens.Remove(newCitizen);
                         SpawnCitizens(); // 시민이 사라지면 다시 스폰
+
+                        if(currentCitizens.Contains(newCitizen))
+                        {
+                            currentCitizens.Remove(newCitizen);
+                        }
                     }
                 };
             }

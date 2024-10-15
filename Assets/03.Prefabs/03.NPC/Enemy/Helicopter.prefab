@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1945531591007639125}
   - component: {fileID: 2299797420863125203}
   - component: {fileID: 5642993610937916734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Helicopter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,6 @@ MonoBehaviour:
   collisionDamage: 10
   isExplosion: 0
   flyHeight: 10
-  maxXAngle: 35
   attackRange: 10
   shootInterval: 0.1
   bulletsPerShot: 10
@@ -138,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2606019897829325508}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +170,7 @@ GameObject:
   - component: {fileID: 2847872131950201640}
   - component: {fileID: 961639003215752770}
   - component: {fileID: 8095633206524476668}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +253,7 @@ GameObject:
   - component: {fileID: 4507477236843525237}
   - component: {fileID: 2831817927422233050}
   - component: {fileID: 9086787918154408331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +336,7 @@ GameObject:
   - component: {fileID: 4187398009164039224}
   - component: {fileID: 3228850438526246580}
   - component: {fileID: 7826813140917785772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
