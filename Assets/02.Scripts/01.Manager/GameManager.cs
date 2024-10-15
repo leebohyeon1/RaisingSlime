@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour, IUpdateable
 {
@@ -17,8 +18,8 @@ public class GameManager : MonoBehaviour, IUpdateable
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
 
-    [TabGroup("UI", "옵션"), LabelText("옵션 UI"), SerializeField]
-    private GameObject optionUI;
+    //[TabGroup("UI", "옵션"), LabelText("옵션 UI"), SerializeField]
+    //private GameObject optionUI;
 
     [TabGroup("UI", "게임오버"), LabelText("게임 오버 UI"), SerializeField]
     private GameObject gameOverUI;
@@ -51,6 +52,9 @@ public class GameManager : MonoBehaviour, IUpdateable
     // 게임오버 UI 기본 위치
     private Vector2 gamOverOriginalPos;
 
+    // 게임 데이터
+    private GameData gameData;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -69,10 +73,10 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         InputManager.Instance.SwitchToActionMap("Player");
 
-        if (optionUI == null)
-        {
-            optionUI = OptionManager.Instance.optionUI;
-        }
+        //if (optionUI == null)
+        //{
+        //    optionUI = OptionManager.Instance.optionUI;
+        //}
 
         // Volume 프로파일에서 Depth of Field 컴포넌트를 가져오기
         if (globalVolume.profile.TryGet(out depthOfField))
@@ -89,6 +93,8 @@ public class GameManager : MonoBehaviour, IUpdateable
         exitBtn.onClick.AddListener(() => ExitBtn());
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+        gameData = SaveManager.Instance.LoadPlayerData();
     }
 
     public virtual void OnUpdate(float dt) 
@@ -120,7 +126,6 @@ public class GameManager : MonoBehaviour, IUpdateable
         score += plusScore;
     }
     #endregion
-
 
     #region 버튼
     public void PauseBtn() // 일시정지
@@ -228,6 +233,13 @@ public class GameManager : MonoBehaviour, IUpdateable
         //시간 정지
         Time.timeScale = 0f;
 
+        if(gameData.score < (uint)GetScore()) // 최고 점수 갱신 시
+        {
+            gameData.score = (uint)GetScore();
+        }
+        
+        SaveManager.Instance.SavePlayerData(gameData);
+
         // UI가 화면 위에서 내려오는 애니메이션
         RectTransform gameOverRect = gameOverUI.GetComponent<RectTransform>();
         Vector2 offScreenPos = new Vector2(gameOverRect.anchoredPosition.x, Screen.height / 2 + gameOverRect.rect.height); // 화면 위의 임의 위치
@@ -280,5 +292,18 @@ public class GameManager : MonoBehaviour, IUpdateable
     void OnDestroy()
     {
         GameLogicManager.Instance.DeregisterUpdatableObject(this);
+    }
+}
+
+[System.Serializable]
+public class GameData
+{
+    public uint money;
+    public uint score;
+
+    public GameData(uint money, uint score)
+    {
+        this.money = money;
+        this.score = score;
     }
 }
