@@ -2,34 +2,51 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
-    [LabelText("메인 UI"), SerializeField]
+    [TabGroup("UI"), LabelText("메인 UI"), SerializeField]
     private GameObject mainUI;
-    [LabelText("옵션 UI"), SerializeField]
-    private GameObject optionUI;
+    //[LabelText("옵션 UI"), SerializeField]
+    //private GameObject optionUI;
 
-    [LabelText("메인 버튼"), SerializeField]
+    [TabGroup("UI", "버튼"), LabelText("메인 버튼"), SerializeField]
     private Button[] mainBtn;
-    [LabelText("시작 누른 후 버튼"), SerializeField]
+    [TabGroup("UI", "버튼"), LabelText("시작 누른 후 버튼"), SerializeField]
     private Button startPushBtn;
+
+    [TabGroup("UI", "점수"), LabelText("최고 점수 text"), SerializeField]
+    private TMP_Text bestScoreText;
+
+    [TabGroup("UI", "돈"), LabelText("최고 점수 text"), SerializeField]
+    private TMP_Text moneyText;
+
+
+    [BoxGroup("저장 데이터"), LabelText("보유 돈"), SerializeField]
+    private uint money;
+    [BoxGroup("저장 데이터"), LabelText("최고 점수"), SerializeField]
+    private uint bestScore;
+
 
     void Start()
     {
-        if (optionUI == null)
-        {
-            optionUI = OptionManager.Instance.optionUI;
-        }
+        //if (optionUI == null)
+        //{
+        //    optionUI = OptionManager.Instance.optionUI;
+        //}
+
+        LoadData();
 
         mainUI.SetActive(true);
 
         startPushBtn.gameObject.SetActive(false);
     }
 
+    #region button
     public void StartButton()  // 게임 시작 버튼
     {
         foreach(Button btn in mainBtn)
@@ -77,5 +94,19 @@ public class MainManager : MonoBehaviour
     public void OptionButton() // 설정 버튼
     {
         OptionManager.Instance.EnterOption();    
+    }
+
+    #endregion
+
+    // 저장된 데이터 불러오기
+    private void LoadData()
+    {
+        GameData data = SaveManager.Instance.LoadPlayerData();
+        
+        bestScore = data.score;
+        money = data.money;
+
+        bestScoreText.text = bestScore.ToString();
+        moneyText.text = money.ToString();
     }
 }
