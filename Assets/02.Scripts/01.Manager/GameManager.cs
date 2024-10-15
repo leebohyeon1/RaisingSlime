@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     [TabGroup("UI", "게임"), LabelText("점수 Text"), SerializeField]
     private TMP_Text scoreText;
+    [TabGroup("UI", "게임"), LabelText("돈 Text"), SerializeField]
+    private TMP_Text moneyText;
 
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     private Button exitBtn;
 
     private float score = 0f;
+    private uint money = 0;
 
     [BoxGroup("게임 상태"), LabelText("게임 오버"), SerializeField]
     private bool isGameOver = false;
@@ -94,7 +97,10 @@ public class GameManager : MonoBehaviour, IUpdateable
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
+        // 데이터 로드
         gameData = SaveManager.Instance.LoadPlayerData();
+        money = gameData.money;
+        moneyText.text = money.ToString();
     }
 
     public virtual void OnUpdate(float dt) 
@@ -125,6 +131,16 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         score += plusScore;
     }
+    #endregion
+
+    #region 돈
+  
+    public void IncreaseMoney(uint increaseAmount = 1)
+    {
+        money += increaseAmount;
+        moneyText.text = money.ToString();
+    }
+
     #endregion
 
     #region 버튼
@@ -237,6 +253,7 @@ public class GameManager : MonoBehaviour, IUpdateable
         {
             gameData.score = (uint)GetScore();
         }
+        gameData.money = money;
         
         SaveManager.Instance.SavePlayerData(gameData);
 

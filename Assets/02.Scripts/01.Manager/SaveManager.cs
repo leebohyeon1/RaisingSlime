@@ -43,8 +43,6 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("저장된 데이터가 없어 새로 만들었습니다!");
-
             GameData data = new GameData(0, 0);
             SavePlayerData(data);
             return data;
