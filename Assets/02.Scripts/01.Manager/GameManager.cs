@@ -283,6 +283,12 @@ public class GameManager : MonoBehaviour, IUpdateable
         gameOverSequence.Join(totalScoreText.GetComponent<RectTransform>()
             .DOShakePosition(1f, new Vector3(0f, 2.5f, 0f), 20, 90, false, true));
 
+        if (int.Parse(bestScoreText.text) < GetScore())
+        {
+            // 총점 카운터와 텍스트 흔들림 애니메이션 추가
+            gameOverSequence.Append(bestScoreText.DOCounter(int.Parse(bestScoreText.text), GetScore(), 1f));
+        }
+
         gameOverSequence.OnComplete(() =>
         {
             // 모든 UI 애니메이션 후 버튼 작동

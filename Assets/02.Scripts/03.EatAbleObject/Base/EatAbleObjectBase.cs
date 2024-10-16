@@ -55,8 +55,13 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         // 로컬 포지션을 0으로 설정 (슬라임 중심에 배치)
         transform.localPosition = Vector3.zero + randomPosition;
 
-        GetComponentInChildren<Collider>().enabled = false; // 충돌 비활성화
+        Collider[] colliders = GetComponentsInChildren<Collider>(); // 충돌 비활성화
         
+        foreach(Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
+
         if(GetComponent<NavMeshAgent>())
         {
             GetComponent<NavMeshAgent>().enabled = false;

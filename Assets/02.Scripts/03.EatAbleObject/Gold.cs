@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+using System;
 
 public class Gold : EatAbleObjectBase
 {
+    public Action<GameObject> OnDisableGold; // 비활성화될 때 호출할 이벤트
+
     private Vector3 DefaultSize;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class Gold : EatAbleObjectBase
         if (transform.localScale.x < 0.1f)
         {
             isGetEaten = !isGetEaten;
-            transform.SetParent(null); // 부모를 없앰
+            transform.SetParent(null); // 부모를 없앰  
             gameObject.SetActive(false);
         }
     }
@@ -35,6 +35,21 @@ public class Gold : EatAbleObjectBase
     {
         transform.localScale = DefaultSize;
         GetComponent<Collider>().enabled = true;
-        gameObject.AddComponent<Rigidbody>();
+
+        if(!GetComponent<Rigidbody>())
+        {
+            gameObject.AddComponent<Rigidbody>();
+        }
+        
+    }
+
+  
+    private void OnDisable()
+    {
+        if (OnDisableGold != null)
+        {
+            OnDisableGold.Invoke(gameObject);
+            OnDisableGold = null; // 이벤트 초기화로 메모리 누수 방지
+        }
     }
 }

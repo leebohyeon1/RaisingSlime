@@ -68,6 +68,7 @@ MonoBehaviour:
     isBomber: 0
     spawnInterval: 0
   maxCitizen: 10
+  maxGoldCount: 50
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}
   allCitizen:

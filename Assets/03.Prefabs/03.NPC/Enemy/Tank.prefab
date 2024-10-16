@@ -558,7 +558,7 @@ MonoBehaviour:
   upwardsModifier: 8
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   turret: {fileID: 1696480630760086884}
   barrel:
   - {fileID: 175623380543768454}
