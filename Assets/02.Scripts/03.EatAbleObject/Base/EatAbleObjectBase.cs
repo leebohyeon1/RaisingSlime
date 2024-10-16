@@ -67,6 +67,16 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
             GetComponent<NavMeshAgent>().enabled = false;
         }
         
+        if(GetComponentInChildren<NavMeshObstacle>())
+        {
+            NavMeshObstacle[] obstacles = GetComponentsInChildren<NavMeshObstacle>();
+
+            foreach (NavMeshObstacle obstacle in obstacles)
+            {
+                obstacle.enabled = false;
+            }
+        }
+
         if (GetComponent<Rigidbody>())
         {
             Destroy(GetComponent<Rigidbody>()); // Rigidbody가 있으면 비활성화
