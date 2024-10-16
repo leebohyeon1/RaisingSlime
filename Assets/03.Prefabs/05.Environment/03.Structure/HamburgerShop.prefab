@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8745003775480531664}
   - component: {fileID: 6950208357162820620}
   - component: {fileID: 5266449965446042287}
+  - component: {fileID: 899230910643219094}
+  - component: {fileID: 2788391981575366695}
   m_Layer: 0
   m_Name: HamburgerShop
   m_TagString: Untagged
@@ -83,6 +85,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &899230910643219094
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2594378800795233005}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1976993557649808245, guid: 0cc35317b879d5b42ad7855262b39f6c, type: 3}
+--- !u!208 &2788391981575366695
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2594378800795233005}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6.895, y: 11.181001, z: 11.8}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.6, y: 0, z: 11.8}
+  m_TimeToStationary: 0.5
 --- !u!1 &3337484219638587539
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 931380801566067991}
+  - component: {fileID: 3581501793402062821}
   m_Layer: 0
   m_Name: HamburgerShop
   m_TagString: Untagged
@@ -115,3 +156,19 @@ Transform:
   - {fileID: 8745003775480531664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3581501793402062821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337484219638587539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  slimeIncreaseSize: 0
+  plusScore: 0
+  shrinkSpeed: 0.5
