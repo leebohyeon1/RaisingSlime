@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
+  slimeIncreaseSize: 0.1
+  plusScore: 20
   shrinkSpeed: 0.5
 --- !u!114 &3803125798312601757
 MonoBehaviour:
