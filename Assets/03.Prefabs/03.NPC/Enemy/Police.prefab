@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1.5
-  slimeIncreaseSize: 0.1
-  plusScore: 0
+  slimeIncreaseSize: 0.5
+  plusScore: 40
   shrinkSpeed: 0.2
 --- !u!114 &7625541180812365762
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 1
   moveSpeed: 7
-  collisionDamage: 1
+  collisionDamage: 0.7
   isExplosion: 0
   baton: {fileID: 8293726850677696524}
   batonRotateSpeed: 120
