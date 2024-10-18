@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 175623380543768454}
   - component: {fileID: 5418534368742285307}
   - component: {fileID: 3296323410198476484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gun_barrel01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2784902059411448521}
   - component: {fileID: 8769522453707924233}
   - component: {fileID: 764129827622974488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5788347915385904322}
   - component: {fileID: 1516998445509399914}
   - component: {fileID: 7167831374192351718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gun_barrel02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 8103270868941068986}
   - component: {fileID: 4577274586548983300}
   - component: {fileID: 1317908373232232376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1696480630760086884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5173024981093013142}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2551623793848284930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 5078097889539739844}
   - component: {fileID: 512405358413123883}
   - component: {fileID: 828500435103181557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ MonoBehaviour:
   upwardsModifier: 8
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   turret: {fileID: 1696480630760086884}
   barrel:
   - {fileID: 175623380543768454}

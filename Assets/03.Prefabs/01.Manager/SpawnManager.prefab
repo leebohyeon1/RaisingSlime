@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &83001535202420354
 Transform:
   m_ObjectHideFlags: 0
@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepByScore: e8030000d0070000b80b0000a00f00008813000010270000
+  spawnRadius: 50
+  spawnHeight: 3
   step: 0
   spawnObjectsList:
   - SpawnObjects: []
     isBomber: 0
-    spawnInterval: 0
+    spawnInterval: 2
   - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
@@ -65,7 +67,15 @@ MonoBehaviour:
   - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  spawnRadius: 50
-  spawnHeight: 2.5
+  maxCitizen: 10
+  maxGoldCount: 50
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
+    type: 3}
+  allCitizen:
+  - {fileID: 1296341292790027863, guid: fcadb9d12ce33fb4ab57daf3d7ab5e09, type: 3}
+  - {fileID: 2366816846027952278, guid: 9d21b31d881c13143bf7d83b0b791982, type: 3}
+  - {fileID: 1322405698259844378, guid: a54e8de5bac29fc46ad546f7fd15250c, type: 3}
+  - {fileID: 8368962803286166507, guid: 0025e03984bd20f4290aa8ca0ac61411, type: 3}
+  - {fileID: 196839148594661210, guid: 53c3d48a0c79d7f46a5865576f292e3d, type: 3}
+  goldPrefab: {fileID: 3133539648932958628, guid: 46a7b9575c46b754ab48a091287f8a81,
     type: 3}

@@ -16,7 +16,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     private float plusScore;
 
     [BoxGroup("먹혔을 때"), LabelText("초당 줄어드는 속도"), SerializeField] 
-    private float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
+    protected float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
 
     protected bool isGetEaten = false;
 
@@ -55,13 +55,28 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         // 로컬 포지션을 0으로 설정 (슬라임 중심에 배치)
         transform.localPosition = Vector3.zero + randomPosition;
 
-        GetComponentInChildren<Collider>().enabled = false; // 충돌 비활성화
+        Collider[] colliders = GetComponentsInChildren<Collider>(); // 충돌 비활성화
         
+        foreach(Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
+
         if(GetComponent<NavMeshAgent>())
         {
             GetComponent<NavMeshAgent>().enabled = false;
         }
         
+        if(GetComponentInChildren<NavMeshObstacle>())
+        {
+            NavMeshObstacle[] obstacles = GetComponentsInChildren<NavMeshObstacle>();
+
+            foreach (NavMeshObstacle obstacle in obstacles)
+            {
+                obstacle.enabled = false;
+            }
+        }
+
         if (GetComponent<Rigidbody>())
         {
             Destroy(GetComponent<Rigidbody>()); // Rigidbody가 있으면 비활성화
@@ -77,8 +92,6 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     {
 
         transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
-
-        Debug.Log(transform.localScale.magnitude);
 
         if (transform.localScale.magnitude < 0.1f)
         {

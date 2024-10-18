@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8287808941559474677}
   - component: {fileID: 7957822631971730097}
   - component: {fileID: 3339750911296619325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Citizen_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4258354243403886381}
   - component: {fileID: 6642586347094810994}
   - component: {fileID: 5053272624861069187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SalaryMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}

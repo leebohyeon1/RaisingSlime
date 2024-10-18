@@ -60,8 +60,8 @@ GameObject:
   - component: {fileID: 8792718157036065097}
   - component: {fileID: 8023559955775422044}
   - component: {fileID: 3193732270929997582}
-  - component: {fileID: 7515589191296964551}
   - component: {fileID: 7366904624502800623}
+  - component: {fileID: 6301418522610426423}
   m_Layer: 0
   m_Name: Camp_Tent1
   m_TagString: Untagged
@@ -134,8 +134,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7515589191296964551
-BoxCollider:
+--- !u!208 &7366904624502800623
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466425503786453027}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.9050001, y: 1.6910001, z: 2.5400002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.6910001, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!64 &6301418522610426423
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,22 +168,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.81, y: 3.381248, z: 5.08}
-  m_Center: {x: 0, y: 1.6906238, z: 0}
---- !u!208 &7366904624502800623
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7466425503786453027}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.9050001, y: 1.6910001, z: 2.5400002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.6910001, z: 0}
-  m_TimeToStationary: 0.5
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6973997996713079615, guid: 6fed6a40867bdcb4e87a8808164f1790, type: 3}

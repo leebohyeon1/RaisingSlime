@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8625748037529740222}
   - component: {fileID: 1095298152914590426}
   - component: {fileID: 4537793077243336944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Girl01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1207195133129103406}
   - component: {fileID: 3580364867583703882}
   - component: {fileID: 3803125798312601757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Citizen_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

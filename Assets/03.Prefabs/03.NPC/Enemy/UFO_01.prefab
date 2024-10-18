@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2929481120537683492}
   - component: {fileID: 4237603992688063566}
   - component: {fileID: 3291378636133952188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UFO_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4221249834319488878}
   - component: {fileID: 2735128829301267508}
   - component: {fileID: 5820075678981665759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Control_Panel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 2906721469063217518}
   - component: {fileID: 3566008227008149381}
   - component: {fileID: 6432767898745563813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 7241595755873256682}
   - component: {fileID: 1300684141120402144}
   - component: {fileID: 6490041135237085114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stick_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 280905189390309737}
   - component: {fileID: 7629080926556397327}
   - component: {fileID: 3611217014524575366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UFO1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 6612319360194484700}
   - component: {fileID: 3167088352108400911}
   - component: {fileID: 4745848806427316166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UFO_Glass1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 4473176033001254064}
   - component: {fileID: 4013502369446357284}
   - component: {fileID: 6770163245242181048}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Srick_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
