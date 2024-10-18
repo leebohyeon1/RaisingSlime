@@ -223,7 +223,7 @@ NavMeshAgent:
   m_Height: 0.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &3941437757134394239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,9 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1.5
-  slimeIncreaseSize: 0.5
+  slimeIncreaseSize: 0.3
   plusScore: 40
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.1
 --- !u!114 &7625541180812365762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 1
   moveSpeed: 7
-  collisionDamage: 0.7
+  collisionDamage: 0.4
   isExplosion: 0
   baton: {fileID: 8293726850677696524}
   batonRotateSpeed: 120

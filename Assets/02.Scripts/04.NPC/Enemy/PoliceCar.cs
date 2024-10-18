@@ -66,24 +66,25 @@ public class PoliceCar : NPCBase
     protected override void MoveToTarget()
     {
         // 타겟 위치에서 가장 가까운 유효한 NavMesh 위치를 찾는다.
-        NavMeshHit hit;
-        Vector3 targetPosition = TargetGroundPos();
+        //NavMeshHit hit;
+        //Vector3 targetPosition = TargetGroundPos();
 
-        // 유효한 NavMesh 위치를 찾으면 그 위치로 이동
-        if (NavMesh.SamplePosition(targetPosition, out hit, 11.0f, NavMesh.AllAreas))
-        {
-            targetPosition = hit.position;
-        }
+        //// 유효한 NavMesh 위치를 찾으면 그 위치로 이동
+        //if (NavMesh.SamplePosition(targetPosition, out hit, 11.0f, NavMesh.AllAreas))
+        //{
+        //    targetPosition = hit.position;
+        //}
 
-        // NavMesh 상의 유효한 위치로 이동 시도
-        if (!agent.SetDestination(targetPosition))
-        {
-            // 경로 설정 실패 시, 타겟 방향으로 일정 거리를 더해 이동
-            Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
-            Vector3 fallbackPosition = transform.position + direction * 5f; // 5는 타겟 방향으로 이동할 거리
+        //// NavMesh 상의 유효한 위치로 이동 시도
+        //if (!agent.SetDestination(targetPosition))
+        //{
+        //    // 경로 설정 실패 시, 타겟 방향으로 일정 거리를 더해 이동
+        //    Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
+        //    Vector3 fallbackPosition = transform.position + direction * 5f; // 5는 타겟 방향으로 이동할 거리
 
-            agent.SetDestination(fallbackPosition);
-        }
+        //    agent.SetDestination(fallbackPosition);
+        //}
+        agent.SetDestination(target.position);
     }
 
     void MoveCar()
