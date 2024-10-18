@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3369286}
   - component: {fileID: 2379806}
   - component: {fileID: 64205517211238588}
+  - component: {fileID: 5299754534304947170}
   m_Layer: 0
   m_Name: SM_Prop_LargeSign_Bottle_01
   m_TagString: Untagged
@@ -106,3 +107,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43593131064060778, guid: 673a431d239ec5f4981bfcc8ff5bb7e8, type: 2}
+--- !u!114 &5299754534304947170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  slimeIncreaseSize: 0
+  plusScore: 0
+  shrinkSpeed: 0.5

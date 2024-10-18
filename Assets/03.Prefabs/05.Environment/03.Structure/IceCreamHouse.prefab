@@ -103,7 +103,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5526870178748410034, guid: 2200c8a9ae71c694485f4ec7bddd904f, type: 3}
 --- !u!1 &8730751418392221698
@@ -152,7 +152,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 2.32, y: 3.65, z: 2.32}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.76, z: 0}
   m_TimeToStationary: 0.5
