@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 64487217997239770}
   - component: {fileID: 64251002291232034}
   - component: {fileID: 5540307942299652854}
+  - component: {fileID: 5122227292121768145}
   m_Layer: 0
   m_Name: SM_Prop_BusStop_01
   m_TagString: Untagged
@@ -230,3 +231,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.5270001, z: -0.13100001}
   m_TimeToStationary: 0.5
+--- !u!114 &5122227292121768145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  slimeIncreaseSize: 0
+  plusScore: 0
+  shrinkSpeed: 0.5
