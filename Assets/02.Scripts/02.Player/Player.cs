@@ -133,7 +133,7 @@ public class Player : MonoBehaviour, IUpdateable
         Vector3 newScale = transform.localScale - new Vector3(sizeDecreaseAmount, sizeDecreaseAmount, sizeDecreaseAmount);
 
         // 크기가 0 이하로 줄어들지 않도록 제한 (최소 크기 설정)
-        if (newScale.x > 0.8f && newScale.y > 0.8f && newScale.z > 0.8f)
+        if (newScale.x > 0.2f && newScale.y > 0.2f && newScale.z > 0.2f)
         {
             transform.localScale = newScale;
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
