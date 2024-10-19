@@ -522,10 +522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 10
-  slimeIncreaseSize: 0
-  plusScore: 0
-  shrinkSpeed: 0.5
+  size: 7
+  slimeIncreaseSize: 0.45
+  plusScore: 55
+  shrinkSpeed: 0.2
 --- !u!114 &828500435103181557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,21 +540,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 1
   moveSpeed: 7
-  collisionDamage: 1
+  collisionDamage: 0.5
   isExplosion: 0
   attackSpeed: 0.3
-  attackRange: 20
+  attackRange: 30
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
   bulletSpeed: 20
-  bulletDamage: 0.1
+  bulletDamage: 0.8
   firePosistion:
   - {fileID: 2551623793848284930}
   - {fileID: 5173024981093013142}
   bodyRotationSpeed: 3
   turretRotationSpeed: 360
   explosionForce: 25
-  explosionRadius: 15
+  explosionRadius: 10
   upwardsModifier: 8
   explosionLayerMask:
     serializedVersion: 2
