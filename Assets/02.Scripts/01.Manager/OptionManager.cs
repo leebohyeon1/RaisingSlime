@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class OptionManager : MonoBehaviour
 
     public void ExitOption()
     {
+        exitBtn.GetComponent<Button>().interactable = false;
+
         if (option.activeSelf)
         {
             RectTransform optionRect = optionUI.GetComponent<RectTransform>();
@@ -59,9 +62,11 @@ public class OptionManager : MonoBehaviour
                 optionRect.anchoredPosition = optionOriginalPos;
                 btnRect.anchoredPosition = btnOriginalPos;
 
-                option.SetActive(false); // 可记 UI 掺扁
+                
 
-                if(GameManager.Instance)
+                option.SetActive(false); // 可记 UI 掺扁
+                
+                if (GameManager.Instance)
                 {
                     GameManager.Instance.SetOption();
                 }
@@ -75,6 +80,7 @@ public class OptionManager : MonoBehaviour
 
     public void EnterOption()
     {
+        exitBtn.GetComponent<Button>().interactable = true;
         if (!option.activeSelf)
         {
             RectTransform optionRect = optionUI.GetComponent<RectTransform>();
