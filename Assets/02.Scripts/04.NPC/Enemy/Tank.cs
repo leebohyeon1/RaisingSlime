@@ -64,30 +64,37 @@ public class Tank : NPCBase
     {
         if (eatAbleObjectBase.GetEaten() || target == null)
         {
+            richAI.enabled = false;
             return;
         }
-
-        RotateTurretTowardsPlayer();  // 포탑 회전 추가
-
-        float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
-
-        if (distanceToPlayer < attackRange)
+        else
         {
-           richAI.isStopped = true;
+            richAI.enabled = true;
 
-            if (coroutine != null)
+            RotateTurretTowardsPlayer();  // 포탑 회전 추가
+
+            float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
+
+            if (distanceToPlayer < attackRange)
             {
-                StopCoroutine(coroutine);
+                richAI.isStopped = true;
+
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
+
+                Attack();
             }
+            else if (distanceToPlayer >= attackRange)
+            {
+                coroutine = StartCoroutine(TankMoveOn());
 
-            Attack();
+                MoveToTarget();
+            }
         }
-        else if (distanceToPlayer >= attackRange)
-        {
-            coroutine = StartCoroutine(TankMoveOn());
 
-            MoveToTarget();
-        }
+    
 
 
     }

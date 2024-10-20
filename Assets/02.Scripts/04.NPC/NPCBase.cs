@@ -77,11 +77,18 @@ public class NPCBase : MonoBehaviour, IUpdateable
     protected virtual Vector3 TargetGroundPos() // �÷��̾� ������ ��
     {
         //�÷��̾� ����� ��� Ŀ���� ������ y�� ���� 0���� �ʱ�ȭ
+
+        if (target == null)
+            return Vector3.zero;
+
         return new Vector3(target.position.x, 0.0f, target.position.z);
     }
 
     protected virtual Vector3 TargetPosSameYPos() // �÷��̾� ������ ��
     {
+        if (target == null)
+            return Vector3.zero;
+
         //�÷��̾� ����� ��� Ŀ���� ������ y�� ���� 0���� �ʱ�ȭ
         return new Vector3(target.position.x, transform.position.y, target.position.z);
     }

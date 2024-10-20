@@ -59,44 +59,49 @@ public class Helicopter : NPCBase
 
         if (eatAbleObjectBase.GetEaten() || target == null)
         {
+            richAI.enabled = false;
             return;
-        }
-
-        float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
-
-        // NavMeshAgent가 경로를 따라 이동하는 부분을 직접 제어
-        if (distance > attackRange)
-        {
-            richAI.isStopped = false;
-
-            MoveToTarget();
-
-            AdjustAltitude();
-
-            // 부드럽게 목표 지점을 향해 회전 (DoTween 사용)
-            Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
-
-            // X축 회전을 제한하는 로직 추가
-             targetRotation = LimitXRotation(targetRotation, maxXAngle);
-
-            transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
         }
         else
         {
-            MaintainDistanceAndMove(distance);
+            richAI.enabled = true;
 
-            // 가까운 경우 부드럽게 회전
-            Quaternion targetRotation = Quaternion.LookRotation(TargetGroundPos() - transform.position);
 
-            // X축 회전을 제한하는 로직 추가
-            targetRotation = LimitXRotation(targetRotation, maxXAngle);
+            float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
 
-            transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
+            // NavMeshAgent가 경로를 따라 이동하는 부분을 직접 제어
+            if (distance > attackRange)
+            {
+                richAI.isStopped = false;
 
-            // 타겟이 공격 범위 내에 있을 때 총알 발사 시작
-            Attack();
+                MoveToTarget();
+
+                AdjustAltitude();
+
+                // 부드럽게 목표 지점을 향해 회전 (DoTween 사용)
+                Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
+
+                // X축 회전을 제한하는 로직 추가
+                targetRotation = LimitXRotation(targetRotation, maxXAngle);
+
+                transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
+            }
+            else
+            {
+                MaintainDistanceAndMove(distance);
+
+                // 가까운 경우 부드럽게 회전
+                Quaternion targetRotation = Quaternion.LookRotation(TargetGroundPos() - transform.position);
+
+                // X축 회전을 제한하는 로직 추가
+                targetRotation = LimitXRotation(targetRotation, maxXAngle);
+
+                transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
+
+                // 타겟이 공격 범위 내에 있을 때 총알 발사 시작
+                Attack();
+            }
         }
-        
     }
     protected override void MoveToTarget()
     {
