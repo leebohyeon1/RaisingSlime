@@ -1,4 +1,4 @@
-using Pathfinding;
+ï»¿using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class Police : NPCBase
 {
-    [BoxGroup("°æÂû"), LabelText("Áø¾ĞºÀ"), SerializeField]
+    [BoxGroup("ê²½ì°°"), LabelText("ì§„ì••ë´‰"), SerializeField]
     private GameObject baton;
 
-    [BoxGroup("°æÂû"), LabelText("Áø¾ĞºÀ Èçµå´Â ¼Óµµ"), SerializeField]
+    [BoxGroup("ê²½ì°°"), LabelText("ì§„ì••ë´‰ í”ë“œëŠ” ì†ë„"), SerializeField]
     private float batonRotateSpeed;
 
-    [BoxGroup("°æÂû"), LabelText("Áø¾ĞºÀ Èçµå´Â °¢µµ"), SerializeField]
+    [BoxGroup("ê²½ì°°"), LabelText("ì§„ì••ë´‰ í”ë“œëŠ” ê°ë„"), SerializeField]
     private float maxRotationAngle;
     
-    private float currentRotationSpeed; // ÇöÀç È¸Àü ¼Óµµ
+    private float currentRotationSpeed; // í˜„ì¬ íšŒì „ ì†ë„
 
 
     protected override void Start()
@@ -25,12 +25,12 @@ public class Police : NPCBase
             target = FindFirstObjectByType<Player>().transform;
         }
 
-        // ÃÊ±â È¸Àü ¼Óµµ ¼³Á¤
+        // ì´ˆê¸° íšŒì „ ì†ë„ ì„¤ì •
         currentRotationSpeed = batonRotateSpeed;
 
         if (aiDestinationSetter != null)
         {
-            // Å¸°ÙÀ» ½ºÅ©¸³Æ®·Î ¼³Á¤
+            // íƒ€ê²Ÿì„ ìŠ¤í¬ë¦½íŠ¸ë¡œ ì„¤ì •
             aiDestinationSetter.target = target;
         }
 
@@ -39,29 +39,35 @@ public class Police : NPCBase
 
     protected override void enemyAction()
     {
-
-       // base.enemyAction();
-
-
-        // ÇöÀç XÃà È¸Àü °¢µµ °è»ê
-        float currentXRotation = baton.transform.localEulerAngles.x;
-
-        // È¸Àü °¢µµ°¡ 180µµ¸¦ ³Ñ¾î°¡¸é ÀÌ¸¦ º¸Á¤
-        if (currentXRotation > 180f)
+        if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            currentXRotation -= 360f;
+            richAI.enabled = false;
+            return;
         }
-
-        // È¸Àü °¢µµ°¡ ÃÖ´ë °¢µµ¿¡ µµ´ŞÇÏ¸é È¸Àü ¹æÇâÀ» ¹İ´ë·Î º¯°æ
-        if (Mathf.Abs(currentXRotation) >= maxRotationAngle)
+        else
         {
-            currentRotationSpeed = -currentRotationSpeed;
+            richAI.enabled = true;
+
+
+            // í˜„ì¬ Xì¶• íšŒì „ ê°ë„ ê³„ì‚°
+            float currentXRotation = baton.transform.localEulerAngles.x;
+
+            // íšŒì „ ê°ë„ê°€ 180ë„ë¥¼ ë„˜ì–´ê°€ë©´ ì´ë¥¼ ë³´ì •
+            if (currentXRotation > 180f)
+            {
+                currentXRotation -= 360f;
+            }
+
+            // íšŒì „ ê°ë„ê°€ ìµœëŒ€ ê°ë„ì— ë„ë‹¬í•˜ë©´ íšŒì „ ë°©í–¥ì„ ë°˜ëŒ€ë¡œ ë³€ê²½
+            if (Mathf.Abs(currentXRotation) >= maxRotationAngle)
+            {
+                currentRotationSpeed = -currentRotationSpeed;
+            }
+
+            // ì§„ì••ë´‰ì„ Xì¶•ì„ ê¸°ì¤€ìœ¼ë¡œ íšŒì „
+            baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
+
+
         }
-
-        // Áø¾ĞºÀÀ» XÃàÀ» ±âÁØÀ¸·Î È¸Àü
-        baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
-
-
-    
     }
 }

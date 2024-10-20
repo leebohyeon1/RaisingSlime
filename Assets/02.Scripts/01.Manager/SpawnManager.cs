@@ -209,6 +209,10 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     // 적을 스폰하는 함수
     private void SpawnEnemy(GameObject enemyPrefab)
     {
+        if(slimeTrans == null)
+        {
+            return;
+        }
         Vector3 spawnPosition = GetValidSpawnPosition();
 
         // 유효한 NavMesh 위의 위치를 찾았을 때만 적을 스폰
@@ -434,6 +438,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
     private void SpawnGold()
     {
+        if (slimeTrans == null)
+        {
+            return;
+        }
+
         Vector3 spawnPosition = GetValidGoldSpawnPosition();
         
         if (spawnPosition == Vector3.zero)
@@ -486,8 +495,10 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         RemoveAllCitizens(); // 모든 시민 제거
         RemoveAllGold();    //모든 골드 제거
 
-        // 씬이 닫힐 때 불필요한 오브젝트를 정리하여 메모리 관리
-        // Resources.UnloadUnusedAssets();
+        AstarPath.active?.PausePathfinding();  // 경로 탐색 중지
+        AstarPath.active?.FlushGraphUpdates();  // 그래프 업데이트 비우기
+        Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
+        System.GC.Collect();  // 가비지 컬렉션 강제 실행
 
     }
 

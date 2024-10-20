@@ -43,12 +43,16 @@ public class PoliceCar : NPCBase
             richAI.enabled = false;
             return;
         }
-        richAI.enabled = true;
-
-        if (isReversing)
-            MoveReverse();
         else
-            MoveCar();
+        {
+            richAI.enabled = true;
+
+            if (isReversing)
+                MoveReverse();
+            else
+                MoveCar();
+        }
+       
     }
 
     private void MoveCar()

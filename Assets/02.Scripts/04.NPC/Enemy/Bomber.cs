@@ -61,12 +61,19 @@ public class Bomber : NPCBase
 
     protected override void enemyAction()
     {
+
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
+            richAI.enabled = false;
             return;
         }
-        
-        CheckPosition();
+        else
+        {
+            richAI.enabled = true;
+
+
+            CheckPosition();
+        }
     }
 
     // 타겟 목표에 가까이가면 폭격 시작
