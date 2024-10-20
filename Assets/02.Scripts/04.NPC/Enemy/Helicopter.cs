@@ -50,7 +50,19 @@ public class Helicopter : NPCBase
         base.Awake();
 
         richAI.updatePosition = false;
-        richAI.updateRotation = true;
+        richAI.updateRotation = false;
+
+     
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        // 헬리콥터가 시작할 때 고도 조정
+        Vector3 startPos = transform.position;
+        startPos.y = flyHeight;
+        transform.position = startPos;
     }
 
     protected override void enemyAction()
@@ -66,59 +78,44 @@ public class Helicopter : NPCBase
         {
             richAI.enabled = true;
 
-
             float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
 
-            // NavMeshAgent가 경로를 따라 이동하는 부분을 직접 제어
             if (distance > attackRange)
             {
                 richAI.isStopped = false;
-
-                MoveToTarget();
-
-                AdjustAltitude();
-
-                // 부드럽게 목표 지점을 향해 회전 (DoTween 사용)
-                Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
-
-                // X축 회전을 제한하는 로직 추가
-                targetRotation = LimitXRotation(targetRotation, maxXAngle);
-
-                transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
+                MoveToTarget();  // 목표 지점으로 이동
             }
             else
             {
-                MaintainDistanceAndMove(distance);
-
-                // 가까운 경우 부드럽게 회전
-                Quaternion targetRotation = Quaternion.LookRotation(TargetGroundPos() - transform.position);
-
-                // X축 회전을 제한하는 로직 추가
-                targetRotation = LimitXRotation(targetRotation, maxXAngle);
-
-                transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 회전
-
-                // 타겟이 공격 범위 내에 있을 때 총알 발사 시작
-                Attack();
+                MaintainDistanceAndMove(distance);  // 공격 범위 내에서 유지
+                Attack();  // 공격 시작
             }
+
+            // 고도를 유지하며 목표로 회전
+            Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
+            targetRotation = LimitXRotation(targetRotation, maxXAngle);
+            transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전
+
+            AdjustAltitude();  // 고도 조정
         }
     }
+
     protected override void MoveToTarget()
     {
         if (target != null)
         {
-            aiDestinationSetter.target = target;
+            richAI.destination = TargetPosSameYPos();  // 목표 위치 설정
         }
     }
 
+    // 고도 유지 함수: 목표 지점으로 이동할 때 flyHeight를 유지
     private void AdjustAltitude()
     {
         Vector3 nextPosition = richAI.steeringTarget;
-        // Y 좌표는 공중에 있도록 flyHeight 값을 사용하여 수동 조작
-        nextPosition.y = flyHeight;
-        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime);
+        nextPosition.y = flyHeight;  // 고도 유지
+        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * richAI.maxSpeed);
     }
-    
+
     private void MaintainDistanceAndMove(float distanceToPlayer)
     {
         float desiredMinDistance = attackRange * 0.5f;
@@ -128,15 +125,15 @@ public class Helicopter : NPCBase
         {
             Vector3 directionAway = (transform.position - TargetPosSameYPos()).normalized;
             Vector3 movePosition = transform.position + directionAway * 3f;
+            movePosition.y = flyHeight;  // 고도 유지
             richAI.destination = movePosition;
-
-            AdjustAltitude();
         }
         else
         {
             richAI.destination = transform.position;
         }
     }
+
 
     // 공격 메커니즘
     void Attack()
@@ -180,10 +177,9 @@ public class Helicopter : NPCBase
 
     private void RotatePropeller()
     {
-        foreach (var prop in propeller)
-        {
-            prop.transform.Rotate(Vector3.forward, propellerRotationSpeed * Time.deltaTime, Space.Self);
-        }
+        propeller[0].transform.Rotate(Vector3.forward, propellerRotationSpeed * Time.deltaTime, Space.Self);
+        propeller[1].transform.Rotate(Vector3.up, propellerRotationSpeed * Time.deltaTime, Space.Self);
+     
     }
 
     private Quaternion LimitXRotation(Quaternion rotation, float maxXAngle)

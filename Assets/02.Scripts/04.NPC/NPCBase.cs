@@ -17,11 +17,11 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     protected Transform target; // �÷��̾� ��ġ
 
-    [BoxGroup("�⺻"), LabelText("������ NPC")]
+    [BoxGroup("기본"), LabelText("공격형 NPC")]
     public bool isEnemy = false;
-    [BoxGroup("�⺻"), LabelText("�̵� �ӵ�"),SerializeField]
+    [BoxGroup("기본"), LabelText("이동 속도"),SerializeField]
     protected float moveSpeed = 4f;
-    [BoxGroup("�⺻"), LabelText("�浹 ������"), SerializeField]
+    [BoxGroup("기본"), LabelText("충돌 데미지"), SerializeField]
     public float collisionDamage = 1f;
 
     public bool isExplosion = false;
@@ -34,7 +34,6 @@ public class NPCBase : MonoBehaviour, IUpdateable
         richAI = GetComponent<RichAI>();
         richAI.maxSpeed = moveSpeed;
 
-        // ���� �� �ִ� ������Ʈ
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
 
        
@@ -57,9 +56,8 @@ public class NPCBase : MonoBehaviour, IUpdateable
         enemyAction();
     }
     
-    protected virtual void enemyAction() // �� ������ �ൿ �θ� �Լ�
+    protected virtual void enemyAction() 
     {    
-        // �⺻�� �÷��̾� ���� �� 
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion) 
         {
             richAI.enabled = false;
@@ -74,9 +72,8 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     }
 
-    protected virtual Vector3 TargetGroundPos() // �÷��̾� ������ ��
+    protected virtual Vector3 TargetGroundPos() 
     {
-        //�÷��̾� ����� ��� Ŀ���� ������ y�� ���� 0���� �ʱ�ȭ
 
         if (target == null)
             return Vector3.zero;
@@ -84,12 +81,11 @@ public class NPCBase : MonoBehaviour, IUpdateable
         return new Vector3(target.position.x, 0.0f, target.position.z);
     }
 
-    protected virtual Vector3 TargetPosSameYPos() // �÷��̾� ������ ��
+    protected virtual Vector3 TargetPosSameYPos() 
     {
         if (target == null)
             return Vector3.zero;
 
-        //�÷��̾� ����� ��� Ŀ���� ������ y�� ���� 0���� �ʱ�ȭ
         return new Vector3(target.position.x, transform.position.y, target.position.z);
     }
 
@@ -123,6 +119,6 @@ public class NPCBase : MonoBehaviour, IUpdateable
     {
         GameLogicManager.Instance.DeregisterUpdatableObject(this);
         
-        OnDestroyed?.Invoke(); // ���� �ı��� �� �̺�Ʈ �߻�
+        OnDestroyed?.Invoke();
     }
 }
