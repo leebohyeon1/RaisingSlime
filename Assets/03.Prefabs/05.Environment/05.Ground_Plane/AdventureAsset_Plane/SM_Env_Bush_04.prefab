@@ -120,7 +120,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 0.59900004, y: 0.647, z: 0.59900004}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.647, z: 0}
   m_TimeToStationary: 0.5
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
-  shrinkSpeed: 0.5
+  size: 0.5
+  slimeIncreaseSize: 0.05
+  plusScore: 2
+  shrinkSpeed: 0.2

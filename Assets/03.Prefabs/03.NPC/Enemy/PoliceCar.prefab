@@ -280,7 +280,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3.3, y: 3.3, z: 3.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8478803867694230912}
@@ -357,7 +357,7 @@ NavMeshAgent:
   m_Height: 0.52
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &7509347923171235121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,9 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3.5
-  slimeIncreaseSize: 0.1
-  plusScore: 0
+  size: 3.3
+  slimeIncreaseSize: 0.24
+  plusScore: 70
   shrinkSpeed: 0.2
 --- !u!114 &5177984016599408842
 MonoBehaviour:
@@ -387,8 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 18
-  collisionDamage: 0.01
+  moveSpeed: 12
+  collisionDamage: 0.35
   isExplosion: 0
   acceleration: 10
   reverseAcceleration: 5
@@ -396,4 +396,4 @@ MonoBehaviour:
   turnSpeed: 2
   maxTurnAngle: 40
   reverseTime: 2
-  stopDuration: 1
+  stopDuration: 1.5
