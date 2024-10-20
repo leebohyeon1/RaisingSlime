@@ -772,6 +772,139 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3029940e53e3674683edd798d9736b7, type: 3}
+--- !u!1001 &172311469
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 116.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 151.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500625543668812394, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_Name
+      value: Helicopter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.035775185
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.035775185
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7062012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7062012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1704.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187398009164039224, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904411064721855746, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: startEndModifier.addPoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904411064721855746, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: startEndModifier.exactStartPoint
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762616972198948173, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: autoRepath.visualizeSensitivity
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
 --- !u!1 &216578645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,7 +3288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIewyT8IR5QEAAMkDAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGVU01z2jAQ/SuMzy1jHKBujyVMeijQwTlk0ulhkRZbE1misgQEhv/eXX+AM8mlJ3nf6r3Vvl2fI1GAA+HRrUGqUEXfBslwnHwaRMIab4NbwHHunHWcYBS1ztQJKRxReAD9AhuNP1DlhW/vdOBMq3JDWDycEFrCMdN2x8y7uInnMsefaHJfMLMGlVljrqxpayTDyZRglMpb96g0drWTdEy4b5Gn99DzDQoVMpV78y4gIQ417sH4Bwe7IgtuCwIXVrJydG+X1q/xb1AOI74LFblDijOrtZLoWGcLusJ+coFV8aZCl3hE50CZjzIO+wzRyq+7/D16UJrbaOyqXuj7PIj2oAO/NB1cuF/IF03q9x8Om3IZlLurWXdc1Xrw5GsjceSpEPranic+a7mtdQLldxuMrGZoSO5/GG3B9v4kvjKGcTxqWYTWvKqwB3ZtFbxWBm9GcGJJw5hZY1Dwo/uOd7R2ajeaQXBY+YwOUayMfn167tHQ8EYuYV8Sdxa8Vya/cfOg5Ftzo3gSJ2MBo+k0iZN0tPks4lH6Fb6kY7lJt/E4jeoulFFegf5F+tp35tCW9wZuoKwV1yhotIN653ixpIPDgzqVtrcEymxtJmgxzKrRuLZNKwGa7JXz+l/IsG6BqdH5El3+AVBLAwQUAAAICAAASCHsjREEYG8AAAB6AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IztNBRUEovSizIKAaKGII4pZkpIHa0koGpgZFJcqKhmZmRgZGFYZJusoGhhWWiuYVJSpJFmoGJhVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrpeUGpyYnGJO8hwpdhaAFBLAQItABQAAAgIAABIIewyT8IR5QEAAMkDAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABIIeyNEQRgbwAAAHoAAAAJACQAAAAAAAAAAAAAADICAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAA7AIAAAAA
+    dataString: UEsDBBQAAAgIAABIIeykDQK56AEAAM0DAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGVU01z2jAQ/SuMzy1jzEedHkuY9FCgg3PIJNPDIi22JrJEZQkIDP+9u7YBZ5pLTkLv6b31vl1OkSjAgfDoViBVqKLvvWE/GXzpRcIab4Obw2HmnHVEJIyi1pk6Il350R70K6w1/kSVF57Fd/1R0iGmWpVrwuP+mNASDpm2W1YP4+Y+kzn+QpP7givUoDIrzJU1bZ2kP54QjFJ56x6Vxkv9JB0R7lvk6X/o+QaFClnK/XkXkBCHGndg/IODbZEFtwGBcyvZObq3C+tX+DcohxG/hYoSIsep1VpJdOyzAV1hl5xjVbyrcCEe0TlQ5iPGYVchWvvVhb9HD0pzG01c1Sv9PvWiHejAX5r2ztwv5POGevnD16ZcBuX2GtaQq1oPnnJtLA48FULf2vPIZ223sU6g/GGDkdUUDdl9RtEWbN+P46uiH8eDVkVorasKu+fUlsFrZfAWBBMLGsbUGoOCP7qb+EXWTu0mMwgOK5/RIYql0W9Pzx0ZGt7IBexK0k6D98rkN20elHwfbhSP42QkYDCZJHGSDtZfRTxI7+BbOpLrdBOP0qjuQhnlFejf5K/9JRza8s7ADZS14woFjbZX7xwvlnSwf1DH0naWQJmNzQQthlk2Hte2aSVAU7xyVv8XMqxbYGl0Okfnf1BLAwQUAAAICAAASCHs7Rji6XUAAACGAAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IztNBRUEovSizIKAaKGIE4pZkpIHa0koGpgZFJcqKhmZmRgZGFYZJusoGhhWWiuYVJSpJFmoGJhZKOQl5pTk4sUFdJZUGqX2JuKkRnQGJJRlpmXkpmXrpeUGpyYnGJO8gKmPpaAFBLAQItABQAAAgIAABIIeykDQK56AEAAM0DAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABIIeztGOLpdQAAAIYAAAAJACQAAAAAAAAAAAAAADUCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAA9QIAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5861,3 +5994,4 @@ SceneRoots:
   - {fileID: 308082738}
   - {fileID: 904447703}
   - {fileID: 636646484}
+  - {fileID: 172311469}
