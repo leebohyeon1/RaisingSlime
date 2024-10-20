@@ -22,9 +22,6 @@
             "m_Id": "c8644dc5945c46189394d26605fd653d"
         },
         {
-            "m_Id": "bc3af1010b544a359d3feadb9702e029"
-        },
-        {
             "m_Id": "b2c62ef797d34feab272d59654ee0850"
         },
         {
@@ -1387,9 +1384,6 @@
             "m_Id": "c8644dc5945c46189394d26605fd653d"
         },
         {
-            "m_Id": "bc3af1010b544a359d3feadb9702e029"
-        },
-        {
             "m_Id": "b2c62ef797d34feab272d59654ee0850"
         },
         {
@@ -2311,7 +2305,7 @@
     "m_Title": "Inner",
     "m_Position": {
         "x": -2962.0,
-        "y": 1099.0001220703125
+        "y": 1099.0
     }
 }
 
@@ -3694,34 +3688,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "bc3af1010b544a359d3feadb9702e029",
-    "m_Guid": {
-        "m_GuidSerialized": "eb414fc0-e647-424c-8179-da72549b37ab"
-    },
-    "m_Name": "InnerThickness",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "InnerThickness",
-    "m_DefaultReferenceName": "_InnerThickness",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 5.829999923706055,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalMaterialSlot",
     "m_ObjectId": "bfce6b30bcf442b4a5956eb1e2fb1b2f",
@@ -4552,10 +4518,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2122.0,
-            "y": 1246.0001220703125,
+            "x": -2092.0,
+            "y": 1246.0,
             "width": 208.0,
-            "height": 325.9998779296875
+            "height": 326.0
         }
     },
     "m_Slots": [

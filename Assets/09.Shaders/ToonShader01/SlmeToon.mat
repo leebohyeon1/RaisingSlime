@@ -99,8 +99,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InnerThickness: 5.83
-    - _InterialSpread: 0.72
+    - _InnerThickness: 9.05
+    - _InterialSpread: 1.1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Opacity: 0.26
@@ -121,11 +121,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InnerColor: {r: 0, g: 0.20111194, b: 1.9245284, a: 1}
+    - _InnerColor: {r: 0.12502016, g: 1.2621083, b: 1.0577297, a: 1}
     - _InnerGlowPos: {r: 0, g: 0, b: 0, a: 0}
-    - _OulLineColor: {r: 0.11792451, g: 0.7505766, b: 1, a: 0.9019608}
+    - _OulLineColor: {r: 0.2007832, g: 0.7133229, b: 0.9056604, a: 0.9019608}
     - _OutLineColor: {r: 1, g: 0, b: 0.8726311, a: 0}
-    - _SlimeColor: {r: 0.18943575, g: 0.5449127, b: 0.9339623, a: 0.8509804}
+    - _SlimeColor: {r: 0.09518514, g: 0.44510478, b: 0.8773585, a: 0.8509804}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1683409651222213871
