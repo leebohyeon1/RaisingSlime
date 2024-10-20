@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111983750394067820}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 05.Enve_Road
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,14 @@ PrefabInstance:
     - target: {fileID: 114394, guid: 48ddd1c75836e1f49a309009c6cb74a3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394, guid: 48ddd1c75836e1f49a309009c6cb74a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394, guid: 48ddd1c75836e1f49a309009c6cb74a3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 458108, guid: 48ddd1c75836e1f49a309009c6cb74a3, type: 3}
       propertyPath: m_LocalPosition.x

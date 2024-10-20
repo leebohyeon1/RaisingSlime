@@ -1,3 +1,4 @@
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,28 +11,30 @@ public class NPCBase : MonoBehaviour, IUpdateable
     public delegate void DestroyedHandler();
     public event DestroyedHandler OnDestroyed;
 
-    protected NavMeshAgent agent;
+    protected AIDestinationSetter aiDestinationSetter;
+    protected RichAI richAI;
     protected EatAbleObjectBase eatAbleObjectBase;
 
-    protected Transform target; // ÇÃ·¹ÀÌ¾î À§Ä¡
+    protected Transform target; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡
 
-    [BoxGroup("±âº»"), LabelText("°ø°ÝÇü NPC")]
+    [BoxGroup("ï¿½âº»"), LabelText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC")]
     public bool isEnemy = false;
-    [BoxGroup("±âº»"), LabelText("ÀÌµ¿ ¼Óµµ"),SerializeField]
+    [BoxGroup("ï¿½âº»"), LabelText("ï¿½Ìµï¿½ ï¿½Óµï¿½"),SerializeField]
     protected float moveSpeed = 4f;
-    [BoxGroup("±âº»"), LabelText("Ãæµ¹ µ¥¹ÌÁö"), SerializeField]
+    [BoxGroup("ï¿½âº»"), LabelText("ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"), SerializeField]
     public float collisionDamage = 1f;
 
     public bool isExplosion = false;
 
     protected virtual void Awake()
     {                
-        //Nav Mesh Agent ÃÊ±âÈ­
-        agent = GetComponent<NavMeshAgent>();
-        agent.enabled = true;   
-        agent.speed = moveSpeed;
+        aiDestinationSetter = GetComponent<AIDestinationSetter>();
+        aiDestinationSetter.enabled = true;
 
-        // ¸ÔÀ» ¼ö ÀÖ´Â ¿ÀºêÁ§Æ®
+        richAI = GetComponent<RichAI>();
+        richAI.maxSpeed = moveSpeed;
+
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
 
        
@@ -44,6 +47,8 @@ public class NPCBase : MonoBehaviour, IUpdateable
             target = FindFirstObjectByType<Player>().transform; 
         }
 
+        aiDestinationSetter.target = target;
+        
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
@@ -52,64 +57,47 @@ public class NPCBase : MonoBehaviour, IUpdateable
         enemyAction();
     }
     
-    protected virtual void enemyAction() // Àû Á¾·ùº° Çàµ¿ ºÎ¸ð ÇÔ¼ö
+    protected virtual void enemyAction() // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ ï¿½Î¸ï¿½ ï¿½Ô¼ï¿½
     {    
-        // ±âº»Àº ÇÃ·¹ÀÌ¾î µû¶ó °¨ 
+        // ï¿½âº»ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion) 
         {
+            richAI.enabled = false;
             return;
         }
+        else
+        {
+            richAI.enabled = true;
 
-        MoveToTarget();
+            MoveToTarget();
+        }
 
     }
 
-    protected virtual Vector3 TargetGroundPos() // ÇÃ·¹ÀÌ¾î Æ÷Áö¼Ç °ª
+    protected virtual Vector3 TargetGroundPos() // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     {
-        //ÇÃ·¹ÀÌ¾î »çÀÌÁî°¡ °è¼Ó Ä¿Áö±â ¶§¹®¿¡ yÃà °ªÀº 0À¸·Î ÃÊ±âÈ­
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         return new Vector3(target.position.x, 0.0f, target.position.z);
     }
 
-    protected virtual Vector3 TargetPosSameYPos() // ÇÃ·¹ÀÌ¾î Æ÷Áö¼Ç °ª
+    protected virtual Vector3 TargetPosSameYPos() // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     {
-        //ÇÃ·¹ÀÌ¾î »çÀÌÁî°¡ °è¼Ó Ä¿Áö±â ¶§¹®¿¡ yÃà °ªÀº 0À¸·Î ÃÊ±âÈ­
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         return new Vector3(target.position.x, transform.position.y, target.position.z);
     }
 
-    public virtual void SetTarget(Transform transform) // Å¸°Ù ¼³Á¤
+    public virtual void SetTarget(Transform transform) // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         target = transform;
     }
 
-    protected virtual void MoveToTarget()
-    {
-        //// Å¸°Ù À§Ä¡¿¡¼­ °¡Àå °¡±î¿î À¯È¿ÇÑ NavMesh À§Ä¡¸¦ Ã£´Â´Ù.
-        ////NavMeshHit hit;
-        //Vector3 targetPosition = TargetGroundPos();
-
-        //// À¯È¿ÇÑ NavMesh À§Ä¡¸¦ Ã£À¸¸é ±× À§Ä¡·Î ÀÌµ¿
-        //if (NavMesh.SamplePosition(targetPosition, out hit, 11.0f, NavMesh.AllAreas))
-        //{
-        //    targetPosition = hit.position;
-        //}
-
-        //// NavMesh »óÀÇ À¯È¿ÇÑ À§Ä¡·Î ÀÌµ¿ ½Ãµµ
-        //if (!agent.SetDestination(targetPosition))
-        //{
-        //    // °æ·Î ¼³Á¤ ½ÇÆÐ ½Ã, Å¸°Ù ¹æÇâÀ¸·Î ÀÏÁ¤ °Å¸®¸¦ ´õÇØ ÀÌµ¿
-        //    Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
-        //    Vector3 fallbackPosition = transform.position + direction * 5f; // 5´Â Å¸°Ù ¹æÇâÀ¸·Î ÀÌµ¿ÇÒ °Å¸®
-
-        //    agent.SetDestination(fallbackPosition);
-        //}
-        agent.SetDestination(target.position);
-    }
+    protected virtual void MoveToTarget() { }
 
     protected virtual IEnumerator OnAgent()
     {
         yield return new WaitForSeconds(1f);
 
-        agent.enabled = true;
+        richAI.enabled = true;
         GetComponent<Rigidbody>().isKinematic = true;
         isExplosion = false;
         
@@ -117,7 +105,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     public virtual void Explosion()
     {
-        agent.enabled = false;
+        richAI.enabled = false;
         GetComponent<Rigidbody>().isKinematic = false;
         isExplosion = true;
 
@@ -127,9 +115,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
     protected virtual void OnDestroy()
     {
         GameLogicManager.Instance.DeregisterUpdatableObject(this);
-        if (OnDestroyed != null)
-        {
-            OnDestroyed.Invoke(); // ÀûÀÌ ÆÄ±«µÉ ¶§ ÀÌº¥Æ® ¹ß»ý
-        }
+        
+        OnDestroyed?.Invoke(); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1464818652779254978}
   m_Layer: 0
   m_Name: 22.Z_Road
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 181870, guid: 4704ef8ebea6716488399ff29f571365, type: 3}
       propertyPath: m_Name
       value: 21.Z_Road (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 181870, guid: 4704ef8ebea6716488399ff29f571365, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 486122, guid: 4704ef8ebea6716488399ff29f571365, type: 3}
       propertyPath: m_LocalPosition.x

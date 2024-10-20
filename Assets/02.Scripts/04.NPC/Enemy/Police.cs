@@ -1,3 +1,4 @@
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,18 +17,30 @@ public class Police : NPCBase
     
     private float currentRotationSpeed; // 현재 회전 속도
 
+
     protected override void Start()
     {
-        base.Start();
+        if (target == null)
+        {
+            target = FindFirstObjectByType<Player>().transform;
+        }
 
         // 초기 회전 속도 설정
         currentRotationSpeed = batonRotateSpeed;
+
+        if (aiDestinationSetter != null)
+        {
+            // 타겟을 스크립트로 설정
+            aiDestinationSetter.target = target;
+        }
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
     protected override void enemyAction()
     {
 
-        base.enemyAction();
+       // base.enemyAction();
 
 
         // 현재 X축 회전 각도 계산

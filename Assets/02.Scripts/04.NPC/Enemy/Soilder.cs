@@ -28,6 +28,8 @@ public class Soilder : NPCBase
     [BoxGroup("군인"), LabelText("총알 데미지"), SerializeField, Range(0.1f, 20f)]
     private float bulletDamage = 1.0f;
 
+    [BoxGroup("군인"), LabelText("후퇴 위치"), SerializeField]
+    private Transform backPos;
 
     protected override void Awake()
     {
@@ -43,25 +45,29 @@ public class Soilder : NPCBase
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
+            richAI.enabled = false;
             return;
         }
-
-        float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
-
-        if (distanceToPlayer < attackRange)
+        else
         {
-            // 타겟과 일정 거리를 유지하면서 움직임
-            MaintainDistanceAndMove(distanceToPlayer);
+            richAI.enabled = true;
 
-            // 공격 실행
-            Attack();
-        }
-        else if(distanceToPlayer >= attackRange) 
-        {
-            agent.isStopped = false;
+            float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
-            MoveToTarget();
+            if (distanceToPlayer < attackRange)
+            {
+                // 타겟과 일정 거리를 유지하면서 움직임
+                MaintainDistanceAndMove(distanceToPlayer);
+
+                // 공격 실행
+                Attack();
+            }
+            else if (distanceToPlayer >= attackRange)
+            {
+                MoveToTarget();
+            }
         }
+     
     }
 
     // 공격 메커니즘
@@ -102,11 +108,11 @@ public class Soilder : NPCBase
         // 현재 타겟과 너무 가깝다면 거리를 벌림
         if (distanceToPlayer < desiredMinDistance)
         {
-            // 타겟 반대 방향으로 이동
-            Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
-            Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
+            Vector3 retreatDirection = (transform.position - TargetGroundPos()).normalized;
+            retreatDirection.y = 0;  // Y축 이동 무시
 
-            agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
+            // 후퇴 방향으로 이동
+            transform.position += retreatDirection * moveSpeed * Time.deltaTime;
         }
     }
 

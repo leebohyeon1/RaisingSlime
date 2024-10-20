@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,9 +9,14 @@ public class Citizen : NPCBase
 
     private float timer;
 
+    IAstarAI ai;
+    public float radius = 20;
+
     protected override void Start()
     {
         timer = wanderTimer;
+
+        ai = GetComponent<IAstarAI>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
@@ -29,15 +35,30 @@ public class Citizen : NPCBase
             return;
         }
 
-        timer += Time.deltaTime;
+        //timer += Time.deltaTime;
 
-        // 타이머가 설정된 시간을 초과하면 새로운 목적지로 이동
-        if (timer >= wanderTimer)
+        //// 타이머가 설정된 시간을 초과하면 새로운 목적지로 이동
+        //if (timer >= wanderTimer)
+        //{
+        //    Vector3 newPos = GetValidPosition();
+        //    aiDestinationSetter.target.position = newPos;
+        //    timer = 0;
+        //}
+
+        if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
         {
-            Vector3 newPos = GetValidPosition();
-            agent.SetDestination(newPos);
-            timer = 0;
+            ai.destination = GetValidPosition();
+            ai.SearchPath();
         }
+    }
+
+    Vector3 PickRandomPoint()
+    {
+        var point = Random.insideUnitSphere * radius;
+
+        point.y = 0;
+        point += ai.position;
+        return point;
     }
 
     // 유효한 위치를 찾는 함수
@@ -46,7 +67,7 @@ public class Citizen : NPCBase
         Vector3 newPos;
         do
         {
-            newPos = RandomNavSphere(transform.position, wanderRadius, NavMesh.AllAreas);
+            newPos = PickRandomPoint();
         } while (Vector3.Dot(transform.forward, (newPos - transform.position).normalized) < 0);
 
         return newPos;

@@ -159,15 +159,17 @@ public class Player : MonoBehaviour, IUpdateable
             // 자신보다 사이즈가 작으면 먹는다.
             Eat(eatAbleObjectBase);
         }
-        else
+        else if(eatAble.GetComponentInParent<NPCBase>())
         {
-            if(eatAble.GetComponentInParent<NPCBase>().isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
+            NPCBase npcBase = eatAble.GetComponentInParent<NPCBase>();
+            if(npcBase.isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
             {
-                TakeDamage(eatAble.GetComponentInParent<NPCBase>().collisionDamage);
+                TakeDamage(npcBase.collisionDamage);
              
             }
 
-            KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
+               KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
+
         }
     }
 

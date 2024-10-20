@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1024664343620277669}
   m_Layer: 0
   m_Name: 16.Turn_Cross
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 198078, guid: f4a9a79607fad1742a3d6f4955f61362, type: 3}
       propertyPath: m_Name
       value: 13.Turn_Cross (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 198078, guid: f4a9a79607fad1742a3d6f4955f61362, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 412620, guid: f4a9a79607fad1742a3d6f4955f61362, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,3 +1,4 @@
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,16 +63,16 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
             collider.enabled = false;
         }
 
-        if(GetComponent<NavMeshAgent>())
+        if(GetComponent<RichAI>())
         {
-            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<RichAI>().enabled = false;
         }
         
-        if(GetComponentInChildren<NavMeshObstacle>())
+        if(GetComponentInChildren<NavmeshCut>())
         {
-            NavMeshObstacle[] obstacles = GetComponentsInChildren<NavMeshObstacle>();
+            NavmeshCut[] obstacles = GetComponentsInChildren<NavmeshCut>();
 
-            foreach (NavMeshObstacle obstacle in obstacles)
+            foreach (NavmeshCut obstacle in obstacles)
             {
                 obstacle.enabled = false;
             }

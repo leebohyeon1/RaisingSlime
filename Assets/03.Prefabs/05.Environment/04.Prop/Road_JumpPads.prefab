@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5174571690115980860}
   - component: {fileID: 8534869179096518792}
   - component: {fileID: 4728834048547803573}
-  - component: {fileID: 4101838377395438016}
+  - component: {fileID: 6915362405205873803}
   m_Layer: 0
   m_Name: Road_JumpPads
   m_TagString: Untagged
@@ -107,19 +107,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6459565060348534741, guid: 5cbc8ee467e1f854aba4f6936182e9f2, type: 3}
---- !u!208 &4101838377395438016
-NavMeshObstacle:
+--- !u!114 &6915362405205873803
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124390890089476814}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 9.25, y: 16.897001, z: 18.325}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.1, y: 14.806001, z: 0.57000005}
-  m_TimeToStationary: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 20.3, y: 33.08}
+  circleRadius: 1
+  circleResolution: 6
+  height: 12.98
+  meshScale: 1
+  center: {x: 0, y: 15.6, z: -1.56}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

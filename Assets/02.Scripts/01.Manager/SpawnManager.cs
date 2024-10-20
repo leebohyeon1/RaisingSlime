@@ -1,3 +1,4 @@
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -149,29 +150,23 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private Vector3 GetValidSpawnPosition()
     {
         Vector3 spawnPosition = Vector3.zero;
-        int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
+        int maxAttempts = 10;
         int attempts = 0;
-        float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
-        float maxNavMeshDistance = 10f; // 네비매쉬 표면과의 최대 거리 (네비매쉬 위치 샘플링 시 사용)
+        //float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
+        //float maxNavMeshDistance = 10f; // 네비매쉬 표면과의 최대 거리 (네비매쉬 위치 샘플링 시 사용)
 
         while (attempts < maxAttempts)
         {
             // 랜덤한 위치를 생성
             Vector3 randomPosition = GetRandomSpawnPosition();
 
-            // 네비매쉬에서 유효한 위치 샘플링
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPosition, out hit, maxNavMeshDistance, NavMesh.AllAreas))
+            // Use A* Pathfinding's GetNearest to find the closest graph node
+            NNInfo nearestNodeInfo = AstarPath.active.GetNearest(randomPosition);
+            if (nearestNodeInfo.node != null && nearestNodeInfo.node.Walkable)
             {
-                Vector3 potentialPosition = hit.position;
-
-                potentialPosition.y = spawnHeight;
-                // 충돌체와 겹치지 않는지 확인
-                if (!IsPositionOccupied(potentialPosition, spawnCheckRadius))
-                {
-                    spawnPosition = potentialPosition;
-                    break;
-                }
+                spawnPosition = nearestNodeInfo.position;
+                spawnPosition.y = spawnHeight; // Adjust height
+                break;
             }
 
             attempts++;
@@ -210,6 +205,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             SpawnEnemy(enemyPrefab);
         }
     }
+
     // 적을 스폰하는 함수
     private void SpawnEnemy(GameObject enemyPrefab)
     {
@@ -356,7 +352,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private Vector3 GetRandomGoldSpawnPosition()
     {
         // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(spawnRadius, spawnRadius * 7);
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(spawnRadius, spawnRadius * 2);
         Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
 
         if (slimeTrans != null)
@@ -377,30 +373,21 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         Vector3 spawnPosition = Vector3.zero;
         int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
         int attempts = 0;
-        float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
         //float maxNavMeshDistance = 10f; // 네비매쉬 표면과의 최대 거리 (네비매쉬 위치 샘플링 시 사용)
 
         while (attempts < maxAttempts)
-        {
+        {  
             // 랜덤한 위치를 생성
             Vector3 randomPosition = GetRandomGoldSpawnPosition();
-
-                // 네비매쉬에서 유효한 위치 샘플링
-                NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPosition, out hit, spawnRadius, NavMesh.AllAreas))
+            
+            // 랜덤한 위치를 생성
+            NNInfo nearestNodeInfo = AstarPath.active.GetNearest(randomPosition);
+            if (nearestNodeInfo.node != null && nearestNodeInfo.node.Walkable)
             {
-                Vector3 potentialPosition = hit.position;
-
-                potentialPosition.y = spawnHeight;
-                // 충돌체와 겹치지 않는지 확인
-                if (!IsPositionOccupied(potentialPosition, spawnCheckRadius))
-                {
-                    spawnPosition = potentialPosition;
-                    break;
-                }
+                spawnPosition = nearestNodeInfo.position;
+                spawnPosition.y = spawnHeight; // Adjust height
+                break;
             }
-
-            attempts++;
         }
      
         return spawnPosition;

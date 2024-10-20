@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8889540616656285023}
   - component: {fileID: 6681381823561636245}
   - component: {fileID: 7961374584692931996}
-  - component: {fileID: 826286232155288654}
   m_Layer: 0
   m_Name: building05_Mark2
   m_TagString: Untagged
@@ -106,22 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0497367, y: 2.4673653, z: 1.3298057}
   m_Center: {x: 0.0067540663, y: -0.025446998, z: 0.6706413}
---- !u!208 &826286232155288654
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5168431626585847872}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.02, y: 1.2340001, z: 0.665}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.05, y: -0.025, z: 0.671}
-  m_TimeToStationary: 0.5
 --- !u!1 &6224653399699163727
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6233785816178606374}
   - component: {fileID: 4493703098574512094}
+  - component: {fileID: 947372161839395177}
   m_Layer: 0
   m_Name: Building_10
   m_TagString: Untagged
@@ -149,8 +133,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5000002, y: 3.5, z: 3.5000002}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5544535335116694266}
   m_Father: {fileID: 0}
@@ -171,3 +155,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &947372161839395177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224653399699163727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.48, y: 2.62}
+  circleRadius: 1
+  circleResolution: 6
+  height: 4.64
+  meshScale: 1
+  center: {x: 0, y: 0.62, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

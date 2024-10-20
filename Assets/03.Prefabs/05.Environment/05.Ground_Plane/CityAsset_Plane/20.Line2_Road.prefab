@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5640146292684441512}
   m_Layer: 0
   m_Name: 20.Line2_Road
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 175832, guid: 0ea9456ec437c0441a153502acd9230f, type: 3}
       propertyPath: m_Name
       value: 19.Line2_Road (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 175832, guid: 0ea9456ec437c0441a153502acd9230f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 440340, guid: 0ea9456ec437c0441a153502acd9230f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6829609166016682266}
   m_Layer: 0
   m_Name: 08.Up_Cross
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 108482, guid: f0716756c4cde9d44a856339cc289fbb, type: 3}
       propertyPath: m_Name
       value: 07.Left_Cross (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 108482, guid: f0716756c4cde9d44a856339cc289fbb, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 411642, guid: f0716756c4cde9d44a856339cc289fbb, type: 3}
       propertyPath: m_LocalPosition.x

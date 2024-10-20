@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3821392883572444886}
   - component: {fileID: 8691403126159468592}
-  - component: {fileID: 7558765577612266045}
+  - component: {fileID: 5908381865210149845}
   m_Layer: 0
   m_Name: House_01
   m_TagString: Untagged
@@ -155,19 +155,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
---- !u!208 &7558765577612266045
-NavMeshObstacle:
+--- !u!114 &5908381865210149845
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7413563903299162460}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.7, z: 0.79}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
-  m_TimeToStationary: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1.22, y: 1.7}
+  circleRadius: 1
+  circleResolution: 6
+  height: 7.8
+  meshScale: 1
+  center: {x: 0, y: 0.7, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

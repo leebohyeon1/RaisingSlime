@@ -1,3 +1,4 @@
+ï»¿using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
@@ -5,221 +6,131 @@ using UnityEngine.AI;
 
 public class PoliceCar : NPCBase
 {
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("ê°€ì†ë„"), SerializeField, Range(0f, 20f)]
+    public float acceleration = 5f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("í›„ì§„ ê°€ì†ë„"), SerializeField, Range(0f, 20f)]
+    public float reverseAcceleration = 2f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("í›„ì§„ ìµœëŒ€ ì†ë„"), SerializeField, Range(0f, 20f)]
+    public float maxReverseSpeed = 2f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("íšŒì „ ì†ë„"), SerializeField, Range(0f, 20f)]
+    public float turnSpeed = 2f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("ìµœëŒ€ íšŒì „ ê°ë„"), SerializeField, Range(0f, 60f)]
+    public float maxTurnAngle = 45f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("ì¶©ëŒ í›„ í›„ì§„ ì‹œê°„"), SerializeField, Range(0f, 4f)]
+    public float reverseTime = 1f;
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("ì¶©ëŒ í›„ ì •ì§€ ì‹œê°„"), SerializeField, Range(0f, 4f)]
+    public float stopDuration = 1f;
 
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("°¡¼Óµµ"), SerializeField, Range(0f, 20f)]
-    public float acceleration = 5f;         // °¡¼Óµµ
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("ÈÄÁø °¡¼Óµµ"), SerializeField, Range(0f, 20f)]
-    public float reverseAcceleration = 2f;  // ÈÄÁø °¡¼Óµµ
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("ÈÄÁø ÃÖ´ë ¼Óµµ"), SerializeField, Range(0f, 20f)]
-    public float maxReverseSpeed = 2f;      // ÈÄÁø ½Ã ÃÖ´ë ¼Óµµ
+    [TabGroup("ìë™ì°¨", "ì´ë™"), LabelText("í›„ì§„ ìœ„ì¹˜")]
+    public Transform backPos;
 
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("È¸Àü ¼Óµµ"), SerializeField, Range(0f, 20f)]
-    public float turnSpeed = 2f;            // È¸Àü ¼Óµµ
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("ÃÖ´ë È¸Àü °¢µµ"), SerializeField, Range(0f, 60f)]
-    public float maxTurnAngle = 45f;        // ÃÖ´ë È¸Àü °¢µµ
-
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("Ãæµ¹ ÈÄ ÈÄÁø ½Ã°£"), SerializeField, Range(0f, 4f)]
-    public float reverseTime = 1f;          // ÈÄÁø ½Ã°£
-    [TabGroup("ÀÚµ¿Â÷", "ÀÌµ¿"), LabelText("Ãæµ¹ ÈÄ Á¤Áö ½Ã°£"), SerializeField, Range(0f, 4f)]
-    public float stopDuration = 1f;         // Ãæµ¹ ÈÄ ¸ØÃß´Â ½Ã°£
-
-    private float currentSpeed = 0f;        // ÇöÀç ÀÌµ¿ ¼Óµµ
-    private float reverseSpeed = 0f;        // ÇöÀç ÈÄÁø ¼Óµµ
-    private bool isReversing = false;       // ÈÄÁø Áß ¿©ºÎ
-    private bool isStoppedAfterCollision = false;  // Ãæµ¹ ÈÄ ¸ØÃã ¿©ºÎ
-    private bool isRush = false;
-    private float reverseTimer = 0f;        // ÈÄÁø ½Ã°£ Å¸ÀÌ¸Ó
+    private bool isReversing = false;
+    private float reverseTimer = 0f;
+    private Coroutine collisionCoroutine; // í˜„ì¬ ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì„ ì €ì¥
 
     protected override void Awake()
     {
         base.Awake();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        agent.angularSpeed = 0f; // ÀÚµ¿Â÷´Â Á÷Á¢ È¸Àü Ã³¸®ÇÏ¹Ç·Î NavMeshÀÇ È¸ÀüÀ» ºñÈ°¼ºÈ­
-        agent.updateRotation = false; // ¿¡ÀÌÀüÆ®ÀÇ È¸ÀüÀº ¼öµ¿À¸·Î Ã³¸®ÇÔ
-        agent.updateUpAxis = false; // ÀÚµ¿Â÷ÀÇ È¸ÀüÀº XZ Æò¸é¿¡¼­¸¸ ÀÌ·ç¾îÁöµµ·Ï ¼³Á¤
+        richAI.acceleration = acceleration;
+        richAI.updateRotation = false;
+        richAI.enableRotation = false;
     }
 
     protected override void enemyAction()
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
+            richAI.enabled = false;
             return;
         }
+        richAI.enabled = true;
 
-        if (target != null && !isReversing && !isStoppedAfterCollision && !isRush)
-        {   
-            // ÀÚµ¿Â÷ ÀÌµ¿ Ã³¸®
-            MoveCar();         
-        }
-        else if(target != null && isReversing && !isRush)
-        {
-             MoveReverse();
-        }
-      
+        if (isReversing)
+            MoveReverse();
+        else
+            MoveCar();
     }
 
-    protected override void MoveToTarget()
+    private void MoveCar()
     {
-        // Å¸°Ù À§Ä¡¿¡¼­ °¡Àå °¡±î¿î À¯È¿ÇÑ NavMesh À§Ä¡¸¦ Ã£´Â´Ù.
-        //NavMeshHit hit;
-        //Vector3 targetPosition = TargetGroundPos();
-
-        //// À¯È¿ÇÑ NavMesh À§Ä¡¸¦ Ã£À¸¸é ±× À§Ä¡·Î ÀÌµ¿
-        //if (NavMesh.SamplePosition(targetPosition, out hit, 11.0f, NavMesh.AllAreas))
-        //{
-        //    targetPosition = hit.position;
-        //}
-
-        //// NavMesh »óÀÇ À¯È¿ÇÑ À§Ä¡·Î ÀÌµ¿ ½Ãµµ
-        //if (!agent.SetDestination(targetPosition))
-        //{
-        //    // °æ·Î ¼³Á¤ ½ÇÆĞ ½Ã, Å¸°Ù ¹æÇâÀ¸·Î ÀÏÁ¤ °Å¸®¸¦ ´õÇØ ÀÌµ¿
-        //    Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
-        //    Vector3 fallbackPosition = transform.position + direction * 5f; // 5´Â Å¸°Ù ¹æÇâÀ¸·Î ÀÌµ¿ÇÒ °Å¸®
-
-        //    agent.SetDestination(fallbackPosition);
-        //}
-        agent.SetDestination(target.position);
-    }
-
-    void MoveCar()
-    {
-
-        // MoveToTarget() È£Ãâ: Å¸°ÙÀ» ÃßÀûÇÏµµ·Ï NavMeshAgent¿¡ °æ·Î ¼³Á¤
         MoveToTarget();
 
+        Vector3 directionToTarget = richAI.steeringTarget - transform.position;
+        directionToTarget.y = 0;
 
-        // ÇöÀç À§Ä¡¿¡¼­ Å¸°Ù±îÁöÀÇ ¹æÇâ °è»ê
-        Vector3 directionToTarget = agent.steeringTarget - transform.position;
-        directionToTarget.y = 0; // YÃà ÀÌµ¿Àº ¹«½Ã (XZ Æò¸é¿¡¼­¸¸ ÀÌµ¿)
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-        // ÇöÀç ¼Óµµ¸¦ °¡¼Óµµ¿¡ ¸ÂÃç Áõ°¡
-        if (currentSpeed < moveSpeed)
-        {
-            currentSpeed += acceleration * Time.deltaTime;
-        }
-
-        // ÀÌµ¿ Ã³¸® (ÀÚ½ÅÀÌ ¹Ù¶óº¸´Â ¹æÇâÀ¸·Î¸¸ ÀÌµ¿)
-        if (currentSpeed >= 1f)
-        {
-            // Å¸°Ù ¹æÇâÀ¸·Î ÀÚµ¿Â÷°¡ ºÎµå·´°Ô È¸ÀüÇÏµµ·Ï Ã³¸®
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
-            // È¸Àü °¢µµ Á¦ÇÑ (ÃÖ´ë °¢µµ Á¦ÇÑ Àû¿ë)
-            targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
-
-            // ¼Óµµ¿¡ µû¸¥ È¸Àü ¼Óµµ Á¶Á¤
-            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, currentSpeed / moveSpeed);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
-        }
+        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
     }
 
-    void MoveReverse()
+    private void MoveReverse()
     {
-        // ÈÄÁø Å¸ÀÌ¸Ó °ü¸®
         if (reverseTimer < reverseTime)
         {
-                
-            // ÇöÀç À§Ä¡¿¡¼­ ¸ñÀûÁö±îÁöÀÇ ¹æÇâ °è»ê
             Vector3 direction = TargetPosSameYPos() - transform.position;
+            richAI.isStopped = false;
 
-            if (reverseSpeed >= 1f)
-            {
-                agent.speed = reverseSpeed;
-                // ÀÚµ¿Â÷ È¸Àü Ã³¸® (¼Óµµ¿¡ ºñ·ÊÇÏ¿© ºÎµå·´°Ô È¸Àü)
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-                // ÇöÀç È¸Àü °¢µµ¸¦ Á¦ÇÑ (ÃÖ´ë °¢µµ Á¦ÇÑ Àû¿ë)
-                targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
+            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
 
-                float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, reverseSpeed / moveSpeed); // ¼Óµµ¿¡ µû¸¥ È¸Àü ¼Óµµ Á¶Á¤
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
-            }
-
-            // ÈÄÁø ¹æÇâ (NavMeshAgent¸¦ »ç¿ëÇÏ¿© ÈÄÁø)
-            Vector3 reverseDirection = -transform.forward;
-            Vector3 reverseTarget = transform.position + reverseDirection * 5f; // ÈÄÁøÇÒ ÁöÁ¡ °è»ê
-
-            // ÈÄÁø ¸ñÀûÁö ¼³Á¤
-            agent.SetDestination(reverseTarget);
-
-            reverseSpeed = Mathf.Min(reverseSpeed + reverseAcceleration * Time.deltaTime, maxReverseSpeed);
-
-            // ÈÄÁø ½Ã°£ Ä«¿îÆ®
+            aiDestinationSetter.target = backPos;
             reverseTimer += Time.deltaTime;
         }
         else
         {
-            // ÈÄÁø Á¾·á ÈÄ ÃÊ±âÈ­
-            isReversing = false;
-            isStoppedAfterCollision = false;
-            reverseTimer = 0f;
-            reverseSpeed = 0f;
-            agent.speed = moveSpeed; // ¼Óµµ¸¦ ¿ø·¡´ë·Î º¹¿ø
+            ResetAfterReverse();
         }
     }
 
-    // ÃÖ´ë È¸Àü °¢µµ Á¦ÇÑ ÇÔ¼ö
-    Quaternion LimitRotation(Quaternion currentRotation, Quaternion targetRotation, float maxAngle)
+    private void ResetAfterReverse()
     {
-        // ÇöÀç È¸Àü°ú ¸ñÇ¥ È¸Àü »çÀÌÀÇ °¢µµ¸¦ °è»ê
+        isReversing = false;
+        reverseTimer = 0f;
+
+        richAI.maxSpeed = moveSpeed;
+        richAI.acceleration = acceleration;
+    }
+
+    private Quaternion LimitRotation(Quaternion currentRotation, Quaternion targetRotation, float maxAngle)
+    {
         float angle = Quaternion.Angle(currentRotation, targetRotation);
-
-        // ÃÖ´ë °¢µµ¸¦ ÃÊ°úÇÒ °æ¿ì °¢µµ¸¦ Á¦ÇÑ
         if (angle > maxAngle)
-        {
             return Quaternion.RotateTowards(currentRotation, targetRotation, maxAngle);
-        }
-
-        // °¢µµ°¡ ÃÖ´ë °¢µµ ÀÌ³»¶ó¸é ±×´ë·Î ¹İÈ¯
         return targetRotation;
     }
 
-
-    // Ãæµ¹ ÈÄ ¸ØÃã, ÈÄÁø, Àç°³ÇÏ´Â ÄÚ·çÆ¾
-    IEnumerator HandleCollision()
+    private IEnumerator HandleCollision()
     {
-      
+        richAI.isStopped = true;
+        richAI.maxSpeed = 0f;
 
-        isStoppedAfterCollision = true;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        //rb.isKinematic = true;
 
-        if (agent != null)
-        {
-
-            agent.nextPosition = transform.position;// À§Ä¡ ÃÊ±âÈ­
-
-            if (currentSpeed < 5)
-            {
-                agent.isStopped = true;
-            }
-
-            currentSpeed = 0f;
-            agent.speed = currentSpeed;
-        }
-            // Ãæµ¹ ÈÄ Àá½Ã ¸ØÃã
         yield return new WaitForSeconds(stopDuration);
 
-        if (agent != null && agent.isOnNavMesh)
-        {
+        richAI.maxSpeed = maxReverseSpeed;
+        richAI.acceleration = reverseAcceleration;
+        //rb.isKinematic = false;
 
-            agent.isStopped = false;
-        }
-
-        // ÈÄÁø ·ÎÁ÷
         isReversing = true;
     }
 
-    // Ãæµ¹ ÀÌº¥Æ® Ã³¸®
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("NPC"))
+        if (/*!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("NPC")*/ collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(HandleCollision());
+            // ì´ì „ì— ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì´ ìˆìœ¼ë©´ ì •ì§€
+            if (collisionCoroutine != null)
+                StopCoroutine(collisionCoroutine);
+
+            // ìƒˆë¡œìš´ ì½”ë£¨í‹´ ì‹œì‘
+            collisionCoroutine = StartCoroutine(HandleCollision());
         }
     }
 }
