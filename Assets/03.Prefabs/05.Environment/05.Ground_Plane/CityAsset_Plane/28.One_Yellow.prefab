@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5234877255299102350}
   m_Layer: 0
   m_Name: 28.One_Yellow
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 194432, guid: b4cc425e716f03b4aa786c3a32e9459c, type: 3}
       propertyPath: m_Name
       value: 25.One_Yellow (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 194432, guid: b4cc425e716f03b4aa786c3a32e9459c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 447506, guid: b4cc425e716f03b4aa786c3a32e9459c, type: 3}
       propertyPath: m_LocalPosition.x

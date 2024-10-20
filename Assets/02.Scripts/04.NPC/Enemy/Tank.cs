@@ -73,7 +73,7 @@ public class Tank : NPCBase
 
         if (distanceToPlayer < attackRange)
         {
-            agent.isStopped = true;
+           richAI.isStopped = true;
 
             if (coroutine != null)
             {
@@ -95,7 +95,7 @@ public class Tank : NPCBase
     // 몸체 회전 메커니즘
     void RotateBodyTowardsPlayer()
     {
-        agent.updateRotation = false;
+        richAI.updateRotation = false;
 
         Vector3 directionToPlayer = TargetGroundPos() - transform.position; // 타겟과의 방향 계산
         directionToPlayer.y = 0; // 몸체는 수평 회전만 하므로 Y축 값은 무시
@@ -171,12 +171,12 @@ public class Tank : NPCBase
         // 현재 타겟과 너무 가깝다면 거리를 벌림
         if (distanceToPlayer < desiredMinDistance)
         {
-            agent.isStopped = false;
+            richAI.isStopped = false;
             // 타겟 반대 방향으로 이동
             Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
 
-            agent.SetDestination(movePosition);  // 타겟 반대 방향으로 이동
+            aiDestinationSetter.target.position = movePosition;  // 타겟 반대 방향으로 이동
         }
     }
 
@@ -214,8 +214,8 @@ public class Tank : NPCBase
 
         if (distanceToPlayer >= attackRange)
         {
-            agent.isStopped = false;
-            agent.updateRotation = true;
+            richAI.isStopped = false;
+            richAI.updateRotation = true;
 
         }
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315231227468914399}
   - component: {fileID: 1879753460381355348}
+  - component: {fileID: 8666483209874006708}
   m_Layer: 0
   m_Name: Building_11
   m_TagString: Untagged
@@ -49,6 +50,34 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &8666483209874006708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154747627501061037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1.62, y: 1.65}
+  circleRadius: 1
+  circleResolution: 6
+  height: 2.24
+  meshScale: 1
+  center: {x: 0, y: 1.06, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!1 &5402028255539066080
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +90,6 @@ GameObject:
   - component: {fileID: 8508380696869872127}
   - component: {fileID: 5906225049931142453}
   - component: {fileID: 2191295217942688905}
-  - component: {fileID: 843668277435739799}
   m_Layer: 0
   m_Name: building06
   m_TagString: Untagged
@@ -155,19 +183,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4149847, y: 2.2536962, z: 1.6044867}
   m_Center: {x: 0.037884817, y: 1.1268461, z: -0.009548212}
---- !u!208 &843668277435739799
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5402028255539066080}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.707, y: 1.1270001, z: 0.80200005}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.038000003, y: 1.1270001, z: -0.010000001}
-  m_TimeToStationary: 0.5

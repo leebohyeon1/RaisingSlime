@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8222667570052961665}
   - component: {fileID: 6194771514612605259}
   - component: {fileID: 7075261238348332186}
-  - component: {fileID: 4655034260651776527}
   m_Layer: 0
   m_Name: building03
   m_TagString: Untagged
@@ -106,22 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4577571, y: 1.5014328, z: 2.4776714}
   m_Center: {x: -0.11766812, y: 0.1206519, z: 1.238835}
---- !u!208 &4655034260651776527
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690513286636683422}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.625, y: 0.75100005, z: 1.2390001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.11800001, y: 0.12100001, z: 1.2390001}
-  m_TimeToStationary: 0.5
 --- !u!1 &5961538831017026750
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946765585311576544}
   - component: {fileID: 5357144792889719151}
+  - component: {fileID: 8127095232007182697}
   m_Layer: 0
   m_Name: Building_07
   m_TagString: Untagged
@@ -171,3 +155,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &8127095232007182697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5961538831017026750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 7.8, y: 7.96}
+  circleRadius: 1
+  circleResolution: 6
+  height: 12.22
+  meshScale: 1
+  center: {x: -0.65, y: 6.08, z: -0.56}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

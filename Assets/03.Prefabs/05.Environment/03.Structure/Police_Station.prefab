@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 635908352190908198}
   - component: {fileID: 4574787317457488003}
   - component: {fileID: 1772201201234148425}
-  - component: {fileID: 8782617918829516698}
   - component: {fileID: 8059938118340505406}
   m_Layer: 0
   m_Name: police_building
@@ -85,22 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &8782617918829516698
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259207574492765596}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.865, y: 0.755, z: 1.1880001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.04, y: 0, z: 1.1880001}
-  m_TimeToStationary: 0.5
 --- !u!65 &8059938118340505406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7118085970102809337}
   - component: {fileID: 7759606489182350736}
+  - component: {fileID: 381221588455945388}
   m_Layer: 0
   m_Name: Police_Station
   m_TagString: Untagged
@@ -171,3 +155,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &381221588455945388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206085123642667827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1.78, y: 1.71}
+  circleRadius: 1
+  circleResolution: 6
+  height: 9.11
+  meshScale: 1
+  center: {x: -0.1, y: 1.11, z: 0.03}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

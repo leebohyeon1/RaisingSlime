@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2556676788522712367}
   m_Layer: 0
   m_Name: 35.Turn_HRoad
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 124612, guid: 79f9294c4f0cab847b6ce5181a5c51ba, type: 3}
       propertyPath: m_Name
       value: 33.Turn_HRoad (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124612, guid: 79f9294c4f0cab847b6ce5181a5c51ba, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 412080, guid: 79f9294c4f0cab847b6ce5181a5c51ba, type: 3}
       propertyPath: m_LocalPosition.x

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3273287144833464414}
   m_Layer: 0
   m_Name: 32.Car_Yellow
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 182272, guid: a6b6ceb962354e64293f28af61127382, type: 3}
       propertyPath: m_Name
       value: 29.Car_Yellow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 182272, guid: a6b6ceb962354e64293f28af61127382, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 459228, guid: a6b6ceb962354e64293f28af61127382, type: 3}
       propertyPath: m_LocalPosition.x
