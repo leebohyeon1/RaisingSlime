@@ -483,8 +483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 20
-  collisionDamage: 0.01
+  moveSpeed: 12
+  collisionDamage: 0.33
   isExplosion: 0
   acceleration: 10
   reverseAcceleration: 5
