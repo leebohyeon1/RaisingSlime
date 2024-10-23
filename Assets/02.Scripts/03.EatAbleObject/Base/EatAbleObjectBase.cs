@@ -94,7 +94,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
         transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
 
-        if (transform.localScale.magnitude < 0.1f)
+        if (transform.localScale.x < 0.1f)
         {
             Destroy(gameObject);
         }
