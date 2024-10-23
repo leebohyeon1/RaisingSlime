@@ -36,8 +36,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private GameObject goldPrefab;
 
     private List<GameObject> currentCitizenList = new List<GameObject>(); // 현재 게임 내 시민 리스트
-    private HashSet<GameObject> currentStepEnemies = new HashSet<GameObject>();
-    private HashSet<GameObject> beforeStepEnemies = new HashSet<GameObject>();
+    private List<GameObject> currentStepEnemies = new List<GameObject>();
+    private List<GameObject> beforeStepEnemies = new List<GameObject>();
 
     private Queue<GameObject> goldPool = new Queue<GameObject>(); // 골드 오브젝트 풀
     private List<GameObject> activeGoldList = new List<GameObject>(); // 활성화된 골드 리스트
@@ -229,10 +229,14 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         {
             enemyComponent.OnDestroyed += () =>
             {
-                RemoveEnemyFromList(newEnemy);
-                if (!beforeStepEnemies.Contains(newEnemy) && !isSceneClosing)
+                //RemoveEnemyFromList(newEnemy);
+                if (!beforeStepEnemies.Contains(newEnemy) && !isSceneClosing && Application.isPlaying)
                 {
-                    SpawnEnemy(enemyPrefab);
+                    // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
+                        SpawnEnemy(enemyPrefab); // 다시 스폰 (현재 스텝의 적만)
+
+                        // 적이 파괴되었을 때 리스트에서 제거
+                        RemoveEnemyFromList(newEnemy);
                 }
                 enemyComponent.OnDestroyed -= null; // Remove listener to avoid leaks
             };
@@ -314,7 +318,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
                 citizenComponent.OnDestroyed += () =>
                 {
                     // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
-                    if (this != null && newCitizen != null && !isSceneClosing)
+                    if (this != null && newCitizen != null && !isSceneClosing && Application.isPlaying)
                     {
                         SpawnCitizens(); // 시민이 사라지면 다시 스폰
 
@@ -342,10 +346,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     {
         foreach (GameObject citizen in currentCitizenList)
         {
-            if (citizen != null)
-            {
-                DestroyImmediate(citizen);
-            }
+
+            DestroyImmediate(citizen);
         }
         currentCitizenList.Clear();
     }

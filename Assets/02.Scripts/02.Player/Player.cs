@@ -225,6 +225,16 @@ public class Player : MonoBehaviour, IUpdateable
 
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        // 흡수할 수 있는 오브젝트와 충돌했는지 확인
+        if (collider.GetComponentInParent<EatAbleObjectBase>())
+        {
+            CompareSize(collider.gameObject);
+        }
+
+    }
+
     void OnDestroy()
     {
         GameLogicManager.Instance.DeregisterUpdatableObject(this);

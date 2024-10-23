@@ -98,6 +98,9 @@ public class PoliceCar : NPCBase
 
         richAI.maxSpeed = moveSpeed;
         richAI.acceleration = acceleration;
+
+        richAI.isStopped = false; // 이동 재개
+        aiDestinationSetter.target = target; // 타겟을 원래 목표로 다시 설정
     }
 
     private Quaternion LimitRotation(Quaternion currentRotation, Quaternion targetRotation, float maxAngle)

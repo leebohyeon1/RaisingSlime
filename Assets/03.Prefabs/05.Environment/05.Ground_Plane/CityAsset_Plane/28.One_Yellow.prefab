@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5234877255299102350}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 28.One_Yellow
   m_TagString: Ground
   m_Icon: {fileID: 0}

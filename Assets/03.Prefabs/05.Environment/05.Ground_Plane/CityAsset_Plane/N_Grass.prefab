@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6814695364292364168}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: N_Grass
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 195558, guid: 86b402fc7d407fb40999979d86929148, type: 3}
       propertyPath: m_Name
       value: SM_Env_Grass_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 195558, guid: 86b402fc7d407fb40999979d86929148, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 412702, guid: 86b402fc7d407fb40999979d86929148, type: 3}
       propertyPath: m_LocalPosition.x
