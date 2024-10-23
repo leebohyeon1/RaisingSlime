@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 5643973057591687811}
   - component: {fileID: 4534830060649396622}
   - component: {fileID: 6128874370273372432}
+  - component: {fileID: 2560593947134266333}
   m_Layer: 0
   m_Name: SM_Env_Tree_04 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4495774162079762412
 Transform:
   m_ObjectHideFlags: 0
@@ -158,3 +159,19 @@ MonoBehaviour:
   cutsAddedGeom: 1
   updateRotationDistance: 10
   useRotationAndScale: 1
+--- !u!114 &2560593947134266333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147306430752033779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 6
+  slimeIncreaseSize: 0.07
+  plusScore: 45
+  shrinkSpeed: 0.5
