@@ -39,7 +39,7 @@ public class OptionManager : MonoBehaviour
             DestroyImmediate(gameObject);
         }
 
-        LoadSoundSettings();
+       
     }
 
     private void Start()
@@ -53,7 +53,8 @@ public class OptionManager : MonoBehaviour
         sfxButtons[0].onClick.AddListener(() => SetSfxVolume(0)); // 볼륨 증가
         sfxButtons[1].onClick.AddListener(() => SetSfxVolume(1)); // 볼륨 감소
         sfxButtons[2].onClick.AddListener(() => ToggleSfxMute()); // 음소거 토글
-
+       
+        LoadSoundSettings();
     }
 
     public void ExitOption()
