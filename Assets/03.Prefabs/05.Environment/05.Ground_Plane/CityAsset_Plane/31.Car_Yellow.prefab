@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4059106947885204538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 31.Car_Yellow
   m_TagString: Ground
   m_Icon: {fileID: 0}

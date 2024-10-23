@@ -23,7 +23,7 @@ public class Gold : EatAbleObjectBase
     {
         transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
 
-        if (transform.localScale.x < 0.1f)
+        if (transform.localScale.x < 0.2f)
         {
             isGetEaten = !isGetEaten;
             transform.SetParent(null); // 부모를 없앰  
@@ -34,7 +34,12 @@ public class Gold : EatAbleObjectBase
     private void OnEnable() // 활성화 시 스케일 변경
     {
         transform.localScale = DefaultSize;
-        GetComponent<Collider>().enabled = true;
+        Collider[] colliders = GetComponents<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = true;
+        }
 
         if(!GetComponent<Rigidbody>())
         {
