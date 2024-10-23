@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
+  size: 3
+  slimeIncreaseSize: 0.06
+  plusScore: 20
   shrinkSpeed: 0.5
 --- !u!114 &8629316523189157754
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   rectangleSize: {x: 1, y: 1}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 5
   meshScale: 1
   center: {x: 0, y: 0, z: 0}
   updateDistance: 0.4

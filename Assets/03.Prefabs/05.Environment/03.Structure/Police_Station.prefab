@@ -151,9 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 9
-  slimeIncreaseSize: 0
-  plusScore: 0
+  size: 10
+  slimeIncreaseSize: 0.2
+  plusScore: 180
   shrinkSpeed: 0.5
 --- !u!114 &381221588455945388
 MonoBehaviour:

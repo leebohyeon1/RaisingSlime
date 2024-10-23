@@ -606,8 +606,8 @@ MonoBehaviour:
   moveSpeed: 7
   collisionDamage: 0.5
   isExplosion: 0
-  attackSpeed: 0.3
-  attackRange: 30
+  attackSpeed: 0.4
+  attackRange: 25
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
   bulletSpeed: 20
@@ -618,7 +618,7 @@ MonoBehaviour:
   bodyRotationSpeed: 3
   turretRotationSpeed: 360
   explosionForce: 25
-  explosionRadius: 10
+  explosionRadius: 8
   upwardsModifier: 8
   explosionLayerMask:
     serializedVersion: 2
