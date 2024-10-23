@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3319584}
   - component: {fileID: 2373654}
   - component: {fileID: 64116248805216050}
-  - component: {fileID: 3564011431902856341}
   - component: {fileID: 6035238898650327705}
+  - component: {fileID: 5875299697771965611}
   m_Layer: 0
   m_Name: SM_Env_Bush_03
   m_TagString: Untagged
@@ -108,22 +108,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43459285938617400, guid: 129571983e7fd1b4ba968b3bd1fd38c0, type: 2}
---- !u!208 &3564011431902856341
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105966}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.53900003, y: 0.762, z: 0.53900003}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.762, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &6035238898650327705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,3 +124,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 2
   shrinkSpeed: 0.5
+--- !u!114 &5875299697771965611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

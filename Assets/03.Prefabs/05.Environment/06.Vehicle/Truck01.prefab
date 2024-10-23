@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728119079783714113}
   - component: {fileID: 5771669852601537979}
+  - component: {fileID: 5719736672285453904}
   m_Layer: 0
   m_Name: Truck01
   m_TagString: Untagged
@@ -171,3 +172,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &5719736672285453904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200831984323087693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
