@@ -22,9 +22,6 @@ public class OptionManager : MonoBehaviour
     private bool isBgmMuted = false;
     private bool isSfxMuted = false;
 
-    private float previousBgmVolume = 1f;
-    private float previousSfxVolume = 1f;
-
     private void Awake()
     {
         if (Instance == null)
