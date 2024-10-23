@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8478803867694230912}
   - component: {fileID: 6438584383118028926}
   - component: {fileID: 3500847834487554575}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4550735577692307683}
   - component: {fileID: 1421443276357889238}
   - component: {fileID: 4649096995132797824}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1310443852593824371}
   - component: {fileID: 3299410934956616330}
   - component: {fileID: 8234931099226810090}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: warning light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,13 +290,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3682333674124909245}
   - component: {fileID: 3565295280463595496}
-  - component: {fileID: 1885778711345233115}
   - component: {fileID: 3747349464548623075}
-  - component: {fileID: 833691510085081689}
-  - component: {fileID: 6362968781018145620}
   - component: {fileID: 7509347923171235121}
-  - component: {fileID: 5177984016599408842}
-  m_Layer: 6
+  - component: {fileID: 5116276967485552816}
+  m_Layer: 0
   m_Name: PoliceCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +310,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3, y: 3.3, z: 3.3}
+  m_LocalScale: {x: 3.3000002, y: 3.3, z: 3.3000002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8478803867694230912}
@@ -343,33 +340,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.66, y: 0.5, z: 1.27}
   m_Center: {x: 0, y: 0.25, z: 0}
---- !u!54 &1885778711345233115
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666596170609220289}
-  serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &3747349464548623075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,62 +368,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &833691510085081689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666596170609220289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce11ea984e202491d9271f53021d8b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
-  radius: 0.5
-  height: 0.46
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 319
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 0
-  enableRotation: 0
-  autoRepath:
-    mode: 2
-    period: 0.5
-    sensitivity: 10
-    maximumPeriod: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  acceleration: 5
-  rotationSpeed: 360
-  slowdownTime: 0
-  endReachedDistance: 0.01
-  wallForce: 3
-  wallDist: 1
-  funnelSimplification: 0
-  slowWhenNotFacingTarget: 0
-  animCompatibility: {fileID: 0}
---- !u!114 &6362968781018145620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666596170609220289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 0}
 --- !u!114 &7509347923171235121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +384,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.24
   plusScore: 70
   shrinkSpeed: 0.2
---- !u!114 &5177984016599408842
+--- !u!114 &5116276967485552816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,18 +393,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6666596170609220289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9eb374648db90c4890e81e53e8f46d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemy: 1
-  moveSpeed: 12
-  collisionDamage: 0.33
-  isExplosion: 0
-  acceleration: 10
-  reverseAcceleration: 5
-  maxReverseSpeed: 10
-  turnSpeed: 2
-  maxTurnAngle: 40
-  reverseTime: 2
-  stopDuration: 1
-  backPos: {fileID: 742947624987463411}
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
