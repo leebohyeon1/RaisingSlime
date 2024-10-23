@@ -227,13 +227,13 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     public void RetryBtn()  // 게임 재시작
     {
-        LoadingScene.LoadScene("02.GameScene");
-        //SceneManager.LoadScene("02.GameScene");
+        //LoadingScene.LoadScene("02.GameScene");
+        SceneManager.LoadScene("02.GameScene");
     }
 
     public void ExitBtn()   // 메인화면으로 돌아감
     {
-        LoadingScene.LoadScene("01.MainScene");
+        SceneManager.LoadScene("01.MainScene");
 
         Time.timeScale = 1.0f;
     }
