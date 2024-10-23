@@ -346,8 +346,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2487515245273219049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 12.5, y: 0}
   m_SizeDelta: {x: 21, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -422,7 +422,7 @@ RectTransform:
   m_Father: {fileID: 6774846768875554625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.067993, y: 0}
   m_SizeDelta: {x: -12.1359, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -498,7 +498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 72}
+  m_AnchoredPosition: {x: 0, y: -79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2729511457571729623
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 7521076330704229521}
   m_HandleRect: {fileID: 6176103960760966972}
@@ -897,7 +897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -79}
+  m_AnchoredPosition: {x: 0, y: 72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3976311856066971716
@@ -1319,8 +1319,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6373068604783637813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 12.5, y: 0}
   m_SizeDelta: {x: 21, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -1517,6 +1517,17 @@ MonoBehaviour:
   option: {fileID: 358500152419859682}
   optionUI: {fileID: 8030317704279487155}
   exitBtn: {fileID: 8000916614807331394}
+  soundSliders:
+  - {fileID: 1062442255979222256}
+  - {fileID: 9056778211224214299}
+  bgmButtons:
+  - {fileID: 3886804481542090567}
+  - {fileID: 7398489207765959133}
+  - {fileID: 7922853380080841481}
+  sfxButtons:
+  - {fileID: 1248241837672020852}
+  - {fileID: 1468249588668206103}
+  - {fileID: 8603583978177950067}
 --- !u!1 &7632581911128602542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1728,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 3748236985903989623}
   m_HandleRect: {fileID: 7764380948244062046}
@@ -1762,7 +1773,7 @@ RectTransform:
   m_Father: {fileID: 7928233112702301025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.067993, y: 0}
   m_SizeDelta: {x: -12.1359, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
