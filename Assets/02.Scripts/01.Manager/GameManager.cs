@@ -324,15 +324,3 @@ public class GameManager : MonoBehaviour, IUpdateable
     }
 }
 
-[System.Serializable]
-public class GameData
-{
-    public uint money;
-    public uint score;
-
-    public GameData(uint money, uint score)
-    {
-        this.money = money;
-        this.score = score;
-    }
-}

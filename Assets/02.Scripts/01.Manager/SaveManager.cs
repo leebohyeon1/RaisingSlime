@@ -43,9 +43,45 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            GameData data = new GameData(0, 0);
+            // 기본값을 가진 새로운 GameData 생성
+            GameData data = new GameData();
             SavePlayerData(data);
             return data;
         }
     }
+}
+
+[System.Serializable]
+public class GameData
+{
+    public uint money;
+    public uint score;
+
+    public float bgmVolume;
+    public float sfxVolume;
+    public bool isBgmMuted;
+    public bool isSfxMuted;
+
+    // 기본 생성자 (매개변수가 없는 경우)
+    public GameData()
+    {
+        // 기본값 설정
+        this.money = 0;
+        this.score = 0;
+        this.bgmVolume = 1f; // 최대 볼륨
+        this.sfxVolume = 1f;
+        this.isBgmMuted = false;
+        this.isSfxMuted = false;
+    }
+
+    // 모든 매개변수를 받는 생성자
+    public GameData(uint money, uint score, float bgmVolume, float sfxVolume, bool isBgmMuted, bool isSfxMuted)
+    {
+        this.money = money;
+        this.score = score;
+        this.bgmVolume = bgmVolume;
+        this.sfxVolume = sfxVolume;
+        this.isBgmMuted = isBgmMuted;
+        this.isSfxMuted = isSfxMuted;
+    }  
 }
