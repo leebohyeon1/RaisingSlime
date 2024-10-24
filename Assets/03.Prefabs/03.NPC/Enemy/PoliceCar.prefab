@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 7509347923171235121}
   - component: {fileID: 7114991749714002741}
   - component: {fileID: 7477654641987695381}
+  - component: {fileID: 6259554534912169416}
   m_Layer: 0
   m_Name: PoliceCar
   m_TagString: Untagged
@@ -312,7 +313,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3000002, y: 3.3, z: 3.3000002}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8478803867694230912}
@@ -396,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3.3
+  size: 4
   slimeIncreaseSize: 0.24
   plusScore: 70
   shrinkSpeed: 0.2
@@ -413,8 +414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.5
-  height: 2
+  radius: 0.68
+  height: 0.57
   canMove: 1
   maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
@@ -427,7 +428,7 @@ MonoBehaviour:
   orientation: 0
   enableRotation: 1
   autoRepath:
-    mode: 1
+    mode: 2
     period: 0.5
     sensitivity: 10
     maximumPeriod: 2
@@ -435,8 +436,8 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   acceleration: 5
   rotationSpeed: 360
-  slowdownTime: 0.5
-  endReachedDistance: 0.01
+  slowdownTime: 0
+  endReachedDistance: 0
   wallForce: 3
   wallDist: 1
   funnelSimplification: 0
@@ -455,14 +456,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 4
-  collisionDamage: 1
+  moveSpeed: 20
+  collisionDamage: 0.5
   isExplosion: 0
-  acceleration: 5
+  acceleration: 8
   reverseAcceleration: 2
   maxReverseSpeed: 2
-  turnSpeed: 2
+  turnSpeed: 3
   maxTurnAngle: 45
-  reverseTime: 1
-  stopDuration: 1
+  reverseTime: 2
+  stopDuration: 2
   backPos: {fileID: 742947624987463411}
+--- !u!114 &6259554534912169416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666596170609220289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radiusBackingField: 0.5
+  heightBackingField: 2
+  centerBackingField: 1
+  locked: 0
+  lockWhenNotMoving: 0
+  agentTimeHorizon: 2
+  obstacleTimeHorizon: 2
+  maxNeighbours: 10
+  layer: 1
+  collidesWith: -1
+  wallAvoidForce: 1
+  wallAvoidFalloff: 1
+  priority: 0.5
+  debug: 0
