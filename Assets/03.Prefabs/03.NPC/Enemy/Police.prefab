@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1.7
+  size: 1.6
   slimeIncreaseSize: 0.12
   plusScore: 40
   shrinkSpeed: 0.2
@@ -276,7 +276,7 @@ MonoBehaviour:
   orientation: 0
   enableRotation: 1
   autoRepath:
-    mode: 1
+    mode: 2
     period: 0.5
     sensitivity: 10
     maximumPeriod: 2
@@ -284,8 +284,8 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   acceleration: 5
   rotationSpeed: 360
-  slowdownTime: 0.5
-  endReachedDistance: 0.01
+  slowdownTime: 0
+  endReachedDistance: 0
   wallForce: 3
   wallDist: 1
   funnelSimplification: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 13
+  moveSpeed: 11
   collisionDamage: 0.25
   isExplosion: 0
   baton: {fileID: 8293726850677696524}
