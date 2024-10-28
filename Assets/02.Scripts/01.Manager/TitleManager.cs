@@ -23,7 +23,7 @@ public class TitleManager : MonoBehaviour
     {
         if ( titleUI.activeSelf && InputManager.Instance.anyKeyInput)
         {
-            SceneManager.LoadScene(1); // 메인 씬으로 이동
+            SceneManager.LoadScene(2); // 메인 씬으로 이동
         }
     }
 }

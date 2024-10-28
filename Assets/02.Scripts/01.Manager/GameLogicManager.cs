@@ -2,28 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameLogicManager : MonoBehaviour
+public class GameLogicManager : Singleton<GameLogicManager>
 {
-    public static GameLogicManager Instance { get; private set; }
-
     List<IUpdateable> _updateableObjects = new List<IUpdateable>();
 
-    private void Awake()
+    protected override void Awake()
     {
-        // 싱글턴 선언
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+        base.Awake();
     }
 
-    void Update()
+    protected override void Start()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    protected override void Update()
     {
         // 리스트의 모든 업데이트 실행
         float dt = Time.deltaTime;

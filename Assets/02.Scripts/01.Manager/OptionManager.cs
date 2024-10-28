@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionManager : MonoBehaviour
+public class OptionManager : Singleton<OptionManager>
 {
-    public static OptionManager Instance { get; private set; } // 싱글턴 선언
-
     [SerializeField] private GameObject option;
     [SerializeField] private GameObject optionUI;
     [SerializeField] private GameObject exitBtn;
@@ -22,27 +20,18 @@ public class OptionManager : MonoBehaviour
     private bool isBgmMuted = false;
     private bool isSfxMuted = false;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
+        base.Awake();
 
-            // RectTransform에서 처음 위치를 가져옴
-            optionOriginalPos = optionUI.GetComponent<RectTransform>().anchoredPosition;
-            btnOriginalPos = exitBtn.GetComponent<RectTransform>().anchoredPosition;
-
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+        // RectTransform에서 처음 위치를 가져옴
+        optionOriginalPos = optionUI.GetComponent<RectTransform>().anchoredPosition;
+        btnOriginalPos = exitBtn.GetComponent<RectTransform>().anchoredPosition;
 
        
     }
 
-    private void Start()
+    protected override void Start()
     {
         // BGM 버튼 이벤트 등록
         bgmButtons[0].onClick.AddListener(() => SetBgmVolume(0)); // 볼륨 증가

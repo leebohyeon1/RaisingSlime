@@ -4,11 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour, IUpdateable
+public class InputManager : Singleton<InputManager>, IUpdateable
 {
-    public static InputManager Instance { get; private set; } // 싱글턴 선언
-
-
     private PlayerInput playerInput; // 플레이어 InputSystem
 
     // 타이틀 씬 액션맵
@@ -24,25 +21,17 @@ public class InputManager : MonoBehaviour, IUpdateable
     public Vector2 moveInput { get; private set; } // 이동 벡터 값
     public bool jumpInput { get; private set; }    // 점프 값
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }  
-    }
+        base.Awake();
 
-    private void Start()
-    {
         playerInput = GetComponent<PlayerInput>();
 
         SetUpInputActions();
+    }
 
+    protected override void Start()
+    {
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
@@ -77,8 +66,10 @@ public class InputManager : MonoBehaviour, IUpdateable
         }
     }
 
-    void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
         GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 }

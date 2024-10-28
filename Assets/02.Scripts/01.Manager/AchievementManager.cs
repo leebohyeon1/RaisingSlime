@@ -24,30 +24,14 @@ public class Achievement
     }
 }
 
-public class AchievementManager : MonoBehaviour
+public class AchievementManager : Singleton<AchievementManager>
 {
-    public static AchievementManager Instance { get; private set; }
-
     public string filePath = "Assets/11.Achievement/Achievement.csv"; // CSV 파일 경로
     [LabelText("도전 과제")]
     public List<Achievement> achievements = new List<Achievement>();
 
- 
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start()
+    protected override void Start()
     {
         LoadAchievementsFromCSV();
     }

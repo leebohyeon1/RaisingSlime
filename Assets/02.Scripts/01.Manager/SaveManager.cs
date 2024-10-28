@@ -3,22 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO; 
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : Singleton<SaveManager>
 {
-    public static SaveManager Instance { get; private set; }
-
-    private void Awake()
+    protected override void Awake()
     {
-        // ½Ì±ÛÅÏ ¼±¾ð
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+        base.Awake();
     }
 
     public void SavePlayerData(GameData data)

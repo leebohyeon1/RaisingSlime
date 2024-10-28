@@ -84,7 +84,7 @@ public class MainManager : MonoBehaviour
         rectTransform.DOShakeAnchorPos(0.5f, new Vector3(0f, 10f, 0f), 8, 0, false, true)
         .OnComplete(() =>
         {
-            LoadingScene.LoadScene("02.GameScene");
+            LoadingScene.LoadScene("03.GameScene");
 
         });
     }

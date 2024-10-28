@@ -2,10 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance { get; private set; }
-
     [Header("BGM Settings")]
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private List<AudioClip> bgmClips;
@@ -20,21 +18,13 @@ public class AudioManager : MonoBehaviour
     private bool isBgmMuted = false;
     private bool isSfxMuted = false;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+        base.Awake();
 
-            InitializeAudioSources();
+        InitializeAudioSources();
 
-            InitializeAudioClips();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        InitializeAudioClips();
     }
 
     private void InitializeAudioSources()
