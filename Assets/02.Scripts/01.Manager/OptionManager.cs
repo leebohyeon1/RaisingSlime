@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionManager : Singleton<OptionManager>
@@ -27,8 +28,6 @@ public class OptionManager : Singleton<OptionManager>
         // RectTransform에서 처음 위치를 가져옴
         optionOriginalPos = optionUI.GetComponent<RectTransform>().anchoredPosition;
         btnOriginalPos = exitBtn.GetComponent<RectTransform>().anchoredPosition;
-
-       
     }
 
     protected override void Start()
@@ -44,6 +43,9 @@ public class OptionManager : Singleton<OptionManager>
         sfxButtons[2].onClick.AddListener(() => ToggleSfxMute()); // 음소거 토글
        
         LoadSoundSettings();
+
+        // 씬 로드 이벤트에 메서드 등록
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void ExitOption()
@@ -215,5 +217,20 @@ public class OptionManager : Singleton<OptionManager>
 
         // 데이터 저장
         SaveManager.Instance.SavePlayerData(data);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 씬이 로드될 때 option을 비활성화
+        if (option != null && option.activeSelf)
+        {
+            option.SetActive(false);
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

@@ -21,14 +21,21 @@ public class UFO : NPCBase
 
     protected override void Awake()
     {
-
+        eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
     }
 
     protected override void Start()
     {
-        base.Start();
+        if (target == null)
+        {
+            target = FindFirstObjectByType<Player>().transform;
+        }
+
 
         player = target.GetComponent<Player>();
+
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
     protected override void enemyAction()

@@ -13,11 +13,6 @@ public class GameLogicManager : Singleton<GameLogicManager>
         base.Awake();
     }
 
-    protected override void Start()
-    {
-        SceneManager.LoadScene(1);
-    }
-
     protected override void Update()
     {
         // 리스트의 모든 업데이트 실행
@@ -44,5 +39,10 @@ public class GameLogicManager : Singleton<GameLogicManager>
         {
             Instance._updateableObjects.Remove(obj);
         }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

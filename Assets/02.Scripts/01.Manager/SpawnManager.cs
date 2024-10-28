@@ -491,7 +491,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private void OnDestroy()
     {
         isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
-        GameLogicManager.Instance.DeregisterUpdatableObject(this);
+
 
         RemoveAllEnemy(); // 모든 적 제거
         RemoveAllCitizens(); // 모든 시민 제거
@@ -502,6 +502,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
         System.GC.Collect();  // 가비지 컬렉션 강제 실행
 
+        GameLogicManager.Instance.DeregisterUpdatableObject(this);
     }
 
     // 기즈모로 생성 범위를 시각적으로 표시
