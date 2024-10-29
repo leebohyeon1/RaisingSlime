@@ -237,7 +237,10 @@ public class Player : MonoBehaviour, IUpdateable
 
     void OnDestroy()
     {
-        GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        if (GameLogicManager.Instance != null)
+        {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        }
     }
     
 }

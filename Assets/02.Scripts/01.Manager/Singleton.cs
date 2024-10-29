@@ -49,9 +49,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         Create();
 
-        if (_instance != this)
+        if (_instance != this && _instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {

@@ -70,6 +70,9 @@ public class InputManager : Singleton<InputManager>, IUpdateable
     {
         base.OnDestroy();
 
-        GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        if (GameLogicManager.Instance != null)
+        {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        }
     }
 }

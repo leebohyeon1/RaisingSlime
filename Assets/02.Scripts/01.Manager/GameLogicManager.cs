@@ -11,6 +11,9 @@ public class GameLogicManager : Singleton<GameLogicManager>
     protected override void Awake()
     {
         base.Awake();
+
+        // 씬 로드 시 오브젝트 정리
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     protected override void Update()
@@ -41,8 +44,34 @@ public class GameLogicManager : Singleton<GameLogicManager>
         }
     }
 
+    // 씬이 언로드될 때 호출되는 메서드
+    private void OnSceneUnloaded(Scene scene)
+    {
+        // 모든 오브젝트 정리
+        _updateableObjects.Clear();
+    }
+
+    protected override void OnApplicationQuit()
+    {
+        // 씬 이벤트 해제
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+
+        // 리스트 정리
+        _updateableObjects.Clear();
+
+        System.GC.Collect();
+        base.OnApplicationQuit();
+    }
     protected override void OnDestroy()
     {
+        // 씬 이벤트 해제
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+
+        // 리스트 정리
+        _updateableObjects.Clear();
+
+        System.GC.Collect();
+        
         base.OnDestroy();
     }
 }

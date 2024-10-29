@@ -132,6 +132,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     protected virtual void OnDestroy()
     {
-        GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        if (GameLogicManager.Instance != null)
+        {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        }
     }
 }

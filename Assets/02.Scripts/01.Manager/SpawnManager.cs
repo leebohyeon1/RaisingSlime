@@ -56,6 +56,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -72,6 +73,35 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         SpawnCitizens(); // 시민 스폰 초기화
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+    }
+
+    // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
+    private void OnApplicationQuit()
+    {
+        isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
+        RemoveAllCitizens(); // 모든 시민 제거
+        RemoveAllEnemy(); // 모든 적 제거
+        RemoveAllGold();    //모든 골드 제거
+    }
+
+    private void OnDestroy()
+    {
+        isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
+
+        // GameLogicManager가 null이 아니고, 인스턴스가 존재할 때만 Deregister 호출
+        if (GameLogicManager.Instance != null)
+        {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        }
+
+        RemoveAllEnemy(); // 모든 적 제거
+        RemoveAllCitizens(); // 모든 시민 제거
+        RemoveAllGold();    //모든 골드 제거
+
+        AstarPath.active?.PausePathfinding();  // 경로 탐색 중지
+        AstarPath.active?.FlushGraphUpdates();  // 그래프 업데이트 비우기
+        Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
+        System.GC.Collect();  // 가비지 컬렉션 강제 실행
     }
 
     public virtual void OnUpdate(float dt)
@@ -479,31 +509,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         activeGoldList.Clear();
     }
     #endregion
-    // 씬이 닫힐 때 스폰을 중단하기 위해 플래그 설정
-    private void OnApplicationQuit()
-    {
-        isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
-        RemoveAllCitizens(); // 모든 시민 제거
-        RemoveAllEnemy(); // 모든 적 제거
-        RemoveAllGold();    //모든 골드 제거
-    }
 
-    private void OnDestroy()
-    {
-        isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
-
-
-        RemoveAllEnemy(); // 모든 적 제거
-        RemoveAllCitizens(); // 모든 시민 제거
-        RemoveAllGold();    //모든 골드 제거
-
-        AstarPath.active?.PausePathfinding();  // 경로 탐색 중지
-        AstarPath.active?.FlushGraphUpdates();  // 그래프 업데이트 비우기
-        Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
-        System.GC.Collect();  // 가비지 컬렉션 강제 실행
-
-        GameLogicManager.Instance.DeregisterUpdatableObject(this);
-    }
 
     // 기즈모로 생성 범위를 시각적으로 표시
     private void OnDrawGizmos()
