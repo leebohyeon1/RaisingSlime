@@ -13,6 +13,9 @@ public class Helicopter : NPCBase
     [TabGroup("헬리콥터", "이동"), LabelText("x축 최대 회전각도"), SerializeField, Range(5f, 45f)]
     private float maxXAngle = 35f;  // x축 최대 회전각도
 
+    [TabGroup("헬리콥터", "이동"), LabelText("뒤로가는 위치"), SerializeField]
+    private Transform backPos;
+
     [TabGroup("헬리콥터", "공격"), LabelText("공격 범위"), SerializeField, Range(5f, 20f)]
     private float attackRange = 10f;
 
@@ -46,8 +49,6 @@ public class Helicopter : NPCBase
 
     private bool isShooting = false; // 총알 발사 여부
 
-    [SerializeField]
-    private Transform backPos;
 
     protected override void Awake()
     {
