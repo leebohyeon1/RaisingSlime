@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
@@ -45,14 +46,15 @@ public class Helicopter : NPCBase
 
     private bool isShooting = false; // 총알 발사 여부
 
+    [SerializeField]
+    private Transform backPos;
+
     protected override void Awake()
     {
         base.Awake();
 
         richAI.updatePosition = false;
         richAI.updateRotation = false;
-
-     
     }
 
     protected override void Start()
@@ -63,6 +65,7 @@ public class Helicopter : NPCBase
         Vector3 startPos = transform.position;
         startPos.y = flyHeight;
         transform.position = startPos;
+ 
     }
 
     protected override void enemyAction()
@@ -78,42 +81,30 @@ public class Helicopter : NPCBase
         {
             richAI.enabled = true;
 
-            float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
-
-            if (distance > attackRange)
-            {
-                richAI.isStopped = false;
-                MoveToTarget();  // 목표 지점으로 이동
-            }
-            else
-            {
-                MaintainDistanceAndMove(distance);  // 공격 범위 내에서 유지
-                Attack();  // 공격 시작
-            }
-
-            // 고도를 유지하며 목표로 회전
-            Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
-            targetRotation = LimitXRotation(targetRotation, maxXAngle);
-            transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전
-
-            AdjustAltitude();  // 고도 조정
+            MoveToTarget();
         }
     }
 
     protected override void MoveToTarget()
     {
-        if (target != null)
-        {
-            richAI.destination = TargetPosSameYPos();  // 목표 위치 설정
-        }
-    }
+        float distance = Vector3.Distance(transform.position, TargetPosSameYPos());
 
-    // 고도 유지 함수: 목표 지점으로 이동할 때 flyHeight를 유지
-    private void AdjustAltitude()
-    {
-        Vector3 nextPosition = richAI.steeringTarget;
-        nextPosition.y = flyHeight;  // 고도 유지
-        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * richAI.maxSpeed);
+        if (distance > attackRange)
+        {
+            aiDestinationSetter.target = target;
+        }
+        else
+        {
+            MaintainDistanceAndMove(distance);  // 공격 범위 내에서 유지
+            Attack();  // 공격 시작
+        }
+
+        // 고도를 유지하며 목표로 회전
+        Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
+        targetRotation = LimitXRotation(targetRotation, maxXAngle);
+        transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전
+
+        transform.position = new Vector3(richAI.position.x, transform.position.y, richAI.position.z);
     }
 
     private void MaintainDistanceAndMove(float distanceToPlayer)
@@ -123,14 +114,15 @@ public class Helicopter : NPCBase
 
         if (distanceToPlayer < desiredMinDistance)
         {
-            Vector3 directionAway = (transform.position - TargetPosSameYPos()).normalized;
-            Vector3 movePosition = transform.position + directionAway * 3f;
-            movePosition.y = flyHeight;  // 고도 유지
-            richAI.destination = movePosition;
+            Vector3 newPos = backPos.position;
+            newPos.y = 0f;
+            backPos.position = newPos;
+
+            aiDestinationSetter.target = backPos;
         }
         else
         {
-            richAI.destination = transform.position;
+            aiDestinationSetter.target = null;
         }
     }
 
