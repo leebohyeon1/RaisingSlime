@@ -57,9 +57,6 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     // 게임오버 UI 기본 위치
     private Vector2 gamOverOriginalPos;
-
-    // 게임 데이터
-    private GameData gameData;
     
     private void Awake()
     {
@@ -77,8 +74,6 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     void Start()
     {
-        InputManager.Instance.SwitchToActionMap("Player");
-
         //if (optionUI == null)
         //{
         //    optionUI = OptionManager.Instance.optionUI;
@@ -91,6 +86,8 @@ public class GameManager : MonoBehaviour, IUpdateable
             depthOfField.active = false;
         }
 
+        InputManager.Instance.SwitchToActionMap("Player");
+
         // 원래 UI의 위치
         pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition;
         gamOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
@@ -101,7 +98,7 @@ public class GameManager : MonoBehaviour, IUpdateable
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
         // 데이터 로드
-        gameData = SaveManager.Instance.LoadPlayerData();
+        GameData gameData = SaveManager.Instance.LoadPlayerData();
         money = gameData.money;
         moneyText.text = money.ToString();
     }
@@ -253,6 +250,7 @@ public class GameManager : MonoBehaviour, IUpdateable
         //시간 정지
         Time.timeScale = 0f;
 
+        GameData gameData = SaveManager.Instance.LoadPlayerData();
         bestScoreText.text = gameData.score.ToString();
 
         if (gameData.score < (uint)GetScore()) // 최고 점수 갱신 시

@@ -1,65 +1,67 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T _instance = null;
-
+    private static T _instance;
+    private static bool _applicationIsQuitting = false;
     private static readonly object _lock = new object();
 
     public static T Instance
     {
         get
         {
+            if (_applicationIsQuitting)
+            {
+                return null;
+            }
+
             lock (_lock)
             {
                 if (_instance == null)
-                    Create();
-                return _instance;
-            }
-        }
-    }
-
-    protected static void Create()
-    {
-        if (_instance == null)
-        {
-            T[] objects = FindObjectsOfType<T>();
-
-            if (objects.Length > 0)
-            {
-                _instance = objects[0];
-
-                for (int i = 1; i < objects.Length; ++i)
                 {
-                    if (Application.isPlaying)
-                        Destroy(objects[i].gameObject);
+                    T[] instances = FindObjectsOfType<T>();
+
+                    if (instances.Length > 0)
+                    {
+                        _instance = instances[0];
+
+                        if (instances.Length > 1)
+                        {
+                            for (int i = 1; i < instances.Length; i++)
+                            {
+                                Destroy(instances[i].gameObject);
+                            }
+                        }
+
+                        DontDestroyOnLoad(_instance.gameObject);
+                    }
                     else
-                        DestroyImmediate(objects[i].gameObject);
+                    {
+                        GameObject singletonObject = new GameObject();
+                        _instance = singletonObject.AddComponent<T>();
+
+                        singletonObject.name = "[Singleton] " + typeof(T).ToString();
+                        DontDestroyOnLoad(singletonObject);
+                    }
                 }
-            }
-            else
-            {
-                GameObject go = new GameObject(string.Format("{0}", typeof(T).Name));
-                _instance = go.AddComponent<T>();
+
+                return _instance;
             }
         }
     }
 
     protected virtual void Awake()
     {
-        Create();
-
-        if (_instance != this && _instance != null)
+        if (_instance == null)
         {
-            Destroy(gameObject);
-            return;
+            _instance = this as T;
+            DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (_instance != this)
         {
-            DontDestroyOnLoad(this);
+            DestroyImmediate(gameObject);
         }
     }
-
     protected virtual void OnEnable() { }
 
     protected virtual void Start() { }
@@ -72,13 +74,16 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     protected virtual void OnDisable() { }
 
-    protected virtual void OnDestroy()
-    {
-        _instance = null;
-    }
-
     protected virtual void OnApplicationQuit()
     {
-        _instance = null;   
+        _applicationIsQuitting = true;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 }

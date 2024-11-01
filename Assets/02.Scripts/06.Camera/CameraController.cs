@@ -21,9 +21,16 @@ public class CameraController : MonoBehaviour, IUpdateable
 
     private void Start()
     {
-        if(player == null)
+        if (player == null)
         {
             player = FindFirstObjectByType<Player>().transform;
+
+            if (player != null)
+            {
+                virtualCamera.Follow = player.transform;
+
+                virtualCamera.LookAt = player.transform;
+            }
         }
         
         // 가상 카메라에서 CinemachineTransposer 가져오기
@@ -42,7 +49,7 @@ public class CameraController : MonoBehaviour, IUpdateable
             return;
         }
 
-        UpdateCameraDistance();
+       // UpdateCameraDistance();
     }
 
     void UpdateCameraDistance()

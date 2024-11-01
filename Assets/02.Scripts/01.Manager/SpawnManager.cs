@@ -17,6 +17,10 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [BoxGroup("위치 세팅"), LabelText("스폰 높이"), SerializeField]
     private float spawnHeight = 3f; // 적이 생성될 때의 높이
 
+    [BoxGroup("플레이어 세팅"), LabelText("스폰 위치"), SerializeField]
+    private Transform[] spawnTransfrom;
+
+
     [BoxGroup("적 세팅"), LabelText("현재 레벨"), SerializeField]
     private int step = 0;
     [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
@@ -67,8 +71,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             Debug.LogError("점수별 단계와 단계별 적 리스트의 길이가 다릅니다.");
         }
 
-        slimeTrans = FindFirstObjectByType<Player>().transform;
-
+        SpawnPlayer();
         SpawnEnemiesForCurrentStep();
         SpawnCitizens(); // 시민 스폰 초기화
 
@@ -224,6 +227,15 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         
 
     }
+
+    #region 플레이어
+    private void SpawnPlayer()
+    {
+        int index = Random.Range(0, spawnTransfrom.Length);
+        GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom[index].position, Quaternion.identity);
+        slimeTrans = player.transform;
+    }
+    #endregion
 
     #region 적
     // 현재 스텝의 적들을 스폰하는 함수

@@ -27,6 +27,13 @@ public class AudioManager : Singleton<AudioManager>
         InitializeAudioClips();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+    
+    }
+
     private void InitializeAudioSources()
     {
         if (bgmSource == null)
