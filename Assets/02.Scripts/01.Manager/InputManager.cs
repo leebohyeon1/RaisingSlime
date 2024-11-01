@@ -10,9 +10,12 @@ public class InputManager : Singleton<InputManager>, IUpdateable
 
     // 타이틀 씬 액션맵
     private InputAction anyKeyAction;
+    private InputAction mouseAction;
+    private InputAction mouseButtonAction;
 
     public bool anyKeyInput {  get; private set; }
-
+    public Vector2 mousePosition { get; private set; }
+    public bool mousePressed { get; private set; }
 
     // 게임 씬 액션맵
     private InputAction moveAction; 
@@ -32,7 +35,10 @@ public class InputManager : Singleton<InputManager>, IUpdateable
 
     protected override void Start()
     {
+        base.Start();
+
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+    
     }
 
     public virtual void OnUpdate(float dt)
@@ -45,6 +51,8 @@ public class InputManager : Singleton<InputManager>, IUpdateable
         moveAction = playerInput.actions["Move"];     
         jumpAction = playerInput.actions["Jump"];
         anyKeyAction = playerInput.actions["AnyKey"];
+        mouseAction = playerInput.actions["Mouse"];
+        mouseButtonAction = playerInput.actions["MouseButtonDown"];
     }
 
     private void HandleActions() // 액션 값 받는 함수
@@ -53,7 +61,11 @@ public class InputManager : Singleton<InputManager>, IUpdateable
 
         jumpInput = jumpAction.WasPressedThisFrame(); // jumpAction 값 초기화 
 
-        anyKeyInput = anyKeyAction.WasPressedThisFrame();   
+        anyKeyInput = anyKeyAction.WasPressedThisFrame();
+
+        mousePosition = mouseAction.ReadValue<Vector2>();
+
+        mousePressed = mouseButtonAction.IsPressed();
     }
 
     // 디폴트 맵을 변경하는 함수

@@ -130,12 +130,11 @@ public class Player : MonoBehaviour, IUpdateable
         float sizeDecreaseAmount = playerStat.sizeDecreasePerSecond * Time.deltaTime;
 
         // 현재 크기에서 줄어든 크기 계산
-        Vector3 newScale = transform.localScale - new Vector3(sizeDecreaseAmount, sizeDecreaseAmount, sizeDecreaseAmount);
+        transform.localScale -= new Vector3(sizeDecreaseAmount, sizeDecreaseAmount, sizeDecreaseAmount);
 
         // 크기가 0 이하로 줄어들지 않도록 제한 (최소 크기 설정)
-        if (newScale.x > 0.2f && newScale.y > 0.2f && newScale.z > 0.2f)
+        if (transform.localScale.magnitude > 0.2f)
         {
-            transform.localScale = newScale;
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
         }
         else

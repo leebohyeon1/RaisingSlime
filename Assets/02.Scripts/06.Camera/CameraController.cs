@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour, IUpdateable
         if(player == null)
         {
             player = FindFirstObjectByType<Player>().transform;
+            virtualCamera.Follow = player.transform;
+            virtualCamera.LookAt = player.transform;
         }
         
         // 가상 카메라에서 CinemachineTransposer 가져오기
