@@ -31,7 +31,6 @@ public class MainManager : MonoBehaviour
     private Vector2 lastMousePosition; // 마우스의 마지막 위치 저장
     private bool isDragging = false; // 드래그 중인지 여부
 
-    private float moveSpeed = 10f; // 이동 속도 계수
     private int skinIndex;
 
     [BoxGroup("저장 데이터"), LabelText("보유 돈"), SerializeField]

@@ -68,6 +68,30 @@ public class SkinManager : Singleton<SkinManager>
         return closeSkinList;
     }
 
+    public void OpenSlime(GameObject gameObject)
+    {
+        bool isIt = false;
+        for (int i = 0; i < slimeSkin.Count; i++)
+        {
+            if (gameObject == slimeSkin[i])
+            {
+                isSkinOpen[i] = true;
+                isIt = true;
+
+                GameData gameData = SaveManager.Instance.LoadPlayerData();
+                gameData.openSkin[i] = isSkinOpen[i];
+                SaveManager.Instance.SavePlayerData(gameData);
+                break;
+            }
+        }
+
+        if (!isIt)
+        {
+            Debug.Log("슬라임이 없습니다??!");
+        }
+    }
+
+
     public void SelectSkin(GameObject skin, int index)
     {
         selectedSkin = skin;

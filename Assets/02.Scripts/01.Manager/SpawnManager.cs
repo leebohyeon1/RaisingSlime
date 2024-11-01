@@ -231,7 +231,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     #region 플레이어
     private void SpawnPlayer()
     {
-        int index = Random.Range(0, spawnTransfrom.Length -1);
+        int index = Random.Range(0, spawnTransfrom.Length);
         GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom[index].position, Quaternion.identity);
         slimeTrans = player.transform;
     }
