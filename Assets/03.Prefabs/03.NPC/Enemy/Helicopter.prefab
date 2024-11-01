@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 6.9
-  slimeIncreaseSize: 0
+  slimeIncreaseSize: 200
   plusScore: 0
   shrinkSpeed: 0.5
 --- !u!114 &5642993610937916734
@@ -188,7 +188,7 @@ MonoBehaviour:
   attackSpeed: 2
   bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
     type: 3}
-  bulletDamage: 0
+  bulletDamage: 0.05
   bulletSpeed: 10
   firePos: {fileID: 2606019897829325508}
   propeller:

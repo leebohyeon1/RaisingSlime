@@ -606,12 +606,12 @@ MonoBehaviour:
   moveSpeed: 7
   collisionDamage: 0.5
   isExplosion: 0
-  attackSpeed: 0.4
+  attackSpeed: 0.5
   attackRange: 25
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
   bulletSpeed: 20
-  bulletDamage: 0.5
+  bulletDamage: 1
   firePosistion:
   - {fileID: 2551623793848284930}
   - {fileID: 5173024981093013142}

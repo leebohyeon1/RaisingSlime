@@ -207,12 +207,12 @@ MonoBehaviour:
   collisionDamage: 10
   isExplosion: 0
   attackSpeed: 2
-  attackRange: 10
+  attackRange: 15
   bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
     type: 3}
   firePosistion: {fileID: 3662648903529845496}
   bulletSpeed: 10
-  bulletDamage: 0.2
+  bulletDamage: 0.1
   backPos: {fileID: 7725011976659862919}
 --- !u!1 &3906710135489729537
 GameObject:
