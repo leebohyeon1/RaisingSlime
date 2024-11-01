@@ -25,13 +25,15 @@ public class OptionManager : Singleton<OptionManager>
     {
         base.Awake();
 
-        // RectTransform에서 처음 위치를 가져옴
-        optionOriginalPos = optionUI.GetComponent<RectTransform>().anchoredPosition;
-        btnOriginalPos = exitBtn.GetComponent<RectTransform>().anchoredPosition;
+    
     }
 
     protected override void Start()
     {
+        // RectTransform에서 처음 위치를 가져옴
+        optionOriginalPos = optionUI.GetComponent<RectTransform>().anchoredPosition;
+        btnOriginalPos = exitBtn.GetComponent<RectTransform>().anchoredPosition;
+
         // BGM 버튼 이벤트 등록
         bgmButtons[0].onClick.AddListener(() => SetBgmVolume(0)); // 볼륨 증가
         bgmButtons[1].onClick.AddListener(() => SetBgmVolume(1)); // 볼륨 감소

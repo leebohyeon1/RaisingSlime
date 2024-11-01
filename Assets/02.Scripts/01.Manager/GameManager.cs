@@ -77,8 +77,6 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     void Start()
     {
-        InputManager.Instance.SwitchToActionMap("Player");
-
         //if (optionUI == null)
         //{
         //    optionUI = OptionManager.Instance.optionUI;
@@ -90,6 +88,8 @@ public class GameManager : MonoBehaviour, IUpdateable
             // Bokeh 효과를 기본적으로 비활성화
             depthOfField.active = false;
         }
+
+        InputManager.Instance.SwitchToActionMap("Player");
 
         // 원래 UI의 위치
         pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition;

@@ -4,6 +4,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
     private static bool _applicationIsQuitting = false;
+    private static readonly object _lock = new object();
 
     public static T Instance
     {
@@ -14,38 +15,38 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 return null;
             }
 
-            if (_instance == null)
+            lock (_lock)
             {
-                T[] instances = FindObjectsOfType<T>();
-
-                if (instances.Length > 0)
+                if (_instance == null)
                 {
-                    _instance = instances[0];
+                    T[] instances = FindObjectsOfType<T>();
 
-                    // �߰� �ν��Ͻ��� �ִٸ� �ı�
-                    if (instances.Length > 1)
+                    if (instances.Length > 0)
                     {
-                        for (int i = 1; i < instances.Length; i++)
+                        _instance = instances[0];
+
+                        if (instances.Length > 1)
                         {
-                            Destroy(instances[i].gameObject);
+                            for (int i = 1; i < instances.Length; i++)
+                            {
+                                Destroy(instances[i].gameObject);
+                            }
                         }
+
+                        DontDestroyOnLoad(_instance.gameObject);
                     }
+                    else
+                    {
+                        GameObject singletonObject = new GameObject();
+                        _instance = singletonObject.AddComponent<T>();
 
-                    DontDestroyOnLoad(_instance.gameObject);
+                        singletonObject.name = "[Singleton] " + typeof(T).ToString();
+                        DontDestroyOnLoad(singletonObject);
+                    }
                 }
-                else
-                {
-                    // ���ο� ���� ������Ʈ ���� �� �̱��� �ν��Ͻ� �Ҵ�
-                    GameObject singletonObject = new GameObject();
-                    _instance = singletonObject.AddComponent<T>();
 
-                    singletonObject.name = "[Singleton] " + typeof(T).ToString();
-
-                    DontDestroyOnLoad(singletonObject);
-                }
+                return _instance;
             }
-
-            return _instance;
         }
     }
 
@@ -58,11 +59,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else if (_instance != this)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
         }
     }
-
-
     protected virtual void OnEnable() { }
 
     protected virtual void Start() { }
@@ -75,14 +74,16 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void OnDisable() { }
 
-    protected virtual void OnDestroy()
-    {
-        _instance = null;
-    }
-
     protected virtual void OnApplicationQuit()
     {
         _applicationIsQuitting = true;
-        _instance = null;   
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 }

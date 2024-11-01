@@ -53,6 +53,8 @@ public class GameData
 
     public bool[] openSkin = new bool[SkinManager.Instance.GetSkinCount()];
 
+    public int curPlayerIndex;
+
     // 기본 생성자 (매개변수가 없는 경우)
     public GameData()
     {
@@ -63,15 +65,19 @@ public class GameData
         this.sfxVolume = 1f;
         this.isBgmMuted = false;
         this.isSfxMuted = false;
-    
-        for(int i = 0; i < this.openSkin.Length; i++) 
+
+        this.openSkin[0] = true;
+        for (int i = 1; i < this.openSkin.Length; i++) 
         {
             this.openSkin[i] = false;
-        }       
+        }
+
+        this.curPlayerIndex = 0;
     }
 
     // 모든 매개변수를 받는 생성자
-    public GameData(uint money, uint score, float bgmVolume, float sfxVolume, bool isBgmMuted, bool isSfxMuted, bool[] openSkin)
+    public GameData(uint money, uint score, float bgmVolume, float sfxVolume, bool isBgmMuted,
+        bool isSfxMuted, bool[] openSkin, int playerIndex)
     {
         this.money = money;
         this.score = score;
@@ -80,5 +86,6 @@ public class GameData
         this.isBgmMuted = isBgmMuted;
         this.isSfxMuted = isSfxMuted;
         this.openSkin = openSkin;
+        this.curPlayerIndex = playerIndex;
     }  
 }

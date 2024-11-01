@@ -11,6 +11,8 @@ public class SkinManager : Singleton<SkinManager>
 
     private bool[] isSkinOpen;
     private GameObject selectedSkin;
+    private GameObject player;
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,9 +27,10 @@ public class SkinManager : Singleton<SkinManager>
 
         for(int i = 0; i < slimeSkin.Count; i++)
         {
-            //isSkinOpen[i] = gameData.openSkin[i];
-            isSkinOpen[i] = true;
-        }   
+            isSkinOpen[i] = gameData.openSkin[i];
+        }
+
+        player = GetOpenSlime()[gameData.curPlayerIndex];
     }
 
     public int GetSkinCount()
@@ -65,13 +68,24 @@ public class SkinManager : Singleton<SkinManager>
         return closeSkinList;
     }
 
-    public void SelectSkin(GameObject skin)
+    public void SelectSkin(GameObject skin, int index)
     {
         selectedSkin = skin;
+        player = GetOpenSlime()[index];
+
+        GameData gameData = SaveManager.Instance.LoadPlayerData();
+        gameData.openSkin = isSkinOpen;
+        gameData.curPlayerIndex = index;
+        SaveManager.Instance.SavePlayerData(gameData);
     }
 
     public GameObject GetSelectSkin()
     { 
         return selectedSkin; 
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
     }
 }

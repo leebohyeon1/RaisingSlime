@@ -47,6 +47,8 @@ public class MainManager : MonoBehaviour
 
         mainUI.SetActive(true);
 
+        InputManager.Instance.SwitchToActionMap("UI");
+
         // 각 버튼에 클릭 이벤트와 애니메이션 추가
         //foreach (Button btn in mainBtn)
         //{
@@ -65,6 +67,11 @@ public class MainManager : MonoBehaviour
         if (skinUI.activeSelf)
         {
             Drag();
+
+            if (isDragging)
+            {
+                ScrollSkinGroup();
+            }
         }
     }
 
@@ -190,7 +197,7 @@ public class MainManager : MonoBehaviour
             
             isDragging = true;
 
-            ScrollSkinGroup();
+            
         }
         else
         {
@@ -275,7 +282,7 @@ public class MainManager : MonoBehaviour
         // 가장 가까운 스킨을 선택
         if (closestSkin != SkinManager.Instance.GetSelectSkin())
         {
-            SkinManager.Instance.SelectSkin(closestSkin);
+            SkinManager.Instance.SelectSkin(closestSkin, skinIndex);
         }
 
     }
@@ -288,7 +295,7 @@ public class MainManager : MonoBehaviour
                  {
                      skinGroup.anchoredPosition.Set((skinIndex * -400f), 0);
                      // 추가 코드: UpdateClosestSkin을 다시 호출하지 않도록 한 번만 선택된 스킨으로 고정
-                     SkinManager.Instance.SelectSkin(selectedSkin); // 이미 선택된 스킨으로 고정
+                     SkinManager.Instance.SelectSkin(selectedSkin, skinIndex); // 이미 선택된 스킨으로 고정
                      isDragging = false;
                  });
     }
