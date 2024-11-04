@@ -19,6 +19,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     [BoxGroup("먹혔을 때"), LabelText("초당 줄어드는 속도"), SerializeField] 
     protected float shrinkSpeed = 0.5f; // 크기가 줄어드는 속도 (수치를 조정해 천천히 감소하도록)
 
+    protected bool isLock = false;
     protected bool isGetEaten = false;
 
     protected virtual void Start()
@@ -36,8 +37,14 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
  
     public virtual void Eaten(Transform slimeTrans) // 먹히는 함수
     {
-        isGetEaten = !isGetEaten;
+        if (isLock)
+        {
+            return;
+        }
 
+        isLock = true;
+        isGetEaten = !isGetEaten;
+      
         // 부모가 바뀌기 전의 월드 스케일을 저장
         Vector3 originalWorldScale = transform.lossyScale;
 

@@ -2,7 +2,9 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -24,12 +26,18 @@ public class MainManager : MonoBehaviour
 
     [TabGroup("UI", "스킨"), LabelText("스킨 모음"), SerializeField]
     private RectTransform skinGroup;
+    [TabGroup("UI", "스킨"), LabelText("스킨 버튼"), SerializeField]
+    private Button[] skinButtons;
 
     private List<GameObject> skins = new List<GameObject>();
+    private List<Vector3> defaultSkinScale = new List<Vector3>();
+
     private float initialPositionX;
     private float scrollRange; // 스크롤 가능한 최대 범위
     private Vector2 lastMousePosition; // 마우스의 마지막 위치 저장
     private bool isDragging = false; // 드래그 중인지 여부
+    private bool isSkinBtnMoving = false;
+    private bool canDrag = false;
 
     private int skinIndex;
 
@@ -48,24 +56,23 @@ public class MainManager : MonoBehaviour
 
         InputManager.Instance.SwitchToActionMap("UI");
 
-        // 각 버튼에 클릭 이벤트와 애니메이션 추가
-        //foreach (Button btn in mainBtn)
-        //{
-        //    btn.onClick.AddListener(() => AnimateButton(btn));
-        //}
-
-
         ArrangeSkins();
 
         // 초기 위치를 저장
         initialPositionX = skinGroup.position.x;
         scrollRange = skins.Count * 40f; // 스킨 개수에 따라 스크롤 범위 설정
+
+        skinButtons[0].onClick.AddListener(() => MoveSkinGroupToRight());
+        skinButtons[1].onClick.AddListener(() => MoveSkinGroupToLeft());
     }
+
     private void Update()
     {
         if (skinUI.activeSelf)
         {
             Drag();
+
+            ChangeSkinScale();
 
             if (isDragging)
             {
@@ -186,28 +193,37 @@ public class MainManager : MonoBehaviour
     #region skin
     private void Drag()
     {
-        // Check if skin UI is active and if mouse button is pressed, then start dragging
+        if (!canDrag && !isDragging)
+        {
+            return;
+        }
+
         if (InputManager.Instance.mousePressed)
         {
-            if (!isDragging)
-            {
-                lastMousePosition = InputManager.Instance.mousePosition; // Initialize position on drag start
-            }
-            
-            isDragging = true;
+            isSkinBtnMoving = false;
+            DOTween.Kill(skinGroup);
 
+            if (!isSkinBtnMoving)
+            {
+                if (!isDragging)
+                {
+                    lastMousePosition = InputManager.Instance.mousePosition; 
+                }
+
+                isDragging = true;
+            }
             
         }
         else
         {
 
-            if (isDragging)
+            if (isDragging && !isSkinBtnMoving)
             {
                 UpdateClosestSkin(); // 드래그 시작 시에만 가장 가까운 스킨 업데이트
                 MoveSkinGroupToSelected(SkinManager.Instance.GetSelectSkin());
             }
 
-            isDragging = false;  // Reset dragging when mouse is not pressed
+            isDragging = false;  
 
         }
     }
@@ -236,14 +252,19 @@ public class MainManager : MonoBehaviour
             skin.transform.Find("Shadow").gameObject.SetActive(false);
 
             skins.Add(skin);
+            defaultSkinScale.Add(skin.transform.localScale);
         }
+
+        ChangeSkinScale();
+
+        MoveSkinGroupToSelected(skins[skinIndex]);
     }
 
     private void ScrollSkinGroup()
     {
         Vector2 currentMousePosition = InputManager.Instance.mousePosition;
 
-        Vector2 mouseDelta = lastMousePosition - currentMousePosition;
+        Vector2 mouseDelta =  currentMousePosition - lastMousePosition;
 
         // 스크롤 이동
         float newPosX = skinGroup.position.x + mouseDelta.x * 0.1f; // 이동 속도 조정 (0.1f는 이동 속도 계수)
@@ -256,6 +277,48 @@ public class MainManager : MonoBehaviour
 
         // 마우스 위치 업데이트
         lastMousePosition = currentMousePosition;
+    }
+
+    private void MoveSkinGroupToRight()
+    {
+        if (skinIndex >= skins.Count - 1 || isSkinBtnMoving)
+        {
+            return;
+        }
+
+        DOTween.Kill(skinGroup);
+
+      
+        isSkinBtnMoving = true;
+
+        skinIndex += 1;
+        skinGroup.DOAnchorPosX((skinIndex * -400f), 0.4f).SetEase(Ease.OutBack)
+            .OnComplete(() => 
+            { 
+                isSkinBtnMoving = false;
+                UpdateClosestSkin(); 
+            });
+    }
+
+    private void MoveSkinGroupToLeft()
+    {
+        if (skinIndex <= 0 || isSkinBtnMoving)
+        {
+            return;
+        }
+
+        DOTween.Kill(skinGroup);
+
+  
+        isSkinBtnMoving = true;
+
+        skinIndex -= 1;
+        skinGroup.DOAnchorPosX((skinIndex * -400f), 0.4f).SetEase(Ease.OutBack)
+            .OnComplete(() =>
+            {
+                isSkinBtnMoving = false;
+                UpdateClosestSkin();
+            });
     }
 
     private void UpdateClosestSkin()
@@ -298,6 +361,22 @@ public class MainManager : MonoBehaviour
                      isDragging = false;
                  });
     }
+
+    public void OnDrag(bool cnaDrag)
+    {
+        canDrag = cnaDrag;
+    }
+
+    private void ChangeSkinScale()
+    {
+        for (int i = 0; i < skins.Count; i++)
+        {
+            float distance = Vector2.Distance(Vector2.zero, new Vector2(skins[i].transform.position.x, 0));
+
+            Vector3 scale =  defaultSkinScale[i] - (new Vector3(distance, distance, distance) * 1.5f);
+            skins[i].transform.localScale = scale;
+        }
+    }
     #endregion
 
     // 저장된 데이터 불러오기
@@ -307,9 +386,12 @@ public class MainManager : MonoBehaviour
         
         bestScore = data.score;
         money = data.money;
+        skinIndex = data.curPlayerIndex;
 
         bestScoreText.text = bestScore.ToString();
         moneyText.text = money.ToString();
+
+
     }
 
     // 버튼 클릭 시 흔들리는 애니메이션 적용
