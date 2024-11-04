@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class MainManager : MonoBehaviour
 
     [TabGroup("UI", "스킨"), LabelText("스킨 모음"), SerializeField]
     private RectTransform skinGroup;
-    [TabGroup("UI", "스킨"), LabelText("스킨 버튼"), SerializeField]
+    [TabGroup("UI", "버튼"), LabelText("스킨 버튼"), SerializeField]
     private Button[] skinButtons;
 
     private List<GameObject> skins = new List<GameObject>();
@@ -38,7 +39,6 @@ public class MainManager : MonoBehaviour
     private bool isDragging = false; // 드래그 중인지 여부
     private bool isSkinBtnMoving = false;
     private bool canDrag = false;
-
     private int skinIndex;
 
     [BoxGroup("저장 데이터"), LabelText("보유 돈"), SerializeField]
@@ -64,6 +64,7 @@ public class MainManager : MonoBehaviour
 
         skinButtons[0].onClick.AddListener(() => MoveSkinGroupToRight());
         skinButtons[1].onClick.AddListener(() => MoveSkinGroupToLeft());
+
     }
 
     private void Update()
@@ -188,6 +189,12 @@ public class MainManager : MonoBehaviour
     {
         skinUI.SetActive(false);
     }
+
+    public void BtnScaleUp()
+    {
+
+    }
+
     #endregion
 
     #region skin

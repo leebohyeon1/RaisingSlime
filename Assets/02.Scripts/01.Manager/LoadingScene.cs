@@ -2,10 +2,15 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using static System.Net.Mime.MediaTypeNames;
 
 public class LoadingScene : MonoBehaviour
 {
-    public Slider progressBar;
+    [SerializeField]    
+    private Slider progressBar;
+    [SerializeField]
+    private TMP_Text text;
     public static string sceneToLoad = "NextScene";  // 다음에 로드할 씬 이름을 설정하세요.
 
 
@@ -22,6 +27,7 @@ public class LoadingScene : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
+        text.gameObject.SetActive(false);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         operation.allowSceneActivation = false;  // 로딩 완료 후 자동 전환 방지
 
@@ -33,6 +39,7 @@ public class LoadingScene : MonoBehaviour
 
             if (operation.progress >= 0.9f)
             {
+                text.gameObject.SetActive(true);
                 // 아무 키나 누르면 씬 전환
                 if (Input.anyKeyDown)
                 {
