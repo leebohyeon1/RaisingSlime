@@ -75,9 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1.2
-  slimeIncreaseSize: 0.03
-  plusScore: 2
+  size: 0.8
+  slimeIncreaseSize: 0.05
+  plusScore: 10
   shrinkSpeed: 0.5
 --- !u!1001 &3691171660854647036
 PrefabInstance:

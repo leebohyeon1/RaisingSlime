@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046027286328518339}
   - component: {fileID: 8614808605070589822}
+  - component: {fileID: 8969579925655131156}
   m_Layer: 0
   m_Name: CatHouse
   m_TagString: Untagged
@@ -61,6 +62,22 @@ MonoBehaviour:
   cutsAddedGeom: 1
   updateRotationDistance: 10
   useRotationAndScale: 1
+--- !u!114 &8969579925655131156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008135819130420179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 9
+  slimeIncreaseSize: 0.05
+  plusScore: 50
+  shrinkSpeed: 0.5
 --- !u!1 &3740829049659384510
 GameObject:
   m_ObjectHideFlags: 0
