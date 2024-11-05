@@ -137,7 +137,8 @@ public class Player : MonoBehaviour, IUpdateable
         {
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
         }
-        else
+        
+        if(playerStat.curSize <= 0.2f)
         {
             GameManager.Instance.GameOver();
 

@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 14.8, y: 18.04}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 5.48, y: 12.6}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 5.96, y: 11.28}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 1
   mesh: {fileID: 0}
   rectangleSize: {x: 1, y: 1}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 1
   mesh: {fileID: 0}
   rectangleSize: {x: 1, y: 1}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 1
   mesh: {fileID: 0}
   rectangleSize: {x: 1, y: 1}
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 5.96, y: 11.28}

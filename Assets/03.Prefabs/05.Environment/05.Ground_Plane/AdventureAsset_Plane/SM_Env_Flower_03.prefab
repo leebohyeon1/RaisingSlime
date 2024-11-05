@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3316376}
   - component: {fileID: 2339868}
   - component: {fileID: 5706085281912794892}
-  - component: {fileID: 8427103120826239410}
   - component: {fileID: 5623176155974002910}
   m_Layer: 0
   m_Name: SM_Env_Flower_03
@@ -107,22 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4928801, y: 0.3867304, z: 0.48268747}
   m_Center: {x: -0.0000003054738, y: 0.1933652, z: 0.00000020116568}
---- !u!208 &8427103120826239410
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151234}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.246, y: 0.193, z: 0.24100001}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.193, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &5623176155974002910
 MonoBehaviour:
   m_ObjectHideFlags: 0

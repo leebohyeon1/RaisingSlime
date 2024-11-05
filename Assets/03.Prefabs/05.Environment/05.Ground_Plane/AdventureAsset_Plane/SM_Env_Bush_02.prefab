@@ -138,15 +138,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
-  type: 0
+    value: 1
+  type: 1
   mesh: {fileID: 0}
   rectangleSize: {x: 1, y: 1}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 1.48
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0.91, z: 0}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

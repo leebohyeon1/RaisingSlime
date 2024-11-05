@@ -21,9 +21,24 @@ public class CameraController : MonoBehaviour, IUpdateable
 
     private void Start()
     {
+      
+        
+        // 가상 카메라에서 CinemachineTransposer 가져오기
+        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+        // 기본 카메라 거리를 설정 (초기화)
+        //UpdateCameraDistance();
+
+        Invoke("SetPlayer", 0.1f);
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
+    }
+
+    private void SetPlayer()
+    {
         if (player == null)
         {
-            player = FindFirstObjectByType<Player>().transform;
+            player = SpawnManager.Instance.GetPlayerTrans();
 
             if (player != null)
             {
@@ -32,16 +47,7 @@ public class CameraController : MonoBehaviour, IUpdateable
                 virtualCamera.LookAt = player.transform;
             }
         }
-        
-        // 가상 카메라에서 CinemachineTransposer 가져오기
-        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-
-        // 기본 카메라 거리를 설정 (초기화)
-        //UpdateCameraDistance();
-
-        GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
-
     public void OnUpdate(float dt)
     {
         if (player == null)
@@ -61,8 +67,8 @@ public class CameraController : MonoBehaviour, IUpdateable
         float newCameraDistance = baseCameraDistance + (playerScale * scaleMultiplier);
 
         // CinemachineTransposer의 Follow Offset에서 Z축(거리) 조정
-        transposer.m_FollowOffset.z = -newCameraDistance / 2; // 음수 값으로 멀어지도록 설정
-        transposer.m_FollowOffset.x = newCameraDistance / 2;
+        transposer.m_FollowOffset.z = - (newCameraDistance * 4) /5; // 음수 값으로 멀어지도록 설정
+        transposer.m_FollowOffset.x = (newCameraDistance * 4) / 5;
         transposer.m_FollowOffset.y = newCameraDistance;
     }
 

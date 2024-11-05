@@ -235,6 +235,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom[index].position, Quaternion.identity);
         slimeTrans = player.transform;
     }
+
+    public Transform GetPlayerTrans()
+    {
+        return slimeTrans;
+    }
     #endregion
 
     #region 적

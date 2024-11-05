@@ -2234,6 +2234,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helicopter
       objectReference: {fileID: 0}
+    - target: {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3374,6 +3379,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630337540}
   m_CullTransparentMesh: 1
+--- !u!1001 &1824655939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9146519
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000019073486
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.036507
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449415677678080052, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9,
+        type: 3}
+      propertyPath: m_Name
+      value: Tank
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
 --- !u!1 &1877650359
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,3 +4081,4 @@ SceneRoots:
   - {fileID: 1242419209266971961}
   - {fileID: 229841773}
   - {fileID: 803545099}
+  - {fileID: 1824655939}

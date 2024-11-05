@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509985398798668838}
-  - component: {fileID: 8063676984502197896}
   - component: {fileID: 3163920543166410633}
   - component: {fileID: 5975058931172816811}
   - component: {fileID: 6617940487955182363}
   - component: {fileID: 8259918495584041594}
   - component: {fileID: 8203295054845452934}
   - component: {fileID: 4901215586771648816}
+  - component: {fileID: 8063676984502197896}
   m_Layer: 0
   m_Name: FerrisWheel
   m_TagString: Untagged
@@ -39,29 +39,6 @@ Transform:
   - {fileID: 5405313168684915462}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8063676984502197896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b29e43a027ee87747ac4f7a30dc0fd9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheel: {fileID: 282241772649617806}
-  rotationSpeed: 10
-  ferris:
-  - {fileID: 3407375871353628924}
-  - {fileID: 352097106483504642}
-  - {fileID: 5659961132619386002}
-  - {fileID: 2340074994142603112}
-  - {fileID: 2449127374155767666}
-  - {fileID: 3332637998901642401}
-  - {fileID: 3472465194513623327}
-  - {fileID: 9164581721583218224}
 --- !u!114 &3163920543166410633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 4.9, y: 7.2}
@@ -104,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 2.36, y: 2.17}
@@ -230,6 +207,29 @@ MonoBehaviour:
   cutsAddedGeom: 1
   updateRotationDistance: 10
   useRotationAndScale: 1
+--- !u!114 &8063676984502197896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805122197003270101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29e43a027ee87747ac4f7a30dc0fd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheel: {fileID: 282241772649617806}
+  rotationSpeed: 10
+  ferris:
+  - {fileID: 3407375871353628924}
+  - {fileID: 352097106483504642}
+  - {fileID: 5659961132619386002}
+  - {fileID: 2340074994142603112}
+  - {fileID: 2449127374155767666}
+  - {fileID: 3332637998901642401}
+  - {fileID: 3472465194513623327}
+  - {fileID: 9164581721583218224}
 --- !u!1 &2007886360103294904
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 931380801566067991}
   - component: {fileID: 3581501793402062821}
   - component: {fileID: 2386471671534652202}
-  - component: {fileID: 5533811912124533046}
   m_Layer: 0
   m_Name: HamburgerShop
   m_TagString: Untagged
@@ -171,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 0.92, y: 0.68}
@@ -180,34 +179,6 @@ MonoBehaviour:
   height: 5.53
   meshScale: 1
   center: {x: 0, y: 0.22, z: 0.05}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &5533811912124533046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3337484219638587539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 0.28
-  circleResolution: 8
-  height: 6.76
-  meshScale: 1
-  center: {x: 0, y: 0.68, z: 0.14}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

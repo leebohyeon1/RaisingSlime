@@ -38,6 +38,8 @@ public class TankBullet : Bullet
         }
 
         base.OnUpdate(dt);
+
+        transform.LookAt(transform.position + rb.velocity);
     }
 
     public void InitialTarget(Vector3 target, float force, float radius, float upModifier, LayerMask layer)

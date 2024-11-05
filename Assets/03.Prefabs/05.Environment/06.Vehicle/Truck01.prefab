@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1356150953563976472}
   - component: {fileID: 2701561153258257597}
   - component: {fileID: 187225697979402359}
-  - component: {fileID: 2841249605045821204}
-  - component: {fileID: 7105388060732958195}
+  - component: {fileID: 5473988697336245377}
   m_Layer: 0
   m_Name: truck
   m_TagString: Untagged
@@ -85,24 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &2841249605045821204
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844739408894142882}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.46800002, y: 0.68700004, z: 0.148}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.013, y: 0, z: 0.149}
-  m_TimeToStationary: 0.5
---- !u!65 &7105388060732958195
-BoxCollider:
+--- !u!64 &5473988697336245377
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,9 +102,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.93561435, y: 1.3737135, z: 0.2961534}
-  m_Center: {x: -0.012672807, y: 0.00000015056308, z: 0.14918151}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7673246021391805175, guid: 2ce14c7d2fcdb6b4eb9eeb0335df03b7, type: 3}
 --- !u!1 &4200831984323087693
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,12 +173,12 @@ MonoBehaviour:
     value: -1
   type: 0
   mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
+  rectangleSize: {x: 5.27, y: 2.84}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 4.49
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: -1.28, y: 0.93, z: -1.42}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

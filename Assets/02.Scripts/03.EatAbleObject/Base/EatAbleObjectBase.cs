@@ -21,10 +21,15 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     protected bool isLock = false;
     protected bool isGetEaten = false;
+    protected bool isTrigger = false;
+
+    private PlayerStat playerStat;
 
     protected virtual void Start()
     {
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+       Invoke("SetPlayer", 0.1f);
     }
 
     public virtual void OnUpdate(float dt)
@@ -33,8 +38,40 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         {
             Digested();
         }
+        else
+        {
+            CheckSize();
+        }
+       
     }
  
+    protected virtual void SetPlayer()
+    {
+        playerStat = SpawnManager.Instance.GetPlayerTrans().GetComponent<PlayerStat>();
+    }
+
+    protected virtual void CheckSize()
+    {
+        if(!isTrigger && size <= playerStat.curSize )
+        {
+            isTrigger = true;
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders)
+            {
+                collider.isTrigger = isTrigger;
+            }
+        }
+        else if(isTrigger && size > playerStat.curSize)
+        {
+            isTrigger = false;
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders)
+            {
+                collider.isTrigger = isTrigger;
+            }
+        }
+    }
+
     public virtual void Eaten(Transform slimeTrans) // ธิศ๗ดย วิผ๖
     {
         if (isLock)

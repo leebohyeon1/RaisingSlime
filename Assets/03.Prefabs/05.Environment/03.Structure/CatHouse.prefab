@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.08, y: 2.15}
@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 2967534739666941846}
   - component: {fileID: 5566417172866997717}
   - component: {fileID: 9045988044271901801}
-  - component: {fileID: 2422874044002247279}
   m_Layer: 0
   m_Name: Cat_House
   m_TagString: Untagged
@@ -168,19 +167,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -843935047275135879, guid: 685696e6c3d88a249aa66464c6524939, type: 3}
---- !u!208 &2422874044002247279
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3740829049659384510}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.40500003, y: 0.172, z: 0.215}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.043, y: 0.171, z: 0.001}
-  m_TimeToStationary: 0.5

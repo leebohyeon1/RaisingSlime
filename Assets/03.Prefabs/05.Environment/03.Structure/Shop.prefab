@@ -115,10 +115,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5361563422156920002}
-  - component: {fileID: 3872783602115504009}
   - component: {fileID: 4571839791451144495}
   - component: {fileID: 8541643200662905825}
   - component: {fileID: 1925038197878577514}
+  - component: {fileID: 3872783602115504009}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -143,22 +143,6 @@ Transform:
   - {fileID: 3548230917657561397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3872783602115504009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9113548693516645037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 9
-  slimeIncreaseSize: 0.2
-  plusScore: 180
-  shrinkSpeed: 0.5
 --- !u!114 &4571839791451144495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.94, y: 1.42}
@@ -201,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.21, y: 0.54}
@@ -229,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 1
   mesh: {fileID: 0}
   rectangleSize: {x: 1, y: 1}
@@ -243,6 +227,22 @@ MonoBehaviour:
   cutsAddedGeom: 1
   updateRotationDistance: 10
   useRotationAndScale: 1
+--- !u!114 &3872783602115504009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113548693516645037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 9
+  slimeIncreaseSize: 0.2
+  plusScore: 180
+  shrinkSpeed: 0.5
 --- !u!1001 &3548230917657919503
 PrefabInstance:
   m_ObjectHideFlags: 0

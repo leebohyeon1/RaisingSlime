@@ -64,15 +64,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
+  rectangleSize: {x: 8, y: 3.2}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 4.14
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 1.55, z: 0}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1
@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 8801659102136999027}
   - component: {fileID: 6755734895498455225}
   - component: {fileID: 8276557624628645730}
-  - component: {fileID: 6990245330477362450}
   m_Layer: 0
   m_Name: bus
   m_TagString: Untagged
@@ -107,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 5098582100329285996}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.9369987, y: -0.0032802909, z: -1.1343176}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 8, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -184,19 +183,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8926634, y: 0.48653468, z: 0.44500828}
   m_Center: {x: -0.0018316846, y: -0.00000004502713, z: 0.2257844}
---- !u!208 &6990245330477362450
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098582100329285996}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.446, y: 0.24300002, z: 0.223}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.002, y: 0, z: 0.22600001}
-  m_TimeToStationary: 0.5
