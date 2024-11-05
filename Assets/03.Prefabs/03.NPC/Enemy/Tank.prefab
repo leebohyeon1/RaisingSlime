@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 7
+  moveSpeed: 8
   collisionDamage: 0.5
   isExplosion: 0
   attackSpeed: 0.4
