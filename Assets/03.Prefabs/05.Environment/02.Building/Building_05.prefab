@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.38, y: 1.55}
@@ -91,8 +91,7 @@ GameObject:
   - component: {fileID: 1150858192711315176}
   - component: {fileID: 585229174739311674}
   - component: {fileID: 4206769445828152207}
-  - component: {fileID: 8159289158595428389}
-  - component: {fileID: 8491387671804717571}
+  - component: {fileID: 6891358824813416224}
   m_Layer: 0
   m_Name: building01 1
   m_TagString: Untagged
@@ -165,8 +164,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8159289158595428389
-BoxCollider:
+--- !u!64 &6891358824813416224
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,25 +182,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.54, y: 1.0848603, z: 0.78510046}
-  m_Center: {x: -0.04, y: 0.54243004, z: 0.033658255}
---- !u!208 &8491387671804717571
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084329123236414632}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.27, y: 0.54200006, z: 0.393}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.04, y: 0.54200006, z: 0.034}
-  m_TimeToStationary: 0.5
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2779034379908160629, guid: 108ced4c6d3243842b90d36f9d6c531c, type: 3}
 --- !u!1001 &643814149360375069
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2882758724789843780}
   - component: {fileID: 2282839422649940193}
   - component: {fileID: 4056249121514605611}
-  - component: {fileID: 3148325067781864281}
-  - component: {fileID: 6801052355901973352}
   m_Layer: 0
   m_Name: BasicCar02
   m_TagString: Untagged
@@ -85,43 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &3148325067781864281
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542930040068369918}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.326, y: 0.216, z: 0.202}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.008, y: 0, z: 0.201}
-  m_TimeToStationary: 0.5
---- !u!65 &6801052355901973352
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542930040068369918}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.65117997, y: 0.4315853, z: 0.40429008}
-  m_Center: {x: -0.007620007, y: -0.000000022351742, z: 0.20128545}
 --- !u!1 &6350864995131243889
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,12 +150,12 @@ MonoBehaviour:
     value: -1
   type: 0
   mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
+  rectangleSize: {x: 3.68, y: 2.22}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 2.66
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0.81, z: 0}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

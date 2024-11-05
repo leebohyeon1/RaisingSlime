@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 6015460989944259536}
   - component: {fileID: 7265694278420524149}
   - component: {fileID: 4841397338566498495}
-  - component: {fileID: 6484704632374222139}
-  - component: {fileID: 4201810840472542630}
+  - component: {fileID: 5722786318791634205}
   m_Layer: 0
   m_Name: icecream_car
   m_TagString: Untagged
@@ -85,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6484704632374222139
-BoxCollider:
+--- !u!64 &5722786318791634205
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,25 +102,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.518582, y: 0.8598651, z: 0.89999545}
-  m_Center: {x: -0.0031779408, y: -0.12334487, z: 0.44980025}
---- !u!208 &4201810840472542630
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354831183220095338}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.259, y: 0.43, z: 0.45000002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.003, y: -0.123, z: 0.45000002}
-  m_TimeToStationary: 0.5
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4482858533757754547, guid: c95a60d678e0a8a48bf003a94cb2064e, type: 3}
 --- !u!1 &7473130009023944068
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,12 +173,12 @@ MonoBehaviour:
     value: -1
   type: 0
   mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
+  rectangleSize: {x: 2.62, y: 4.93}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 3.17
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0.99, z: 0.6}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3142503979429162868}
   - component: {fileID: 2032162665604800721}
   - component: {fileID: 4311992566145848347}
-  - component: {fileID: 7804221096783868136}
+  - component: {fileID: 5088177814997840894}
   m_Layer: 0
   m_Name: hotel_building
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7804221096783868136
-BoxCollider:
+--- !u!64 &5088177814997840894
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,9 +102,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5591071, y: 1.8126869, z: 2.5810843}
-  m_Center: {x: 0.12632988, y: -0.10328199, z: 1.2905362}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1457884637594740800, guid: a6fcd8926d3b5354aa9ebb135ab05231, type: 3}
 --- !u!1 &8478295167866993740
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +117,7 @@ GameObject:
   - component: {fileID: 374189119810797692}
   - component: {fileID: 3394909196290774878}
   - component: {fileID: 7421742128670821053}
+  - component: {fileID: 2172072002540752569}
   m_Layer: 0
   m_Name: Hotel_building
   m_TagString: Untagged
@@ -172,10 +174,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.69, y: 2.03}
+  circleRadius: 1
+  circleResolution: 6
+  height: 10.98
+  meshScale: 1
+  center: {x: 0.15, y: 1.33, z: 0.07}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
+--- !u!114 &2172072002540752569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478295167866993740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: 4
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.6, y: 3.08}
   circleRadius: 1
   circleResolution: 6
   height: 10.98

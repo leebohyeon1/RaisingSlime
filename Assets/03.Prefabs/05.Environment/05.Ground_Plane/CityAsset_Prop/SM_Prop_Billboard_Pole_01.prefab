@@ -145,9 +145,9 @@ MonoBehaviour:
   rectangleSize: {x: 1, y: 1}
   circleRadius: 1
   circleResolution: 6
-  height: 1
+  height: 7.18
   meshScale: 1
-  center: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 3.24, z: 0}
   updateDistance: 0.4
   isDual: 0
   cutsAddedGeom: 1

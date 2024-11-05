@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2388610}
   - component: {fileID: 64534264474573138}
   - component: {fileID: 64962008113362822}
-  - component: {fileID: 230897738761412651}
   - component: {fileID: 3471447870790528328}
+  - component: {fileID: 5787837656310497609}
   m_Layer: 0
   m_Name: SM_Env_Tree_011_Snow
   m_TagString: Untagged
@@ -131,22 +131,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43287007508469036, guid: c0eb029e2eef9f54eaad26f0240ac130, type: 2}
---- !u!208 &230897738761412651
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109334}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.887, y: 2.581, z: 0.87500006}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.003, y: 2.581, z: -0.027}
-  m_TimeToStationary: 0.5
 --- !u!114 &3471447870790528328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +147,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &5787837656310497609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: 1
+  type: 1
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 0.74
+  circleResolution: 6
+  height: 3.75
+  meshScale: 1
+  center: {x: 0, y: 1.82, z: 0.12}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

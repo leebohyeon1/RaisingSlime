@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 635908352190908198}
   - component: {fileID: 4574787317457488003}
   - component: {fileID: 1772201201234148425}
-  - component: {fileID: 8059938118340505406}
+  - component: {fileID: 560477026069245986}
   m_Layer: 0
   m_Name: police_building
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8059938118340505406
-BoxCollider:
+--- !u!64 &560477026069245986
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,9 +102,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7321687, y: 1.6127287, z: 2.376097}
-  m_Center: {x: -0.06601446, y: 0.07744188, z: 1.188023}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4673220196579327104, guid: f0703c9530986dd4b942aecb68cd67a6, type: 3}
 --- !u!1 &9206085123642667827
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.78, y: 1.71}

@@ -384,7 +384,7 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
-    value: -1
+    value: 1
 --- !u!114 &7509347923171235121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,16 +432,16 @@ MonoBehaviour:
     period: 0.5
     sensitivity: 10
     maximumPeriod: 2
-    visualizeSensitivity: 0
+    visualizeSensitivity: 1
   targetCompatibility: {fileID: 0}
   acceleration: 5
   rotationSpeed: 360
   slowdownTime: 0
   endReachedDistance: 0
   wallForce: 3
-  wallDist: 1
-  funnelSimplification: 0
-  slowWhenNotFacingTarget: 1
+  wallDist: 6
+  funnelSimplification: 1
+  slowWhenNotFacingTarget: 0
   animCompatibility: {fileID: 0}
 --- !u!114 &7477654641987695381
 MonoBehaviour:

@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   graphMask:
-    value: -1
+    value: 1
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 5.47, y: 6.3}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6133961405700703692}
   - component: {fileID: 7102157866889382505}
   - component: {fileID: 5002120100206149283}
-  - component: {fileID: 8538151648228930613}
+  - component: {fileID: 999471719219294707}
   m_Layer: 0
   m_Name: building04
   m_TagString: Untagged
@@ -162,8 +162,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8538151648228930613
-BoxCollider:
+--- !u!64 &999471719219294707
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -180,6 +180,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1906109, y: 1.4688835, z: 2.2536952}
-  m_Center: {x: -0.05013874, y: -0.010666888, z: 1.1268474}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -738771046403107582, guid: 1a7cb5381d761d7479e16d49e2cf841f, type: 3}
