@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curSize: 1
-  sizeDecreasePerSecond: 0.03
+  sizeDecreasePerSecond: 0.01
   moveSpeed: 18
   canJump: 0
   jumpForce: 20
