@@ -137,12 +137,12 @@ public class Player : MonoBehaviour, IUpdateable
         transform.localScale -= new Vector3(sizeDecreaseAmount, sizeDecreaseAmount, sizeDecreaseAmount);
 
         // 크기가 0 이하로 줄어들지 않도록 제한 (최소 크기 설정)
-        if (transform.localScale.magnitude > 0.2f)
+        if (transform.localScale.magnitude > 0.4f)
         {
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
         }
         
-        if(playerStat.curSize <= 0.2f)
+        if(playerStat.curSize <= 0.4f)
         {
             GameManager.Instance.GameOver();
 

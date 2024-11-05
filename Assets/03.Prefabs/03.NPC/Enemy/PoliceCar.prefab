@@ -400,7 +400,7 @@ MonoBehaviour:
   size: 4
   slimeIncreaseSize: 0.24
   plusScore: 70
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.5
 --- !u!114 &7114991749714002741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,8 +456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 20
-  collisionDamage: 0.5
+  moveSpeed: 16
+  collisionDamage: 0.4
   isExplosion: 0
   acceleration: 8
   reverseAcceleration: 2
