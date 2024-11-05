@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0.5
-  slimeIncreaseSize: 0.085
+  slimeIncreaseSize: 0.04
   plusScore: 10
   shrinkSpeed: 0.2
 --- !u!114 &3339750911296619325
