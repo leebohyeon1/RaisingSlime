@@ -52,6 +52,11 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     protected virtual void CheckSize()
     {
+        if(playerStat == null)
+        {
+            return;
+        }
+
         if(!isTrigger && size <= playerStat.curSize )
         {
             isTrigger = true;

@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour, IUpdateable
@@ -18,7 +19,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private float spawnHeight = 3f; // 적이 생성될 때의 높이
 
     [BoxGroup("플레이어 세팅"), LabelText("스폰 위치"), SerializeField]
-    private Transform[] spawnTransfrom;
+    private Transform spawnTransfrom;
 
 
     [BoxGroup("적 세팅"), LabelText("현재 레벨"), SerializeField]
@@ -72,8 +73,9 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         }
 
         SpawnPlayer();
-        SpawnEnemiesForCurrentStep();
         SpawnCitizens(); // 시민 스폰 초기화
+
+        //SpawnEnemiesForCurrentStep();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
@@ -114,8 +116,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             return;
         }
         
-        // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정 (나중에 삭제)
-        transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
+        if(GameManager.Instance.GetGameState())
+        {
+            // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정 (나중에 삭제)
+            transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
+        }
 
         //폭격기 스폰
         SpawnBomber();
@@ -128,11 +133,16 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         if(activeGoldList.Count < maxGoldCount)
         {
-            SpawnGold();
+           // SpawnGold();
         }
 
     }
     
+    public void StartSpawn()
+    {
+        SpawnEnemiesForCurrentStep();
+    }
+
     // 점수를 체크하는 함수
     public void CheckScore()
     {
@@ -231,8 +241,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     #region 플레이어
     private void SpawnPlayer()
     {
-        int index = Random.Range(0, spawnTransfrom.Length);
-        GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom[index].position, Quaternion.identity);
+        //int index = Random.Range(0, spawnTransfrom);
+        GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom.position, Quaternion.identity);
         slimeTrans = player.transform;
     }
 

@@ -48,7 +48,11 @@ public class Player : MonoBehaviour, IUpdateable
 
     public virtual void OnUpdate(float dt)
     {
-        AutoDecreaseSize();
+        if(GameManager.Instance.GetGameState())
+        {
+            AutoDecreaseSize();
+        }
+        
         HandleJump();
     }
     
@@ -175,6 +179,11 @@ public class Player : MonoBehaviour, IUpdateable
 
     private void Eat(EatAbleObjectBase eatAbleObjectBase) 
     {
+        if(!GameManager.Instance.GetGameState())
+        {
+            GameManager.Instance.SetGameState();
+        }
+
         // 먹을 수 있는 오브젝트를 자식 오브젝트에 추가
         eatAbleObjectBase.Eaten(transform);
 
@@ -191,6 +200,15 @@ public class Player : MonoBehaviour, IUpdateable
     public void TakeDamage(float damage)
     {
         transform.localScale -= new Vector3(damage, damage, damage);
+        playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
+
+        if (playerStat.curSize <= 0.2f)
+        {
+            GameManager.Instance.GameOver();
+
+            Destroy(gameObject);
+            // 죽는 이벤트 추가?
+        }
     }
 
     // 적과 충돌했을 때 밀려나는 기능

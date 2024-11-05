@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour, IUpdateable
     private TMP_Text scoreText;
     [TabGroup("UI", "게임"), LabelText("돈 Text"), SerializeField]
     private TMP_Text moneyText;
+    [TabGroup("UI", "게임"), LabelText("튜토리얼 이미지 삭제예정"), SerializeField]
+    private GameObject tutorialUI;
+    private float tutorialTimer = 0;
 
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour, IUpdateable
     private float score = 0f;
     private uint money = 0;
 
+    [BoxGroup("게임 상태"), LabelText("게임 상태"), SerializeField]
+    private bool isGame = false;
     [BoxGroup("게임 상태"), LabelText("게임 오버"), SerializeField]
     private bool isGameOver = false;
     [BoxGroup("게임 상태"), LabelText("일시정지"), SerializeField]
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     // 게임오버 UI 기본 위치
     private Vector2 gamOverOriginalPos;
     
+
     private void Awake()
     {
         if (Instance == null)
@@ -110,7 +116,19 @@ public class GameManager : MonoBehaviour, IUpdateable
             return;
         }
 
-        UpdateScore();
+        tutorialTimer += Time.deltaTime;
+        if(tutorialTimer > 5f)
+        {
+            tutorialUI.transform.GetChild(0).GetComponent<Image>().DOColor(new Color(1, 1, 1, 0), 0.5f);
+            tutorialUI.transform.GetChild(1).GetComponent<Image>().DOColor(new Color(1, 1, 1, 0), 0.5f);
+        }
+
+
+        if (isGame)
+        {
+            UpdateScore();    
+        }
+        
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -301,6 +319,17 @@ public class GameManager : MonoBehaviour, IUpdateable
         gameOverSequence.Play();
 
         
+    }
+
+    public bool GetGameState()
+    {
+        return isGame;
+    }
+
+    public void SetGameState()
+    {
+        isGame = true;
+        SpawnManager.Instance.StartSpawn();
     }
 
     public void ToggleBokeh(bool enable)
