@@ -23,6 +23,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     protected bool isGetEaten = false;
     protected bool isTrigger = false;
 
+    protected float timer;
+    protected float checkTime = 0.5f;
+
     private PlayerStat playerStat;
 
     protected virtual void Start()
@@ -52,28 +55,36 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     protected virtual void CheckSize()
     {
-        if(playerStat == null)
+        if (playerStat == null)
         {
             return;
         }
 
-        if(!isTrigger && size <= playerStat.curSize )
+        timer += Time.deltaTime;
+
+        if (checkTime < timer)
         {
-            isTrigger = true;
-            Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (Collider collider in colliders)
+            timer = 0f;
+            
+            if (!isTrigger && size <= playerStat.curSize)
             {
-                collider.isTrigger = isTrigger;
+                isTrigger = true;
+                Collider[] colliders = GetComponentsInChildren<Collider>();
+                foreach (Collider collider in colliders)
+                {
+                    collider.isTrigger = isTrigger;
+                }
             }
-        }
-        else if(isTrigger && size > playerStat.curSize)
-        {
-            isTrigger = false;
-            Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (Collider collider in colliders)
+            else if (isTrigger && size > playerStat.curSize)
             {
-                collider.isTrigger = isTrigger;
+                isTrigger = false;
+                Collider[] colliders = GetComponentsInChildren<Collider>();
+                foreach (Collider collider in colliders)
+                {
+                    collider.isTrigger = isTrigger;
+                }
             }
+
         }
     }
 

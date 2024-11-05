@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 374189119810797692}
   - component: {fileID: 3394909196290774878}
   - component: {fileID: 7421742128670821053}
-  - component: {fileID: 2172072002540752569}
   m_Layer: 0
   m_Name: Hotel_building
   m_TagString: Untagged
@@ -178,34 +177,6 @@ MonoBehaviour:
   type: 0
   mesh: {fileID: 0}
   rectangleSize: {x: 1.69, y: 2.03}
-  circleRadius: 1
-  circleResolution: 6
-  height: 10.98
-  meshScale: 1
-  center: {x: 0.15, y: 1.33, z: 0.07}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &2172072002540752569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478295167866993740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 4
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.6, y: 3.08}
   circleRadius: 1
   circleResolution: 6
   height: 10.98

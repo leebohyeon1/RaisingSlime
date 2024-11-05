@@ -85,8 +85,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     {
         isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
         RemoveAllCitizens(); // 모든 시민 제거
-        RemoveAllEnemy(); // 모든 적 제거
-        RemoveAllGold();    //모든 골드 제거
+        RemoveAllEnemy();    // 모든 적 제거
+        RemoveAllGold();     //모든 골드 제거
     }
 
     private void OnDestroy()
