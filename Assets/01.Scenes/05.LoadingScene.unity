@@ -485,7 +485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB208\uC5D0 \uBCF4\uC774\uB294 \uBAA8\uB4E0\uAC78 \uC9D1\uC5B4 \uC0BC\uD0A4\uC138\uC694"
+  m_text: 2 X 2 + 2 = ?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 228cdaff01faaaf4c90bf63f7606ae33, type: 2}
   m_sharedMaterial: {fileID: -6232037787564303727, guid: 228cdaff01faaaf4c90bf63f7606ae33,
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.1
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
