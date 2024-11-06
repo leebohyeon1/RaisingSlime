@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,9 @@ public class TankBullet : Bullet
     private Vector3 targetPos = Vector3.zero; // 타겟이 되는 플레이어 또는 목적지
     private Vector3 fallPos;
     private bool isFalling = false;
+
+    [SerializeField]
+    private GameObject explosionParticle;
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -70,7 +74,7 @@ public class TankBullet : Bullet
     }
 
     // 폭발 처리
-    void Explode()
+    void Explode(Collider collision)
     {
         // 폭발 효과를 처리할 범위를 지정 (폭발 반경 안의 모든 오브젝트 탐지)
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayerMask);
@@ -100,8 +104,14 @@ public class TankBullet : Bullet
             }
         }
 
-        // 폭발 후 포탄을 제거
+        explosionParticle.transform.SetParent(null);
+        explosionParticle.SetActive(true);
+
+        Vector3 collisionNormal = collision.transform.position - transform.position;
+        explosionParticle.transform.rotation = Quaternion.LookRotation(-collisionNormal);
+
         Destroy(gameObject);
+
     }
 
     // 폭발 범위를 그리기 위한 디버그 용도
@@ -115,7 +125,8 @@ public class TankBullet : Bullet
 
     protected override void OnTriggerEnter(Collider collision)
     {
-        Explode();
+        Explode(collision);
+       
     }
 
 
