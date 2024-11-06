@@ -184,6 +184,8 @@ public class Player : MonoBehaviour, IUpdateable
             GameManager.Instance.SetGameState();
         }
 
+        AudioManager.Instance.PlaySFX("Slime");
+        
         // 먹을 수 있는 오브젝트를 자식 오브젝트에 추가
         eatAbleObjectBase.Eaten(transform);
 

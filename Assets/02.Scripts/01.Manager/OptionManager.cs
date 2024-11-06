@@ -52,6 +52,8 @@ public class OptionManager : Singleton<OptionManager>
 
     public void ExitOption()
     {
+        AudioManager.Instance.PlaySFX("Btn");
+
         exitBtn.GetComponent<Button>().interactable = false;
 
         if (option.activeSelf)
@@ -94,6 +96,8 @@ public class OptionManager : Singleton<OptionManager>
 
     public void EnterOption()
     {
+        AudioManager.Instance.PlaySFX("Btn");
+
         exitBtn.GetComponent<Button>().interactable = true;
         if (!option.activeSelf)
         {
@@ -129,6 +133,8 @@ public class OptionManager : Singleton<OptionManager>
             isBgmMuted = false;           
         }
 
+        AudioManager.Instance.PlaySFX("Btn");
+
         float volumeChange = 0.1f;
         if (index == 1)
         {
@@ -150,6 +156,8 @@ public class OptionManager : Singleton<OptionManager>
         {
             isSfxMuted = false;
         }
+        
+        AudioManager.Instance.PlaySFX("Btn");
 
         float volumeChange = 0.1f;
         if (index == 1)
@@ -167,7 +175,8 @@ public class OptionManager : Singleton<OptionManager>
     private void ToggleBgmMute()
     {
         isBgmMuted = !isBgmMuted;
-
+     
+        AudioManager.Instance.PlaySFX("Btn");
         AudioManager.Instance.MuteBGM(isBgmMuted);
 
         // 사운드 설정 저장
@@ -178,7 +187,7 @@ public class OptionManager : Singleton<OptionManager>
     {
         isSfxMuted = !isSfxMuted;
 
-
+        AudioManager.Instance.PlaySFX("Btn");
         AudioManager.Instance.MuteSFX(isSfxMuted);
 
         // 사운드 설정 저장

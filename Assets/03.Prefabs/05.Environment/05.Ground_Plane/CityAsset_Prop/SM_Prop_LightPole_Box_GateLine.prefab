@@ -62,7 +62,7 @@ MonoBehaviour:
   isDual: 0
   cutsAddedGeom: 1
   updateRotationDistance: 10
-  useRotationAndScale: 0
+  useRotationAndScale: 1
 --- !u!114 &4780402208683530652
 MonoBehaviour:
   m_ObjectHideFlags: 0
