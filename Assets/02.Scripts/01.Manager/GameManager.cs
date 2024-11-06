@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour, IUpdateable
         GameData gameData = SaveManager.Instance.LoadPlayerData();
         money = gameData.money;
         moneyText.text = money.ToString();
+
+        AudioManager.Instance.PlayBGM("GameBGM1");
     }
 
     public virtual void OnUpdate(float dt) 
@@ -169,6 +171,8 @@ public class GameManager : MonoBehaviour, IUpdateable
             return;
         }
 
+        AudioManager.Instance.PlaySFX("Btn");
+       
         RectTransform pauseRect = pauseUI.GetComponent<RectTransform>();
 
         if (!pauseUI.activeSelf && !isPause)
@@ -243,11 +247,15 @@ public class GameManager : MonoBehaviour, IUpdateable
     public void RetryBtn()  // 게임 재시작
     {
         //LoadingScene.LoadScene("02.GameScene");
+        AudioManager.Instance.PlaySFX("Btn");
+
         SceneManager.LoadScene("03.GameScene");
     }
 
     public void ExitBtn()   // 메인화면으로 돌아감
     {
+        AudioManager.Instance.PlaySFX("Btn");
+
         SceneManager.LoadScene("02.MainScene");
 
         Time.timeScale = 1.0f;

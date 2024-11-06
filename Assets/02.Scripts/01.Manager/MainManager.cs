@@ -65,6 +65,7 @@ public class MainManager : MonoBehaviour
         skinButtons[0].onClick.AddListener(() => MoveSkinGroupToRight());
         skinButtons[1].onClick.AddListener(() => MoveSkinGroupToLeft());
 
+        AudioManager.Instance.PlayBGM("TitleBGM");
     }
 
     private void Update()
@@ -86,6 +87,8 @@ public class MainManager : MonoBehaviour
     public void StartButton()  // 게임 시작 버튼
     {
         DisableButtons();
+
+        AudioManager.Instance.PlaySFX("Btn");
 
         //RectTransform btnRect1 = mainBtn[0].GetComponent<RectTransform>();
         //RectTransform btnRect2 = mainBtn[1].GetComponent<RectTransform>();
@@ -142,6 +145,9 @@ public class MainManager : MonoBehaviour
     public void ExitButton()   // 게임 종료 버튼
     {
         DisableButtons();
+        
+        AudioManager.Instance.PlaySFX("Btn");
+
         RectTransform rectTransform = mainBtn[2].GetComponent<RectTransform>();
 
         // 버튼을 Y축 방향으로 흔드는 애니메이션 (0.5초 동안)
@@ -158,6 +164,8 @@ public class MainManager : MonoBehaviour
     {
         DisableButtons();
 
+        AudioManager.Instance.PlaySFX("Btn");
+
         RectTransform rectTransform = mainBtn[3].GetComponent<RectTransform>();
 
         // 버튼을 Y축 방향으로 흔드는 애니메이션 (0.5초 동안)
@@ -173,6 +181,8 @@ public class MainManager : MonoBehaviour
     {
         DisableButtons();
 
+        AudioManager.Instance.PlaySFX("Btn");
+
         RectTransform rectTransform = mainBtn[4].GetComponent<RectTransform>();
 
 
@@ -187,12 +197,9 @@ public class MainManager : MonoBehaviour
 
     public void ExitSkinBtn()
     {
+        AudioManager.Instance.PlaySFX("Btn");
+
         skinUI.SetActive(false);
-    }
-
-    public void BtnScaleUp()
-    {
-
     }
 
     #endregion
