@@ -68,6 +68,11 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     #region BGM Methods
+
+    public bool CheckCurBGM(string clipName)
+    {
+        return bgmSource.clip == bgmDictionary[clipName]? true : false;
+    }
     public void PlayBGM(string clipName, bool loop = true)
     {
         if (bgmDictionary.ContainsKey(clipName))

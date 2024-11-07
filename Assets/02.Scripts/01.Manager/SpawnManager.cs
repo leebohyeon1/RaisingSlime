@@ -39,6 +39,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private GameObject[] allCitizen;
     [FoldoutGroup("특수 오브젝트"), LabelText("돈"), SerializeField]
     private GameObject goldPrefab;
+    [FoldoutGroup("특수 오브젝트"), LabelText("부모 오브젝트"), SerializeField]
+    private Transform[] parentTransforms;
 
     private List<GameObject> currentCitizenList = new List<GameObject>(); // 현재 게임 내 시민 리스트
     private List<GameObject> currentStepEnemies = new List<GameObject>();
@@ -76,7 +78,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         SpawnCitizens(); // 시민 스폰 초기화
 
         //SpawnEnemiesForCurrentStep();
-
+        
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
@@ -278,7 +280,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         if (spawnPosition == Vector3.zero) return;
         
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
+        newEnemy.transform.SetParent(parentTransforms[0]);
         // 스폰된 적을 현재 스텝 리스트에 추가
         currentStepEnemies.Add(newEnemy);
 
@@ -367,7 +369,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             GameObject citizenPrefab = allCitizen[Random.Range(0, allCitizen.Length)];
             Vector3 spawnPosition = GetValidSpawnPosition();
             GameObject newCitizen = Instantiate(citizenPrefab, spawnPosition, Quaternion.Euler(slimeTrans.position - spawnPosition));
-
+            newCitizen.transform.SetParent(parentTransforms[1]);
             currentCitizenList.Add(newCitizen);
 
             // 시민 파괴 시 다시 스폰
@@ -470,6 +472,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         {
             // 새로 생성된 골드에 이벤트가 중복 등록되지 않도록 주의
             GameObject newGold = Instantiate(goldPrefab);
+            newGold.transform.SetParent(parentTransforms[2]);
 
             Gold goldComponent = newGold.GetComponent<Gold>();
             if (goldComponent != null)

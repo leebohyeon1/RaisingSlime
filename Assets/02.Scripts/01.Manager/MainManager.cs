@@ -65,7 +65,11 @@ public class MainManager : MonoBehaviour
         skinButtons[0].onClick.AddListener(() => MoveSkinGroupToRight());
         skinButtons[1].onClick.AddListener(() => MoveSkinGroupToLeft());
 
-        AudioManager.Instance.PlayBGM("TitleBGM");
+        if(!AudioManager.Instance.CheckCurBGM("TitleBGM"))
+        {
+            AudioManager.Instance.PlayBGM("TitleBGM");
+        }
+        
     }
 
     private void Update()

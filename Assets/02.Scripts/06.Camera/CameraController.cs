@@ -69,7 +69,6 @@ public class CameraController : MonoBehaviour, IUpdateable
 
             for (int j = 0; j < obj.Length; j++)
             {
-                Debug.Log(obj[j].name);
                 obj[j]?.BecomeTransparent();
             }
         }
