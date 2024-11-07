@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 5566417172866997717}
   - component: {fileID: 9045988044271901801}
   - component: {fileID: 3475389952881928796}
+  - component: {fileID: 3401620585695242132}
   m_Layer: 10
   m_Name: Cat_House
   m_TagString: Untagged
@@ -169,6 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 48930592056329716
+  uniqueID: 2914966719216999519
   updateError: 1
   checkTime: 0.2
+--- !u!114 &3401620585695242132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3740829049659384510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

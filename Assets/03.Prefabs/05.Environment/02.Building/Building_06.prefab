@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3218356275808214741}
   - component: {fileID: 4823711948632874251}
   - component: {fileID: 4506409479251691612}
+  - component: {fileID: 1702776836894497382}
   m_Layer: 10
   m_Name: building02
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5794785635817765575
+  uniqueID: 124244454000550098
   updateError: 1
   checkTime: 0.2
+--- !u!114 &1702776836894497382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581789138812760044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6225204051976143309
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +330,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8288313800279188904, guid: 325dfa981977624469f4f9ca1681be54,
+        type: 3}
+      propertyPath: uniqueID
+      value: 8523264837073961626
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -466,6 +484,11 @@ PrefabInstance:
     - target: {fileID: 480566, guid: 9f0bb2864b754094ba178cb08feb9dde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067203251629745632, guid: 9f0bb2864b754094ba178cb08feb9dde,
+        type: 3}
+      propertyPath: uniqueID
+      value: 5061035832633293945
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 9067900016644744112}
   - component: {fileID: 2087510000193094377}
   - component: {fileID: 9013810232929968137}
+  - component: {fileID: 5118699444956638091}
   m_Layer: 10
   m_Name: Building_Store01
   m_TagString: Untagged
@@ -177,9 +178,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 4186218901284349749
+  uniqueID: 603014379492043661
   updateError: 1
   checkTime: 0.2
+--- !u!114 &5118699444956638091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410492271011938917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &884692997506857407
 PrefabInstance:
   m_ObjectHideFlags: 0

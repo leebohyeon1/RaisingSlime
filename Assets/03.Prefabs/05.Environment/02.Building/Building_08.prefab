@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 5002120100206149283}
   - component: {fileID: 999471719219294707}
   - component: {fileID: 2573550542626971460}
+  - component: {fileID: 8920086600045443955}
   m_Layer: 10
   m_Name: building04
   m_TagString: Untagged
@@ -169,6 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 7725554394475700173
+  uniqueID: 277187480484997572
   updateError: 1
   checkTime: 0.2
+--- !u!114 &8920086600045443955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803784320605446006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

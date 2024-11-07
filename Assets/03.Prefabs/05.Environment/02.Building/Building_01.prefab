@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6695681376652689257}
   - component: {fileID: 1795085583901798544}
   - component: {fileID: 437859646767127562}
+  - component: {fileID: 2659552719871950855}
   m_Layer: 10
   m_Name: 'Building01 '
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8011198190927242432
+  uniqueID: 1043222192209715976
   updateError: 1
   checkTime: 0.2
+--- !u!114 &2659552719871950855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182282854402055868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5944359235922893724
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,6 @@ public class PoliceCar : NPCBase
     private bool isReversing = false;
     private float reverseTimer = 0f;
     private Coroutine collisionCoroutine; // 현재 실행 중인 코루틴을 저장
-    private float currentSpeed = 0f; // 현재 속도
 
     protected override void Awake()
     {
@@ -98,7 +97,6 @@ public class PoliceCar : NPCBase
     {
         isReversing = false;
         reverseTimer = 0f;
-        currentSpeed = 0f; // 속도 초기화
 
         aiPath.maxSpeed = moveSpeed;
         aiPath.maxAcceleration = acceleration;

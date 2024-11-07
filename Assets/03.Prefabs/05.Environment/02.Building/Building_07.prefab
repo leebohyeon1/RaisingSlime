@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6194771514612605259}
   - component: {fileID: 1003041145037601120}
   - component: {fileID: 6999954790887384832}
+  - component: {fileID: 1816764276368047991}
   m_Layer: 10
   m_Name: building03
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6653129441474471391
+  uniqueID: 668079732836536459
   updateError: 1
   checkTime: 0.2
+--- !u!114 &1816764276368047991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690513286636683422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5961538831017026750
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946765585311576544}
   - component: {fileID: 5357144792889719151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Building_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}

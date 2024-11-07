@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2269859312009386010}
   - component: {fileID: 698373274014594902}
   - component: {fileID: 3122964305010071536}
+  - component: {fileID: 5740695755474666200}
   m_Layer: 10
   m_Name: IceCream_House
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 2637910759691687181
+  uniqueID: 9198478750922317279
   updateError: 1
   checkTime: 0.2
+--- !u!114 &5740695755474666200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562458180397242950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8730751418392221698
 GameObject:
   m_ObjectHideFlags: 0

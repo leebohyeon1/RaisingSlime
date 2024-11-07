@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6681381823561636245}
   - component: {fileID: 8666884772848664273}
   - component: {fileID: 8657943285473334192}
+  - component: {fileID: 7132570961207256592}
   m_Layer: 10
   m_Name: building05_Mark2
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 3156463052774629137
+  uniqueID: 4055736283680772376
   updateError: 1
   checkTime: 0.2
+--- !u!114 &7132570961207256592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168431626585847872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6224653399699163727
 GameObject:
   m_ObjectHideFlags: 0

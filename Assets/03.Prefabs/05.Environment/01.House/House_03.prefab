@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6511501388977491468}
   - component: {fileID: 6550261023123666550}
   - component: {fileID: 525581835513742883}
+  - component: {fileID: 1229127603827026788}
   m_Layer: 10
   m_Name: Semi_House03
   m_TagString: Untagged
@@ -120,9 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 3984128479385440024
+  uniqueID: 6090238075281873830
   updateError: 1
   checkTime: 0.2
+--- !u!114 &1229127603827026788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617294221212909830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3911508385776864466
 GameObject:
   m_ObjectHideFlags: 0
