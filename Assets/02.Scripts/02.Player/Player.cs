@@ -142,7 +142,7 @@ public class Player : MonoBehaviour, IUpdateable
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
         }
         
-        if(playerStat.curSize <= 0.4f)
+        if(playerStat.curSize <= 0.1f)
         {
             GameManager.Instance.GameOver();
 
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour, IUpdateable
         transform.localScale -= new Vector3(damage, damage, damage);
         playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
 
-        if (playerStat.curSize <= 0.2f)
+        if (playerStat.curSize <= 0.1f)
         {
             GameManager.Instance.GameOver();
 
@@ -243,6 +243,12 @@ public class Player : MonoBehaviour, IUpdateable
             CompareSize(collision.gameObject);
         }
 
+        if(collision.gameObject.CompareTag("Sea"))
+        {
+            GameManager.Instance.GameOver();
+
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
