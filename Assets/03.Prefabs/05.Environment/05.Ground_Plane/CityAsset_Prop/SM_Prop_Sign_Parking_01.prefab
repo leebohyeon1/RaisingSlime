@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2368052}
   - component: {fileID: 64210796150306190}
   - component: {fileID: 6469048346792877583}
-  - component: {fileID: 6183680831847653977}
-  m_Layer: 0
+  - component: {fileID: 6899169245336061518}
+  m_Layer: 10
   m_Name: SM_Prop_Sign_Parking_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.04
   plusScore: 30
   shrinkSpeed: 0.5
---- !u!114 &6183680831847653977
+--- !u!114 &6899169245336061518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,22 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 159104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.09
-  meshScale: 1
-  center: {x: 0, y: 0.79, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 7167280160652615990
+  updateError: 1
+  checkTime: 0.2

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7930016176460379491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35995597, y: -0.37746954, z: -0.5731388}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,12 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  moneyText: {fileID: 0}
+  tutorialUI: {fileID: 0}
   pauseUI: {fileID: 0}
-  optionUI: {fileID: 0}
   gameOverUI: {fileID: 0}
+  bestScoreText: {fileID: 0}
   totalScoreText: {fileID: 0}
   restartBtn: {fileID: 0}
   exitBtn: {fileID: 0}
+  isGame: 0
   isGameOver: 0
   isPause: 0
   isOption: 0

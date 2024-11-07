@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 64628011192525652}
   - component: {fileID: 64269958822898852}
   - component: {fileID: 3231044033410869726}
-  - component: {fileID: 5228730614721825472}
-  m_Layer: 0
+  - component: {fileID: 4337798750497603841}
+  m_Layer: 10
   m_Name: SM_Prop_HotdogStand_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.08
   plusScore: 25
   shrinkSpeed: 0.5
---- !u!114 &5228730614721825472
+--- !u!114 &4337798750497603841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,22 +156,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 106796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.57, y: 1.46}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.1
-  meshScale: 1
-  center: {x: 0, y: 1.02, z: -0.27}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 7958169199865282781
+  updateError: 1
+  checkTime: 0.2
