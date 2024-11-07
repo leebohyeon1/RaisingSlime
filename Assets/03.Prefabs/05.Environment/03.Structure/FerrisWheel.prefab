@@ -9,12 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509985398798668838}
-  - component: {fileID: 3163920543166410633}
-  - component: {fileID: 5975058931172816811}
-  - component: {fileID: 6617940487955182363}
-  - component: {fileID: 8259918495584041594}
-  - component: {fileID: 8203295054845452934}
-  - component: {fileID: 4901215586771648816}
   - component: {fileID: 8063676984502197896}
   - component: {fileID: -5401600913845875331}
   m_Layer: 0
@@ -40,174 +34,6 @@ Transform:
   - {fileID: 5405313168684915462}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3163920543166410633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 4.9, y: 7.2}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.61
-  meshScale: 1
-  center: {x: 0, y: 1.14, z: -5.18}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &5975058931172816811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.36, y: 2.17}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.23
-  meshScale: 1
-  center: {x: 10.43, y: 2, z: -5.93}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &6617940487955182363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.36, y: 2.17}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.23
-  meshScale: 1
-  center: {x: 10.43, y: 2, z: 6.05}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &8259918495584041594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.36, y: 2.17}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.23
-  meshScale: 1
-  center: {x: -10.43, y: 2, z: -5.93}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &8203295054845452934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.36, y: 2.17}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.23
-  meshScale: 1
-  center: {x: -10.43, y: 2, z: 6.05}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &4901215586771648816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805122197003270101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 37, y: 16.3}
-  circleRadius: 1
-  circleResolution: 6
-  height: 35.2
-  meshScale: 1
-  center: {x: 0, y: 24.78, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!114 &8063676984502197896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +259,8 @@ GameObject:
   - component: {fileID: 7663384982485324411}
   - component: {fileID: 8378755497020435762}
   - component: {fileID: 5169139238409789510}
-  m_Layer: 0
+  - component: {fileID: 626893865379754849}
+  m_Layer: 10
   m_Name: floor support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,6 +354,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3980605626101490090, guid: 1bd85eaa6c9eea745a0b4cd638b5b512, type: 3}
+--- !u!114 &626893865379754849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118810036933003029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 87036869031252597
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &5450871681839526552
 GameObject:
   m_ObjectHideFlags: 0

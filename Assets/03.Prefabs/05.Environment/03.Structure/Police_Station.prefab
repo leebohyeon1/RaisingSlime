@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4574787317457488003}
   - component: {fileID: 1772201201234148425}
   - component: {fileID: 560477026069245986}
-  m_Layer: 0
+  - component: {fileID: 3773911578241291934}
+  m_Layer: 10
   m_Name: police_building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +107,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4673220196579327104, guid: f0703c9530986dd4b942aecb68cd67a6, type: 3}
+--- !u!114 &3773911578241291934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259207574492765596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 1975101491120954831
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &9206085123642667827
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7118085970102809337}
   - component: {fileID: 7759606489182350736}
-  - component: {fileID: 381221588455945388}
   m_Layer: 0
   m_Name: Police_Station
   m_TagString: Untagged
@@ -156,31 +172,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &381221588455945388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206085123642667827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1.78, y: 1.71}
-  circleRadius: 1
-  circleResolution: 6
-  height: 9.11
-  meshScale: 1
-  center: {x: -0.1, y: 1.11, z: 0.03}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

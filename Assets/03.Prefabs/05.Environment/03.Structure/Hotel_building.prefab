@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2032162665604800721}
   - component: {fileID: 4311992566145848347}
   - component: {fileID: 5088177814997840894}
-  m_Layer: 0
+  - component: {fileID: 5918807095145605138}
+  m_Layer: 10
   m_Name: hotel_building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +107,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1457884637594740800, guid: a6fcd8926d3b5354aa9ebb135ab05231, type: 3}
+--- !u!114 &5918807095145605138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366564727180506574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 238131667565793625
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &8478295167866993740
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 374189119810797692}
   - component: {fileID: 3394909196290774878}
-  - component: {fileID: 7421742128670821053}
   m_Layer: 0
   m_Name: Hotel_building
   m_TagString: Untagged
@@ -159,34 +175,6 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &7421742128670821053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478295167866993740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1.69, y: 2.03}
-  circleRadius: 1
-  circleResolution: 6
-  height: 10.98
-  meshScale: 1
-  center: {x: 0.15, y: 1.33, z: 0.07}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!1001 &1298458941203307984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -385,6 +373,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1611467017937880122, guid: bf4ffcd23666d764cb19b29a07f09af4,
+        type: 3}
+      propertyPath: uniqueID
+      value: 8914958486093853475
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -459,6 +452,11 @@ PrefabInstance:
     - target: {fileID: 488578, guid: bb67ca2bdb6ef234e825331da4409726, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4930935596745319802, guid: bb67ca2bdb6ef234e825331da4409726,
+        type: 3}
+      propertyPath: uniqueID
+      value: 4997254365778835468
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -542,6 +540,11 @@ PrefabInstance:
     - target: {fileID: 491684, guid: bf4ffcd23666d764cb19b29a07f09af4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611467017937880122, guid: bf4ffcd23666d764cb19b29a07f09af4,
+        type: 3}
+      propertyPath: uniqueID
+      value: 6467858961925458111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

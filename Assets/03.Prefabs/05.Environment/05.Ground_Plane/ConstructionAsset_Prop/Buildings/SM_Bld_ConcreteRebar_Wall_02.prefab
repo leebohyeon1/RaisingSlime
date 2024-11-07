@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33972017814858746}
   - component: {fileID: 23476867013024184}
   - component: {fileID: 65618839129384634}
-  - component: {fileID: 4617716557249419948}
   - component: {fileID: 770469601533182178}
-  m_Layer: 0
+  - component: {fileID: 6635057481990825553}
+  m_Layer: 10
   m_Name: SM_Bld_ConcreteRebar_Wall_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,34 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.7983966, y: 2.921172, z: 0.08954772}
   m_Center: {x: 0, y: 1.460586, z: -0.00000015087426}
---- !u!114 &4617716557249419948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778199194986560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 1
-  circleResolution: 6
-  height: 1
-  meshScale: 1
-  center: {x: 0, y: 0, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!114 &770469601533182178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +123,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0.13
   plusScore: 80
   shrinkSpeed: 0.5
+--- !u!114 &6635057481990825553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778199194986560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4858034095231012595
+  updateError: 1
+  checkTime: 0.2

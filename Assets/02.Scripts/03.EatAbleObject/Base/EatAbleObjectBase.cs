@@ -2,6 +2,7 @@ using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,7 +44,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         }
         else
         {
-            CheckSize();
+            //CheckSize();
         }
        
     }
@@ -123,9 +124,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
             collider.enabled = false;
         }
 
-        if(GetComponent<RichAI>())
+        if(GetComponent<AIPath>())
         {
-            GetComponent<RichAI>().enabled = false;
+            GetComponent<AIPath>().enabled = false;
         }
         
         if(GetComponentInChildren<NavmeshCut>())

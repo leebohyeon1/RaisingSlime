@@ -27,25 +27,26 @@ public class PoliceCar : NPCBase
     private bool isReversing = false;
     private float reverseTimer = 0f;
     private Coroutine collisionCoroutine; // 현재 실행 중인 코루틴을 저장
+    private float currentSpeed = 0f; // 현재 속도
 
     protected override void Awake()
     {
         base.Awake();
-        richAI.acceleration = acceleration;
-        richAI.updateRotation = false;
-        richAI.enableRotation = false;
+        aiPath.maxAcceleration = acceleration;
+        aiPath.updateRotation = false;
+        aiPath.enableRotation = false;
     }
 
     protected override void enemyAction()
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            richAI.enabled = false;
+            aiPath.enabled = false;
             return;
         }
         else
         {
-            richAI.enabled = true;
+            aiPath.enabled = true;
 
             if (isReversing)
                 MoveReverse();
@@ -57,32 +58,34 @@ public class PoliceCar : NPCBase
 
     private void MoveCar()
     {
+
         MoveToTarget();
 
-        Vector3 directionToTarget = richAI.steeringTarget - transform.position;
+        Vector3 directionToTarget = aiPath.steeringTarget - transform.position;
         directionToTarget.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
+        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, aiPath.velocity.magnitude / moveSpeed);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
     }
 
     private void MoveReverse()
     {
         if (reverseTimer < reverseTime)
-        {
+        { 
+
             Vector3 direction = TargetPosSameYPos() - transform.position;
-            richAI.isStopped = false;
+            aiPath.isStopped = false;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
+            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, aiPath.velocity.magnitude / moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
 
-            aiDestinationSetter.target = backPos;
+            aiPath.destination = backPos.position;
             reverseTimer += Time.deltaTime;
         }
         else
@@ -95,12 +98,13 @@ public class PoliceCar : NPCBase
     {
         isReversing = false;
         reverseTimer = 0f;
+        currentSpeed = 0f; // 속도 초기화
 
-        richAI.maxSpeed = moveSpeed;
-        richAI.acceleration = acceleration;
+        aiPath.maxSpeed = moveSpeed;
+        aiPath.maxAcceleration = acceleration;
 
-        richAI.isStopped = false; // 이동 재개
-        aiDestinationSetter.target = target; // 타겟을 원래 목표로 다시 설정
+        aiPath.isStopped = false; // 이동 재개
+        aiPath.destination = target.position; // 타겟을 원래 목표로 다시 설정
     }
 
     private Quaternion LimitRotation(Quaternion currentRotation, Quaternion targetRotation, float maxAngle)
@@ -113,17 +117,15 @@ public class PoliceCar : NPCBase
 
     private IEnumerator HandleCollision()
     {
-        richAI.isStopped = true;
-        richAI.maxSpeed = 0f;
+        aiPath.isStopped = true;
+        aiPath.maxSpeed = 0f;
 
         Rigidbody rb = GetComponent<Rigidbody>();
-        //rb.isKinematic = true;
 
         yield return new WaitForSeconds(stopDuration);
 
-        richAI.maxSpeed = maxReverseSpeed;
-        richAI.acceleration = reverseAcceleration;
-        //rb.isKinematic = false;
+        aiPath.maxSpeed = maxReverseSpeed;
+        aiPath.maxAcceleration = reverseAcceleration;
 
         isReversing = true;
     }

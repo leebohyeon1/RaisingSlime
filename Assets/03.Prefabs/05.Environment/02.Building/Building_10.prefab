@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8889540616656285023}
   - component: {fileID: 6681381823561636245}
   - component: {fileID: 8666884772848664273}
-  m_Layer: 0
+  - component: {fileID: 8657943285473334192}
+  m_Layer: 10
   m_Name: building05_Mark2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +107,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3717770357863278167, guid: 8bc32fa302e723d4ca99c5267ff1e1f3, type: 3}
+--- !u!114 &8657943285473334192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168431626585847872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 3156463052774629137
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &6224653399699163727
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6233785816178606374}
   - component: {fileID: 4493703098574512094}
-  - component: {fileID: 947372161839395177}
   m_Layer: 0
   m_Name: Building_10
   m_TagString: Untagged
@@ -134,7 +150,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5000002, y: 3.5, z: 3.5000002}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5544535335116694266}
@@ -156,31 +172,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &947372161839395177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6224653399699163727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.48, y: 2.62}
-  circleRadius: 1
-  circleResolution: 6
-  height: 4.64
-  meshScale: 1
-  center: {x: 0, y: 0.62, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

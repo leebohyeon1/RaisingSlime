@@ -9,13 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1703168374555020602}
-  - component: {fileID: 4403479278045421591}
-  - component: {fileID: 4426090385192365053}
-  - component: {fileID: 2953933483312997006}
-  - component: {fileID: 1083877845561366271}
-  - component: {fileID: 6907507579390584199}
-  - component: {fileID: 4266867523376258149}
-  - component: {fileID: 5058641106365182695}
   - component: {fileID: 6029511526772115857}
   m_Layer: 0
   m_Name: Factory
@@ -48,202 +41,6 @@ Transform:
   - {fileID: 7612398108637672454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4403479278045421591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 14.8, y: 18.04}
-  circleRadius: 1
-  circleResolution: 6
-  height: 6.67
-  meshScale: 1
-  center: {x: 0, y: 3.01, z: 2}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &4426090385192365053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 5.48, y: 12.6}
-  circleRadius: 1
-  circleResolution: 6
-  height: 3.66
-  meshScale: 1
-  center: {x: 8, y: 1.42, z: 5.5}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &2953933483312997006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 5.96, y: 11.28}
-  circleRadius: 1
-  circleResolution: 6
-  height: 4.38
-  meshScale: 1
-  center: {x: -8.81, y: 1.53, z: 7.65}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &1083877845561366271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 3.11
-  circleResolution: 8
-  height: 11.22
-  meshScale: 1
-  center: {x: -9.88, y: 4.9, z: -0.16}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &6907507579390584199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 3.11
-  circleResolution: 8
-  height: 11.22
-  meshScale: 1
-  center: {x: -9.88, y: 4.9, z: -6.23}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &4266867523376258149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 3.11
-  circleResolution: 8
-  height: 16.74
-  meshScale: 1
-  center: {x: 0.83, y: 7.6, z: -9.11}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &5058641106365182695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184769321136406734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 5.96, y: 11.28}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.48
-  meshScale: 1
-  center: {x: -4.37, y: 2.42, z: -5.95}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!114 &6029511526772115857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +69,8 @@ GameObject:
   - component: {fileID: 9152546041615742113}
   - component: {fileID: 5040291286411487781}
   - component: {fileID: 4023062524468882602}
-  m_Layer: 0
+  - component: {fileID: 7350863047374418975}
+  m_Layer: 10
   m_Name: Factory_0925
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +164,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5542413560607618145, guid: 078b4e2858a8d8f41b595843fac8f133, type: 3}
+--- !u!114 &7350863047374418975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7452369529804038409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4415138488529277665
+  updateError: 1
+  checkTime: 0.2
 --- !u!1001 &209139262898829002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,6 +609,11 @@ PrefabInstance:
     - target: {fileID: 480566, guid: 9f0bb2864b754094ba178cb08feb9dde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067203251629745632, guid: 9f0bb2864b754094ba178cb08feb9dde,
+        type: 3}
+      propertyPath: uniqueID
+      value: 5074011511625369923
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

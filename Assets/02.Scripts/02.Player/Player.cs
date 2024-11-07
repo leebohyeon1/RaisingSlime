@@ -152,16 +152,23 @@ public class Player : MonoBehaviour, IUpdateable
     }
 
     // 적을 흡수하는 기능
-    private void CompareSize(GameObject eatAble)
+    private void CompareSize(GameObject eatAble, bool isTrigger = false)
     {
 
         EatAbleObjectBase eatAbleObjectBase = eatAble.GetComponentInParent<EatAbleObjectBase>();
 
+    
         // 슬라임과 오브젝트의 size 변수 비교
         if (eatAbleObjectBase.GetSize() < playerStat.curSize)
         {
+
             // 자신보다 사이즈가 작으면 먹는다.
             Eat(eatAbleObjectBase);
+
+            if (!isTrigger)
+            {
+                rb.velocity = movement / 3;
+            }
         }
         else if(eatAble.GetComponentInParent<NPCBase>())
         {
@@ -241,6 +248,8 @@ public class Player : MonoBehaviour, IUpdateable
         if (collision.gameObject.GetComponentInParent<EatAbleObjectBase>())
         {
             CompareSize(collision.gameObject);
+
+         
         }
 
         if(collision.gameObject.CompareTag("Sea"))
@@ -256,7 +265,7 @@ public class Player : MonoBehaviour, IUpdateable
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
         if (collider.GetComponentInParent<EatAbleObjectBase>())
         {
-            CompareSize(collider.gameObject);
+            CompareSize(collider.gameObject,true);
         }
 
     }

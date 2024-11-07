@@ -54,8 +54,8 @@ public class Helicopter : NPCBase
     {
         base.Awake();
 
-        richAI.updatePosition = false;
-        richAI.updateRotation = false;
+        aiPath.updatePosition = false;
+        aiPath.updateRotation = false;
     }
 
     protected override void Start()
@@ -75,12 +75,12 @@ public class Helicopter : NPCBase
 
         if (eatAbleObjectBase.GetEaten() || target == null)
         {
-            richAI.enabled = false;
+            aiPath.enabled = false;
             return;
         }
         else
         {
-            richAI.enabled = true;
+            aiPath.enabled = true;
 
             MoveToTarget();
         }
@@ -92,7 +92,7 @@ public class Helicopter : NPCBase
 
         if (distance > attackRange)
         {
-            aiDestinationSetter.target = target;
+            aiPath.destination = target.position;
         }
         else
         {
@@ -105,7 +105,7 @@ public class Helicopter : NPCBase
         targetRotation = LimitXRotation(targetRotation, maxXAngle);
         transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전
 
-        transform.position = new Vector3(richAI.position.x, transform.position.y, richAI.position.z);
+        transform.position = new Vector3(aiPath.position.x, transform.position.y, aiPath.position.z);
     }
 
     private void MaintainDistanceAndMove(float distanceToPlayer)
@@ -119,11 +119,11 @@ public class Helicopter : NPCBase
             newPos.y = 0f;
             backPos.position = newPos;
 
-            aiDestinationSetter.target = backPos;
+            aiPath.destination = backPos.position;
         }
         else
         {
-            aiDestinationSetter.target = null;
+            aiPath.destination = transform.position;
         }
     }
 

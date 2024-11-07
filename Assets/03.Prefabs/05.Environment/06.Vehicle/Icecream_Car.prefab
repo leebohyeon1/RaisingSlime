@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7265694278420524149}
   - component: {fileID: 4841397338566498495}
   - component: {fileID: 5722786318791634205}
-  m_Layer: 0
+  - component: {fileID: 7641981429355694113}
+  m_Layer: 10
   m_Name: icecream_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +107,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4482858533757754547, guid: c95a60d678e0a8a48bf003a94cb2064e, type: 3}
+--- !u!114 &7641981429355694113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6354831183220095338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 358028302489730341
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &7473130009023944068
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1752362729558417805}
   - component: {fileID: 8370756711745412821}
-  - component: {fileID: 2815925814472233203}
   m_Layer: 0
   m_Name: Icecream_Car
   m_TagString: Untagged
@@ -156,31 +172,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 50
   shrinkSpeed: 0.5
---- !u!114 &2815925814472233203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7473130009023944068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.62, y: 4.93}
-  circleRadius: 1
-  circleResolution: 6
-  height: 3.17
-  meshScale: 1
-  center: {x: 0, y: 0.99, z: 0.6}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

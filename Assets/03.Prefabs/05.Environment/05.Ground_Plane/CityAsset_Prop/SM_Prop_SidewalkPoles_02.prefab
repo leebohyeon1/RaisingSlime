@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2382252}
   - component: {fileID: 64515797105043342}
   - component: {fileID: 730347723007394611}
-  - component: {fileID: 1633876049250757095}
-  m_Layer: 0
+  - component: {fileID: 9138627603132865503}
+  m_Layer: 10
   m_Name: SM_Prop_SidewalkPoles_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.04
   plusScore: 7
   shrinkSpeed: 0.5
---- !u!114 &1633876049250757095
+--- !u!114 &9138627603132865503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,22 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 182912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: -1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 0.73
-  circleResolution: 6
-  height: 2.01
-  meshScale: 1
-  center: {x: 0, y: 0.59, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 4020771650726694243
+  updateError: 1
+  checkTime: 0.2

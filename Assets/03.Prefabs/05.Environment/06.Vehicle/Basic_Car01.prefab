@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7036216329394993970}
   - component: {fileID: 2812172518812840859}
-  - component: {fileID: 3456433981446199785}
   m_Layer: 0
   m_Name: Basic_Car01
   m_TagString: Untagged
@@ -50,34 +49,6 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 50
   shrinkSpeed: 0.5
---- !u!114 &3456433981446199785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400564982564693822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 3.61, y: 2.74}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.88
-  meshScale: 1
-  center: {x: 0, y: 0.62, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!1 &4267267134687239911
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +61,8 @@ GameObject:
   - component: {fileID: 566446264032693240}
   - component: {fileID: 2321777860426399538}
   - component: {fileID: 2971811977969150929}
-  m_Layer: 0
+  - component: {fileID: 8498136142179304291}
+  m_Layer: 10
   m_Name: BasicCar01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,3 +156,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3852244212772053879, guid: 158a24d6bfe2d1d48987560f25b7dadf, type: 3}
+--- !u!114 &8498136142179304291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267267134687239911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4376801048750588433
+  updateError: 1
+  checkTime: 0.2

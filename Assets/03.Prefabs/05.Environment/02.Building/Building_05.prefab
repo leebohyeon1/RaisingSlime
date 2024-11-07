@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8514679494394277885}
   - component: {fileID: 6729513830975785678}
-  - component: {fileID: 8996113060358906234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Building_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,34 +51,6 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &8996113060358906234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364798177811913739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1.38, y: 1.55}
-  circleRadius: 1
-  circleResolution: 6
-  height: 9.78
-  meshScale: 1
-  center: {x: -0.21, y: 1.1, z: 0.05}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!1 &4084329123236414632
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +63,8 @@ GameObject:
   - component: {fileID: 585229174739311674}
   - component: {fileID: 4206769445828152207}
   - component: {fileID: 6891358824813416224}
-  m_Layer: 0
+  - component: {fileID: 762100630699803929}
+  m_Layer: 10
   m_Name: building01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +158,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2779034379908160629, guid: 108ced4c6d3243842b90d36f9d6c531c, type: 3}
+--- !u!114 &762100630699803929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084329123236414632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 2277275941695105154
+  updateError: 1
+  checkTime: 0.2
 --- !u!1001 &643814149360375069
 PrefabInstance:
   m_ObjectHideFlags: 0
