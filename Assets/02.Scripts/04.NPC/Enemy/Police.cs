@@ -28,12 +28,6 @@ public class Police : NPCBase
         // 초기 회전 속도 설정
         currentRotationSpeed = batonRotateSpeed;
 
-        if (aiDestinationSetter != null)
-        {
-            // 타겟을 스크립트로 설정
-            aiDestinationSetter.target = target;
-        }
-
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
@@ -41,14 +35,15 @@ public class Police : NPCBase
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            richAI.enabled = false;
+            aiPath.enabled = false;
             return;
         }
         else
         {
-            richAI.enabled = true;
+            aiPath.enabled = true;
 
-
+            aiPath.destination = TargetGroundPos();
+            
             // 현재 X축 회전 각도 계산
             float currentXRotation = baton.transform.localEulerAngles.x;
 

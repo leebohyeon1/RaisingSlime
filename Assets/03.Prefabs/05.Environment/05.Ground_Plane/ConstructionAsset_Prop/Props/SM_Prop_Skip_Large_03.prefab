@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 64879014859649398}
   - component: {fileID: 64289932032664766}
   - component: {fileID: 64924566646323802}
-  - component: {fileID: 5278127027382945530}
   - component: {fileID: 2139567835382708586}
-  m_Layer: 0
+  - component: {fileID: 753509684817738115}
+  m_Layer: 10
   m_Name: SM_Prop_Skip_Large_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,34 +201,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43764991440396764, guid: 069e9984417b6f54fbd1a5a212b51041, type: 2}
---- !u!114 &5278127027382945530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092816312998158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 3.43, y: 6.33}
-  circleRadius: 1
-  circleResolution: 6
-  height: 2.25
-  meshScale: 1
-  center: {x: 0, y: 1.19, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!114 &2139567835382708586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +217,22 @@ MonoBehaviour:
   slimeIncreaseSize: 0.13
   plusScore: 40
   shrinkSpeed: 0.5
+--- !u!114 &753509684817738115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092816312998158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6585508961648390672
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &1949995690073154
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +245,8 @@ GameObject:
   - component: {fileID: 33550537540803816}
   - component: {fileID: 23634024759998318}
   - component: {fileID: 65293023332198764}
-  m_Layer: 0
+  - component: {fileID: 7733255278820599398}
+  m_Layer: 10
   m_Name: SM_Prop_Skip_Large_03_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,3 +339,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.1989207, y: 1.6148568, z: 0.13994263}
   m_Center: {x: -0.00000029802322, y: -0.8074284, z: -0.059507124}
+--- !u!114 &7733255278820599398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949995690073154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 3730151270744611924
+  updateError: 1
+  checkTime: 0.2

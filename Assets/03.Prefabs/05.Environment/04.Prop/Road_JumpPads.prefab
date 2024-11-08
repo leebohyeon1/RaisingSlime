@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5174571690115980860}
   - component: {fileID: 8534869179096518792}
   - component: {fileID: 4728834048547803573}
-  - component: {fileID: 6915362405205873803}
-  m_Layer: 0
+  - component: {fileID: 9150369820123138500}
+  m_Layer: 10
   m_Name: Road_JumpPads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6459565060348534741, guid: 5cbc8ee467e1f854aba4f6936182e9f2, type: 3}
---- !u!114 &6915362405205873803
+--- !u!114 &9150369820123138500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,22 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5124390890089476814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 20.3, y: 33.08}
-  circleRadius: 1
-  circleResolution: 6
-  height: 12.98
-  meshScale: 1
-  center: {x: 0, y: 15.6, z: -1.56}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 2834316983035114361
+  updateError: 1
+  checkTime: 0.2

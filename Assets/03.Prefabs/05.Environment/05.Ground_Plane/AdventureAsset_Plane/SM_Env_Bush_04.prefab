@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2394184}
   - component: {fileID: 64319422171701368}
   - component: {fileID: 7044300429916215713}
-  - component: {fileID: 5325008145157433041}
-  m_Layer: 0
+  - component: {fileID: 4456732994439768805}
+  m_Layer: 10
   m_Name: SM_Env_Bush_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,31 +124,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 10
   shrinkSpeed: 0.2
---- !u!114 &5325008145157433041
+--- !u!114 &4456732994439768805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 0.66
-  circleResolution: 5
-  height: 1.51
-  meshScale: 1
-  center: {x: 0, y: 0.58, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 9083797857956843365
+  updateError: 1
+  checkTime: 0.2

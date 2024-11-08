@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1199191743362282101}
   - component: {fileID: 1557324114858624271}
   - component: {fileID: 4129764459601326243}
-  - component: {fileID: 4693450173845419747}
-  m_Layer: 0
+  - component: {fileID: 5559673072056424155}
+  - component: {fileID: 3609151755639934369}
+  m_Layer: 10
   m_Name: Semi_House01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4693450173845419747
-BoxCollider:
+--- !u!64 &5559673072056424155
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,9 +103,26 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.4, z: 1.58}
-  m_Center: {x: 0, y: 0.7, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7980120957434454198, guid: 79e96c361888fc6478b96df5a58607c0, type: 3}
+--- !u!114 &3609151755639934369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5239004326333977110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 945612251650480382
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &7413563903299162460
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,8 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3821392883572444886}
   - component: {fileID: 8691403126159468592}
-  - component: {fileID: 5908381865210149845}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: House_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,31 +172,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &5908381865210149845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7413563903299162460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1.22, y: 1.7}
-  circleRadius: 1
-  circleResolution: 6
-  height: 7.8
-  meshScale: 1
-  center: {x: 0, y: 0.7, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3340404}
   - component: {fileID: 2380210}
   - component: {fileID: 64115629096091982}
-  - component: {fileID: 3179497210650279612}
   - component: {fileID: 2756849693270540583}
   m_Layer: 0
   m_Name: SM_Prop_Basket_04
@@ -108,22 +107,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43569758537415600, guid: c0b58bd397a065240aecfecbf324ff35, type: 2}
---- !u!208 &3179497210650279612
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125560}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.29200003, y: 0.23300001, z: 0.19500001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.23300001, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &2756849693270540583
 MonoBehaviour:
   m_ObjectHideFlags: 0
