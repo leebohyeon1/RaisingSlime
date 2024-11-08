@@ -199,6 +199,10 @@ public class Player : MonoBehaviour, IUpdateable
         // 슬라임의 크기를 증가
         transform.localScale += eatAbleObjectBase.SlimeIncreaseSize();
 
+        if (transform.localScale.x >= 13)
+        {
+            transform.localScale = new Vector3(13,13, 13);  
+        }
         // 점수 증가
         GameManager.Instance.IncreaseScore(eatAbleObjectBase.GetPlusScore());
 

@@ -2,6 +2,7 @@ using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,6 +26,9 @@ public class NPCBase : MonoBehaviour, IUpdateable
     public float collisionDamage = 1f;
 
     public bool isExplosion = false;
+    
+    [BoxGroup("기본"), LabelText("최대 거리"), SerializeField]
+    private float maxDistance = 70f; // 타겟과의 최대 거리
 
     protected virtual void Awake()
     {                
@@ -68,6 +72,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
         {
             aiPath.enabled = true;
 
+            CheckDistanceToTarget();
             MoveToTarget();
         }
 
@@ -95,14 +100,35 @@ public class NPCBase : MonoBehaviour, IUpdateable
         target = transform;
     }
 
-    protected virtual void MoveToTarget() 
+    protected virtual void MoveToTarget()
     {
-        if(target != null && aiPath != null)
+        if (target != null && aiPath != null)
         {
             aiPath.destination = TargetGroundPos();
         }
+    }
 
-    
+    protected  void CheckDistanceToTarget()
+    {
+        if (target == null) return;
+
+        float distanceToTarget = Vector3.Distance(transform.position, TargetGroundPos());
+
+        if (distanceToTarget > maxDistance)
+        {
+            TeleportToClosestNode();
+        }
+    }
+
+    protected void TeleportToClosestNode()
+    {
+        NNInfo nearestNode = AstarPath.active.GetNearest(transform.position);
+        if (nearestNode.node != null)
+        {
+            Vector3 newPos = TargetPosSameYPos() - transform.position;
+            transform.position = nearestNode.position;
+            aiPath.Teleport(nearestNode.position + (newPos.normalized  * 5));
+        }
     }
 
     protected virtual IEnumerator OnAgent()

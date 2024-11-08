@@ -364,6 +364,7 @@ MonoBehaviour:
   moveSpeed: 10
   collisionDamage: 0.15
   isExplosion: 0
+  maxDistance: 80
   baton: {fileID: 8293726850677696524}
   batonRotateSpeed: 120
   maxRotationAngle: 30

@@ -90,6 +90,7 @@ public class Tank : NPCBase
             {
                 coroutine = StartCoroutine(TankMoveOn());
 
+                CheckDistanceToTarget();
                 MoveToTarget();
             }
         }

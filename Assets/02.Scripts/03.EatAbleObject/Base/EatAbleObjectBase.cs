@@ -32,7 +32,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     {
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
-       Invoke("SetPlayer", 0.1f);
+        StartCoroutine(DelayedSetPlayer(0.1f));
     }
 
     public virtual void OnUpdate(float dt)
@@ -47,7 +47,13 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         }
        
     }
- 
+
+    private IEnumerator DelayedSetPlayer(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SetPlayer();
+    }
+
     protected virtual void SetPlayer()
     {
         playerStat = SpawnManager.Instance.GetPlayerTrans().GetComponent<PlayerStat>();

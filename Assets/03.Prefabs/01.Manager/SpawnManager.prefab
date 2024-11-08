@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 83001535202420354}
   - component: {fileID: 8824584253324509264}
   - component: {fileID: 3530836656358461769}
-  - component: {fileID: 8873746953738556303}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -166,22 +165,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &3530836656358461769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051974681037133487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a634230476dc478b88eceac73b1c8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  updateDistance: 10
-  target: {fileID: 0}
-  graphIndex: 0
---- !u!114 &8873746953738556303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

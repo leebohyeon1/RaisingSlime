@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour, IUpdateable
     private CinemachineVirtualCamera virtualCamera; // Cinemachine 가상 카메라
 
     // 기본 카메라 거리와 플레이어 스케일에 따른 비율
-    public float baseCameraDistance = 25f; // 기본 카메라 거리
+    public float baseCameraDistance = 8f; // 기본 카메라 거리
+    public float maxCameraDistance = 12f;
     public float scaleMultiplier = 2f; // 플레이어 스케일에 따라 카메라 거리 조정 비율
 
     private CinemachineTransposer transposer; // 카메라의 Follow Offset을 조정하는 데 사용할 Transposer
@@ -96,7 +97,7 @@ public class CameraController : MonoBehaviour, IUpdateable
         float playerScale = player.localScale.magnitude; // 3차원 벡터에서 크기를 계산
 
         // 플레이어의 크기에 따라 카메라 거리를 조정
-        float newCameraDistance = baseCameraDistance + (playerScale * scaleMultiplier);
+        float newCameraDistance = Mathf.Clamp(baseCameraDistance + (playerScale * scaleMultiplier),0, maxCameraDistance);
 
         // CinemachineTransposer의 Follow Offset에서 Z축(거리) 조정
         transposer.m_FollowOffset.z = - (newCameraDistance * 4) /5; // 음수 값으로 멀어지도록 설정
