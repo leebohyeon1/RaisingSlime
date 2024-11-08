@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 3832975427420436199}
   - component: {fileID: 2729818883962803817}
   - component: {fileID: 1874516286929952618}
-  - component: {fileID: 6166860910407604320}
+  - component: {fileID: 6654010377017306719}
   - component: {fileID: 2226532304602228844}
   - component: {fileID: 5409208259650990421}
-  - component: {fileID: 6654010377017306719}
+  - component: {fileID: -564868696917135676}
+  - component: {fileID: 6556029887094081192}
+  - component: {fileID: 1616804358714513378}
   m_Layer: 6
   m_Name: Soldier
   m_TagString: Untagged
@@ -118,7 +120,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: 1
---- !u!114 &6166860910407604320
+--- !u!114 &6654010377017306719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,39 +129,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1585609005757718881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce11ea984e202491d9271f53021d8b89, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d49e40d9f46be4e837b20d0b58e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
-  radius: 0.5
-  height: 1
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 0
-  enableRotation: 1
-  autoRepath:
-    mode: 2
-    period: 0.5
-    sensitivity: 10
-    maximumPeriod: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  acceleration: 5
-  rotationSpeed: 360
-  slowdownTime: 0.5
-  endReachedDistance: 0
-  wallForce: 3
-  wallDist: 1
-  funnelSimplification: 0
-  slowWhenNotFacingTarget: 1
-  animCompatibility: {fileID: 0}
+  isEnemy: 1
+  moveSpeed: 4
+  collisionDamage: 10
+  isExplosion: 0
+  attackSpeed: 2
+  attackRange: 10
+  bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
+    type: 3}
+  firePosistion: {fileID: 3662648903529845496}
+  bulletSpeed: 10
+  bulletDamage: 0.2
+  backPos: {fileID: 7725011976659862919}
 --- !u!114 &2226532304602228844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +174,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.1
   plusScore: 0
   shrinkSpeed: 0.2
---- !u!114 &6654010377017306719
+--- !u!114 &-564868696917135676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,21 +183,81 @@ MonoBehaviour:
   m_GameObject: {fileID: 1585609005757718881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d49e40d9f46be4e837b20d0b58e44d, type: 3}
+  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemy: 1
-  moveSpeed: 4
-  collisionDamage: 10
-  isExplosion: 0
-  attackSpeed: 2
-  attackRange: 10
-  bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
-    type: 3}
-  firePosistion: {fileID: 3662648903529845496}
-  bulletSpeed: 10
-  bulletDamage: 0.2
-  backPos: {fileID: 7725011976659862919}
+  version: 1
+  unwrap: 1
+  splitAtEveryPortal: 0
+--- !u!114 &6556029887094081192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585609005757718881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+  radius: 0.5
+  height: 1
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 0
+  enableRotation: 1
+  autoRepath:
+    mode: 2
+    period: 0.5
+    sensitivity: 10
+    maximumPeriod: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0
+  pickNextWaypointDist: 2
+  endReachedDistance: 0
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 1
+--- !u!114 &1616804358714513378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585609005757718881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radiusBackingField: 0.5
+  heightBackingField: 2
+  centerBackingField: 1
+  locked: 0
+  lockWhenNotMoving: 0
+  agentTimeHorizon: 2
+  obstacleTimeHorizon: 2
+  maxNeighbours: 10
+  layer: 1
+  collidesWith: -1
+  wallAvoidForce: 1
+  wallAvoidFalloff: 1
+  priority: 0.5
+  debug: 0
 --- !u!1 &3906710135489729537
 GameObject:
   m_ObjectHideFlags: 0

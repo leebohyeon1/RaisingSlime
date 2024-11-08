@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7906088939045804907}
   - component: {fileID: 7447512729077577228}
   - component: {fileID: 8744660639811434950}
-  m_Layer: 0
+  - component: {fileID: 4629166774224942208}
+  m_Layer: 10
   m_Name: milkvending_machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.016137, y: 5.5842338, z: 17.09664}
   m_Center: {x: 0, y: -0.0912514, z: 8.647262}
+--- !u!114 &4629166774224942208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790665464838719299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4915680406978211426
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &2480480408149482043
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1216275035313471888}
   - component: {fileID: 1036313633098190276}
-  - component: {fileID: 823964982113131209}
   m_Layer: 0
   m_Name: MilkVendingMachine
   m_TagString: Untagged
@@ -155,31 +171,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
---- !u!114 &823964982113131209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2480480408149482043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 0.4, y: 0.27}
-  circleRadius: 1
-  circleResolution: 6
-  height: 0.59
-  meshScale: 1
-  center: {x: 0, y: 0.26, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

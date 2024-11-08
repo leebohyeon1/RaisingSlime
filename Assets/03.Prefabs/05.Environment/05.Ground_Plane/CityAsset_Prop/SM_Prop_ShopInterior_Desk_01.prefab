@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3363570}
   - component: {fileID: 2341276}
   - component: {fileID: 64973819334860072}
-  - component: {fileID: -4596571611294405336}
   - component: {fileID: 8302296182383537818}
   m_Layer: 0
   m_Name: SM_Prop_ShopInterior_Desk_01
@@ -108,22 +107,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43360933232917752, guid: 9759da5fa92459c4383c4a4676a997db, type: 2}
---- !u!208 &-4596571611294405336
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106792}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.804, y: 0.54, z: 0.25}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.54, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &8302296182383537818
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,9 @@ public class CameraController : MonoBehaviour, IUpdateable
 
     private CinemachineTransposer transposer; // 카메라의 Follow Offset을 조정하는 데 사용할 Transposer
 
+    [SerializeField]
+    private LayerMask transparentLayer;    
+
     private void Awake()
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
@@ -34,6 +37,43 @@ public class CameraController : MonoBehaviour, IUpdateable
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
 
+    public void OnUpdate(float dt)
+    {
+        if (player == null)
+        {
+            return;
+        }
+
+        UpdateCameraDistance();
+    }
+
+    private void LateUpdate()
+    {
+        Transparency();
+    }
+
+    private void Transparency()
+    {
+        if (player == null)
+            return;
+
+        Vector3 direction = (player.position - transform.position).normalized;
+        float maxDistance = Vector3.Distance(transform.position, player.position); // 카메라와 플레이어 사이 거리
+
+        // 카메라에서 플레이어 방향으로 Ray를 쏘고, 플레이어 뒤쪽은 감지하지 않도록 제한
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, maxDistance, transparentLayer);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            TransparentObject[] obj = hits[i].transform.GetComponentsInChildren<TransparentObject>();
+
+            for (int j = 0; j < obj.Length; j++)
+            {
+                obj[j]?.BecomeTransparent();
+            }
+        }
+    }
+
     private void SetPlayer()
     {
         if (player == null)
@@ -48,15 +88,7 @@ public class CameraController : MonoBehaviour, IUpdateable
             }
         }
     }
-    public void OnUpdate(float dt)
-    {
-        if (player == null)
-        {
-            return;
-        }
-
-        UpdateCameraDistance();
-    }
+  
 
     void UpdateCameraDistance()
     {

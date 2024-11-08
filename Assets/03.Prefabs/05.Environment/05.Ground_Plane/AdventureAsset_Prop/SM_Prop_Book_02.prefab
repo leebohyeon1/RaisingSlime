@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3352642}
   - component: {fileID: 2367914}
   - component: {fileID: 65511034709000514}
-  - component: {fileID: -5865187952315084946}
   - component: {fileID: 6715637062299097790}
   m_Layer: 0
   m_Name: SM_Prop_Book_02
@@ -107,22 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.22190979, y: 0.10081119, z: 0.17113921}
   m_Center: {x: -0.0000003054738, y: 0.050405595, z: 0.0000001527369}
---- !u!208 &-5865187952315084946
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142830}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.11100001, y: 0.05, z: 0.086}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.05, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &6715637062299097790
 MonoBehaviour:
   m_ObjectHideFlags: 0

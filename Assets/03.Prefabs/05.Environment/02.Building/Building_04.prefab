@@ -69,10 +69,9 @@ GameObject:
   - component: {fileID: 6499626977204279162}
   - component: {fileID: 9067900016644744112}
   - component: {fileID: 2087510000193094377}
-  - component: {fileID: 3842828155995477744}
-  - component: {fileID: 4364248795599572881}
-  - component: {fileID: 3562702028239986398}
-  m_Layer: 0
+  - component: {fileID: 9013810232929968137}
+  - component: {fileID: 5118699444956638091}
+  m_Layer: 10
   m_Name: Building_Store01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +165,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -272163644422614960, guid: 060c607e0e4bfb545812f18f22bdab9e, type: 3}
---- !u!114 &3842828155995477744
+--- !u!114 &9013810232929968137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,26 +174,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7410492271011938917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 34, y: 17.6}
-  circleRadius: 1
-  circleResolution: 6
-  height: 16
-  meshScale: 1
-  center: {x: 0, y: 18.35, z: -5.46}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &4364248795599572881
+  uniqueID: 603014379492043661
+  updateError: 1
+  checkTime: 0.2
+--- !u!114 &5118699444956638091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,53 +190,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7410492271011938917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 22.81, y: 11.83}
-  circleRadius: 1
-  circleResolution: 6
-  height: 16
-  meshScale: 1
-  center: {x: -5.6, y: 18.35, z: 8.03}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &3562702028239986398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410492271011938917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 5.05, y: 2.47}
-  circleRadius: 10.93
-  circleResolution: 4
-  height: 16
-  meshScale: 1
-  center: {x: 5.87, y: 18.35, z: 2.96}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
 --- !u!1001 &884692997506857407
 PrefabInstance:
   m_ObjectHideFlags: 0

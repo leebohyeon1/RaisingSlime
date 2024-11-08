@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2406940697583227894}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Env_WaterEdge_Straight_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3474741082345894918}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5403334324574772666}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6757206031599688751
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7791395030375740602}
   - component: {fileID: 9040619222729838378}
   - component: {fileID: 3573470027966283554}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Env_WaterEdge_Straight_03 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 8222667570052961665}
   - component: {fileID: 6194771514612605259}
   - component: {fileID: 1003041145037601120}
-  m_Layer: 0
+  - component: {fileID: 6999954790887384832}
+  - component: {fileID: 1816764276368047991}
+  m_Layer: 10
   m_Name: building03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +108,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -66888444161812736, guid: 9ce84d7dd8f9d764187168a5ab440b37, type: 3}
+--- !u!114 &6999954790887384832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690513286636683422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 668079732836536459
+  updateError: 1
+  checkTime: 0.2
+--- !u!114 &1816764276368047991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690513286636683422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5961538831017026750
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,8 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946765585311576544}
   - component: {fileID: 5357144792889719151}
-  - component: {fileID: 8127095232007182697}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Building_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,31 +185,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &8127095232007182697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5961538831017026750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 7.8, y: 7.96}
-  circleRadius: 1
-  circleResolution: 6
-  height: 12.22
-  meshScale: 1
-  center: {x: -0.65, y: 6.08, z: -0.56}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

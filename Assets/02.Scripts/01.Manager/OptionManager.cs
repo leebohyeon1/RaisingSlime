@@ -130,7 +130,7 @@ public class OptionManager : Singleton<OptionManager>
         // 음소거 상태 해제
         if (isBgmMuted)
         {
-            isBgmMuted = false;           
+            ToggleBgmMute();
         }
 
         AudioManager.Instance.PlaySFX("Btn");
@@ -154,7 +154,7 @@ public class OptionManager : Singleton<OptionManager>
         // 음소거 상태 해제
         if (isSfxMuted)
         {
-            isSfxMuted = false;
+            ToggleSfxMute();
         }
         
         AudioManager.Instance.PlaySFX("Btn");

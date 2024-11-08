@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4834954034042618349}
   - component: {fileID: 5827118733266949809}
   - component: {fileID: 6511501388977491468}
-  - component: {fileID: 4652904519858819863}
-  - component: {fileID: 6847346964630753221}
-  m_Layer: 0
+  - component: {fileID: 6550261023123666550}
+  - component: {fileID: 525581835513742883}
+  - component: {fileID: 1229127603827026788}
+  m_Layer: 10
   m_Name: Semi_House03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4652904519858819863
-BoxCollider:
+--- !u!64 &6550261023123666550
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,30 +104,38 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.43, y: 0.36, z: 0.68}
-  m_Center: {x: -0.32, y: 0.075, z: 0.34}
---- !u!65 &6847346964630753221
-BoxCollider:
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -133190037331159160, guid: 3f68d2fb22238a6439a683690f042eb1, type: 3}
+--- !u!114 &525581835513742883
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617294221212909830}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.71, y: 0.75, z: 1.1484932}
-  m_Center: {x: 0.17, y: 0, z: 0.57424647}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6090238075281873830
+  updateError: 1
+  checkTime: 0.2
+--- !u!114 &1229127603827026788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617294221212909830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3911508385776864466
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,9 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168927101990018432}
   - component: {fileID: 3313428767137533597}
-  - component: {fileID: 141819037248799120}
-  - component: {fileID: 2137807615440486800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: House_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,59 +185,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 180
   shrinkSpeed: 0.5
---- !u!114 &141819037248799120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3911508385776864466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 0.74, y: 0.86}
-  circleRadius: 1
-  circleResolution: 6
-  height: 6
-  meshScale: 1
-  center: {x: 0.15, y: 0.57, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
---- !u!114 &2137807615440486800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3911508385776864466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: 1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 0.58, y: 0.55}
-  circleRadius: 1
-  circleResolution: 6
-  height: 3.72
-  meshScale: 1
-  center: {x: -0.29, y: 0.34, z: -0.09}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

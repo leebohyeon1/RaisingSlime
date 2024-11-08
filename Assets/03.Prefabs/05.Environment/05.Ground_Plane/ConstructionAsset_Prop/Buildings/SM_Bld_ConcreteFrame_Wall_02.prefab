@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23149693730575184}
   - component: {fileID: 65766767834958836}
   - component: {fileID: 2547261349710852978}
-  - component: {fileID: 3917823300657282497}
-  m_Layer: 0
+  - component: {fileID: 7014354238709570412}
+  m_Layer: 10
   m_Name: SM_Bld_ConcreteFrame_Wall_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.24
   plusScore: 70
   shrinkSpeed: 0.5
---- !u!114 &3917823300657282497
+--- !u!114 &7014354238709570412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,22 +132,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1090944803816508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 5.73, y: 1.18}
-  circleRadius: 1
-  circleResolution: 6
-  height: 3.26
-  meshScale: 1
-  center: {x: 0, y: 1.49, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 7152748379704026027
+  updateError: 1
+  checkTime: 0.2
