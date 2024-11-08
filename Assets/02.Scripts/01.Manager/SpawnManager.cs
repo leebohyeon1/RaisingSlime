@@ -27,8 +27,14 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [BoxGroup("적 세팅"), LabelText("스폰하는 적 리스트"), SerializeField]
     private SpawnObjectsList[] spawnObjectsList;
 
+    [BoxGroup("시민 세팅"), LabelText("스폰할 위치"), SerializeField]
+    private Transform[] citizenSpawnTransforms;
+    
+    [BoxGroup("시민 세팅"), LabelText("스폰 범위"), SerializeField]
+    private Vector3[] citizenSpawnRange;
+
     [BoxGroup("시민 세팅"), LabelText("게임에 시민 수"),SerializeField]
-    private int maxCitizen;
+    private int[] maxCitizen;
 
     [BoxGroup("골드 세팅"), LabelText("스폰할 골드 수"), SerializeField]
     private int maxGoldCount = 10; // 스폰할 골드 수
@@ -40,7 +46,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [FoldoutGroup("특수 오브젝트"), LabelText("돈"), SerializeField]
     private GameObject goldPrefab;
 
-    private List<GameObject> currentCitizenList = new List<GameObject>(); // 현재 게임 내 시민 리스트
+    private List<List<GameObject>> currentCitizenList = new List<List<GameObject>>(); // 현재 게임 내 시민 리스트
     private List<GameObject> currentStepEnemies = new List<GameObject>();
     private List<GameObject> beforeStepEnemies = new List<GameObject>();
 
@@ -72,8 +78,15 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             Debug.LogError("점수별 단계와 단계별 적 리스트의 길이가 다릅니다.");
         }
 
+        InitializeCitizenLists();
+
         SpawnPlayer();
-        SpawnCitizens(); // 시민 스폰 초기화
+
+        for(int i = 0; i < citizenSpawnTransforms.Length; i++)
+        {
+            SpawnCitizens(i); // 시민 스폰 초기화
+        }
+        
 
         //SpawnEnemiesForCurrentStep();
 
@@ -84,9 +97,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private void OnApplicationQuit()
     {
         isSceneClosing = true; // 오브젝트가 파괴될 때도 플래그 설정
-        RemoveAllCitizens(); // 모든 시민 제거
-        RemoveAllEnemy();    // 모든 적 제거
-        RemoveAllGold();     //모든 골드 제거
+
+        CleanUpResources();
     }
 
     private void OnDestroy()
@@ -99,9 +111,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             GameLogicManager.Instance.DeregisterUpdatableObject(this);
         }
 
-        RemoveAllEnemy(); // 모든 적 제거
-        RemoveAllCitizens(); // 모든 시민 제거
-        RemoveAllGold();    //모든 골드 제거
+        CleanUpResources();
 
         AstarPath.active?.PausePathfinding();  // 경로 탐색 중지
         AstarPath.active?.FlushGraphUpdates();  // 그래프 업데이트 비우기
@@ -127,9 +137,12 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         // 점수 체크
         CheckScore();
-
-        // 시민 수 관리
-        ManageCitizenSpawn();
+        
+        for (int i = 0; i < citizenSpawnTransforms.Length; i++)
+        {
+            // 시민 수 관리
+            ManageCitizenSpawn(i);
+        }
 
         if(activeGoldList.Count < maxGoldCount)
         {
@@ -137,7 +150,32 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         }
 
     }
-    
+
+    private void CleanUpResources()
+    {
+        for (int i = 0; i < citizenSpawnTransforms.Length; i++)
+        {
+            RemoveAllCitizens(i);
+        }
+        RemoveAllEnemy();
+        RemoveAllGold();
+    }
+
+    // 예를 들어 citizenSpawnTransforms 배열의 길이만큼 리스트 초기화
+    private void InitializeCitizenLists()
+    {
+        // citizenSpawnTransforms 배열의 길이를 기준으로 리스트 개수를 맞춤
+        int citizenCount = citizenSpawnTransforms.Length;
+
+        currentCitizenList = new List<List<GameObject>>(citizenCount); // 리스트 크기 설정
+
+        for (int i = 0; i < citizenCount; i++)
+        {
+            // 각 내부 리스트를 초기화
+            currentCitizenList.Add(new List<GameObject>());
+        }
+    }
+
     public void StartSpawn()
     {
         SpawnEnemiesForCurrentStep();
@@ -351,8 +389,52 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     #endregion
 
     #region 시민
+
+    public Vector3 GetRandomCitizenSpawnPoint(int i)
+    {
+        // 스폰 위치를 범위 내 랜덤하게 결정
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-citizenSpawnRange[i].x / 2, citizenSpawnRange[i].x / 2),
+            spawnHeight,
+            Random.Range(-citizenSpawnRange[i].z / 2, citizenSpawnRange[i].z / 2)
+        );
+
+        // 스폰 위치는 스크립트가 위치한 오브젝트의 위치를 기준으로 함
+        Vector3 spawnPosition = citizenSpawnTransforms[i].position + randomPosition;
+
+        return spawnPosition;
+    }
+
+    private Vector3 GetValidSpawnPosition(int i)
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        int maxAttempts = 10;
+        int attempts = 0;
+        //float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
+        //float maxNavMeshDistance = 10f; // 네비매쉬 표면과의 최대 거리 (네비매쉬 위치 샘플링 시 사용)
+
+        while (attempts < maxAttempts)
+        {
+            // 랜덤한 위치를 생성
+            Vector3 randomPosition = GetRandomCitizenSpawnPoint(i);
+
+            // Use A* Pathfinding's GetNearest to find the closest graph node
+            NNInfo nearestNodeInfo = AstarPath.active.GetNearest(randomPosition);
+            if (nearestNodeInfo.node != null && nearestNodeInfo.node.Walkable)
+            {
+                spawnPosition = nearestNodeInfo.position;
+                spawnPosition.y = spawnHeight; // Adjust height
+                break;
+            }
+
+            attempts++;
+        }
+
+        return spawnPosition;
+    }
+
     // 시민을 스폰하는 함수
-    private void SpawnCitizens()
+    private void SpawnCitizens(int i)
     {
         if (slimeTrans == null)
         {
@@ -360,13 +442,13 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         }
 
         // 최대 시민 수보다 적으면 시민을 스폰
-        while (currentCitizenList.Count < maxCitizen)
+        while (currentCitizenList[i].Count < maxCitizen[i])
         {
             GameObject citizenPrefab = allCitizen[Random.Range(0, allCitizen.Length)];
-            Vector3 spawnPosition = GetValidSpawnPosition();
+            Vector3 spawnPosition = GetRandomCitizenSpawnPoint(i);
             GameObject newCitizen = Instantiate(citizenPrefab, spawnPosition, Quaternion.Euler(slimeTrans.position - spawnPosition));
-
-            currentCitizenList.Add(newCitizen);
+            newCitizen.transform.SetParent(parentTransforms[1]);
+            currentCitizenList[i].Add(newCitizen);
 
             // 시민 파괴 시 다시 스폰
             NPCBase citizenComponent = newCitizen.GetComponent<NPCBase>();
@@ -377,11 +459,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
                     // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
                     if (this != null && newCitizen != null && !isSceneClosing && Application.isPlaying)
                     {
-                        SpawnCitizens(); // 시민이 사라지면 다시 스폰
+                        SpawnCitizens(i); // 시민이 사라지면 다시 스폰
 
-                        if (currentCitizenList.Contains(newCitizen))
+                        if (currentCitizenList[i].Contains(newCitizen))
                         {
-                            currentCitizenList.Remove(newCitizen);
+                            currentCitizenList[i].Remove(newCitizen);
                         }
                     }
                 };
@@ -391,22 +473,22 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     }
 
     // 시민 수 관리 (시민이 사라졌을 때 다시 스폰)
-    private void ManageCitizenSpawn()
+    private void ManageCitizenSpawn(int i)
     {
-        if (currentCitizenList.Count < maxCitizen)
+        if (currentCitizenList[i].Count < maxCitizen[i])
         {
-            SpawnCitizens();
+            SpawnCitizens(i);
         }
     }
 
-    private void RemoveAllCitizens()
+    private void RemoveAllCitizens(int i)
     {
-        foreach (GameObject citizen in currentCitizenList)
+        foreach (GameObject citizen in currentCitizenList[i])
         {
 
             DestroyImmediate(citizen);
         }
-        currentCitizenList.Clear();
+        currentCitizenList[i].Clear();
     }
     #endregion
 
@@ -544,6 +626,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         Gizmos.color = Color.red; // 기즈모 색상을 빨간색으로 설정
         Gizmos.DrawWireSphere(transform.position, spawnRadius); // 생성 범위를 원으로 표시
 
+        for (int i = 0; i < citizenSpawnTransforms.Length; i++)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(citizenSpawnTransforms[i].position, citizenSpawnRange[i]);
+        }
     }
 }
 

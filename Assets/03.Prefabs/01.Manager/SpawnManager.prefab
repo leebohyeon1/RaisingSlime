@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3518464941442769597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6741412976364834143}
-  m_Layer: 0
-  m_Name: SpawnTrans
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6741412976364834143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3518464941442769597}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 1.04, z: -33.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 83001535202420354}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5051974681037133487
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83001535202420354}
   - component: {fileID: 8824584253324509264}
+  - component: {fileID: 8873746953738556303}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -60,8 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6741412976364834143}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8824584253324509264
@@ -78,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepByScore: e8030000d0070000b80b0000a00f00008813000010270000
   spawnRadius: 50
-  spawnHeight: 3
+  spawnHeight: 2
   spawnTransfrom: {fileID: 0}
   step: 0
   spawnObjectsList:
@@ -100,8 +69,14 @@ MonoBehaviour:
   - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  maxCitizen: 10
-  maxGoldCount: 20
+  citizenSpawnTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  citizenSpawnRange:
+  - {x: 209, y: 0, z: 209}
+  - {x: 209, y: 0, z: 209}
+  maxCitizen: 6400000064000000
+  maxGoldCount: 40
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}
   allCitizen:
@@ -112,3 +87,23 @@ MonoBehaviour:
   - {fileID: 196839148594661210, guid: 53c3d48a0c79d7f46a5865576f292e3d, type: 3}
   goldPrefab: {fileID: 3133539648932958628, guid: 46a7b9575c46b754ab48a091287f8a81,
     type: 3}
+  parentTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &8873746953738556303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051974681037133487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a634230476dc478b88eceac73b1c8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  updateDistance: 10
+  target: {fileID: 0}
+  graphIndex: 0
