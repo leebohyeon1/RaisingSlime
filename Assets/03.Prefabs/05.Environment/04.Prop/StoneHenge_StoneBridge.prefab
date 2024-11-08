@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6971683317334239736}
   - component: {fileID: 8364530861240404156}
   - component: {fileID: 3066138410953524899}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StoneHenge_StoneBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5323624409564651859}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StoneHenge_Props_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
