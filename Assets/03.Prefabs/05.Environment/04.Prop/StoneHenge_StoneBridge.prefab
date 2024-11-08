@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6971683317334239736}
   - component: {fileID: 8364530861240404156}
   - component: {fileID: 3066138410953524899}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: StoneHenge_StoneBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,7 @@ GameObject:
   - component: {fileID: 2209467029328414587}
   - component: {fileID: 4025523459163110833}
   - component: {fileID: 6396426041104374500}
-  - component: {fileID: 3190974964684983941}
-  - component: {fileID: 7758963195447601235}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: StoneHenge_StoneBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,34 +198,6 @@ MonoBehaviour:
   slimeIncreaseSize: 0.1
   plusScore: 50
   shrinkSpeed: 0.5
---- !u!114 &3190974964684983941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945891520519167385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 3395499805074782827
-  updateError: 1
-  checkTime: 0.2
---- !u!114 &7758963195447601235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945891520519167385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7444901794293265746
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +207,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5323624409564651859}
-  m_Layer: 10
+  - component: {fileID: 5592041469680067310}
+  - component: {fileID: 3078265162256699519}
+  m_Layer: 0
   m_Name: StoneHenge_Props_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,3 +232,59 @@ Transform:
   - {fileID: 6971683317334239736}
   m_Father: {fileID: 7305743999376820930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5592041469680067310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444901794293265746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 6.94, y: 7}
+  circleRadius: 1
+  circleResolution: 6
+  height: 8.73
+  meshScale: 1
+  center: {x: 7.1, y: 5.2, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
+--- !u!114 &3078265162256699519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444901794293265746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 7.17, y: 7.55}
+  circleRadius: 1
+  circleResolution: 6
+  height: 8.73
+  meshScale: 1
+  center: {x: -6.69, y: 4.05, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

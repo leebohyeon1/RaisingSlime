@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7966429687435263608}
   - component: {fileID: 4167902496887696991}
   - component: {fileID: 1336977329343525760}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: SM_Env_WaterEdge_Straight_03 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5371135623345410904}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: SM_Env_WaterEdge_Straight_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -43,7 +43,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         }
         else
         {
-            //CheckSize();
+            CheckSize();
         }
        
     }
@@ -123,9 +123,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
             collider.enabled = false;
         }
 
-        if(GetComponent<AIPath>())
+        if(GetComponent<RichAI>())
         {
-            GetComponent<AIPath>().enabled = false;
+            GetComponent<RichAI>().enabled = false;
         }
         
         if(GetComponentInChildren<NavmeshCut>())

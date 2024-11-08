@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33628111441551852}
   - component: {fileID: 23820145613300676}
   - component: {fileID: 64037611965555882}
+  - component: {fileID: 4611688247240977671}
   - component: {fileID: 1747291227744996745}
-  - component: {fileID: 4683763258942350226}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Prop_Junk_Stack_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,34 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43227122506618090, guid: 74cacaf44a655b14096cbfce4b651565, type: 2}
+--- !u!114 &4611688247240977671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476599177026004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.55, y: 2.82}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.98
+  meshScale: 1
+  center: {x: 0, y: 0.59, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!114 &1747291227744996745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,19 +152,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.08
   plusScore: 25
   shrinkSpeed: 0.5
---- !u!114 &4683763258942350226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476599177026004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 5169905745350121438
-  updateError: 1
-  checkTime: 0.2

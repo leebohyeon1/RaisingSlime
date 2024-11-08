@@ -69,8 +69,6 @@ namespace Pathfinding {
 		[HideInInspector]
 		public int graphIndex;
 
-		private Vector3 targetPos;
-
 		void Start () {
 			if (AstarPath.active == null) throw new System.Exception("There is no AstarPath object in the scene");
 
@@ -101,10 +99,7 @@ namespace Pathfinding {
 			if (VectorMath.SqrDistanceXZ(graphCenterInGraphSpace, targetPositionInGraphSpace) > updateDistance*updateDistance) {
 				UpdateGraph();
 			}
-
-            targetPos = new Vector3(target.position.x,0, target.position.z);	
-
-        }
+		}
 
 		/// <summary>
 		/// Transforms a point from world space to graph space.
@@ -168,10 +163,7 @@ namespace Pathfinding {
 
 				if (done) {
 					updatingGraph = false;
-
-                    Bounds updateBounds = new Bounds(graph.center, target.localScale * 10f); // 원하는 갱신 반경 설정
-                    AstarPath.active.UpdateGraphs(updateBounds);
-                }
+				}
 				return done;
 			}));
 		}

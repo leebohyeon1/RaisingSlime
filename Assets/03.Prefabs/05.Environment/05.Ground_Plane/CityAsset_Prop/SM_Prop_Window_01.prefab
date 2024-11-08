@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2381346}
   - component: {fileID: 65325754752932404}
   - component: {fileID: 65519553210301722}
+  - component: {fileID: 1781457166993411741}
   - component: {fileID: 6329591334181942752}
-  - component: {fileID: 8615832908705713661}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Prop_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3032532, y: 0.2441454, z: 0.36961842}
   m_Center: {x: 0, y: 2.1905942, z: 0.18480921}
+--- !u!114 &1781457166993411741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!114 &6329591334181942752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,19 +173,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.08
   plusScore: 20
   shrinkSpeed: 0.5
---- !u!114 &8615832908705713661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 3278471192764374048
-  updateError: 1
-  checkTime: 0.2

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2374058}
   - component: {fileID: 64258011864825210}
   - component: {fileID: 6205262859877789806}
-  - component: {fileID: 3881011070236820184}
-  m_Layer: 10
+  - component: {fileID: 3500148542480444473}
+  m_Layer: 0
   m_Name: SM_Prop_Phones_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 20
   shrinkSpeed: 0.5
---- !u!114 &3881011070236820184
+--- !u!114 &3500148542480444473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +133,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 196678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1011965377170483974
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.6, y: 1.38}
+  circleRadius: 1
+  circleResolution: 6
+  height: 3.07
+  meshScale: 1
+  center: {x: 0, y: 1.32, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

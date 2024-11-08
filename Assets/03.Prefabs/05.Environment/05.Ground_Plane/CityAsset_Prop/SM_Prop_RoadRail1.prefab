@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8384800576698721383}
   - component: {fileID: 4842473790906515885}
   - component: {fileID: 1084242633841094772}
-  - component: {fileID: 8628552313412261825}
-  m_Layer: 10
+  - component: {fileID: 1599571416977979545}
+  m_Layer: 0
   m_Name: SM_Prop_RoadRail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.02
   plusScore: 10
   shrinkSpeed: 0.5
---- !u!114 &8628552313412261825
+--- !u!114 &1599571416977979545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,13 +84,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3975356274329562957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 7714601472544951300
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 0.69, y: 1.69}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0.61, z: -0.09}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!1001 &1629942923170843705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,21 +155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded,
-        type: 3}
-      propertyPath: uniqueID
-      value: 8245183417415546614
-      objectReference: {fileID: 0}
-    - target: {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 730347723007394611, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     - {fileID: 1633876049250757095, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     - {fileID: 64515797105043342, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
-    - {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -220,21 +221,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded,
-        type: 3}
-      propertyPath: uniqueID
-      value: 982318748391561852
-      objectReference: {fileID: 0}
-    - target: {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 64515797105043342, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     - {fileID: 730347723007394611, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     - {fileID: 1633876049250757095, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
-    - {fileID: 9138627603132865503, guid: 0f3c817290a5f444382ade498df65ded, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -256,10 +246,6 @@ PrefabInstance:
     - target: {fileID: 1976076536415704, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Pipe_01 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976076536415704, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4438042912290120, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
       propertyPath: m_LocalScale.x
@@ -336,10 +322,6 @@ PrefabInstance:
     - target: {fileID: 1976076536415704, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Pipe_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1976076536415704, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4438042912290120, guid: 456e2fa8c186c1942b1a4d732bffe07b, type: 3}
       propertyPath: m_LocalScale.x

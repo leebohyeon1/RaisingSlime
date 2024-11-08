@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3363524}
   - component: {fileID: 2388978}
   - component: {fileID: 6094054994613186479}
+  - component: {fileID: 786859373619081638}
   - component: {fileID: 6120441061308372813}
   m_Layer: 0
   m_Name: SM_Prop_Basket_03
@@ -106,6 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.34699523, y: 0.3470726, z: 0.3588707}
   m_Center: {x: 0, y: 0.1735363, z: 0.00000022351742}
+--- !u!208 &786859373619081638
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179152}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.17300001, y: 0.17400001, z: 0.179}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.17400001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &6120441061308372813
 MonoBehaviour:
   m_ObjectHideFlags: 0

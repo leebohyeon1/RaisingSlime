@@ -11,8 +11,8 @@ public class NPCBase : MonoBehaviour, IUpdateable
     public delegate void DestroyedHandler();
     public event DestroyedHandler OnDestroyed;
 
-   // protected AIDestinationSetter aiDestinationSetter;
-    protected AIPath aiPath;
+    protected AIDestinationSetter aiDestinationSetter;
+    protected RichAI richAI;
     protected EatAbleObjectBase eatAbleObjectBase;
 
     protected Transform target; // �÷��̾� ��ġ
@@ -28,12 +28,11 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     protected virtual void Awake()
     {                
-        //aiDestinationSetter = GetComponent<AIDestinationSetter>();
-        //aiDestinationSetter.enabled = true;
+        aiDestinationSetter = GetComponent<AIDestinationSetter>();
+        aiDestinationSetter.enabled = true;
 
-        aiPath = GetComponent<AIPath>();
-
-        aiPath.maxSpeed = moveSpeed;
+        richAI = GetComponent<RichAI>();
+        richAI.maxSpeed = moveSpeed;
 
         eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
 
@@ -47,7 +46,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
             target = FindFirstObjectByType<Player>().transform; 
         }
 
-        //aiDestinationSetter.target = target;
+        aiDestinationSetter.target = target;
         
         GameLogicManager.Instance.RegisterUpdatableObject(this);
     }
@@ -61,12 +60,12 @@ public class NPCBase : MonoBehaviour, IUpdateable
     {    
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion) 
         {
-            aiPath.enabled = false;
+            richAI.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
+            richAI.enabled = true;
 
             MoveToTarget();
         }
@@ -95,21 +94,13 @@ public class NPCBase : MonoBehaviour, IUpdateable
         target = transform;
     }
 
-    protected virtual void MoveToTarget() 
-    {
-        if(target != null && aiPath != null)
-        {
-            aiPath.destination = TargetGroundPos();
-        }
-
-    
-    }
+    protected virtual void MoveToTarget() { }
 
     protected virtual IEnumerator OnAgent()
     {
         yield return new WaitForSeconds(1f);
 
-        aiPath.enabled = true;
+        richAI.enabled = true;
         GetComponent<Rigidbody>().isKinematic = true;
         isExplosion = false;
         
@@ -117,7 +108,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     public virtual void Explosion()
     {
-        aiPath.enabled = false;
+        richAI.enabled = false;
         GetComponent<Rigidbody>().isKinematic = false;
         isExplosion = true;
 

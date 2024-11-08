@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 64840681528467256}
   - component: {fileID: 64601565030500850}
   - component: {fileID: 4464870000283660863}
-  - component: {fileID: 1611467017937880122}
-  m_Layer: 10
+  - component: {fileID: 4473592330808183756}
+  m_Layer: 0
   m_Name: SM_Prop_Deckchair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.04
   plusScore: 10
   shrinkSpeed: 0.5
---- !u!114 &1611467017937880122
+--- !u!114 &4473592330808183756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,10 +202,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 105484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1676858850492958883
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1.56, y: 2.66}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.36
+  meshScale: 1
+  center: {x: 0, y: 0.37, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

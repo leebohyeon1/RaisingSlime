@@ -65,11 +65,7 @@ public class MainManager : MonoBehaviour
         skinButtons[0].onClick.AddListener(() => MoveSkinGroupToRight());
         skinButtons[1].onClick.AddListener(() => MoveSkinGroupToLeft());
 
-        if(!AudioManager.Instance.CheckCurBGM("TitleBGM"))
-        {
-            AudioManager.Instance.PlayBGM("TitleBGM");
-        }
-        
+        AudioManager.Instance.PlayBGM("TitleBGM");
     }
 
     private void Update()
@@ -256,7 +252,7 @@ public class MainManager : MonoBehaviour
 
             RectTransform rectTransform = skin.AddComponent<RectTransform>();
             rectTransform.position = skinGroup.position + new Vector3(i * 30, 0, -10);
-            rectTransform.localScale *= 350;
+            rectTransform.localScale *= 200;
 
             Renderer[] renderers = skin.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)

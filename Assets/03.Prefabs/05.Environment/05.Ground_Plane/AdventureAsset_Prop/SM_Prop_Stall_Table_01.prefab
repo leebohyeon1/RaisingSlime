@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2357904}
   - component: {fileID: 64125715646290622}
   - component: {fileID: 64749228587750300}
+  - component: {fileID: 9043100740328554024}
   - component: {fileID: 2753024849848234220}
-  - component: {fileID: 7705796805483195493}
   m_Layer: 0
   m_Name: SM_Prop_Stall_Table_01
   m_TagString: Untagged
@@ -131,6 +131,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43709273512047822, guid: d4e8cb7920a5a8e499467d2c6599cf06, type: 2}
+--- !u!208 &9043100740328554024
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161618}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.2420001, y: 0.546, z: 0.507}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.546, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &2753024849848234220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,19 +163,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
---- !u!114 &7705796805483195493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 874366243624531683
-  updateError: 1
-  checkTime: 0.2

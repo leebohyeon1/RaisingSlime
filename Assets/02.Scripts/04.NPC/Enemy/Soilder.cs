@@ -45,12 +45,12 @@ public class Soilder : NPCBase
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            aiPath.enabled = false;
+            richAI.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
+            richAI.enabled = true;
 
             float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 

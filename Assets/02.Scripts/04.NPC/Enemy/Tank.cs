@@ -64,12 +64,12 @@ public class Tank : NPCBase
     {
         if (eatAbleObjectBase.GetEaten() || target == null)
         {
-            aiPath.enabled = false;
+            richAI.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
+            richAI.enabled = true;
 
             RotateTurretTowardsPlayer();  // 포탑 회전 추가
 
@@ -77,7 +77,7 @@ public class Tank : NPCBase
 
             if (distanceToPlayer < attackRange)
             {
-                aiPath.isStopped = true;
+                richAI.isStopped = true;
 
                 if (coroutine != null)
                 {
@@ -102,7 +102,7 @@ public class Tank : NPCBase
     // 몸체 회전 메커니즘
     void RotateBodyTowardsPlayer()
     {
-        aiPath.updateRotation = false;
+        richAI.updateRotation = false;
 
         Vector3 directionToPlayer = TargetGroundPos() - transform.position; // 타겟과의 방향 계산
         directionToPlayer.y = 0; // 몸체는 수평 회전만 하므로 Y축 값은 무시
@@ -178,12 +178,12 @@ public class Tank : NPCBase
         // 현재 타겟과 너무 가깝다면 거리를 벌림
         if (distanceToPlayer < desiredMinDistance)
         {
-            aiPath.isStopped = false;
+            richAI.isStopped = false;
             // 타겟 반대 방향으로 이동
             Vector3 directionAwayFromTarget = (transform.position - TargetGroundPos()).normalized;
             Vector3 movePosition = transform.position + directionAwayFromTarget * 1.5f; // 일정 거리 벌리기
 
-            //aiDestinationSetter.target.position = movePosition;  // 타겟 반대 방향으로 이동
+            aiDestinationSetter.target.position = movePosition;  // 타겟 반대 방향으로 이동
         }
     }
 
@@ -221,8 +221,8 @@ public class Tank : NPCBase
 
         if (distanceToPlayer >= attackRange)
         {
-            aiPath.isStopped = false;
-            aiPath.updateRotation = true;
+            richAI.isStopped = false;
+            richAI.updateRotation = true;
 
         }
     }

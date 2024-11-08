@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 64685856197403816}
   - component: {fileID: 64469460104046608}
   - component: {fileID: 7980876850050779061}
-  - component: {fileID: 8264606245293703458}
-  m_Layer: 10
+  - component: {fileID: 1616513445540182513}
+  m_Layer: 0
   m_Name: SM_Env_CampFire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 20
   shrinkSpeed: 0.5
---- !u!114 &8264606245293703458
+--- !u!114 &1616513445540182513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,13 +158,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 157752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1743400237218459608
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: 1
+  type: 1
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 5
+  height: 0.57
+  meshScale: 1
+  center: {x: 0, y: 0.21, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!1001 &3566095313020467405
 PrefabInstance:
   m_ObjectHideFlags: 0

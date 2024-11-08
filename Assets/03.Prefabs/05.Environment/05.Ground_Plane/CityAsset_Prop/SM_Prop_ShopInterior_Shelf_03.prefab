@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3310354}
   - component: {fileID: 2397398}
   - component: {fileID: 64940066388512478}
+  - component: {fileID: -1245304986744322818}
   - component: {fileID: 8089593697190194541}
   m_Layer: 0
   m_Name: SM_Prop_ShopInterior_Shelf_03
@@ -107,6 +108,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43002509164563898, guid: 09730845161a3d84e909c7507fd36b56, type: 2}
+--- !u!208 &-1245304986744322818
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.609, y: 0.39200002, z: 0.133}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.39200002, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &8089593697190194541
 MonoBehaviour:
   m_ObjectHideFlags: 0

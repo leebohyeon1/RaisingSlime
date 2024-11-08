@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 2701561153258257597}
   - component: {fileID: 187225697979402359}
   - component: {fileID: 5473988697336245377}
-  - component: {fileID: 2889750410729005122}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,22 +106,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7673246021391805175, guid: 2ce14c7d2fcdb6b4eb9eeb0335df03b7, type: 3}
---- !u!114 &2889750410729005122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844739408894142882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 8710112304216681631
-  updateError: 1
-  checkTime: 0.2
 --- !u!1 &4200831984323087693
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728119079783714113}
   - component: {fileID: 5771669852601537979}
+  - component: {fileID: 5719736672285453904}
   m_Layer: 0
   m_Name: Truck01
   m_TagString: Untagged
@@ -172,3 +156,31 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 50
   shrinkSpeed: 0.5
+--- !u!114 &5719736672285453904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200831984323087693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 5.27, y: 2.84}
+  circleRadius: 1
+  circleResolution: 6
+  height: 4.49
+  meshScale: 1
+  center: {x: -1.28, y: 0.93, z: -1.42}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

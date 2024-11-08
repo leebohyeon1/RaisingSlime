@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3518464941442769597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6741412976364834143}
-  m_Layer: 0
-  m_Name: SpawnTrans
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6741412976364834143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3518464941442769597}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 1.04, z: -33.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 83001535202420354}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5051974681037133487
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 83001535202420354}
   - component: {fileID: 8824584253324509264}
-  - component: {fileID: 3530836656358461769}
   - component: {fileID: 8873746953738556303}
   m_Layer: 0
   m_Name: SpawnManager
@@ -62,8 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6741412976364834143}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8824584253324509264
@@ -78,72 +45,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37832229269de794bbd8ce539d53cf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepByScore: c800000026020000d0070000b80b0000a00f000088130000401f0000
+  stepByScore: e8030000d0070000b80b0000a00f00008813000010270000
   spawnRadius: 50
-  spawnHeight: 3
-  spawnTransfrom: {fileID: 6741412976364834143}
+  spawnHeight: 2
+  spawnTransfrom: {fileID: 0}
   step: 0
   spawnObjectsList:
   - SpawnObjects: []
     isBomber: 0
-    spawnInterval: 0
-  - SpawnObjects:
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    isBomber: 0
     spawnInterval: 2
-  - SpawnObjects:
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
-    - {fileID: 6625565331560884345, guid: 6246d496e23a8e94aaf4a4e17a69fe72, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  - SpawnObjects:
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  - SpawnObjects:
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  - SpawnObjects:
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  - SpawnObjects:
-    - {fileID: 739172332764853768, guid: 1d805af3516a4de4b8b3b2a3756d0cc6, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
-  maxCitizen: 150
+  citizenSpawnTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  citizenSpawnRange:
+  - {x: 209, y: 0, z: 209}
+  - {x: 209, y: 0, z: 209}
+  maxCitizen: 6400000064000000
   maxGoldCount: 40
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}
@@ -159,22 +91,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &3530836656358461769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051974681037133487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a634230476dc478b88eceac73b1c8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  updateDistance: 10
-  target: {fileID: 0}
-  graphIndex: 0
 --- !u!114 &8873746953738556303
 MonoBehaviour:
   m_ObjectHideFlags: 0

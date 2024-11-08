@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 720503215763258632}
   - component: {fileID: 6359448294075788959}
   - component: {fileID: 4558405853131483580}
-  - component: {fileID: 4600842672943369421}
-  m_Layer: 10
+  - component: {fileID: 6417243496848551126}
+  m_Layer: 0
   m_Name: ParkingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.08
   plusScore: 0
   shrinkSpeed: 0.5
---- !u!114 &4600842672943369421
+--- !u!114 &6417243496848551126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,10 +132,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4475163390668541734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6174719185399540569
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 0.68, y: 5.66}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.22
+  meshScale: 1
+  center: {x: 0.26, y: 0.48, z: 2.25}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23173225140410096}
   - component: {fileID: 64477403709025396}
   - component: {fileID: 4918178143958465811}
-  - component: {fileID: 5947677693256669069}
-  m_Layer: 10
+  - component: {fileID: 8163887115651465619}
+  m_Layer: 0
   m_Name: SM_Prop_Barrier_Plastic_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.08
   plusScore: 25
   shrinkSpeed: 0.5
---- !u!114 &5947677693256669069
+--- !u!114 &8163887115651465619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +133,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1712135265171446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8810903437275856409
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 0.97, y: 1.68}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.12
+  meshScale: 1
+  center: {x: 0, y: 0.66, z: 0.06}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

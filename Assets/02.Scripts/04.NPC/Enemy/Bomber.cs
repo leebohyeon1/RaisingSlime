@@ -64,12 +64,12 @@ public class Bomber : NPCBase
 
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            aiPath.enabled = false;
+            richAI.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
+            richAI.enabled = true;
 
 
             CheckPosition();

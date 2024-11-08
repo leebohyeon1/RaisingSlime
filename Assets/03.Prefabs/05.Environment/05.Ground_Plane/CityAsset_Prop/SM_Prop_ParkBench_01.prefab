@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 64862029186280288}
   - component: {fileID: 64774972087389572}
   - component: {fileID: 50237788775913101}
-  - component: {fileID: 8199608336814545138}
-  m_Layer: 10
+  - component: {fileID: 2364208669054139616}
+  m_Layer: 0
   m_Name: SM_Prop_ParkBench_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.04
   plusScore: 10
   shrinkSpeed: 0.5
---- !u!114 &8199608336814545138
+--- !u!114 &2364208669054139616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,10 +202,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 164744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5161887462977041156
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.42, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.55
+  meshScale: 1
+  center: {x: 0, y: 0.45, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

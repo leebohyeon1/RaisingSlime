@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5127783725847483340}
   - component: {fileID: 2482037769402962753}
+  - component: {fileID: 1941405499970034150}
   m_Layer: 0
   m_Name: CampingTent_01
   m_TagString: Untagged
@@ -49,6 +50,34 @@ MonoBehaviour:
   slimeIncreaseSize: 0.06
   plusScore: 20
   shrinkSpeed: 0.5
+--- !u!114 &1941405499970034150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665693309520692593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: 1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 4.39, y: 5.59}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1.6
+  meshScale: 1
+  center: {x: 0, y: 1.68, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1
 --- !u!1 &7466425503786453027
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +90,7 @@ GameObject:
   - component: {fileID: 8023559955775422044}
   - component: {fileID: 3193732270929997582}
   - component: {fileID: 6301418522610426423}
-  - component: {fileID: 1638965978498305435}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Camp_Tent1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,19 +184,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6973997996713079615, guid: 6fed6a40867bdcb4e87a8808164f1790, type: 3}
---- !u!114 &1638965978498305435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7466425503786453027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 6574629258408659229
-  updateError: 1
-  checkTime: 0.2

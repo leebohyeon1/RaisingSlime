@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23664237640774558}
   - component: {fileID: 64088200277019982}
   - component: {fileID: 6303130671627099321}
-  - component: {fileID: 8771676734129300736}
-  m_Layer: 10
+  - component: {fileID: 3336268427511046253}
+  m_Layer: 0
   m_Name: SM_Prop_Scaffold_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.14
   plusScore: 45
   shrinkSpeed: 0.5
---- !u!114 &8771676734129300736
+--- !u!114 &3336268427511046253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,10 +134,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065418318098076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 4542811837397787988
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 2.41, y: 4.26}
+  circleRadius: 1
+  circleResolution: 6
+  height: 2.29
+  meshScale: 1
+  center: {x: 0, y: 1.37, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

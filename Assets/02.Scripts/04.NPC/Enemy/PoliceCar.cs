@@ -31,21 +31,21 @@ public class PoliceCar : NPCBase
     protected override void Awake()
     {
         base.Awake();
-        aiPath.maxAcceleration = acceleration;
-        aiPath.updateRotation = false;
-        aiPath.enableRotation = false;
+        richAI.acceleration = acceleration;
+        richAI.updateRotation = false;
+        richAI.enableRotation = false;
     }
 
     protected override void enemyAction()
     {
         if (eatAbleObjectBase.GetEaten() || target == null || isExplosion)
         {
-            aiPath.enabled = false;
+            richAI.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
+            richAI.enabled = true;
 
             if (isReversing)
                 MoveReverse();
@@ -57,34 +57,32 @@ public class PoliceCar : NPCBase
 
     private void MoveCar()
     {
-
         MoveToTarget();
 
-        Vector3 directionToTarget = aiPath.steeringTarget - transform.position;
+        Vector3 directionToTarget = richAI.steeringTarget - transform.position;
         directionToTarget.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, aiPath.velocity.magnitude / moveSpeed);
+        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
     }
 
     private void MoveReverse()
     {
         if (reverseTimer < reverseTime)
-        { 
-
+        {
             Vector3 direction = TargetPosSameYPos() - transform.position;
-            aiPath.isStopped = false;
+            richAI.isStopped = false;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             targetRotation = LimitRotation(transform.rotation, targetRotation, maxTurnAngle);
 
-            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, aiPath.velocity.magnitude / moveSpeed);
+            float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 2f, richAI.velocity.magnitude / moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
 
-            aiPath.destination = backPos.position;
+            aiDestinationSetter.target = backPos;
             reverseTimer += Time.deltaTime;
         }
         else
@@ -98,11 +96,11 @@ public class PoliceCar : NPCBase
         isReversing = false;
         reverseTimer = 0f;
 
-        aiPath.maxSpeed = moveSpeed;
-        aiPath.maxAcceleration = acceleration;
+        richAI.maxSpeed = moveSpeed;
+        richAI.acceleration = acceleration;
 
-        aiPath.isStopped = false; // 이동 재개
-        aiPath.destination = target.position; // 타겟을 원래 목표로 다시 설정
+        richAI.isStopped = false; // 이동 재개
+        aiDestinationSetter.target = target; // 타겟을 원래 목표로 다시 설정
     }
 
     private Quaternion LimitRotation(Quaternion currentRotation, Quaternion targetRotation, float maxAngle)
@@ -115,15 +113,17 @@ public class PoliceCar : NPCBase
 
     private IEnumerator HandleCollision()
     {
-        aiPath.isStopped = true;
-        aiPath.maxSpeed = 0f;
+        richAI.isStopped = true;
+        richAI.maxSpeed = 0f;
 
         Rigidbody rb = GetComponent<Rigidbody>();
+        //rb.isKinematic = true;
 
         yield return new WaitForSeconds(stopDuration);
 
-        aiPath.maxSpeed = maxReverseSpeed;
-        aiPath.maxAcceleration = reverseAcceleration;
+        richAI.maxSpeed = maxReverseSpeed;
+        richAI.acceleration = reverseAcceleration;
+        //rb.isKinematic = false;
 
         isReversing = true;
     }

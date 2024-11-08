@@ -1331,7 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284760527}
   - component: {fileID: 284760526}
-  - component: {fileID: 284760528}
+  - component: {fileID: 284760525}
   m_Layer: 0
   m_Name: A*
   m_TagString: Untagged
@@ -1339,6 +1339,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &284760525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284760524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!114 &284760526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,7 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIewI1MRgjgIAAJgFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVF1v2zAM/CuBnrchTle02dvmpOkGtA2aDX2Y+8BYdCxElgx9NEmL/PdSshM76YABBmwcj+QdRfmNCWVrzJ02MyP4nebIvg1Y+GafBl3wFrew0mohXvHAeRLclYEEkfMITmjCk5BmdYXOiPy7WslAHhLolSi0qaZ8ham2zhJcgLRIIaNdyFYEvQ3Ytk3Yte/X8B7s6StH5dD8j+VVLqGqkQe1HXk0PNDpKxIVOWk5QXWupRS2lcHcro42U6itJxNE4ALIVhQQ+CWKVelCvX7yQ1FYdK0oA7uJMDSdpir7oZuRVWDXjbIXkB6P0puSdx+i1zFaGF3dHpom0Y4rRb5+hF0O1vUG2ocnp6q92oBcw1LiU4nqXs+M9opT0BkfUr3F0aRX6mgsLTFfd7xG6hno64+Hk3SHs4/Wt6kU1TIgX742wELqOOxxyEFDx/KTBMeVsG0lQoOIPxZ/w6q/O23gRhjrKNQ2VEHdUnsTqGwaZxbMeJdqozDCreYaFUi3m1MZd35+Z7Fe27PIDYRb0jZvY4flP0uJcMcfDs9Cc73pDsviL1/Vcy2UWyCYvOzVs6Xe3KEtH7yTQmHnKATuaYipVqrZPfuPtIU3BeS9NIdb5w1OwEG8AaSJtoT3U2mgMUN5KcNCRheh+F9yEZ7nMOQSqK+MMLvXKt6dk/dzWISVF/x0y9nl9TDh/HJZJOMLSAA/X40vktFoBOOriyG/5iMW74FQNHOQ82Zo7VHRBqnOi6KdP/zIBjMDdbx23MBmJl4r3Tt+oQq9yA2iemgqHM2ioSb0e+BTLsjmAp0TKu4ee8uY1PkaeXYslMXBTrfOQNZVyVgtXrQLSMbS+PvKWICP12pu8EXgJjQ/FNuz/TtQSwMEFAAACAgAAEgh7Byw1HNtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSM7TQUVBKL0osyCgGihiCOKWZKSB2tJKphYFhSoppUpqhpXGiYWKqrrmlsaGRkVGipbmxQYpFipFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7AjUxGCOAgAAmAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7Byw1HNtAAAAeAAAAAkAJAAAAAAAAAAAAAAA2wIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACTAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIewmYXH03AEAAMEDAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGVU01v2zAM/SuBz9sQ5wvujnOD7rAkg51D0WIHRqJtobKUyVKSJsh/HyXbiYvtspOsR75H8ZG+RKwCA8yiyYAL10RfR/GX+adRxLSy2pkVnJbGaEP4xKMoZS7OSNdxSDuCfIOdxO8oysp2WT2YSlHvbqk1nHKp9547Hbf3JS/xB6rSVp4ZQKEyLIVWXZUpYciF1WYrJHZgPEkIth3w/BfyckNcg57n27LGISEGJR5A2ScD+yp3pgCGK829bPSo19pm+NsJg5HPhYaMIcFUSyk4mqFOH1thU4UCBcjmQ2SLxoBQ/+BsDQ7fxDr5rI8/ogUhfRetUc0bfV9G0QGk8y9NRlffLpSrNvT6y1/bcjnU+5tT3j6jLVhytJU4+XkQ+t6dZ38GuUIbhvybdoo3KSqS+x9GV7DLj8c9Y9ZTCAqkptJH79nGWSkU3l3wgTVNItVKIfMvHrra07qR3WkKwWBjczpYtVHy/fllQEPlF3ENh5q4qbNWqPLOLZ3gH52NFsjZPJmw+WzKZmzx8DlexA/A+BySSTHGXRKFLoQSVoD8SfrS9s7Qcg+mraAOihkymusoLJzfKm7g+CTOtR5sgFCFzhlthdq0Gre2aR9Akrd8Gf6CHEMLnhpdrtH1D1BLAwQUAAAICAAASCHsytHSE28AAAB6AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IztNBRUEovSizIKAaKGII4pZkpIHa0kllqSrKphVGyqYlxskmymaWuoZmhZWJyimmihVGaQWqShVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrpeUGpyYnGJO8hwpdhaAFBLAQItABQAAAgIAABIIewmYXH03AEAAMEDAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABIIezK0dITbwAAAHoAAAAJACQAAAAAAAAAAAAAACkCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAA4wIAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1440,25 +1468,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &284760528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284760524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1764de1de43cc4d19af52679d3eaae06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  desiredSimulationFPS: 20
-  workerThreads: 2
-  doubleBuffering: 0
-  symmetryBreakingBias: 0.1
-  movementPlane: 0
-  drawObstacles: 0
 --- !u!1 &304612490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,7 +2237,7 @@ PrefabInstance:
     - target: {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3370,74 +3379,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630337540}
   m_CullTransparentMesh: 1
---- !u!1001 &1650374901
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.3915405
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0000019073486
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.19476
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3682333674124909245, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6666596170609220289, guid: 65628f3b278caa84aa9a2125bcd6f76f,
-        type: 3}
-      propertyPath: m_Name
-      value: PoliceCar
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 65628f3b278caa84aa9a2125bcd6f76f, type: 3}
 --- !u!1001 &1824655939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3500,11 +3441,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tank
-      objectReference: {fileID: 0}
-    - target: {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4146,4 +4082,3 @@ SceneRoots:
   - {fileID: 229841773}
   - {fileID: 803545099}
   - {fileID: 1824655939}
-  - {fileID: 1650374901}

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 64529313375757724}
   - component: {fileID: 64431531896457832}
   - component: {fileID: 5740529753238814956}
-  - component: {fileID: 1806199156763454459}
-  m_Layer: 10
+  - component: {fileID: 8629316523189157754}
+  m_Layer: 0
   m_Name: SM_Env_Fence_End_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.06
   plusScore: 20
   shrinkSpeed: 0.5
---- !u!114 &1806199156763454459
+--- !u!114 &8629316523189157754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,10 +179,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 141732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8787767023763016033
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 5
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 3193020988719535030}
   - component: {fileID: 5282373098155780128}
   - component: {fileID: 6545474175335321013}
-  - component: {fileID: 5541721619157873699}
-  m_Layer: 10
+  - component: {fileID: 9051590222660855440}
+  m_Layer: 0
   m_Name: SM_Env_Tree_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.07
   plusScore: 40
   shrinkSpeed: 0.5
---- !u!114 &5541721619157873699
+--- !u!114 &9051590222660855440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,10 +179,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4088654531169217678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5741537519210438832
-  updateError: 1
-  checkTime: 0.2
+  graphMask:
+    value: -1
+  type: 1
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 0.64
+  circleResolution: 6
+  height: 4.62
+  meshScale: 1
+  center: {x: -0.2, y: 2.21, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 1

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3331432}
   - component: {fileID: 2389784}
   - component: {fileID: 64571435397272870}
+  - component: {fileID: 6842304116411818889}
   - component: {fileID: 2940242864954638837}
   m_Layer: 0
   m_Name: SM_Prop_ShopInterior_Cafe_01
@@ -107,6 +108,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43445619368816686, guid: ea301e1930c2c7d45a6f538166854cf4, type: 2}
+--- !u!208 &6842304116411818889
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157424}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.5, y: 0.78800005, z: 0.48000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.78800005, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &2940242864954638837
 MonoBehaviour:
   m_ObjectHideFlags: 0
