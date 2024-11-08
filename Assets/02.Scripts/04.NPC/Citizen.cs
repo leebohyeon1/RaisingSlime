@@ -19,6 +19,8 @@ public class Citizen : NPCBase
         ai = GetComponent<IAstarAI>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+        transform.localRotation = Quaternion.identity;
     }
 
     protected override void enemyAction()
@@ -44,7 +46,7 @@ public class Citizen : NPCBase
         //    aiDestinationSetter.target.position = newPos;
         //    timer = 0;
         //}
-
+        
         if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
         {
             ai.destination = GetValidPosition();
