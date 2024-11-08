@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepByScore: c800000026020000d0070000b80b0000a00f000088130000401f0000
   spawnRadius: 50
-  spawnHeight: 3
+  spawnHeight: 2
   spawnTransfrom: {fileID: 6741412976364834143}
   step: 0
   spawnObjectsList:
@@ -143,7 +143,13 @@ MonoBehaviour:
     - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
     isBomber: 0
     spawnInterval: 0
-  maxCitizen: 150
+  citizenSpawnTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  citizenSpawnRange:
+  - {x: 209, y: 0, z: 209}
+  - {x: 209, y: 0, z: 209}
+  maxCitizen: 6400000064000000
   maxGoldCount: 40
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}
