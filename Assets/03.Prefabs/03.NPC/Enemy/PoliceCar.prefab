@@ -487,7 +487,7 @@ MonoBehaviour:
   moveSpeed: 18
   collisionDamage: 0.4
   isExplosion: 0
-  maxDistance: 80
+  maxDistance: 100
   acceleration: 6
   reverseAcceleration: 2
   maxReverseSpeed: 10

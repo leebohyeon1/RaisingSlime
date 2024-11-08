@@ -122,7 +122,7 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 10
   isExplosion: 0
-  maxDistance: 80
+  maxDistance: 100
   flyHeight: 10
   maxXAngle: 35
   backPos: {fileID: 2918421795627426672}

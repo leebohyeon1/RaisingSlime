@@ -126,7 +126,6 @@ public class NPCBase : MonoBehaviour, IUpdateable
         if (nearestNode.node != null)
         {
             Vector3 newPos = TargetPosSameYPos() - transform.position;
-            transform.position = nearestNode.position;
             aiPath.Teleport(nearestNode.position + (newPos.normalized  * 5));
         }
     }

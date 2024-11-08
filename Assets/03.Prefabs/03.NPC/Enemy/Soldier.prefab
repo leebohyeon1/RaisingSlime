@@ -135,7 +135,7 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 10
   isExplosion: 0
-  maxDistance: 80
+  maxDistance: 100
   attackSpeed: 2
   attackRange: 10
   bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
