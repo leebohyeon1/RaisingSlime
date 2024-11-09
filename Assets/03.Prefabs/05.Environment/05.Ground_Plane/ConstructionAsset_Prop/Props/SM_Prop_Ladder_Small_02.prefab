@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23998959997891192}
   - component: {fileID: 64610098810363838}
   - component: {fileID: 6327121807698636046}
+  - component: {fileID: 628543601983990730}
   m_Layer: 0
   m_Name: SM_Prop_Ladder_Small_02
   m_TagString: Untagged
@@ -108,6 +109,22 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 43831588871782942, guid: 46caeaa5f3790014ca1a39920f36c9b2, type: 2}
 --- !u!114 &6327121807698636046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091684135404372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1.5
+  slimeIncreaseSize: 0.05
+  plusScore: 20
+  shrinkSpeed: 0.2
+--- !u!114 &628543601983990730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
