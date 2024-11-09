@@ -15,7 +15,7 @@ public class MainMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {      
-        transform.DOScale(defaultScale * 1.1f,0.2f).SetEase(Ease.InSine);
+        transform.DOScale(defaultScale * 1.05f,0.2f).SetEase(Ease.InSine);
     }
 
     public void OnPointerExit(PointerEventData eventData)

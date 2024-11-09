@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85588f796c3524449e4e6e2dea19bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinName: "\uAE30\uBCF8 \uC2AC\uB77C\uC784"
   isGrounded: 1
   groundCheckDistance: 0.55
   groundLayer:

@@ -408,20 +408,15 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         Vector3 spawnPosition = Vector3.zero;
         int maxAttempts = 10;
         int attempts = 0;
-        //float spawnCheckRadius = 2f; // 충돌 체크할 반경 (적 크기에 맞게 설정)
-        //float maxNavMeshDistance = 10f; // 네비매쉬 표면과의 최대 거리 (네비매쉬 위치 샘플링 시 사용)
 
         while (attempts < maxAttempts)
         {
             // 랜덤한 위치를 생성
-            Vector3 randomPosition = GetRandomCitizenSpawnPoint(i);
+            spawnPosition = GetRandomCitizenSpawnPoint(i);
 
-            // Use A* Pathfinding's GetNearest to find the closest graph node
-            NNInfo nearestNodeInfo = AstarPath.active.GetNearest(randomPosition);
-            if (nearestNodeInfo.node != null && nearestNodeInfo.node.Walkable)
+            // 해당 위치에서 충돌이 발생하지 않는 경우
+            if (!Physics.CheckSphere(spawnPosition, 1.5f))
             {
-                spawnPosition = nearestNodeInfo.position;
-                spawnPosition.y = spawnHeight; // Adjust height
                 break;
             }
 
@@ -443,7 +438,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         while (currentCitizenList[i].Count < maxCitizen[i])
         {
             GameObject citizenPrefab = allCitizen[Random.Range(0, allCitizen.Length)];
-            Vector3 spawnPosition = GetRandomCitizenSpawnPoint(i);
+            Vector3 spawnPosition = GetValidSpawnPosition(i);
             GameObject newCitizen = Instantiate(citizenPrefab, spawnPosition, Quaternion.Euler(slimeTrans.position - spawnPosition));
             newCitizen.transform.SetParent(parentTransforms[1]);
             currentCitizenList[i].Add(newCitizen);
