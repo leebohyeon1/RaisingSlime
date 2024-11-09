@@ -89,7 +89,7 @@ namespace Pathfinding {
 
 		/// <summary>Update is called once per frame</summary>
 		void Update () {
-			if (graph == null) return;
+			if (graph == null || target == null) return;
 
 			// Calculate where the graph center and the target position is in graph space
 			var graphCenterInGraphSpace = PointToGraphSpace(graph.center);

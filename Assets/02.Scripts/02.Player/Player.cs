@@ -8,6 +8,8 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour, IUpdateable
 {
+    public string skinName;
+
     private PlayerMovement playerMovement;
     private PlayerStat playerStat;
 
@@ -44,6 +46,13 @@ public class Player : MonoBehaviour, IUpdateable
         HandleMovement();
 
         ApplyExtraGravity(); // 공중에 있을 때 중력 가속도 적용
+
+        if (transform.position.y < -2f)
+        {
+            GameManager.Instance.GameOver();
+
+            Destroy(gameObject);
+        }
     }
 
     public virtual void OnUpdate(float dt)

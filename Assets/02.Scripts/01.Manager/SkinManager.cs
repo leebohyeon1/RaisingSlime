@@ -13,6 +13,11 @@ public class SkinManager : Singleton<SkinManager>
     private GameObject selectedSkin;
     private GameObject player;
 
+    private List<string> skinNames = new List<string>();
+    private string curSkinName;
+
+    private int playerSkinIndex = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,14 +33,35 @@ public class SkinManager : Singleton<SkinManager>
         for(int i = 0; i < slimeSkin.Count; i++)
         {
             isSkinOpen[i] = gameData.openSkin[i];
+            skinNames.Add(slimeSkin[i].GetComponent<Player>().skinName);
         }
 
-        player = GetOpenSlime()[gameData.curPlayerIndex];
+        if(IsSlimeOpen(gameData.curPlayerIndex))
+        {
+            player = slimeSkin[gameData.curPlayerIndex];
+            playerSkinIndex = gameData.curPlayerIndex;
+        }
+        else
+        {
+            player = slimeSkin[0];
+            playerSkinIndex = 0;
+        }
+        
     }
 
     public int GetSkinCount()
     {
         return slimeSkin.Count;
+    }
+
+    public List<GameObject> GetSkinList()
+    {
+        return slimeSkin;
+    }
+
+    public bool IsSlimeOpen(int i)
+    {
+        return isSkinOpen[i];
     }
 
     public List<GameObject> GetOpenSlime()
@@ -95,11 +121,17 @@ public class SkinManager : Singleton<SkinManager>
     public void SelectSkin(GameObject skin, int index)
     {
         selectedSkin = skin;
-        player = GetOpenSlime()[index];
+        if(IsSlimeOpen(index))
+        {
+            player = slimeSkin[index];
+            playerSkinIndex = index;
+        }
+        
 
         GameData gameData = SaveManager.Instance.LoadPlayerData();
         gameData.openSkin = isSkinOpen;
         gameData.curPlayerIndex = index;
+        curSkinName = skinNames[index];
         SaveManager.Instance.SavePlayerData(gameData);
     }
 
@@ -111,5 +143,25 @@ public class SkinManager : Singleton<SkinManager>
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    public int GetPlayerIndex()
+    {
+        return playerSkinIndex;
+    }
+
+    public string GetCurSkinName()
+    {
+        return curSkinName;
+    }
+
+    public string GetSkinName(int i)
+    {
+        return skinNames[i];
+    }
+
+    public string GetPlayerName()
+    {
+        return skinNames[playerSkinIndex];
     }
 }
