@@ -279,8 +279,8 @@ public class MainManager : MonoBehaviour
                 Quaternion.Euler(0, 180, 0), skinGroup);
 
             RectTransform rectTransform = skin.AddComponent<RectTransform>();
-            rectTransform.position = skinGroup.position + new Vector3(i * 30, 0, -10);
-            rectTransform.localScale *= 350;
+            rectTransform.position = skinGroup.position + new Vector3(i * 30, skinGroup.position.y, -10);
+            rectTransform.localScale *= 320;
 
             Renderer[] renderers = skin.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)
@@ -356,7 +356,7 @@ public class MainManager : MonoBehaviour
 
         skinIndex += 1;
 
-        skinGroup.DOAnchorPosX((skinIndex * -400f), 0.4f).SetEase(Ease.OutBack)
+        skinGroup.DOAnchorPosX((skinIndex * -300f), 0.4f).SetEase(Ease.OutBack)
             .OnComplete(() =>
             {
                 isSkinBtnMoving = false;
@@ -381,7 +381,8 @@ public class MainManager : MonoBehaviour
         isSkinBtnMoving = true;
 
         skinIndex -= 1;
-        skinGroup.DOAnchorPosX((skinIndex * -400f), 0.4f).SetEase(Ease.OutBack)
+
+        skinGroup.DOAnchorPosX((skinIndex * -300f), 0.4f).SetEase(Ease.OutBack)
             .OnComplete(() =>
             {
                 isSkinBtnMoving = false;
@@ -425,11 +426,11 @@ public class MainManager : MonoBehaviour
 
     private void MoveSkinGroupToSelected(GameObject selectedSkin)
     {
-        skinGroup.DOAnchorPosX((skinIndex * -400f), 0.25f)
+        skinGroup.DOAnchorPosX((skinIndex * -300f), 0.25f)
                  .SetEase(Ease.InQuad)
                  .OnComplete(() =>
                  {
-                     skinGroup.anchoredPosition.Set((skinIndex * -400f), 0);
+                     skinGroup.anchoredPosition.Set((skinIndex * -300f), 0);
                      // 추가 코드: UpdateClosestSkin을 다시 호출하지 않도록 한 번만 선택된 스킨으로 고정                  
                      SkinManager.Instance.SelectSkin(selectedSkin, skinIndex); // 이미 선택된 스킨으로 고정
                      skinNameText.text = SkinManager.Instance.GetCurSkinName();
@@ -442,11 +443,11 @@ public class MainManager : MonoBehaviour
     {
         skinIndex = SkinManager.Instance.GetPlayerIndex();
 
-        skinGroup.DOAnchorPosX((SkinManager.Instance.GetPlayerIndex() * -400f), 0.25f)
+        skinGroup.DOAnchorPosX((SkinManager.Instance.GetPlayerIndex() * -300f), 0.25f)
                  .SetEase(Ease.InQuad)
                  .OnComplete(() =>
                  {
-                     skinGroup.anchoredPosition.Set((SkinManager.Instance.GetPlayerIndex() * -400f), 0);
+                     skinGroup.anchoredPosition.Set((SkinManager.Instance.GetPlayerIndex() * -300f), 0);
                      // 추가 코드: UpdateClosestSkin을 다시 호출하지 않도록 한 번만 선택된 스킨으로 고정                  
                      skinNameText.text = SkinManager.Instance.GetPlayerName();
                  
