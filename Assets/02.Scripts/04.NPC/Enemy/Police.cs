@@ -42,7 +42,8 @@ public class Police : NPCBase
         {
             aiPath.enabled = true;
 
-            aiPath.destination = TargetGroundPos();
+             CheckDistanceToTarget();
+             MoveToTarget();
             
             // 현재 X축 회전 각도 계산
             float currentXRotation = baton.transform.localEulerAngles.x;

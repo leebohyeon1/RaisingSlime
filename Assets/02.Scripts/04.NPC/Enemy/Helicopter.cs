@@ -92,7 +92,17 @@ public class Helicopter : NPCBase
 
         if (distance > attackRange)
         {
-            aiPath.destination = target.position;
+            Vector3 targetPosition = target.position;
+
+            // 현재 위치가 그래프 영역 밖에 있는지 확인
+            var nearestNode = AstarPath.active.GetNearest(transform.position).node;
+            if (nearestNode != null && !nearestNode.Walkable)
+            {
+                // 그래프 밖에 있다면 가장 가까운 노드의 위치를 목표 위치로 설정
+                targetPosition = (Vector3)nearestNode.position;
+            }
+
+            aiPath.destination = targetPosition;
         }
         else
         {

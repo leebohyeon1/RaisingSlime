@@ -2083,6 +2083,9 @@ MonoBehaviour:
   player: {fileID: 0}
   baseCameraDistance: 10
   scaleMultiplier: 2
+  transparentLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &743510390
 GameObject:
   m_ObjectHideFlags: 0

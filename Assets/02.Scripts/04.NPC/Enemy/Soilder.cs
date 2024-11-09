@@ -64,6 +64,8 @@ public class Soilder : NPCBase
             }
             else if (distanceToPlayer >= attackRange)
             {
+
+                CheckDistanceToTarget();
                 MoveToTarget();
             }
         }

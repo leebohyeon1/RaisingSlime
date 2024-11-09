@@ -57,7 +57,7 @@ public class PoliceCar : NPCBase
 
     private void MoveCar()
     {
-
+        CheckDistanceToTarget();
         MoveToTarget();
 
         Vector3 directionToTarget = aiPath.steeringTarget - transform.position;

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2729818883962803817}
   - component: {fileID: 1874516286929952618}
   - component: {fileID: 6654010377017306719}
-  - component: {fileID: 2226532304602228844}
   - component: {fileID: 5409208259650990421}
   - component: {fileID: -564868696917135676}
   - component: {fileID: 6556029887094081192}
@@ -136,6 +135,7 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 10
   isExplosion: 0
+  maxDistance: 100
   attackSpeed: 2
   attackRange: 10
   bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
@@ -144,20 +144,6 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletDamage: 0.2
   backPos: {fileID: 7725011976659862919}
---- !u!114 &2226532304602228844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585609005757718881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 0}
 --- !u!114 &5409208259650990421
 MonoBehaviour:
   m_ObjectHideFlags: 0
