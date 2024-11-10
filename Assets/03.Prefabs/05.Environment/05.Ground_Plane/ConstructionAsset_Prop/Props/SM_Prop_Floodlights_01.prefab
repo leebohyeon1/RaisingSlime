@@ -162,4 +162,4 @@ MonoBehaviour:
   size: 4
   slimeIncreaseSize: 0.05
   plusScore: 50
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1

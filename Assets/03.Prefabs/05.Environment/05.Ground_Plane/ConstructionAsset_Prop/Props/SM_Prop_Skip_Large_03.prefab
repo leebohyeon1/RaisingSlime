@@ -213,10 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 7
-  slimeIncreaseSize: 0.07
-  plusScore: 40
-  shrinkSpeed: 0.02
+  size: 6
+  slimeIncreaseSize: 0.05
+  plusScore: 35
+  shrinkSpeed: 0.1
 --- !u!114 &753509684817738115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 3403781189483259755
+  uniqueID: 6107992859914379030
   updateError: 1
   checkTime: 0.2
 --- !u!1 &1949995690073154
@@ -352,6 +352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1846568641866305515
+  uniqueID: 6483292025226162024
   updateError: 1
   checkTime: 0.2
