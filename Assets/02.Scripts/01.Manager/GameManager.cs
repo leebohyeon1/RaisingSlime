@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         SetOption();
 
+        AudioManager.Instance.PlaySFX("Btn");
         OptionManager.Instance.EnterOption();
     }
 
@@ -246,7 +247,6 @@ public class GameManager : MonoBehaviour, IUpdateable
 
     public void RetryBtn()  // 게임 재시작
     {
-        //LoadingScene.LoadScene("02.GameScene");
         AudioManager.Instance.PlaySFX("Btn");
 
         SceneManager.LoadScene("03.GameScene");

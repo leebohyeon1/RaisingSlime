@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -28,7 +29,7 @@ public class AchievementManager : Singleton<AchievementManager>
 {
     public string filePath = "Assets/11.Achievement/Achievement.csv"; // CSV 파일 경로
     [LabelText("도전 과제")]
-    public List<Achievement> achievements = new List<Achievement>();
+    public List<Achievement> achievements { get; private set; } = new List<Achievement>();
 
 
     protected override void Start()
@@ -67,6 +68,7 @@ public class AchievementManager : Singleton<AchievementManager>
         sr.Close();
         Debug.Log("Achievements loaded: " + achievements.Count);
     }
+
 
     // 특정 조건이 만족되면 도전과제를 업데이트
     public void UpdateAchievement(string achievementName, int progress)

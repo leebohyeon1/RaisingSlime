@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 5
   radius: 0.5
-  height: 2
+  height: 1
   canMove: 1
   maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
@@ -304,6 +304,7 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 1
   isExplosion: 0
+  maxDistance: 50
   wanderRadius: 10
   wanderTimer: 5
   radius: 20

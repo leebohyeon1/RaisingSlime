@@ -10,10 +10,13 @@ using UnityEngine.UI;
 public class MainManager : MonoBehaviour
 {
     [TabGroup("UI"), LabelText("메인 UI"), SerializeField]
-    private GameObject mainUI;
+    private GameObject mainUi;
     [TabGroup("UI"), LabelText("스킨선택 UI"), SerializeField]
-    private GameObject skinUI;
+    private GameObject skinUi; 
+    [TabGroup("UI"), LabelText("도전과제 UI"), SerializeField]
+    private GameObject achievementUi;
 
+    //=================================================================================
     [TabGroup("UI", "버튼"), LabelText("메인 버튼"), SerializeField]
     private Button[] mainBtn;
     private Vector3[] mainBtnDefaultScale;
@@ -23,6 +26,7 @@ public class MainManager : MonoBehaviour
     [TabGroup("UI", "돈"), LabelText("최고 점수 text"), SerializeField]
     private TMP_Text moneyText;
 
+    //=================================================================================
     [TabGroup("UI", "스킨"), LabelText("스킨 모음"), SerializeField]
     private RectTransform skinGroup;
     [TabGroup("UI", "스킨"), LabelText("스킨 이름"), SerializeField]
@@ -38,7 +42,6 @@ public class MainManager : MonoBehaviour
     private Vector2 skinUiOriginalPos;
     private Vector2 skinBtnOriginalPos;
 
-
     private float initialPositionX;
     private float scrollRange; // 스크롤 가능한 최대 범위
     private Vector2 lastMousePosition; // 마우스의 마지막 위치 저장
@@ -49,6 +52,18 @@ public class MainManager : MonoBehaviour
 
     private int skinIndex;
 
+    //=================================================================================
+    [TabGroup("UI", "도전과제"),LabelText("도전과제 프리팹"),SerializeField]
+    private GameObject achievementItemPrefab;
+    [TabGroup("UI", "도전과제"), LabelText("도전과제 위치"), SerializeField]
+    private Transform contentTransform;
+    [TabGroup("UI", "버튼"), LabelText("도전과제 버튼"), SerializeField]
+    private Button achievementBtn;
+
+    private Vector2 achievementUiOriginalPos;
+    private Vector2 achievementBtnOriginalPos;
+
+    //=================================================================================
     [BoxGroup("저장 데이터"), LabelText("보유 돈"), SerializeField]
     private uint money;
     [BoxGroup("저장 데이터"), LabelText("최고 점수"), SerializeField]
@@ -60,43 +75,24 @@ public class MainManager : MonoBehaviour
     {
         LoadData();
 
-        mainUI.SetActive(true);
+        mainUi.SetActive(true);
 
         InputManager.Instance.SwitchToActionMap("UI");
 
         ArrangeSkins();
+        InitialBtn();
+        PopulateAchievementScrollView();
 
-        // 초기 위치를 저장
-        initialPositionX = skinGroup.position.x;
-        scrollRange = skins.Count * 40f; // 스킨 개수에 따라 스크롤 범위 설정
-
-        skinBtn[0].onClick.AddListener(() => MoveSkinGroupToRight());
-        skinBtn[1].onClick.AddListener(() => MoveSkinGroupToLeft());
-
-        if(!AudioManager.Instance.CheckCurBGM("TitleBGM"))
+        if (!AudioManager.Instance.CheckCurBGM("TitleBGM"))
         {
             AudioManager.Instance.PlayBGM("TitleBGM");
         }
 
-        mainBtnDefaultScale = new Vector3[mainBtn.Length];
-        for (int i = 0; i < mainBtn.Length; i++)
-        {
-            mainBtnDefaultScale[i] = mainBtn[i].transform.localScale;
-        }
-
-        skinBtnDefaultScale = new Vector3[skinBtn.Length];
-        for(int i = 0;i < skinBtn.Length; i++)
-        {
-            skinBtnDefaultScale[i] = skinBtn[i].transform.localScale;
-        }
-
-        skinUiOriginalPos = skinUI.GetComponent<RectTransform>().anchoredPosition;
-        skinBtnOriginalPos = skinBtn[2].GetComponent<RectTransform>().anchoredPosition;
     }
 
     private void Update()
     {
-        if (skinUI.activeSelf)
+        if (skinUi.activeSelf)
         {
             Drag();
 
@@ -110,6 +106,30 @@ public class MainManager : MonoBehaviour
     }
 
     #region button
+    private void InitialBtn()
+    {
+        skinBtn[0].onClick.AddListener(() => MoveSkinGroupToRight());
+        skinBtn[1].onClick.AddListener(() => MoveSkinGroupToLeft());
+
+        mainBtnDefaultScale = new Vector3[mainBtn.Length];
+        for (int i = 0; i < mainBtn.Length; i++)
+        {
+            mainBtnDefaultScale[i] = mainBtn[i].transform.localScale;
+        }
+
+        skinBtnDefaultScale = new Vector3[skinBtn.Length];
+        for (int i = 0; i < skinBtn.Length; i++)
+        {
+            skinBtnDefaultScale[i] = skinBtn[i].transform.localScale;
+        }
+
+        skinUiOriginalPos = skinUi.GetComponent<RectTransform>().anchoredPosition;
+        skinBtnOriginalPos = skinBtn[2].GetComponent<RectTransform>().anchoredPosition;
+
+        achievementUiOriginalPos = achievementUi.GetComponent<RectTransform>().anchoredPosition;
+        achievementBtnOriginalPos = achievementBtn.GetComponent<RectTransform>().anchoredPosition;
+    }
+
     public void StartButton() // 게임 시작 버튼
     {
         ExecuteButtonAction(mainBtn[0], mainBtnDefaultScale[0], () =>
@@ -142,19 +162,20 @@ public class MainManager : MonoBehaviour
 
     public void SkinBtn() // 스킨 UI 열기 버튼
     {
+        ExecuteButtonAction(mainBtn[4], mainBtnDefaultScale[4], () => 
+        { 
+            skinBtn[2].GetComponent<Button>().interactable = true; 
+        });
 
-        AudioManager.Instance.PlaySFX("Btn");
-
-        skinBtn[2].GetComponent<Button>().interactable = true;
-        if (!skinUI.activeSelf)
+        if (!skinUi.activeSelf)
         {
-            RectTransform optionRect = skinUI.GetComponent<RectTransform>();
+            RectTransform optionRect = skinUi.GetComponent<RectTransform>();
             RectTransform btnRect = skinBtn[2].GetComponent<RectTransform>();
 
             optionRect.anchoredPosition = skinUiOriginalPos;
             btnRect.anchoredPosition = skinBtnOriginalPos;
 
-            skinUI.SetActive(true);
+            skinUi.SetActive(true);
 
             Vector2 offScreenPos = new Vector2(optionRect.anchoredPosition.x, Screen.height / 2 + optionRect.rect.height); // 화면 위의 임의 위치
             Vector2 btnOffScreenPos = new Vector2(btnRect.anchoredPosition.x, Screen.height / 2 + btnRect.rect.height); // 화면 위의 임의 위치
@@ -177,9 +198,9 @@ public class MainManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("Btn");
         skinBtn[2].interactable = false;
 
-        if (skinUI.activeSelf)
+        if (skinUi.activeSelf)
         {
-            RectTransform optionRect = skinUI.GetComponent<RectTransform>();
+            RectTransform optionRect = skinUi.GetComponent<RectTransform>();
             RectTransform btnRect = skinBtn[2].GetComponent<RectTransform>();
 
             // 화면 아래 위치 계산 (공통 코드로 이동)
@@ -199,15 +220,85 @@ public class MainManager : MonoBehaviour
                 optionRect.anchoredPosition = skinUiOriginalPos;
                 btnRect.anchoredPosition = skinBtnOriginalPos;
 
-                skinUI.SetActive(false);
+                skinUi.SetActive(false);
             });
 
             // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
             exitOptionSequence.SetUpdate(true);
-   
+
         }
     }
 
+    public void AchivementBtn()
+    {
+        ExecuteButtonAction(mainBtn[5], mainBtnDefaultScale[5], () => 
+        {
+            achievementBtn.interactable = true;
+        });
+
+        if (!achievementUi.activeSelf)
+        {
+            RectTransform optionRect = achievementUi.GetComponent<RectTransform>();
+            RectTransform btnRect = achievementBtn.GetComponent<RectTransform>();
+
+            optionRect.anchoredPosition = achievementUiOriginalPos;
+            btnRect.anchoredPosition = achievementBtnOriginalPos;
+
+            achievementUi.SetActive(true);
+
+            Vector2 offScreenPos = new Vector2(optionRect.anchoredPosition.x, Screen.height / 2 + optionRect.rect.height); // 화면 위의 임의 위치
+            Vector2 btnOffScreenPos = new Vector2(btnRect.anchoredPosition.x, Screen.height / 2 + btnRect.rect.height); // 화면 위의 임의 위치
+
+            optionRect.anchoredPosition = offScreenPos;
+            btnRect.anchoredPosition = btnOffScreenPos;
+
+            Sequence enterOptionSequence = DOTween.Sequence();
+
+            enterOptionSequence.Append(btnRect.DOAnchorPos(achievementBtnOriginalPos, 0.8f).SetEase(Ease.OutElastic, 1.2f, 0.6f));
+            enterOptionSequence.Insert(0.1f, optionRect.DOAnchorPos(achievementUiOriginalPos, 0.6f).SetEase(Ease.OutElastic, 1.2f, 0.6f).OnComplete(() => { MoveSkinGroupToCurSkin(); }));
+
+
+            enterOptionSequence.SetUpdate(true);
+        }
+    }
+
+    public void ExitAchievementBtn()
+    {
+        AudioManager.Instance.PlaySFX("Btn");
+        achievementBtn.interactable = false;
+
+        if (achievementUi.activeSelf)
+        {
+            RectTransform optionRect = achievementUi.GetComponent<RectTransform>();
+            RectTransform btnRect = achievementBtn.GetComponent<RectTransform>();
+
+            // 화면 아래 위치 계산 (공통 코드로 이동)
+            Vector2 belowScreenPos = new Vector2(optionRect.anchoredPosition.x, -(Screen.height / 2 + optionRect.rect.height));
+            Vector2 btnBelowScreenPos = new Vector2(btnRect.anchoredPosition.x, belowScreenPos.y);
+
+            // 애니메이션 시퀀스
+            Sequence exitOptionSequence = DOTween.Sequence();
+
+            exitOptionSequence.Append(btnRect.DOAnchorPos(btnBelowScreenPos, 0.6f).SetEase(Ease.InBack, 0.5f));
+            exitOptionSequence.Insert(0.1f, optionRect.DOAnchorPos(belowScreenPos, 0.6f).SetEase(Ease.InBack, 1.7f));
+
+            // 애니메이션 완료 후, 원래 자리로 복귀하고 비활성화
+            exitOptionSequence.OnComplete(() =>
+            {
+                // 위치를 즉시 원래 자리로 설정
+                optionRect.anchoredPosition = achievementUiOriginalPos;
+                btnRect.anchoredPosition = achievementBtnOriginalPos;
+
+                achievementUi.SetActive(false);
+            });
+
+            // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
+            exitOptionSequence.SetUpdate(true);
+
+        }
+ 
+    }
+  
 
     // 공통 애니메이션 및 액션 실행 함수
     private void ExecuteButtonAction(Button button, Vector3 defaultScale, Action action)
@@ -269,10 +360,11 @@ public class MainManager : MonoBehaviour
 
         }
     }
-
     // 스킨들의 초기 위치를 설정
     private void ArrangeSkins()
-    {
+    {  
+       
+
         for (int i = 0; i < SkinManager.Instance.GetSkinCount(); i++)
         {
             GameObject skin = Instantiate(SkinManager.Instance.GetSkinList()[i], skinGroup.position,
@@ -301,7 +393,11 @@ public class MainManager : MonoBehaviour
 
         MoveSkinGroupToCurSkin();
 
-        //ChangeSkinProssession(); 
+        //ChangeSkinProssession();
+
+        // 초기 위치를 저장
+        initialPositionX = skinGroup.position.x;
+        scrollRange = skins.Count * 40f; // 스킨 개수에 따라 스크롤 범위 설정
 
     }
 
@@ -357,11 +453,15 @@ public class MainManager : MonoBehaviour
         skinIndex += 1;
 
         skinGroup.DOAnchorPosX((skinIndex * -300f), 0.4f).SetEase(Ease.OutBack)
+            .OnStart(() => 
+            {
+                ChangeSkinProssession(); 
+            })
             .OnComplete(() =>
             {
                 isSkinBtnMoving = false;
                 UpdateClosestSkin();
-                ChangeSkinProssession();
+                Invoke("ChangeSkinProssession", 0.1f);
             });
 
 
@@ -383,11 +483,15 @@ public class MainManager : MonoBehaviour
         skinIndex -= 1;
 
         skinGroup.DOAnchorPosX((skinIndex * -300f), 0.4f).SetEase(Ease.OutBack)
+            .OnStart(() => 
+            {
+                ChangeSkinProssession(); 
+            })
             .OnComplete(() =>
             {
                 isSkinBtnMoving = false;
                 UpdateClosestSkin();
-                ChangeSkinProssession();
+                Invoke("ChangeSkinProssession", 0.1f);
             });
 
         ExecuteButtonAction(skinBtn[1], skinBtnDefaultScale[1], () => { });
@@ -497,6 +601,23 @@ public class MainManager : MonoBehaviour
     }
     #endregion
 
+
+    #region achievement
+
+    void PopulateAchievementScrollView()
+    {
+        foreach (var achievement in AchievementManager.Instance.achievements)
+        {
+            GameObject achievementItem = Instantiate(achievementItemPrefab, contentTransform);
+
+            AchievementPrefab achievementPrefab =achievementItem.GetComponent<AchievementPrefab>();
+            // 도전 과제 UI 요소에 데이터 할당
+            achievementPrefab.InitialPrefab(achievement.achievementName, achievement.description);
+            // = $"{achievement.currentProgress}/{achievement.goal}";
+            //achievementItem.transform.Find("CompletedToggle").GetComponent<Toggle>().isOn = achievement.isCompleted;
+        }
+    }
+    #endregion
     // 저장된 데이터 불러오기
     private void LoadData()
     {

@@ -21,11 +21,13 @@ public class OptionManager : Singleton<OptionManager>
     private bool isBgmMuted = false;
     private bool isSfxMuted = false;
 
+    [SerializeField] private Sprite[] soundIcon;
+    [SerializeField] private Sprite[] muteIcon;
+    
+
     protected override void Awake()
     {
         base.Awake();
-
-    
     }
 
     protected override void Start()
@@ -96,8 +98,6 @@ public class OptionManager : Singleton<OptionManager>
 
     public void EnterOption()
     {
-        AudioManager.Instance.PlaySFX("Btn");
-
         exitBtn.GetComponent<Button>().interactable = true;
         if (!option.activeSelf)
         {
@@ -127,15 +127,10 @@ public class OptionManager : Singleton<OptionManager>
 
     private void SetBgmVolume(int index)
     {
-        // 음소거 상태 해제
-        if (isBgmMuted)
-        {
-            ToggleBgmMute();
-        }
 
         AudioManager.Instance.PlaySFX("Btn");
 
-        float volumeChange = 0.1f;
+        float volumeChange = 0.05f;
         if (index == 1)
         {
             soundSliders[0].value = Mathf.Max(0, soundSliders[0].value - volumeChange);
@@ -151,15 +146,10 @@ public class OptionManager : Singleton<OptionManager>
 
     private void SetSfxVolume(int index)
     {
-        // 음소거 상태 해제
-        if (isSfxMuted)
-        {
-            ToggleSfxMute();
-        }
-        
+       
         AudioManager.Instance.PlaySFX("Btn");
 
-        float volumeChange = 0.1f;
+        float volumeChange = 0.05f;
         if (index == 1)
         {
             soundSliders[1].value = Mathf.Max(0, soundSliders[1].value - volumeChange);
@@ -179,6 +169,14 @@ public class OptionManager : Singleton<OptionManager>
         AudioManager.Instance.PlaySFX("Btn");
         AudioManager.Instance.MuteBGM(isBgmMuted);
 
+        if (isBgmMuted)
+        {
+            bgmButtons[2].GetComponent<Image>().sprite = muteIcon[0];
+        }
+        else
+        {
+            bgmButtons[2].GetComponent<Image>().sprite = soundIcon[0];
+        }
         // 사운드 설정 저장
         SaveSoundSettings();
     }
@@ -189,6 +187,15 @@ public class OptionManager : Singleton<OptionManager>
 
         AudioManager.Instance.PlaySFX("Btn");
         AudioManager.Instance.MuteSFX(isSfxMuted);
+
+        if (isSfxMuted)
+        {
+            sfxButtons[2].GetComponent<Image>().sprite = muteIcon[1];
+        }
+        else
+        {
+            sfxButtons[2].GetComponent<Image>().sprite = soundIcon[1];
+        }
 
         // 사운드 설정 저장
         SaveSoundSettings();
@@ -207,6 +214,24 @@ public class OptionManager : Singleton<OptionManager>
         isBgmMuted = data.isBgmMuted;
         isSfxMuted = data.isSfxMuted;
 
+
+        if (isBgmMuted)
+        {
+            bgmButtons[2].GetComponent<Image>().sprite = muteIcon[0];
+        }
+        else
+        {
+            bgmButtons[2].GetComponent<Image>().sprite = soundIcon[0];
+        }
+
+        if (isSfxMuted)
+        {
+            sfxButtons[2].GetComponent<Image>().sprite = muteIcon[1];
+        }
+        else
+        {
+            sfxButtons[2].GetComponent<Image>().sprite = soundIcon[1];
+        }
         // AudioManager에 적용
         AudioManager.Instance.SetBgmVolume(data.bgmVolume);
         AudioManager.Instance.SetSfxVolume(data.sfxVolume);
