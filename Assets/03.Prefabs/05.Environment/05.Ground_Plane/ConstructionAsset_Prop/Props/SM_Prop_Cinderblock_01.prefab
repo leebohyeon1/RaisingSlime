@@ -122,4 +122,4 @@ MonoBehaviour:
   size: 0.5
   slimeIncreaseSize: 0.01
   plusScore: 1
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.1

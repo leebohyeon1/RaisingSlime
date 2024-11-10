@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  slimeIncreaseSize: 0.05
-  plusScore: 20
-  shrinkSpeed: 0.5
+  size: 1.5
+  slimeIncreaseSize: 0.03
+  plusScore: 10
+  shrinkSpeed: 0.1
 --- !u!64 &1526646224511990354
 MeshCollider:
   m_ObjectHideFlags: 0

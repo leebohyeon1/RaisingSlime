@@ -48,7 +48,7 @@ MonoBehaviour:
   size: 9
   slimeIncreaseSize: 0.04
   plusScore: 35
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.1
 --- !u!1 &9038479972130256325
 GameObject:
   m_ObjectHideFlags: 0

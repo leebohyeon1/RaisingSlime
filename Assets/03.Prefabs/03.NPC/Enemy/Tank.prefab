@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 8
+  moveSpeed: 10
   collisionDamage: 0.5
   isExplosion: 0
   maxDistance: 100
@@ -648,8 +648,8 @@ MonoBehaviour:
   bodyRotationSpeed: 3
   turretRotationSpeed: 360
   explosionForce: 25
-  explosionRadius: 8
-  upwardsModifier: 8
+  explosionRadius: 6
+  upwardsModifier: 5
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 320

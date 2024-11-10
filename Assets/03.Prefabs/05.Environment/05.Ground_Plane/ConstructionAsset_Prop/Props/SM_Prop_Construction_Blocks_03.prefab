@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3
-  slimeIncreaseSize: 0.08
+  size: 1.7
+  slimeIncreaseSize: 0.04
   plusScore: 25
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!114 &2301039845755399625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5327822432429561428
+  uniqueID: 926054319758039723
   updateError: 1
   checkTime: 0.2
