@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  slimeIncreaseSize: 0.05
+  slimeIncreaseSize: 0.03
   plusScore: 25
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.2
 --- !u!114 &4829357572455150875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 967841099898089148
+  uniqueID: 8562950396811022574
   updateError: 1
   checkTime: 0.2

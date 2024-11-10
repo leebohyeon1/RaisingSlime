@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 9
-  slimeIncreaseSize: 0.05
-  plusScore: 180
-  shrinkSpeed: 0.5
+  slimeIncreaseSize: 0.04
+  plusScore: 35
+  shrinkSpeed: 0.2
 --- !u!1 &6803784320605446006
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 277187480484997572
+  uniqueID: 5345796621816365427
   updateError: 1
   checkTime: 0.2
 --- !u!114 &8920086600045443955
