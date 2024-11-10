@@ -196,7 +196,7 @@ MonoBehaviour:
   size: 12
   slimeIncreaseSize: 0.04
   plusScore: 35
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.1
 --- !u!1001 &732852743035464737
 PrefabInstance:
   m_ObjectHideFlags: 0

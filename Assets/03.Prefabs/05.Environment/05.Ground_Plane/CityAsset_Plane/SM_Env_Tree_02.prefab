@@ -192,7 +192,7 @@ MonoBehaviour:
   size: 4
   slimeIncreaseSize: 0.04
   plusScore: 25
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.1
 --- !u!114 &6961516764183226463
 MonoBehaviour:
   m_ObjectHideFlags: 0
