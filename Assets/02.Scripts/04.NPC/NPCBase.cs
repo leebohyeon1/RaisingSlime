@@ -27,7 +27,6 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     public bool isExplosion = false;
     
-    [BoxGroup("기본"), LabelText("최대 거리"), SerializeField]
     private float maxDistance = 70f; // 타겟과의 최대 거리
 
     protected virtual void Awake()
@@ -102,12 +101,14 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     protected virtual void MoveToTarget()
     {
-        if (target != null && aiPath != null)
+        if(target == null)
         {
-            aiPath.destination = TargetGroundPos();
+            return;
         }
-    }
 
+        aiPath.destination = TargetGroundPos();
+    }
+    
     protected  void CheckDistanceToTarget()
     {
         if (target == null) return;
@@ -118,15 +119,21 @@ public class NPCBase : MonoBehaviour, IUpdateable
         {
             TeleportToClosestNode();
         }
+
+
     }
 
     protected void TeleportToClosestNode()
     {
+        Vector3 dir = (TargetPosSameYPos() - transform.position).normalized;
+
+        // 현재 transform.position을 기준으로 가장 가까운 네비게이션 노드를 찾음
         NNInfo nearestNode = AstarPath.active.GetNearest(transform.position);
         if (nearestNode.node != null)
         {
-            Vector3 newPos = TargetPosSameYPos() - transform.position;
-            aiPath.Teleport(nearestNode.position + (newPos.normalized  * 5));
+            // 가장 가까운 노드의 위치로 텔레포트
+            aiPath.Teleport(nearestNode.position + (dir * 5));
+            aiPath.SearchPath();
         }
     }
 
