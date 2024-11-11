@@ -49,7 +49,8 @@ public class AudioManager : Singleton<AudioManager>
         for (int i = 0; i < sfxSourceCount; i++)
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.priority = 128; 
+            source.priority = 128;
+            source.dopplerLevel = 0f;
             sfxSources.Add(source);
         }
     }
