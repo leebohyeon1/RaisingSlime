@@ -137,8 +137,8 @@ public class GameData
         // 기본값 설정
         this.money = 0;
         this.score = 0;
-        this.bgmVolume = 1f; // 최대 볼륨
-        this.sfxVolume = 1f;
+        this.bgmVolume = 0.5f; // 최대 볼륨
+        this.sfxVolume = 0.5f;
         this.isBgmMuted = false;
         this.isSfxMuted = false;
 

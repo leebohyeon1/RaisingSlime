@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8318512105549949029}
   - component: {fileID: 7778306990085617127}
   - component: {fileID: 8115664945968363636}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stick01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 1206733851482654015
+  uniqueID: 4390425359623821187
   updateError: 1
   checkTime: 0.2
