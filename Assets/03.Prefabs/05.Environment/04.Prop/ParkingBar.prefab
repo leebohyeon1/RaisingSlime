@@ -29,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4475163390668541734}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.0980594, y: 1.3552527e-22, z: 8.245467}
-  m_LocalScale: {x: 1.000001, y: 1.000001, z: 1.000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  slimeIncreaseSize: 0.08
-  plusScore: 0
-  shrinkSpeed: 0.5
+  size: 3
+  slimeIncreaseSize: 0.05
+  plusScore: 25
+  shrinkSpeed: 0.1
 --- !u!114 &4600842672943369421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6174719185399540569
+  uniqueID: 2544663494595360203
   updateError: 1
   checkTime: 0.2

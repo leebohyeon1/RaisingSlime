@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.221, y: 1.221, z: 1.221}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   size: 1.2
   slimeIncreaseSize: 0.05
   plusScore: 13
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!114 &2374321750540656048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 9199562800463917992
+  uniqueID: 5113768709701887391
   updateError: 1
   checkTime: 0.2
