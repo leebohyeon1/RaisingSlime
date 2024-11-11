@@ -632,22 +632,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 10
-  collisionDamage: 0.5
+  moveSpeed: 9
+  collisionDamage: 0.4
   isExplosion: 0
   maxDistance: 100
-  attackSpeed: 0.4
+  attackSpeed: 0.3
   attackRange: 25
   bulletPrefab: {fileID: 5704040172006731360, guid: 64a92ac2dfcb7db4c967a1665189b9f4,
     type: 3}
-  bulletSpeed: 20
-  bulletDamage: 0.5
+  bulletSpeed: 18
+  bulletDamage: 0.42
   firePosistion:
   - {fileID: 2551623793848284930}
   - {fileID: 5173024981093013142}
   bodyRotationSpeed: 3
-  turretRotationSpeed: 360
-  explosionForce: 25
+  turretRotationSpeed: 300
+  explosionForce: 23
   explosionRadius: 6
   upwardsModifier: 5
   explosionLayerMask:
