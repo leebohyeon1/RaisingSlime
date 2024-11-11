@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1129562996045126551}
   - component: {fileID: 1436126962540002236}
   - component: {fileID: 7590940976844943494}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Goal01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6190604795052153226
+  uniqueID: 8361303992200798569
   updateError: 1
   checkTime: 0.2
