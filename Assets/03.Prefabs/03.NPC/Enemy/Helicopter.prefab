@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 6.9
+  size: 3.5
   slimeIncreaseSize: 0.05
   plusScore: 50
   shrinkSpeed: 0.1
@@ -122,7 +122,6 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 10
   isExplosion: 0
-  maxDistance: 100
   flyHeight: 10
   maxXAngle: 35
   backPos: {fileID: 2918421795627426672}
