@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1123920345192977889}
   - component: {fileID: 4233591963520976105}
   - component: {fileID: 2121694585604062062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: -0.003478898, z: -1.5206747e-10}
-  m_LocalScale: {x: 2.54, y: 1.4141959, z: 2.54}
+  m_LocalScale: {x: 2.54, y: 2.8995254, z: 2.5399997}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,11 +101,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.014999986, y: 0.20000009, z: 0.19590242}
+  m_Size: {x: -0.02, y: 0.20000009, z: 0.19590242}
   m_Center: {x: -0.68760574, y: -0.36645108, z: 0.09795121}
 --- !u!114 &4233591963520976105
 MonoBehaviour:
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 9142873243614005003
+  uniqueID: 1844750977388078969
   updateError: 1
   checkTime: 0.2
