@@ -56,7 +56,7 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 1
   isExplosion: 0
-  damagePerSecond: 0.1
+  damagePerSecond: 2.5
   rotationSpeed: 50
   radius: 3
   heightFactor: 1
