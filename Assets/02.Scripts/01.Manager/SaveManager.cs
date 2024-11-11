@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO; 
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Linq;
+using System;
 
 public class SaveManager : Singleton<SaveManager>
 {
+
     protected override void Awake()
     {
         base.Awake();
@@ -14,11 +19,15 @@ public class SaveManager : Singleton<SaveManager>
     {
         string json = JsonUtility.ToJson(data);
 
+        // 데이터를 암호화
+        string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
+        string encryptedJson = Encrypt(json, encryptionKey);
+
         // 데이터를 저장할 경로 지정
         string path = Path.Combine(Application.persistentDataPath, "gameData.json");
 
         // 디스크에 파일 생성 및 저장
-        File.WriteAllText(path, json);
+        File.WriteAllText(path, encryptedJson);
     }
 
     public GameData LoadPlayerData()
@@ -26,7 +35,11 @@ public class SaveManager : Singleton<SaveManager>
         string path = Path.Combine(Application.persistentDataPath, "gameData.json");
         if (File.Exists(path))
         {
-            string json = File.ReadAllText(path);
+            string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
+            // 암호화된 데이터를 불러와 복호화
+            string encryptedJson = File.ReadAllText(path);
+            string json = Decrypt(encryptedJson, encryptionKey);
+
             GameData data = JsonUtility.FromJson<GameData>(json);
             return data;
         }
@@ -36,6 +49,69 @@ public class SaveManager : Singleton<SaveManager>
             GameData data = new GameData();
             SavePlayerData(data);
             return data;
+        }
+    }
+
+    private string Encrypt(string text, string key)
+    {
+        using (Aes aesAlg = Aes.Create())
+        {
+            var keyBytes = Encoding.UTF8.GetBytes(key);
+            Array.Resize(ref keyBytes, aesAlg.KeySize / 8); // 32바이트 키로 조정
+            aesAlg.Key = keyBytes;
+            aesAlg.GenerateIV();
+            var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(aesAlg.IV, 0, aesAlg.IV.Length); // IV 저장
+                using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                {
+                    using (var sw = new StreamWriter(cs))
+                    {
+                        sw.Write(text);
+                    }
+                }
+                return System.Convert.ToBase64String(ms.ToArray());
+            }
+        }
+    }
+
+    private string Decrypt(string encryptedText, string key)
+    {
+        var fullCipher = System.Convert.FromBase64String(encryptedText);
+        using (Aes aesAlg = Aes.Create())
+        {
+            var keyBytes = Encoding.UTF8.GetBytes(key);
+            Array.Resize(ref keyBytes, aesAlg.KeySize / 8);
+            aesAlg.Key = keyBytes;
+
+            var iv = fullCipher.Take(aesAlg.BlockSize / 8).ToArray();
+            var cipher = fullCipher.Skip(aesAlg.BlockSize / 8).ToArray();
+
+            aesAlg.IV = iv;
+            var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (var ms = new MemoryStream(cipher))
+            using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+            using (var sr = new StreamReader(cs))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+    }
+
+    private string GenerateEncryptionKey()
+    {
+        string baseKey = "your-base-key-32-byte-length"; // 32바이트 기본 키
+        string deviceId = SystemInfo.deviceUniqueIdentifier; // 고유 장치 ID
+        string combinedKey = baseKey + deviceId;
+
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(combinedKey);
+            byte[] hashBytes = sha256.ComputeHash(keyBytes);
+            return Convert.ToBase64String(hashBytes).Substring(0, 32); // 첫 32바이트 사용
         }
     }
 }
@@ -61,8 +137,8 @@ public class GameData
         // 기본값 설정
         this.money = 0;
         this.score = 0;
-        this.bgmVolume = 1f; // 최대 볼륨
-        this.sfxVolume = 1f;
+        this.bgmVolume = 0.5f; // 최대 볼륨
+        this.sfxVolume = 0.5f;
         this.isBgmMuted = false;
         this.isSfxMuted = false;
 

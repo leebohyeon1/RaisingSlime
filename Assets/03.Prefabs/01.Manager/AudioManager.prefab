@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c895d29a0b88b049abdd7caea039705, type: 3}
   - {fileID: 8300000, guid: 3abc9fd9117eb184a97e5527f3ea3b4d, type: 3}
   - {fileID: 8300000, guid: 5e265ec0dbd87d04fb2ff7e3a6bd0fe7, type: 3}
-  sfxSource: {fileID: 0}
+  sfxSourceCount: 5
   sfxClips:
   - {fileID: 8300000, guid: ef6c112869eaa2849bbf62cd43fc7f8b, type: 3}
   - {fileID: 8300000, guid: c2ba48f5a10a4d340b90fb084c9ae8ef, type: 3}
