@@ -9,14 +9,17 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private List<AudioClip> bgmClips;
 
     [Header("SFX Settings")]
-    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private int sfxSourceCount = 5; // SFX 풀링을 위한 오디오 소스 개수
     [SerializeField] private List<AudioClip> sfxClips;
+
+    private List<AudioSource> sfxSources = new List<AudioSource>();
 
     private Dictionary<string, AudioClip> bgmDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> sfxDictionary = new Dictionary<string, AudioClip>();
 
     private bool isBgmMuted = false;
     private bool isSfxMuted = false;
+    private int currentSfxIndex = 0; // 현재 재생 중인 SFX 소스 인덱스
 
     protected override void Awake()
     {
@@ -40,11 +43,14 @@ public class AudioManager : Singleton<AudioManager>
         {
             bgmSource = gameObject.AddComponent<AudioSource>();
             bgmSource.loop = true;
+            bgmSource.priority = 64;
         }
 
-        if (sfxSource == null)
+        for (int i = 0; i < sfxSourceCount; i++)
         {
-            sfxSource = gameObject.AddComponent<AudioSource>();
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.priority = 128; 
+            sfxSources.Add(source);
         }
     }
 
@@ -115,7 +121,9 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (sfxDictionary.ContainsKey(clipName))
         {
-            sfxSource.PlayOneShot(sfxDictionary[clipName]);
+            AudioSource source = sfxSources[currentSfxIndex];
+            source.PlayOneShot(sfxDictionary[clipName]);
+            currentSfxIndex = (currentSfxIndex + 1) % sfxSources.Count; // 다음 인덱스로 이동
         }
         else
         {
@@ -125,13 +133,19 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SetSfxVolume(float volume)
     {
-        sfxSource.volume = Mathf.Clamp01(volume);
+        foreach (var source in sfxSources)
+        {
+            source.volume = Mathf.Clamp01(volume);
+        }
     }
 
     public void MuteSFX(bool mute)
     {
         isSfxMuted = mute;
-        sfxSource.mute = mute;
+        foreach (var source in sfxSources)
+        {
+            source.mute = mute;
+        }
     }
 
     public bool IsSfxMuted()
