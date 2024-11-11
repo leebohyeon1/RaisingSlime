@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 64383353714809296}
   - component: {fileID: 64803082730643736}
   - component: {fileID: 5384524910427088654}
-  - component: {fileID: 5688993556648608866}
-  m_Layer: 0
+  - component: {fileID: -1198888084578943398}
+  m_Layer: 10
   m_Name: SM_Env_TreeBirch_01_Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
---- !u!114 &5688993556648608866
+--- !u!114 &-1198888084578943398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,22 +156,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 110048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: 1
-  type: 1
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 0.74
-  circleResolution: 6
-  height: 3.75
-  meshScale: 1
-  center: {x: -0.18, y: 1.82, z: -0.17}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1
+  uniqueID: 5087906988960480709
+  updateError: 1
+  checkTime: 0.2

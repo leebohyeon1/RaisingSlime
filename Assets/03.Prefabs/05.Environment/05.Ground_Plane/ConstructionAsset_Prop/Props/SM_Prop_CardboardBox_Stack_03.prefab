@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23476124523878266}
   - component: {fileID: 64954483567725716}
   - component: {fileID: 3139793140127197182}
-  - component: {fileID: 7602416428910808507}
-  m_Layer: 0
+  - component: {fileID: 3642503675575938472}
+  m_Layer: 10
   m_Name: SM_Prop_CardboardBox_Stack_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   slimeIncreaseSize: 0.1
   plusScore: 30
   shrinkSpeed: 0.5
---- !u!114 &7602416428910808507
+--- !u!114 &3642503675575938472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,22 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627213790493092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 1, y: 1}
-  circleRadius: 1
-  circleResolution: 6
-  height: 1
-  meshScale: 1
-  center: {x: 0, y: 0, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 0
+  uniqueID: 6563078833054952512
+  updateError: 1
+  checkTime: 0.2

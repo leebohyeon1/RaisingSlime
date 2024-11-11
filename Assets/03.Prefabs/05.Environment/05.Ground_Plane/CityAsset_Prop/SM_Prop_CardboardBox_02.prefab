@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 2370492}
   - component: {fileID: 65140040975299692}
   - component: {fileID: 3095609581529777087}
-  - component: {fileID: 496212675740955214}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Prop_CardboardBox_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,19 +122,3 @@ MonoBehaviour:
   slimeIncreaseSize: 0.02
   plusScore: 10
   shrinkSpeed: 0.1
---- !u!114 &496212675740955214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 3382997593467803760
-  updateError: 1
-  checkTime: 0.2
