@@ -27,7 +27,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     public bool isExplosion = false;
     
-    private float maxDistance = 70f; // 타겟과의 최대 거리
+    private float maxDistance = 48f; // 타겟과의 최대 거리
 
     protected virtual void Awake()
     {                
@@ -107,9 +107,10 @@ public class NPCBase : MonoBehaviour, IUpdateable
         }
 
         aiPath.destination = TargetGroundPos();
+        aiPath.SearchPath();
     }
-    
-    protected  void CheckDistanceToTarget()
+
+    protected void CheckDistanceToTarget()
     {
         if (target == null) return;
 
@@ -117,11 +118,38 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
         if (distanceToTarget > maxDistance)
         {
-            TeleportToClosestNode();
+            // 타겟이 그리드 밖에 있으므로 AIPath와 콜라이더를 비활성화하고 직접 이동
+            aiPath.enabled = false;
+            Collider npcCollider = GetComponent<Collider>();
+            if (npcCollider != null)
+            {
+                npcCollider.enabled = false;
+            }
+
+            DirectMoveToPlayer();
         }
-
-
+        else
+        {
+            // 타겟이 그리드 내에 있으며 maxDistance 이하이므로 길찾기 가능
+            aiPath.enabled = true;
+            Collider npcCollider = GetComponent<Collider>();
+            if (npcCollider != null)
+            {
+                npcCollider.enabled = true;
+            }
+        }
     }
+
+    private void DirectMoveToPlayer()
+    {
+        if (target == null) return;
+
+        Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+
+        transform.LookAt(direction);
+    }
+
 
     protected void TeleportToClosestNode()
     {

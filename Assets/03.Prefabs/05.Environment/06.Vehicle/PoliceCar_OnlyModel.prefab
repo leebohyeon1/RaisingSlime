@@ -291,7 +291,8 @@ GameObject:
   - component: {fileID: 8067659616584811902}
   - component: {fileID: 4195860492994981180}
   - component: {fileID: 3391798319292890711}
-  m_Layer: 0
+  - component: {fileID: 1413859851179248892}
+  m_Layer: 10
   m_Name: PoliceCar_OnlyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,3 +355,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 70
   shrinkSpeed: 0.1
+--- !u!114 &1413859851179248892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273926972776974681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 2256946872460100394
+  updateError: 1
+  checkTime: 0.2

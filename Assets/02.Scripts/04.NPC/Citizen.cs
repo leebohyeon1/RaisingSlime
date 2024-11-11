@@ -9,14 +9,13 @@ public class Citizen : NPCBase
 
     private float timer;
 
-    IAstarAI ai;
     public float radius = 20;
 
     protected override void Start()
     {
         timer = wanderTimer;
 
-        ai = GetComponent<IAstarAI>();
+        //aiPath = GetComponent<IAstarAI>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
@@ -47,10 +46,10 @@ public class Citizen : NPCBase
         //    timer = 0;
         //}
         
-        if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
+        if (!aiPath.pathPending && (aiPath.reachedEndOfPath || !aiPath.hasPath))
         {
-            ai.destination = GetValidPosition();
-            ai.SearchPath();
+            aiPath.destination = GetValidPosition();
+            aiPath.SearchPath();
         }
     }
 
@@ -59,7 +58,7 @@ public class Citizen : NPCBase
         var point = Random.insideUnitSphere * radius;
 
         point.y = 0;
-        point += ai.position;
+        point += aiPath.position;
         return point;
     }
 

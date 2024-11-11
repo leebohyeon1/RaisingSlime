@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2341276}
   - component: {fileID: 64973819334860072}
   - component: {fileID: 8302296182383537818}
-  m_Layer: 0
+  - component: {fileID: -741341916262471719}
+  m_Layer: 10
   m_Name: SM_Prop_ShopInterior_Desk_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,3 +124,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &-741341916262471719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 7121829839324200523
+  updateError: 1
+  checkTime: 0.2

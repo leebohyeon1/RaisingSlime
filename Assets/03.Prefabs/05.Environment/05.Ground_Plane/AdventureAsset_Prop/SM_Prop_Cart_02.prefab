@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 64335741558109508}
   - component: {fileID: 64966897746227422}
   - component: {fileID: 1848522578213448847}
-  m_Layer: 0
+  - component: {fileID: 8369044680235442197}
+  m_Layer: 10
   m_Name: SM_Prop_Cart_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,3 +193,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &8369044680235442197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 5703257626897368395
+  updateError: 1
+  checkTime: 0.2
