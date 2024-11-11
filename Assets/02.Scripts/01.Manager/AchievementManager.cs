@@ -175,7 +175,7 @@ public class AchievementManager : Singleton<AchievementManager>
 
     private string Decrypt(string encryptedText, string key)
     {
-        var fullCipher = System.Convert.FromBase64String(encryptedText);
+        var fullCipher = Convert.FromBase64String(encryptedText);
         using (Aes aesAlg = Aes.Create())
         {
             var keyBytes = Encoding.UTF8.GetBytes(key);
