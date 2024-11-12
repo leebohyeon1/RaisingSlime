@@ -27,8 +27,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     public bool isExplosion = false;
     
-    [BoxGroup("기본"), LabelText("최대 거리"), SerializeField]
-    private float maxDistance = 70f; // 타겟과의 최대 거리
+    private float maxDistance = 48f; // 타겟과의 최대 거리
 
     protected virtual void Awake()
     {                
@@ -102,13 +101,16 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     protected virtual void MoveToTarget()
     {
-        if (target != null && aiPath != null)
+        if(target == null)
         {
-            aiPath.destination = TargetGroundPos();
+            return;
         }
+
+        aiPath.destination = TargetGroundPos();
+        aiPath.SearchPath();
     }
 
-    protected  void CheckDistanceToTarget()
+    protected void CheckDistanceToTarget()
     {
         if (target == null) return;
 
@@ -116,17 +118,50 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
         if (distanceToTarget > maxDistance)
         {
-            TeleportToClosestNode();
+            // 타겟이 그리드 밖에 있으므로 AIPath와 콜라이더를 비활성화하고 직접 이동
+            aiPath.enabled = false;
+            Collider npcCollider = GetComponent<Collider>();
+            if (npcCollider != null)
+            {
+                npcCollider.enabled = false;
+            }
+
+            DirectMoveToPlayer();
+        }
+        else
+        {
+            // 타겟이 그리드 내에 있으며 maxDistance 이하이므로 길찾기 가능
+            aiPath.enabled = true;
+            Collider npcCollider = GetComponent<Collider>();
+            if (npcCollider != null)
+            {
+                npcCollider.enabled = true;
+            }
         }
     }
 
+    private void DirectMoveToPlayer()
+    {
+        if (target == null) return;
+
+        Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+
+        transform.LookAt(direction);
+    }
+
+
     protected void TeleportToClosestNode()
     {
+        Vector3 dir = (TargetPosSameYPos() - transform.position).normalized;
+
+        // 현재 transform.position을 기준으로 가장 가까운 네비게이션 노드를 찾음
         NNInfo nearestNode = AstarPath.active.GetNearest(transform.position);
         if (nearestNode.node != null)
         {
-            Vector3 newPos = TargetPosSameYPos() - transform.position;
-            aiPath.Teleport(nearestNode.position + (newPos.normalized  * 5));
+            // 가장 가까운 노드의 위치로 텔레포트
+            aiPath.Teleport(nearestNode.position + (dir * 5));
+            aiPath.SearchPath();
         }
     }
 

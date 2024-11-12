@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 64917802663602978}
   - component: {fileID: 64519867846482628}
   - component: {fileID: 4184269355873827192}
-  m_Layer: 0
+  - component: {fileID: -2636532159630700700}
+  m_Layer: 10
   m_Name: SM_Prop_Sign_Stop_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,3 +170,19 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 10
   shrinkSpeed: 0.2
+--- !u!114 &-2636532159630700700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6471698211178375654
+  updateError: 1
+  checkTime: 0.2

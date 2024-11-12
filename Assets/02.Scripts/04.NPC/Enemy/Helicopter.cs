@@ -2,6 +2,7 @@ using DG.Tweening;
 using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -52,10 +53,7 @@ public class Helicopter : NPCBase
 
     protected override void Awake()
     {
-        base.Awake();
-
-        aiPath.updatePosition = false;
-        aiPath.updateRotation = false;
+        eatAbleObjectBase = GetComponent<EatAbleObjectBase>();
     }
 
     protected override void Start()
@@ -66,7 +64,6 @@ public class Helicopter : NPCBase
         Vector3 startPos = transform.position;
         startPos.y = flyHeight;
         transform.position = startPos;
- 
     }
 
     protected override void enemyAction()
@@ -75,13 +72,10 @@ public class Helicopter : NPCBase
 
         if (eatAbleObjectBase.GetEaten() || target == null)
         {
-            aiPath.enabled = false;
             return;
         }
         else
         {
-            aiPath.enabled = true;
-
             MoveToTarget();
         }
     }
@@ -92,17 +86,9 @@ public class Helicopter : NPCBase
 
         if (distance > attackRange)
         {
-            Vector3 targetPosition = target.position;
+            Vector3 targetPosition = (TargetPosSameYPos() - transform.position).normalized;
 
-            // 현재 위치가 그래프 영역 밖에 있는지 확인
-            var nearestNode = AstarPath.active.GetNearest(transform.position).node;
-            if (nearestNode != null && !nearestNode.Walkable)
-            {
-                // 그래프 밖에 있다면 가장 가까운 노드의 위치를 목표 위치로 설정
-                targetPosition = (Vector3)nearestNode.position;
-            }
-
-            aiPath.destination = targetPosition;
+            transform.position += targetPosition * moveSpeed * Time.deltaTime;
         }
         else
         {
@@ -113,9 +99,7 @@ public class Helicopter : NPCBase
         // 고도를 유지하며 목표로 회전
         Quaternion targetRotation = Quaternion.LookRotation(TargetPosSameYPos() - transform.position);
         targetRotation = LimitXRotation(targetRotation, maxXAngle);
-        transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전
-
-        transform.position = new Vector3(aiPath.position.x, transform.position.y, aiPath.position.z);
+        transform.DORotateQuaternion(targetRotation, 1f);  // 1초 동안 부드럽게 회전   
     }
 
     private void MaintainDistanceAndMove(float distanceToPlayer)
@@ -125,15 +109,13 @@ public class Helicopter : NPCBase
 
         if (distanceToPlayer < desiredMinDistance)
         {
-            Vector3 newPos = backPos.position;
-            newPos.y = 0f;
-            backPos.position = newPos;
-
-            aiPath.destination = backPos.position;
+            Vector3 newPos = (backPos.position - transform.position).normalized;
+           
+            transform.position += newPos * moveSpeed * Time.deltaTime;
         }
         else
         {
-            aiPath.destination = transform.position;
+            transform.position = transform.position;
         }
     }
 

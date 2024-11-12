@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3304602}
   - component: {fileID: 2324016}
   - component: {fileID: 8523037940436327263}
+  - component: {fileID: -5656598119575170952}
   m_Layer: 0
   m_Name: SM_Prop_Basket_01
   m_TagString: Untagged
@@ -105,3 +106,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.34699583, y: 0.27596724, z: 0.35887092}
   m_Center: {x: 0, y: 0.13798362, z: -0.00000014901161}
+--- !u!114 &-5656598119575170952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  slimeIncreaseSize: 0
+  plusScore: 0
+  shrinkSpeed: 0.5

@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 64758983553530130}
   - component: {fileID: 835515580043215892}
   - component: {fileID: 492347150460990262}
-  - component: {fileID: 8100898342921669600}
-  - component: {fileID: 4297028713130834592}
   m_Layer: 10
   m_Name: SM_Prop_Elevator_Frame_01
   m_TagString: Untagged
@@ -142,47 +140,3 @@ MonoBehaviour:
   uniqueID: 1245610864361233761
   updateError: 1
   checkTime: 0.2
---- !u!114 &8100898342921669600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224539786470700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 5
-  slimeIncreaseSize: 0.05
-  plusScore: 50
-  shrinkSpeed: 0.1
---- !u!114 &4297028713130834592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224539786470700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  graphMask:
-    value: -1
-  type: 0
-  mesh: {fileID: 0}
-  rectangleSize: {x: 2.57, y: 2.61}
-  circleRadius: 1
-  circleResolution: 6
-  height: 5.01
-  meshScale: 1
-  center: {x: 0, y: 2.41, z: 0}
-  updateDistance: 0.4
-  isDual: 0
-  cutsAddedGeom: 1
-  updateRotationDistance: 10
-  useRotationAndScale: 1

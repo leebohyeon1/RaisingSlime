@@ -160,6 +160,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         RemoveAllEnemy();
         RemoveAllGold();
     }
+
     private void InitializeCitizenLists()
     {
         // citizenSpawnTransforms 배열의 길이를 기준으로 리스트 개수를 맞춤

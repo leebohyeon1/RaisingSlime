@@ -372,7 +372,7 @@ public class MainManager : MonoBehaviour
 
             RectTransform rectTransform = skin.AddComponent<RectTransform>();
             rectTransform.position = skinGroup.position + new Vector3(i * 30, skinGroup.position.y, -10);
-            rectTransform.localScale *= 320;
+            rectTransform.localScale *= 200;
 
             Renderer[] renderers = skin.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)

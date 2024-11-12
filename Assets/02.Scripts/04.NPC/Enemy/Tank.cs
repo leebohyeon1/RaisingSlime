@@ -90,6 +90,7 @@ public class Tank : NPCBase
             {
                 coroutine = StartCoroutine(TankMoveOn());
 
+                RotateBodyTowardsPlayer();
                 CheckDistanceToTarget();
                 MoveToTarget();
             }
@@ -99,21 +100,20 @@ public class Tank : NPCBase
 
 
     }
-
-    // 몸체 회전 메커니즘
+    // 몸체 회전 메커니즘 (부드러운 회전 적용)
     void RotateBodyTowardsPlayer()
     {
         aiPath.updateRotation = false;
 
-        Vector3 directionToPlayer = TargetGroundPos() - transform.position; // 타겟과의 방향 계산
-        directionToPlayer.y = 0; // 몸체는 수평 회전만 하므로 Y축 값은 무시
+        Vector3 directionToPlayer = TargetPosSameYPos() - transform.position; // 타겟과의 방향 계산
+     
 
         if (directionToPlayer != Vector3.zero)
         {
             // 목표 회전값을 계산
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-            // 몸체가 목표 회전으로 부드럽게 회전하도록 회전 속도를 제한
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, bodyRotationSpeed * Time.deltaTime);
+            // 몸체가 목표 회전으로 자연스럽게 회전하도록 회전 속도를 제한
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, bodyRotationSpeed * Time.deltaTime);
         }
     }
 
@@ -127,21 +127,20 @@ public class Tank : NPCBase
             fireCooldown = 1f / attackSpeed;
         }
     }
-
     void RotateTurretTowardsPlayer()
     {
-        // 플레이어의 이동 방향을 고려한 목표 위치 계산
-        Rigidbody playerRb = target.GetComponent<Rigidbody>();  // 중복 호출 방지
-        
-        Vector3 directionToPlayer = TargetGroundPos();
+        if (target == null) return;
 
-        // Y축 회전만 적용하기 위해 높이 값을 터렛의 높이로 고정
+        // 플레이어의 위치와 포탑의 위치를 사용하여 목표 방향을 계산
+        Vector3 directionToPlayer = TargetGroundPos();
         Vector3 lookPosition = new Vector3(directionToPlayer.x, turret.position.y, directionToPlayer.z);
 
-        // 플레이어를 바라보는 목표 회전 값 계산 및 부드럽게 회전
+        // 목표 회전 계산
         Quaternion targetRotation = Quaternion.LookRotation(lookPosition - turret.position);
-        turret.rotation = Quaternion.RotateTowards(turret.rotation, targetRotation, turretRotationSpeed * Time.deltaTime);
+        // 포탑이 목표 회전으로 자연스럽게 회전하도록 회전 속도를 제한
+        turret.rotation = Quaternion.Slerp(turret.rotation, targetRotation, turretRotationSpeed * Time.deltaTime);
     }
+
 
 
     // 총알 발사

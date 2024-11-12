@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6947060031505055561}
   - component: {fileID: 6385471650342492780}
   - component: {fileID: 5107177237748449089}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Seat1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8507402823019552167, guid: c41e9b7320fd7aa40bde045ae5961e07, type: 3}
+  - {fileID: 2100000, guid: 1986f8021494bd74a8b50feb5c0067a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 194088799883152323
+  uniqueID: 1476912415696719260
   updateError: 1
   checkTime: 0.2

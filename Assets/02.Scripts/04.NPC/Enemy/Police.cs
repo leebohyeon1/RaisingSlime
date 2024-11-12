@@ -38,32 +38,37 @@ public class Police : NPCBase
             aiPath.enabled = false;
             return;
         }
-        else
+
+
+        CheckDistanceToTarget();
+        MoveToTarget();
+
+
+        // 진압봉 흔들기 동작
+        RotateBaton();
+    }
+
+    // 진압봉을 흔드는 메서드
+    private void RotateBaton()
+    {
+        if (baton == null) return;
+
+        // 현재 X축 회전 각도 계산
+        float currentXRotation = baton.transform.localEulerAngles.x;
+
+        // 회전 각도가 180도를 넘어가면 이를 보정
+        if (currentXRotation > 180f)
         {
-            aiPath.enabled = true;
-
-             CheckDistanceToTarget();
-             MoveToTarget();
-            
-            // 현재 X축 회전 각도 계산
-            float currentXRotation = baton.transform.localEulerAngles.x;
-
-            // 회전 각도가 180도를 넘어가면 이를 보정
-            if (currentXRotation > 180f)
-            {
-                currentXRotation -= 360f;
-            }
-
-            // 회전 각도가 최대 각도에 도달하면 회전 방향을 반대로 변경
-            if (Mathf.Abs(currentXRotation) >= maxRotationAngle)
-            {
-                currentRotationSpeed = -currentRotationSpeed;
-            }
-
-            // 진압봉을 X축을 기준으로 회전
-            baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
-
-
+            currentXRotation -= 360f;
         }
+
+        // 회전 각도가 최대 각도에 도달하면 회전 방향을 반대로 변경
+        if (Mathf.Abs(currentXRotation) >= maxRotationAngle)
+        {
+            currentRotationSpeed = -currentRotationSpeed;
+        }
+
+        // 진압봉을 X축을 기준으로 회전
+        baton.transform.Rotate(Vector3.right, currentRotationSpeed * Time.deltaTime);
     }
 }

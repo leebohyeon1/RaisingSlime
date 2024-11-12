@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3357598}
   - component: {fileID: 2336444}
   - component: {fileID: -424645945729908297}
+  - component: {fileID: 6830179687810577642}
   m_Layer: 0
   m_Name: SM_Env_Flower_08
   m_TagString: Untagged
@@ -105,3 +106,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23434135, y: 0.32087857, z: 0.21759817}
   m_Center: {x: -0.0000002682209, y: 0.16043928, z: 0.00000008568168}
+--- !u!114 &6830179687810577642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  slimeIncreaseSize: 0
+  plusScore: 0
+  shrinkSpeed: 0.5

@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ef518d4cd1f2044877d80b0156d56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: Assets/11.Achievement/Achievement.csv
-  achievements: []
+  csv: {fileID: 4900000, guid: c94763210abc78c43a0e851e387f66e6, type: 3}

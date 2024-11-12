@@ -260,7 +260,8 @@ GameObject:
   - component: {fileID: 5729365230065441451}
   - component: {fileID: 4562560828153186906}
   - component: {fileID: 3878388018092752288}
-  m_Layer: 7
+  - component: {fileID: 6295071571338505772}
+  m_Layer: 10
   m_Name: UFO_OnlyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,6 +326,22 @@ MonoBehaviour:
   slimeIncreaseSize: 0.06
   plusScore: 35
   shrinkSpeed: 0.1
+--- !u!114 &6295071571338505772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5280756359139101031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6052633987930558493
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &6445484340388517370
 GameObject:
   m_ObjectHideFlags: 0

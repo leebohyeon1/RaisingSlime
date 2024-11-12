@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6936040660552149957}
   - component: {fileID: 6192036398722014566}
   - component: {fileID: -3864394418506029581}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Hedge_01_Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

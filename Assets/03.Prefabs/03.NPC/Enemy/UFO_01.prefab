@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.39, y: 7.44, z: 5.12}
-  m_LocalScale: {x: 0.39370102, y: 0.39370102, z: 0.39370102}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8000001}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2906721469063217518}
   - {fileID: 4221249834319488878}
@@ -56,10 +56,9 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 1
   isExplosion: 0
-  maxDistance: 70
-  damagePerSecond: 0.1
+  damagePerSecond: 2.5
   rotationSpeed: 50
-  radius: 20
+  radius: 3
   heightFactor: 1
 --- !u!135 &4237603992688063566
 SphereCollider:

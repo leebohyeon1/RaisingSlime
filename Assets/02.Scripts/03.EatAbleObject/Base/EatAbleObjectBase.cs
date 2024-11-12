@@ -56,7 +56,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     protected virtual void SetPlayer()
     {
-        playerStat = SpawnManager.Instance.GetPlayerTrans().GetComponent<PlayerStat>();
+        //playerStat = SpawnManager.Instance.GetPlayerTrans().GetComponent<PlayerStat>();
     }
 
     protected virtual void CheckSize()
