@@ -293,7 +293,7 @@ MonoBehaviour:
   groundCheckDistance: 0.55
   groundLayer:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 1279
   shadowMaterial: {fileID: 2100000, guid: e924935887dc07a468402cb0df5fa6dd, type: 2}
   planeHeight: 0
 --- !u!114 &7804734731222278153
