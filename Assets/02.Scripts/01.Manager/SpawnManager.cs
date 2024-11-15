@@ -50,7 +50,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
     private List<List<GameObject>> currentCitizenList = new List<List<GameObject>>(); // 현재 게임 내 시민 리스트
     private List<GameObject> currentStepEnemies = new List<GameObject>();
-    private List<GameObject> beforeStepEnemies = new List<GameObject>();
 
     private Queue<GameObject> goldPool = new Queue<GameObject>(); // 골드 오브젝트 풀
     private List<GameObject> activeGoldList = new List<GameObject>(); // 활성화된 골드 리스트
@@ -148,7 +147,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         {
            // SpawnGold();
         }
-
     }
 
     private void CleanUpResources()
@@ -174,6 +172,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             currentCitizenList.Add(new List<GameObject>());
         }
     }
+
     public void StartSpawn()
     {
         SpawnEnemiesForCurrentStep();
@@ -190,7 +189,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         if (stepByScore[step] < GameManager.Instance.GetScore())
         {
             step++;
-            ChangeStep(step);
+            SpawnEnemiesForCurrentStep();
         }
     }
 
@@ -198,18 +197,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [Button]
     public void ChangeStep(int newStep)
     {
-        // 현재 스텝의 적들을 모두 beforeStepEnemyList에 추가
-        foreach (GameObject enemy in currentStepEnemies)
-        {
-            if (enemy != null)
-            {
-                beforeStepEnemies.Add(enemy); // 이전 스텝의 적으로 기록
-            }
-        }
-
-        // 현재 스텝 적 리스트 초기화
-        currentStepEnemies.Clear();
-
         // 새로운 스텝으로 변경
         step = newStep;
 
@@ -269,9 +256,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         spawnPosition.y = spawnHeight;
 
-        return spawnPosition;
-        
-
+        return spawnPosition;    
     }
 
     #region 플레이어
@@ -325,13 +310,13 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             enemyComponent.OnDestroyed += () =>
             {
                 //RemoveEnemyFromList(newEnemy);
-                if (!beforeStepEnemies.Contains(newEnemy) && !isSceneClosing && Application.isPlaying)
+                if (!isSceneClosing && Application.isPlaying)
                 {
                     // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
-                        SpawnEnemy(enemyPrefab); // 다시 스폰 (현재 스텝의 적만)
+                    SpawnEnemy(enemyPrefab); // 다시 스폰 (현재 스텝의 적만)
 
-                        // 적이 파괴되었을 때 리스트에서 제거
-                        RemoveEnemyFromList(newEnemy);
+                    // 적이 파괴되었을 때 리스트에서 제거
+                    //RemoveEnemyFromList(newEnemy);
                 }
                 enemyComponent.OnDestroyed -= null; // Remove listener to avoid leaks
             };
@@ -368,7 +353,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private void RemoveEnemyFromList(GameObject enemy)
     {
         currentStepEnemies.Remove(enemy);
-        beforeStepEnemies.Remove(enemy);
+        //beforeStepEnemies.Remove(enemy);
     }
 
     // 모든 적을 제거하는 함수
@@ -380,11 +365,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         }
         currentStepEnemies.Clear();
     
-        foreach(GameObject enemy in beforeStepEnemies)
-        {
-            Destroy(enemy);
-        }
-        beforeStepEnemies.Clear();
+        //foreach(GameObject enemy in beforeStepEnemies)
+        //{
+        //    Destroy(enemy);
+        //}
+        //beforeStepEnemies.Clear();
     }
     #endregion
 

@@ -5,11 +5,11 @@ public class Gold : EatAbleObjectBase
 {
     public Action<GameObject> OnDisableGold; // 비활성화될 때 호출할 이벤트
 
-    private Vector3 DefaultSize;
+    private Vector3 defaultSize;
 
     private void Awake()
     {
-        DefaultSize = transform.localScale; // 초기 사이즈 초기화
+        defaultSize = transform.localScale; // 초기 사이즈 초기화
     }
 
     public override void Eaten(Transform slimeTrans)
@@ -33,7 +33,7 @@ public class Gold : EatAbleObjectBase
 
     private void OnEnable() // 활성화 시 스케일 변경
     {
-        transform.localScale = DefaultSize;
+        transform.localScale = defaultSize;
         Collider[] colliders = GetComponents<Collider>();
 
         foreach (Collider collider in colliders)
