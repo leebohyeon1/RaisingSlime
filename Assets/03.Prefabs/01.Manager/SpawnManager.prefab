@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37832229269de794bbd8ce539d53cf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepByScore: c800000026020000d0070000b80b0000a00f000088130000401f0000
+  stepByScore: c80000008a020000d0070000b80b0000a00f000088130000401f000010270000e02e0000b0360000803e0000204e0000214e0000
   spawnRadius: 50
   spawnHeight: 2
   spawnTransfrom: {fileID: 6741412976364834143}
@@ -123,23 +123,52 @@ MonoBehaviour:
     isBomber: 0
     spawnInterval: 0
   - SpawnObjects:
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
     - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
     - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects:
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects:
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects:
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects:
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects:
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
+    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
     - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
     - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
     isBomber: 0
     spawnInterval: 0
   - SpawnObjects:
     - {fileID: 739172332764853768, guid: 1d805af3516a4de4b8b3b2a3756d0cc6, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 1637160695874885631, guid: 42ee5f4f1a22e8245868e36872095a0b, type: 3}
-    - {fileID: 8966727434146276371, guid: 388ebf8600a966d4297f418f404298f9, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
-    - {fileID: 1585609005757718881, guid: 85346fc825dc31f4f9e155427d1749fe, type: 3}
+    isBomber: 0
+    spawnInterval: 0
+  - SpawnObjects: []
     isBomber: 0
     spawnInterval: 0
   citizenSpawnTransforms:
