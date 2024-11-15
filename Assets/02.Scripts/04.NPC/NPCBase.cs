@@ -147,7 +147,7 @@ public class NPCBase : MonoBehaviour, IUpdateable
         Vector3 direction = (TargetPosSameYPos() - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
 
-        transform.LookAt(direction);
+        transform.rotation = Quaternion.LookRotation(TargetPosSameYPos());
     }
 
 

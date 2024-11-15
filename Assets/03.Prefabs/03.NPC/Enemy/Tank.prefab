@@ -644,7 +644,7 @@ MonoBehaviour:
   firePosistion:
   - {fileID: 2551623793848284930}
   - {fileID: 5173024981093013142}
-  bodyRotationSpeed: 3
+  bodyRotationSpeed: 20
   turretRotationSpeed: 300
   explosionForce: 23
   explosionRadius: 6

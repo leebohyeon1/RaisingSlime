@@ -25,7 +25,7 @@ public class Tank : NPCBase
     [TabGroup("탱크", "공격"), LabelText("총구 위치"), SerializeField]
     private Transform[] firePosistion;
 
-    [TabGroup("탱크", "회전"), LabelText("몸체 회전 속도"), SerializeField, Range(0.1f, 20f)]
+    [TabGroup("탱크", "회전"), LabelText("몸체 회전 속도"), SerializeField, Range(0.1f, 360f)]
     private float bodyRotationSpeed = 3f;  // 몸체 회전 속도 제한
 
     [TabGroup("탱크", "회전"), LabelText("포탑 회전 속도"), SerializeField, Range(0.1f, 360f)]
@@ -71,8 +71,6 @@ public class Tank : NPCBase
         {
             aiPath.enabled = true;
 
-            RotateTurretTowardsPlayer();  // 포탑 회전 추가
-
             float distanceToPlayer = Vector3.Distance(transform.position, TargetGroundPos());
 
             if (distanceToPlayer < attackRange)
@@ -84,12 +82,15 @@ public class Tank : NPCBase
                     StopCoroutine(coroutine);
                 }
 
+                RotateTurretTowardsPlayer();  // 포탑 회전 추가
+
                 Attack();
             }
             else if (distanceToPlayer >= attackRange)
             {
                 coroutine = StartCoroutine(TankMoveOn());
 
+                RotateTurretDefault();
                 RotateBodyTowardsPlayer();
                 CheckDistanceToTarget();
                 MoveToTarget();
@@ -105,7 +106,7 @@ public class Tank : NPCBase
     {
         aiPath.updateRotation = false;
 
-        Vector3 directionToPlayer = TargetPosSameYPos() - transform.position; // 타겟과의 방향 계산
+        Vector3 directionToPlayer = aiPath.steeringTarget - transform.position; // 타겟과의 방향 계산
      
 
         if (directionToPlayer != Vector3.zero)
@@ -115,6 +116,13 @@ public class Tank : NPCBase
             // 몸체가 목표 회전으로 자연스럽게 회전하도록 회전 속도를 제한
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, bodyRotationSpeed * Time.deltaTime);
         }
+    }
+
+    // 몸체 회전 메커니즘 (부드러운 회전 적용)
+    void RotateTurretDefault()
+    {
+            turret.rotation = Quaternion.Slerp(transform.rotation, transform.rotation, bodyRotationSpeed * Time.deltaTime);
+    
     }
 
     // 공격 메커니즘
@@ -222,7 +230,7 @@ public class Tank : NPCBase
         if (distanceToPlayer >= attackRange)
         {
             aiPath.isStopped = false;
-            aiPath.updateRotation = true;
+            //aiPath.updateRotation = true;
 
         }
     }
