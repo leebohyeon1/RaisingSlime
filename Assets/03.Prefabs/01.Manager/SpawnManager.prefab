@@ -187,7 +187,7 @@ MonoBehaviour:
   - {fileID: 1322405698259844378, guid: a54e8de5bac29fc46ad546f7fd15250c, type: 3}
   - {fileID: 8368962803286166507, guid: 0025e03984bd20f4290aa8ca0ac61411, type: 3}
   - {fileID: 196839148594661210, guid: 53c3d48a0c79d7f46a5865576f292e3d, type: 3}
-  goldPrefab: {fileID: 3133539648932958628, guid: 46a7b9575c46b754ab48a091287f8a81,
+  goldPrefab: {fileID: 2394747388919783515, guid: a27ee53f70b5cd04eb958121ff99b8bd,
     type: 3}
   parentTransforms:
   - {fileID: 0}

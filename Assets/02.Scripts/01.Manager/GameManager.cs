@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour, IUpdateable
         moneyText.text = money.ToString();
 
         AudioManager.Instance.PlayBGM("GameBGM1");
+
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public virtual void OnUpdate(float dt) 

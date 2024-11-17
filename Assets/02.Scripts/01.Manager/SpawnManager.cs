@@ -145,7 +145,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         if (activeGoldList.Count < maxGoldCount)
         {
-           // SpawnGold();
+            SpawnGold();
         }
     }
 
@@ -476,7 +476,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private Vector3 GetRandomGoldSpawnPosition()
     {
         // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(spawnRadius, spawnRadius * 2);
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(spawnRadius/3, spawnRadius);
         Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
 
         if (slimeTrans != null)
@@ -509,7 +509,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             if (nearestNodeInfo.node != null && nearestNodeInfo.node.Walkable)
             {
                 spawnPosition = nearestNodeInfo.position;
-                spawnPosition.y = spawnHeight; // Adjust height
+                spawnPosition.y = 0.9f; // Adjust height
                 break;
             }
         }
