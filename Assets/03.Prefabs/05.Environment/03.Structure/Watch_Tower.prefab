@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2237697029321085199}
   - component: {fileID: 3350103544254996166}
   - component: {fileID: 8379495279267277856}
-  - component: {fileID: 2044252014655891331}
-  - component: {fileID: 7464359148280144678}
   - component: {fileID: 2069443919488160940}
   - component: {fileID: 1563656417017384313}
+  - component: {fileID: 2339762624558879008}
+  - component: {fileID: 5798455491726923645}
   m_Layer: 10
   m_Name: Watch_Tower
   m_TagString: Untagged
@@ -87,50 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2044252014655891331
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582804110205358420}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 8.871115
-  m_Height: 34.786583
-  m_Direction: 1
-  m_Center: {x: -0.992229, y: 17.029858, z: -0.8322699}
---- !u!65 &7464359148280144678
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582804110205358420}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 13.502967, y: 29.955772, z: 13.42701}
-  m_Center: {x: -0.07266994, y: 14.6144495, z: -0.17318489}
 --- !u!114 &2069443919488160940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +119,37 @@ MonoBehaviour:
   uniqueID: 6855899018287639101
   updateError: 1
   checkTime: 0.2
+--- !u!114 &2339762624558879008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582804110205358420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &5798455491726923645
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582804110205358420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 81577337426171730, guid: b4d7933fbd971e944a54978170373b13, type: 3}

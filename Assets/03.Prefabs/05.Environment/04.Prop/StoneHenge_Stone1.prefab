@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9081771044498594691}
   - component: {fileID: 1925411499332385875}
   - component: {fileID: 714965364019579848}
+  - component: {fileID: 9141974153465115839}
   m_Layer: 10
   m_Name: StoneHenge_Stone1
   m_TagString: Untagged
@@ -139,3 +140,15 @@ MonoBehaviour:
   uniqueID: 6808937867433937546
   updateError: 1
   checkTime: 0.2
+--- !u!114 &9141974153465115839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620678163394807757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 65557586973494256}
   - component: {fileID: 3943052501234760109}
   - component: {fileID: 8114818012371740530}
+  - component: {fileID: 4003206687159682657}
   m_Layer: 10
   m_Name: SM_Bld_Concrete_Pillar_01
   m_TagString: Untagged
@@ -139,3 +140,15 @@ MonoBehaviour:
   uniqueID: 5223630292114035096
   updateError: 1
   checkTime: 0.2
+--- !u!114 &4003206687159682657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921825676833190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23048739027453886}
   - component: {fileID: 64926370280644018}
   - component: {fileID: 4758516398219401867}
+  - component: {fileID: 1833861481887714122}
   m_Layer: 0
   m_Name: SM_Prop_Fence_MetalSheet_03
   m_TagString: Untagged
@@ -123,3 +124,15 @@ MonoBehaviour:
   slimeIncreaseSize: 0.05
   plusScore: 60
   shrinkSpeed: 0.1
+--- !u!114 &1833861481887714122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254676247812318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
