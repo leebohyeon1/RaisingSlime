@@ -68,7 +68,7 @@ public class Gold : EatAbleObjectBase
     private void StartFloatingAndRotating()
     {
         // 둥둥 떠다니는 애니메이션
-        floatTween = transform.DOMoveY(transform.position.y - 0.05f, 1f)
+        floatTween = transform.DOMoveY(0.6f, 1f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine);
 
