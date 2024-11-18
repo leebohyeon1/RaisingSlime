@@ -46,8 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeSkin:
   - {fileID: 6467965117235312377, guid: 61d99211c7011984e88cd83bc758bea5, type: 3}
-  - {fileID: 4674357320495252882, guid: a4a6fd6f7c6c32143ad32f02fc2c82d4, type: 3}
-  - {fileID: 6467965117235312377, guid: 779c1cd2bc949fe42b453eb39266e10a, type: 3}
   - {fileID: 4674357320495252882, guid: 76064f47cd36406459d85c96c761ff9c, type: 3}
   - {fileID: 2818947945637507369, guid: e9ac6452bd8ff6142859b8ac70ff0129, type: 3}
   - {fileID: 1270642918322516211, guid: 0d19b1eea536a544c96ac216c650bd2c, type: 3}

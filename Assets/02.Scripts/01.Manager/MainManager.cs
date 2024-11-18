@@ -370,15 +370,18 @@ public class MainManager : MonoBehaviour
             GameObject skin = Instantiate(SkinManager.Instance.GetSkinList()[i], skinGroup.position,
                 Quaternion.Euler(0, 180, 0), skinGroup);
 
+            ChangeLayerRecursively(skin.transform, 11);
+
             RectTransform rectTransform = skin.AddComponent<RectTransform>();
             rectTransform.position = skinGroup.position + new Vector3(i * 30, skinGroup.position.y, -10);
             rectTransform.localScale *= 200;
 
-            Renderer[] renderers = skin.GetComponentsInChildren<Renderer>();
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.material.SetFloat("_Surface", 1);
-            }
+            //Renderer[] renderers = skin.GetComponentsInChildren<Renderer>();
+            //foreach (Renderer renderer in renderers)
+            //{
+            //    Renderer ren = renderer; 
+            //    ren.material.SetFloat("_Surface", 0);
+            //}
 
             skin.GetComponent<Rigidbody>().isKinematic = true;
             skin.GetComponent<Player>().enabled = false;
@@ -399,6 +402,16 @@ public class MainManager : MonoBehaviour
         initialPositionX = skinGroup.position.x;
         scrollRange = skins.Count * 40f; // 스킨 개수에 따라 스크롤 범위 설정
 
+    }
+
+    void ChangeLayerRecursively(Transform obj, int newLayer)
+    {
+        obj.gameObject.layer = newLayer;
+
+        foreach (Transform child in obj)
+        {
+            ChangeLayerRecursively(child, newLayer);
+        }
     }
 
     private void ScrollSkinGroup()
@@ -601,7 +614,6 @@ public class MainManager : MonoBehaviour
     }
     #endregion
 
-
     #region achievement
 
     void PopulateAchievementScrollView()
@@ -618,6 +630,7 @@ public class MainManager : MonoBehaviour
         }
     }
     #endregion
+
     // 저장된 데이터 불러오기
     private void LoadData()
     {
