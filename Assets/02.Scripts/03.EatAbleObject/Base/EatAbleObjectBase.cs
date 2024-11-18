@@ -28,71 +28,15 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
     private PlayerStat playerStat;
 
-    protected virtual void Start()
-    {
-        GameLogicManager.Instance.RegisterUpdatableObject(this);
-
-        StartCoroutine(DelayedSetPlayer(0.1f));
-    }
-
     public virtual void OnUpdate(float dt)
     {
         if (isGetEaten)
         {
             Digested();
         }
-        else
-        {
-            //CheckSize();
-        }
        
     }
 
-    private IEnumerator DelayedSetPlayer(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SetPlayer();
-    }
-
-    protected virtual void SetPlayer()
-    {
-        //playerStat = SpawnManager.Instance.GetPlayerTrans().GetComponent<PlayerStat>();
-    }
-
-    protected virtual void CheckSize()
-    {
-        if (playerStat == null)
-        {
-            return;
-        }
-
-        timer += Time.deltaTime;
-
-        if (checkTime < timer)
-        {
-            timer = 0f;
-            
-            if (!isTrigger && size <= playerStat.curSize)
-            {
-                isTrigger = true;
-                Collider[] colliders = GetComponentsInChildren<Collider>();
-                foreach (Collider collider in colliders)
-                {
-                    collider.isTrigger = isTrigger;
-                }
-            }
-            else if (isTrigger && size > playerStat.curSize)
-            {
-                isTrigger = false;
-                Collider[] colliders = GetComponentsInChildren<Collider>();
-                foreach (Collider collider in colliders)
-                {
-                    collider.isTrigger = isTrigger;
-                }
-            }
-
-        }
-    }
 
     public virtual void Eaten(Transform slimeTrans) // 먹히는 함수
     {
@@ -103,7 +47,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
         isLock = true;
         isGetEaten = !isGetEaten;
-      
+
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
+
         // 부모가 바뀌기 전의 월드 스케일을 저장
         Vector3 originalWorldScale = transform.lossyScale;
 
@@ -162,6 +108,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
         if (transform.localScale.x < 0.1f)
         {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
             Destroy(gameObject);
         }
     }

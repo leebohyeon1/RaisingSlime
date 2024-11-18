@@ -15,11 +15,6 @@ public class Gold : EatAbleObjectBase
         defaultSize = transform.localScale; // 초기 사이즈 초기화
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     public override void Eaten(Transform slimeTrans)
     {
         StopFloatingAndRotating();
