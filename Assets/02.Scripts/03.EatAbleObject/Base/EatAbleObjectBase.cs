@@ -108,7 +108,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
         if (transform.localScale.x < 0.1f)
         {
-            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+
             Destroy(gameObject);
         }
     }

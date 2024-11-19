@@ -99,12 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85588f796c3524449e4e6e2dea19bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinName: "\uC720\uB839"
+  skinName: "\uD1A0\uB07C\uC720\uB839"
   isGrounded: 1
   groundCheckDistance: 0.55
   groundLayer:
     serializedVersion: 2
     m_Bits: 1279
+  smoke: {fileID: 116844, guid: 823644770f078644a890423aa5d417bd, type: 3}
   shadowMaterial: {fileID: 2100000, guid: e924935887dc07a468402cb0df5fa6dd, type: 2}
   planeHeight: 0
 --- !u!114 &660564447420026249

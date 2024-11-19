@@ -23,12 +23,16 @@ public class Player : MonoBehaviour, IUpdateable
     private float groundCheckDistance = 0.1f; // Raycast의 거리
     [BoxGroup("땅 체크"), LabelText("땅 레이어"), SerializeField]
     private LayerMask groundLayer; // 땅 체크를 위한 레이어 마스크
+    [BoxGroup("땅 체크"), LabelText("연기 파티클"), SerializeField]
+    private GameObject smoke;
 
+    private GameObject smokeParticle;
 
     public Material shadowMaterial;
     public float planeHeight = 0.0f; // planeHeight 값
 
     private Vector3 lastMovementDirection; // 이전 프레임의 이동 방향
+
 
     void Start()
     {
@@ -39,6 +43,8 @@ public class Player : MonoBehaviour, IUpdateable
         rb = GetComponent<Rigidbody>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+        smokeParticle = Instantiate(smoke);
     }
 
     private void FixedUpdate()
@@ -86,12 +92,25 @@ public class Player : MonoBehaviour, IUpdateable
 
         }
         // planeHeight 값을 Raycast로 구한 지점의 y좌표로 설정
-        if (isGrounded)
+        if (isGrounded && rb.velocity.magnitude > 0)
         {
-           // planeHeight = hit.point.y + 0.03f;  // 레이캐스트로 얻은 히트 포인트의 y 좌표를 사용
+            smokeParticle.SetActive(true);
+            smokeParticle.transform.position = hit.point;
+
+
+            // 이동 반대 방향으로 smokeParticle의 회전 설정
+            Vector3 oppositeDirection = -movement.normalized; // 이동 반대 방향
+            if (oppositeDirection != Vector3.zero) // 방향이 0이 아닌 경우만 회전
+            {
+                smokeParticle.transform.rotation = Quaternion.LookRotation(oppositeDirection);
+            }
+        }
+        else
+        {
+            smokeParticle.SetActive(false);
         }
 
-      //  shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
+        //  shadowMaterial.SetFloat("_PlaneHeight", planeHeight);
 
 
         // 디버그용 Ray 그리기 (위치와 크기에 맞춰 땅 체크가 잘 되는지 확인)

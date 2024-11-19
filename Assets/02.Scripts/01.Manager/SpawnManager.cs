@@ -266,6 +266,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         GameObject player = Instantiate(SkinManager.Instance.GetPlayer(), spawnTransfrom.position, Quaternion.identity);
         slimeTrans = player.transform;
 
+
         GetComponent<ProceduralGridMover>().target = player.transform;
     }
 
