@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 6259908500346087941}
   - component: {fileID: 1611209942842330484}
   - component: {fileID: 2740754966222101336}
-  - component: {fileID: 1545340069675238188}
   - component: {fileID: 8699993618199926477}
-  - component: {fileID: 7834701734378389487}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: TrainTrack_Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,22 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1545340069675238188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187108212483302356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
-  shrinkSpeed: 0.5
 --- !u!64 &8699993618199926477
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -124,19 +106,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8537727478233316022, guid: d7b9c35bdcacd6b43b3a79242ab54d1c, type: 3}
---- !u!114 &7834701734378389487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187108212483302356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 91533313055339732
-  updateError: 1
-  checkTime: 0.2

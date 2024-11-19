@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5751978347569503433
+--- !u!1 &6748416626061003050
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2051757525817233460}
-  - component: {fileID: 943863744065251949}
-  - component: {fileID: 6609772278737672237}
-  - component: {fileID: 6306417088335613490}
-  - component: {fileID: 6701489058224517175}
-  - component: {fileID: 3310291834100800624}
-  - component: {fileID: 3777605141026210670}
+  - component: {fileID: 4807596422783789270}
+  - component: {fileID: 8051652128148971447}
+  m_Layer: 0
+  m_Name: Straw 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4807596422783789270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748416626061003050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5582901664594667139}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8051652128148971447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748416626061003050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 2.5
+  slimeIncreaseSize: 0.05
+  plusScore: 40
+  shrinkSpeed: 0.1
+--- !u!1 &8932670161701756511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5582901664594667139}
+  - component: {fileID: 4966995602787756747}
+  - component: {fileID: 2875582476733975366}
+  - component: {fileID: 5100417029002439011}
+  - component: {fileID: 2556934957160164057}
+  - component: {fileID: 6850363956524747529}
   m_Layer: 10
   m_Name: straw
   m_TagString: Untagged
@@ -22,36 +70,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2051757525817233460
+--- !u!4 &5582901664594667139
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.2904654, y: 7.2904654, z: 2.4944413}
+  m_LocalScale: {x: 6, y: 6, z: 2.16}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4807596422783789270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &943863744065251949
+--- !u!33 &4966995602787756747
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   m_Mesh: {fileID: 385320848296833654, guid: ef8bcb90bcb4fcd4180ee99472f35005, type: 3}
---- !u!23 &6609772278737672237
+--- !u!23 &2875582476733975366
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,29 +135,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6306417088335613490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 3
-  slimeIncreaseSize: 0.05
-  plusScore: 40
-  shrinkSpeed: 0.1
---- !u!64 &6701489058224517175
+--- !u!64 &5100417029002439011
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -125,29 +157,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 385320848296833654, guid: ef8bcb90bcb4fcd4180ee99472f35005, type: 3}
---- !u!114 &3310291834100800624
+--- !u!114 &2556934957160164057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 189362382463220586
+  uniqueID: 5116087658383099714
   updateError: 1
   checkTime: 0.2
---- !u!114 &3777605141026210670
+--- !u!114 &6850363956524747529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751978347569503433}
+  m_GameObject: {fileID: 8932670161701756511}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
