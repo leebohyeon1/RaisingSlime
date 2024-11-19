@@ -99,8 +99,7 @@ MonoBehaviour:
   shootInterval: 0.1
   bulletsPerShot: 10
   attackSpeed: 2
-  bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
-    type: 3}
+  bulletPrefab: {fileID: 154128, guid: 967e43dc133fc6b4c8706378bda4bbb2, type: 3}
   bulletDamage: 0
   bulletSpeed: 10
   firePos: {fileID: 2606019897829325508}

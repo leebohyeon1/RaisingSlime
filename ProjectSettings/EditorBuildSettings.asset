@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/05.LoadingScene.unity
     guid: c23f7a438b59979419b9d1d80d5ee32c
+  - enabled: 0
+    path: Assets/Fade/Examples/ExampleScene_Cube.unity
+    guid: f0b0d5e78daeb5d4d8435299d7fe6eca
+  - enabled: 0
+    path: Assets/Fade/Examples/ExampleScene_Sphere.unity
+    guid: 32d74f585bff90040aae1b32dfbebc32
+  - enabled: 0
+    path: Assets/Fade/Examples/Effect Reel.unity
+    guid: 715fc67c4e212054bafcad5797a16da1
   m_configObjects: {}

@@ -135,11 +135,9 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 10
   isExplosion: 0
-  maxDistance: 100
   attackSpeed: 2
   attackRange: 10
-  bulletPrefab: {fileID: 1040343422495034395, guid: 9eb2d3f2d08b37e4b8000770a8206783,
-    type: 3}
+  bulletPrefab: {fileID: 154128, guid: 967e43dc133fc6b4c8706378bda4bbb2, type: 3}
   firePosistion: {fileID: 3662648903529845496}
   bulletSpeed: 10
   bulletDamage: 0.2
@@ -269,9 +267,9 @@ Transform:
   m_GameObject: {fileID: 3906710135489729537}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.75, y: -3.31, z: 4.16}
-  m_LocalScale: {x: 18, y: 18, z: 18}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -7.13, y: -2.86, z: 4.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7398241704100036648}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
