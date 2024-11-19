@@ -12,7 +12,11 @@ public class PlayerStat : MonoBehaviour
     public float sizeDecreasePerSecond = 0.01f; // 매초마다 줄어드는 크기
 
     [TabGroup("스탯", "이동"), LabelText("이동 속도")]
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f; 
+    [TabGroup("스탯", "이동"), LabelText("관성 감소 비율")]
+    public float inertiaFactor = 0.9f; // 관성을 감소시키는 비율
+    [TabGroup("스탯", "이동"), LabelText("각도 차이")]
+    public float angleDifference = 40;
 
     [TabGroup("스탯", "점프"), LabelText("점프할 수 있는가")]
     public bool canJump;

@@ -502,6 +502,8 @@ MonoBehaviour:
   curSize: 1
   sizeDecreasePerSecond: 0.005
   moveSpeed: 18
+  inertiaFactor: 0.9
+  angleDifference: 40
   canJump: 0
   jumpForce: 20
   extraGravityForce: 9.81

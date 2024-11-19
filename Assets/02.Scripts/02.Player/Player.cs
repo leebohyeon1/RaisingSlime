@@ -28,6 +28,8 @@ public class Player : MonoBehaviour, IUpdateable
     public Material shadowMaterial;
     public float planeHeight = 0.0f; // planeHeight 값
 
+    private Vector3 lastMovementDirection; // 이전 프레임의 이동 방향
+
     void Start()
     {
         // 컴포넌트 초기화
@@ -104,15 +106,21 @@ public class Player : MonoBehaviour, IUpdateable
             return;
         }
 
-        // 이동 시 관성 고려하여 rb.velocity로 직접 이동 처리
-        movement = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed);
+        // 이동 처리
+        Vector3 newMovement = playerMovement.Move(InputManager.Instance.moveInput, playerStat.moveSpeed);
 
-        // 플레이어 이동 방향으로 회전
-        /*if (movement != Vector3.zero) // 이동 중인 경우에만 회전
+        // 이전 이동 방향과 새로운 이동 방향 간 각도 계산
+        float angleDifference = Vector3.Angle(lastMovementDirection, newMovement);
+
+        // 일정 각도 이상 차이나면 관성 감소 적용
+        if (angleDifference > playerStat.angleDifference) // 예: 30도 이상
         {
-            Quaternion targetRotation = Quaternion.LookRotation(movement); // 이동 방향을 바라보도록 회전 목표 설정
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * playerStat.rotationSpeed); // 부드럽게 회전
-        }*/
+            newMovement *= playerStat.inertiaFactor; // 이동 속도 감소
+        }
+
+        // 이동 반영
+        movement = newMovement;
+        lastMovementDirection = movement.normalized; // 현재 방향 저장
 
         rb.AddForce(movement * Time.deltaTime, ForceMode.VelocityChange);
     }
