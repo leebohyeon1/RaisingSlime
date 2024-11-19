@@ -38,6 +38,7 @@ Transform:
   - {fileID: 7241595755873256682}
   - {fileID: 280905189390309737}
   - {fileID: 6612319360194484700}
+  - {fileID: 127341455046468130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2929481120537683492
@@ -56,10 +57,16 @@ MonoBehaviour:
   moveSpeed: 4
   collisionDamage: 1
   isExplosion: 0
-  damagePerSecond: 2.5
+  damagePerSecond: 0.1
   rotationSpeed: 50
   radius: 3
   heightFactor: 1
+  firePos: {fileID: 127341455046468130}
+  lineRendererPrefab: {fileID: 108128, guid: cd749421939f0d74080e0ce8239d6432, type: 3}
+  beamEndPrefab: {fileID: 154168, guid: 0752a83fe9350b9438cde0f607001f6b, type: 3}
+  beamEndOffset: 0.3
+  textureScrollSpeed: 8
+  textureLengthScale: 3
 --- !u!135 &4237603992688063566
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -523,6 +530,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6661132824707990191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 127341455046468130}
+  m_Layer: 7
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &127341455046468130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661132824707990191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2295799742295557123}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9180316028126737453
 GameObject:
   m_ObjectHideFlags: 0

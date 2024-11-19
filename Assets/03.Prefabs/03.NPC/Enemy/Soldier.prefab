@@ -137,7 +137,8 @@ MonoBehaviour:
   isExplosion: 0
   attackSpeed: 2
   attackRange: 10
-  bulletPrefab: {fileID: 154128, guid: 967e43dc133fc6b4c8706378bda4bbb2, type: 3}
+  bulletPrefab: {fileID: 3326413482773854155, guid: 14c8f79dbfbb00248873b630354bdf7b,
+    type: 3}
   firePosistion: {fileID: 3662648903529845496}
   bulletSpeed: 10
   bulletDamage: 0.2
