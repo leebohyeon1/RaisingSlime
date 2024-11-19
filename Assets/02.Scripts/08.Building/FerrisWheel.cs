@@ -21,10 +21,10 @@ public class FerrisWheel : MonoBehaviour
 
     void FixedUpdate()
     {
-        wheel.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+        wheel.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
         for (int i = 0; i < ferris.Length; i++)
         {
-             ferris[i].Rotate(-Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
+             ferris[i].Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
         }
     }
 }
