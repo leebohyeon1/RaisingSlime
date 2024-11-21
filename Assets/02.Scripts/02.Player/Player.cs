@@ -29,7 +29,6 @@ public class Player : MonoBehaviour, IUpdateable
     private GameObject smokeParticle;
 
     public Material shadowMaterial;
-    public float planeHeight = 0.0f; // planeHeight 값
 
     private Vector3 lastMovementDirection; // 이전 프레임의 이동 방향
 
@@ -44,7 +43,7 @@ public class Player : MonoBehaviour, IUpdateable
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
-        smokeParticle = Instantiate(smoke);
+        smokeParticle = Instantiate(smoke,transform);
     }
 
     private void FixedUpdate()
