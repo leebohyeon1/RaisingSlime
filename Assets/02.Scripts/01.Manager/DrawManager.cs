@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,14 +19,36 @@ public class DrawManager : MonoBehaviour
 
     private GameObject newSkin;
 
-    void Start()
+    [SerializeField]private DrawMachine drawMachine;
+    [SerializeField] private PlayableDirector playableDirector;
+
+    [SerializeField] private GameObject prefab; // 생성할 오브젝트 프리팹
+    [SerializeField] private Transform spawnPoint; // 생성 위치
+    private GameObject spawnedObject;
+
+    private void Start()
     {
         Init();
+
+        if (playableDirector != null)
+        {
+            // 타임라인이 멈췄을 때 실행할 이벤트 등록
+            playableDirector.stopped += OnTimelineStopped;
+        }
     }
 
-    void Update()
+    private void Update()
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        if (playableDirector != null)
+        {
+            // 이벤트 등록 해제 (안전하게 처리)
+            playableDirector.stopped -= OnTimelineStopped;
+        }
     }
 
     private void Init()
@@ -49,6 +72,9 @@ public class DrawManager : MonoBehaviour
             return;
         }
 
+        drawMachine.SetDraw();
+        playableDirector.Play();
+
         SetAbleButton();
 
         haveMoney -= drawPrice;
@@ -59,7 +85,7 @@ public class DrawManager : MonoBehaviour
         newSkin = skinList[randomIndex];
 
         SkinManager.Instance.OpenSlime(newSkin);
-        StartCoroutine(ShowSkin());
+       
 
         GameData gameData = SaveManager.Instance.LoadPlayerData();
         gameData.money = haveMoney;
@@ -68,6 +94,8 @@ public class DrawManager : MonoBehaviour
 
     private IEnumerator ShowSkin()
     {
+        drawMachine.SetDraw();
+     
         GameObject skin = Instantiate(newSkin, new Vector3(0,3,-5),Quaternion.Euler(new Vector3(0,180,0)));
         skin.transform.localScale = new Vector3(2,2,2);
         skin.GetComponent<Rigidbody>().isKinematic = true;
@@ -79,6 +107,20 @@ public class DrawManager : MonoBehaviour
         SetAbleButton(true);
         Destroy(skin );
     }
+
+    private void OnTimelineStopped(PlayableDirector director)
+    {
+        StartCoroutine(ShowSkin());
+    }
+
+    public void SpawnObject()
+    {
+        if (prefab != null && spawnPoint != null)
+        {
+            spawnedObject = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation,spawnPoint);
+        }
+    }
+
 
     private void Exit()
     {
