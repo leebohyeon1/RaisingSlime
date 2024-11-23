@@ -484,10 +484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 18
-  collisionDamage: 0.4
+  moveSpeed: 15
+  collisionDamage: 0.3
   isExplosion: 0
-  maxDistance: 100
   acceleration: 6
   reverseAcceleration: 2
   maxReverseSpeed: 10

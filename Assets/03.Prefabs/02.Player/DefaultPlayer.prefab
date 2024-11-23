@@ -475,7 +475,6 @@ MonoBehaviour:
     m_Bits: 1279
   smoke: {fileID: 116844, guid: 823644770f078644a890423aa5d417bd, type: 3}
   shadowMaterial: {fileID: 2100000, guid: e924935887dc07a468402cb0df5fa6dd, type: 2}
-  planeHeight: 0
 --- !u!114 &6652811797731747403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +502,7 @@ MonoBehaviour:
   curSize: 1
   sizeDecreasePerSecond: 0.005
   moveSpeed: 18
-  inertiaFactor: 0.9
+  inertiaFactor: 2
   angleDifference: 40
   canJump: 0
   jumpForce: 20

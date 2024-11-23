@@ -361,10 +361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 10
+  moveSpeed: 8
   collisionDamage: 0.15
   isExplosion: 0
-  maxDistance: 100
   baton: {fileID: 8293726850677696524}
   batonRotateSpeed: 120
   maxRotationAngle: 30

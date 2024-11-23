@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 4
+  moveSpeed: 12
   collisionDamage: 10
   isExplosion: 0
   flyHeight: 10

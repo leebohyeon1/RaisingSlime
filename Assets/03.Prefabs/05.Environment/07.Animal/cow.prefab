@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  slimeIncreaseSize: 0.1
+  slimeIncreaseSize: 0.02
   plusScore: 10
   shrinkSpeed: 0.5
 --- !u!114 &2928455640933274280
@@ -114,11 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4039e2059dc069f458ae8834126ef432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
-  shrinkSpeed: 0.5
-  arrowObj: {fileID: 0}
   jumpDuration: 0.5
 --- !u!65 &4871889495384068891
 BoxCollider:

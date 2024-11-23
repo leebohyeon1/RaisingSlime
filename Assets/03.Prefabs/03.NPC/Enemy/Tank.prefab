@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
-  moveSpeed: 9
+  moveSpeed: 12
   collisionDamage: 0.4
   isExplosion: 0
   attackSpeed: 0.3
