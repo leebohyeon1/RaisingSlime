@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567417228713832473}
+  - component: {fileID: 4727178312558882796}
   m_Layer: 10
   m_Name: Cottage_4
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   - {fileID: 717273505109885228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4727178312558882796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817744164490538913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 6
+  slimeIncreaseSize: 0.03
+  plusScore: 25
+  shrinkSpeed: 0.1
 --- !u!1 &4615921947697642825
 GameObject:
   m_ObjectHideFlags: 0

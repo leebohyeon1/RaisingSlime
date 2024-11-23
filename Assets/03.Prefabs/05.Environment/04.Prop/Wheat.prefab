@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3985538677310892740}
   - component: {fileID: 6363672301011677219}
   - component: {fileID: 1484697450607564842}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ricefield01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4365455967498768525}
   - component: {fileID: 55172856534285714}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Wheat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  slimeIncreaseSize: 0.02
+  slimeIncreaseSize: 0.012
   plusScore: 5
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1

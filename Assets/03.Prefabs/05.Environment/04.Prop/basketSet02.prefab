@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39000259461779278}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000018831395, y: -0.7071067, z: 0.7071069, w: 0.0000001883139}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!33 &854356792770822835
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  slimeIncreaseSize: 0.02
+  slimeIncreaseSize: 0.01
   plusScore: 5
   shrinkSpeed: 0.5
 --- !u!114 &1960089641640427101

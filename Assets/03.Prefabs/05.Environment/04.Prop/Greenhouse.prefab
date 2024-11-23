@@ -32,11 +32,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.1, y: 12.1, z: 12.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 20.42097, y: 12.1, z: 9.691616}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!33 &4123006548424613857
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 7297279273398388733
+  uniqueID: 3287817249013747237
   updateError: 1
   checkTime: 0.2
 --- !u!114 &4931969871309645828
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 9
-  slimeIncreaseSize: 0.04
-  plusScore: 35
+  slimeIncreaseSize: 0.03
+  plusScore: 25
   shrinkSpeed: 0.1
 --- !u!114 &2590411999254389982
 MonoBehaviour:

@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 372912027503000947
+  uniqueID: 8918301945892057490
   updateError: 1
   checkTime: 0.2
 --- !u!114 &5734191893634673983
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 11
-  slimeIncreaseSize: 0.04
+  slimeIncreaseSize: 0.03
   plusScore: 35
   shrinkSpeed: 0.1
 --- !u!1001 &2929125830169826115
@@ -339,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 9067203251629745632, guid: 9f0bb2864b754094ba178cb08feb9dde,
         type: 3}
       propertyPath: uniqueID
-      value: 1596690127394764696
+      value: 4813406456167674393
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -798,7 +798,7 @@ PrefabInstance:
     - target: {fileID: 9067203251629745632, guid: 9f0bb2864b754094ba178cb08feb9dde,
         type: 3}
       propertyPath: uniqueID
-      value: 8860714298856866880
+      value: 1637669403212817246
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2433788311349649551}
   - component: {fileID: 444224808007194185}
   - component: {fileID: 785961113427412797}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ricefield02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 4794722442445417091
+  uniqueID: 7927078502376863607
   updateError: 1
   checkTime: 0.2
 --- !u!65 &785961113427412797
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5592140527179859861}
   - component: {fileID: 8468038110350593277}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Rice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  slimeIncreaseSize: 0.02
+  slimeIncreaseSize: 0.012
   plusScore: 5
   shrinkSpeed: 0.5

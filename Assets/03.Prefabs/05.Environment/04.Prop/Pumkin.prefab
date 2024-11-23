@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192436376199158615}
   - component: {fileID: 6015734594874004976}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pumkin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  slimeIncreaseSize: 0.02
+  slimeIncreaseSize: 0.012
   plusScore: 10
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!1 &3861053062076367563
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 7611368614048407124}
   - component: {fileID: 7965997895804268752}
   - component: {fileID: 952489654137833607}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pumpkin_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6478051619369192981
+  uniqueID: 4014393696922399911
   updateError: 1
   checkTime: 0.2

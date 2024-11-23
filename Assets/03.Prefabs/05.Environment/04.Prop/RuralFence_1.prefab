@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 15, y: 15, z: 45}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6417686015313315839}
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
+  size: 2
   slimeIncreaseSize: 0.02
   plusScore: 10
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!1 &4854883768724995715
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5142133421222318492
+  uniqueID: 6802141652573963410
   updateError: 1
   checkTime: 0.2
