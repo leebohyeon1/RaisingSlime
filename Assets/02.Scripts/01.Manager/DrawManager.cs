@@ -21,6 +21,7 @@ public class DrawManager : MonoBehaviour
 
     [SerializeField]private DrawMachine drawMachine;
     [SerializeField] private PlayableDirector playableDirector;
+    private PlayableDirector capsuleDirector;
 
     [SerializeField] private GameObject prefab; // 생성할 오브젝트 프리팹
     [SerializeField] private Transform spawnPoint; // 생성 위치
@@ -30,11 +31,6 @@ public class DrawManager : MonoBehaviour
     {
         Init();
 
-        if (playableDirector != null)
-        {
-            // 타임라인이 멈췄을 때 실행할 이벤트 등록
-            playableDirector.stopped += OnTimelineStopped;
-        }
     }
 
     private void Update()
@@ -94,8 +90,9 @@ public class DrawManager : MonoBehaviour
 
     private IEnumerator ShowSkin()
     {
-        drawMachine.SetDraw();
-     
+        capsuleDirector.stopped -= OnTimelineStopped;
+        Destroy(spawnedObject);
+
         GameObject skin = Instantiate(newSkin, new Vector3(0,3,-5),Quaternion.Euler(new Vector3(0,180,0)));
         skin.transform.localScale = new Vector3(2,2,2);
         skin.GetComponent<Rigidbody>().isKinematic = true;
@@ -108,7 +105,7 @@ public class DrawManager : MonoBehaviour
         Destroy(skin );
     }
 
-    private void OnTimelineStopped(PlayableDirector director)
+    public void OnTimelineStopped(PlayableDirector director)
     {
         StartCoroutine(ShowSkin());
     }
@@ -118,6 +115,9 @@ public class DrawManager : MonoBehaviour
         if (prefab != null && spawnPoint != null)
         {
             spawnedObject = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation,spawnPoint);
+            drawMachine.SetDraw();
+            capsuleDirector = spawnedObject.GetComponent<PlayableDirector>();
+            capsuleDirector.stopped += OnTimelineStopped;
         }
     }
 

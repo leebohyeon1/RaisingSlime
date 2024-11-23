@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DrawMachine : MonoBehaviour
 {
@@ -10,27 +11,23 @@ public class DrawMachine : MonoBehaviour
     [SerializeField] private float shakeForce;
 
     [SerializeField] private Transform rightArm;
+    [SerializeField] private DrawManager drawManager;
 
     private bool isDraw;
-    private float timer;
+    private float timer = 0.6f;
     private float shakeTimer;
     private bool isRotatingArm = true; // 회전 방향 추적
     private bool isRotatingTransform = true; // 회전 방향 추적
 
     private LayerMask layerMask = 1 << 4;
 
-    private void Start()
-    {
-        
-    }
 
-    
     private void Update()
     {
         if(isDraw)
         {
             timer += Time.deltaTime;
-            if (timer > 0.3f)
+            if (timer > 0.5f)
             {
                 timer = 0f;
                 ShakeCapsule();

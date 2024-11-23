@@ -3203,8 +3203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsulePivot: {fileID: 2078011221}
-  shakeForce: 100
+  shakeForce: 200
   rightArm: {fileID: 8480437440819658083}
+  drawManager: {fileID: 0}
 --- !u!95 &2913283896445511476
 Animator:
   serializedVersion: 5
