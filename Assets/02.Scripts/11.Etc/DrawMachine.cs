@@ -14,7 +14,7 @@ public class DrawMachine : MonoBehaviour
     [SerializeField] private DrawManager drawManager;
 
     private bool isDraw;
-    private float timer = 0.6f;
+    private float timer = 0.3f;
     private float shakeTimer;
     private bool isRotatingArm = true; // 회전 방향 추적
     private bool isRotatingTransform = true; // 회전 방향 추적
@@ -27,7 +27,7 @@ public class DrawMachine : MonoBehaviour
         if(isDraw)
         {
             timer += Time.deltaTime;
-            if (timer > 0.5f)
+            if (timer > 0.45f)
             {
                 timer = 0f;
                 ShakeCapsule();
