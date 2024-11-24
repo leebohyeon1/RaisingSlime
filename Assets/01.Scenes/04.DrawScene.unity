@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &29375461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 29375462}
+  m_Layer: 0
+  m_Name: CoinSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &29375462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29375461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.862, z: 0.249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2532642469660622216}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &34634774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -861,7 +892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.000061, y: -33}
+  m_AnchoredPosition: {x: -16, y: -33}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1015088530
@@ -1184,13 +1215,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawPrice: 0
   moneyText: {fileID: 265351542}
-  Buttons:
+  buttons:
   - {fileID: 2075546169}
   - {fileID: 1015088530}
+  prefabs:
+  - {fileID: 3933517938661126922, guid: ee5446494c44e2f45ab00244b6bd6c49, type: 3}
+  - {fileID: 9007444254374512215, guid: eefb8a396241bd74fa3b5f419be2c4ef, type: 3}
+  spawnPoints:
+  - {fileID: 908961069}
+  - {fileID: 29375462}
   drawMachine: {fileID: 2913283896445511475}
-  playableDirector: {fileID: 2913283896445511477}
-  prefab: {fileID: 3933517938661126922, guid: ee5446494c44e2f45ab00244b6bd6c49, type: 3}
-  spawnPoint: {fileID: 908961069}
+  mainPlayableDirector: {fileID: 2913283896445511477}
 --- !u!114 &1232910710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,12 +1241,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 41cfbdf100c3d724fbf0386a535b0528, type: 2}
+    - {fileID: 11400000, guid: a6658283563329c48baa02ebc9d30f95, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1232910709}
           m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
-          m_MethodName: SpawnObject
+          m_MethodName: SpawnCapsule
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1232910709}
+          m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
+          m_MethodName: SpawnCoin
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3254,6 +3304,7 @@ Transform:
   - {fileID: 2005251143936176292}
   - {fileID: 3402285100295669245}
   - {fileID: 908961069}
+  - {fileID: 29375462}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.000000008719866, y: 0.00000364739, z: 0.1480364}
 --- !u!23 &2690452559504461890
@@ -3402,6 +3453,8 @@ PlayableDirector:
     value: {fileID: 1232910710}
   - key: {fileID: -4272105165619623471, guid: 8d5c37e35c6d3d14c8b47ee6c46c9e29, type: 2}
     value: {fileID: 8365926980292198053}
+  - key: {fileID: 9142488304055055904, guid: 8d5c37e35c6d3d14c8b47ee6c46c9e29, type: 2}
+    value: {fileID: 8213787113973932161}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &2921748709814315874
@@ -3738,6 +3791,7 @@ GameObject:
   - component: {fileID: 237084343498380629}
   - component: {fileID: 4794911718772644355}
   - component: {fileID: 8213787113973932160}
+  - component: {fileID: 8213787113973932161}
   m_Layer: 0
   m_Name: handle1
   m_TagString: Untagged
@@ -6165,6 +6219,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &8213787113973932161
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935583481777942674}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8365926980292198052
 Transform:
   m_ObjectHideFlags: 0

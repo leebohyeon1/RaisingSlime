@@ -17,7 +17,6 @@ public class DrawMachine : MonoBehaviour
     private float timer = 0.3f;
     private float shakeTimer;
     private bool isRotatingArm = true; // 회전 방향 추적
-    private bool isRotatingTransform = true; // 회전 방향 추적
 
     private LayerMask layerMask = 1 << 4;
 
@@ -42,6 +41,7 @@ public class DrawMachine : MonoBehaviour
     public void SetDraw()
     {
         isDraw = !isDraw;
+        timer = 0.3f;
     }
 
     private void ShakeCapsule()

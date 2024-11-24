@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 4436012778729478416}
   - component: {fileID: 5394856349694618134}
   - component: {fileID: 1432357353329432549}
-  - component: {fileID: 4427903146379690385}
   - component: {fileID: -7040848982786654795}
   m_Layer: 6
   m_Name: Jump_2
@@ -186,25 +185,6 @@ MonoBehaviour:
   slimeIncreaseSize: 0.04
   plusScore: 10
   shrinkSpeed: 1
---- !u!114 &4427903146379690385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2366816846027952278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b32c95b94296944182ea96d9cf7b121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 0
-  moveSpeed: 4
-  collisionDamage: 1
-  isExplosion: 0
-  wanderRadius: 10
-  wanderTimer: 5
-  radius: 20
 --- !u!114 &-7040848982786654795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,9 +197,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4039e2059dc069f458ae8834126ef432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  slimeIncreaseSize: 0
-  plusScore: 0
-  shrinkSpeed: 0.5
-  arrowObj: {fileID: 0}
   jumpDuration: 1
+  jumpHeight: 0.6

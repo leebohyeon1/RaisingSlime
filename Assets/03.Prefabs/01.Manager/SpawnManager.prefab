@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3518464941442769597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 1.04, z: -33.2}
+  m_LocalPosition: {x: 522.36, y: 1.98, z: -263.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -178,7 +178,7 @@ MonoBehaviour:
   - {x: 209, y: 0, z: 209}
   - {x: 209, y: 0, z: 209}
   maxCitizen: 6400000064000000
-  maxGoldCount: 40
+  maxGoldCount: 100
   bomberPrefab: {fileID: 6497396149154566890, guid: f9f14f2a82fb98542ab2bbd3b9137186,
     type: 3}
   allCitizen:
@@ -193,6 +193,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  surfaceLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &3530836656358461769
 MonoBehaviour:
   m_ObjectHideFlags: 0

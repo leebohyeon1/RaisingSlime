@@ -1,35 +1,39 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialCitizen : MonoBehaviour
 {
-    [SerializeField]
-    private float jumpDuration = 0.5f;
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpDuration = 0.25f; // 점프 지속 시간
+    [SerializeField] private float jumpHeight = 0.6f; // 점프 높이
 
-    private bool isJump = false;
+    private bool isJumping = false; // 현재 점프 상태
+    private Vector3 initialPosition; // 초기 위치 저장
 
-    private Vector3[] defaultTrans = new Vector3[2];
-
-    protected void Start()
+    private void Start()
     {
-        defaultTrans[0] = transform.position;
+        initialPosition = transform.position; // 초기 위치 저장
+        StartJumpLoop(); // 점프 루프 시작
     }
 
-    private void Update()
+    private void StartJumpLoop()
     {
-        if (!isJump)
-        {
-            isJump = true;
-            LoopJump();
-        }
-}
+        if (isJumping) return;
 
-void LoopJump()
-    {
-        transform.DOMoveY(transform.position.y + 0.6f, jumpDuration).SetEase(Ease.OutQuad)
-            .OnComplete(()=> { transform.DOMoveY(defaultTrans[0].y, jumpDuration).SetEase(Ease.InQuad).
-                OnComplete(()=> { isJump = false; });  });
+        isJumping = true;
+
+        // DOTween 체인 구성
+        transform.DOMoveY(initialPosition.y + jumpHeight, jumpDuration)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                transform.DOMoveY(initialPosition.y, jumpDuration)
+                    .SetEase(Ease.InQuad)
+                    .OnComplete(() =>
+                    {
+                        isJumping = false;
+                        StartJumpLoop(); // 루프 반복
+                    });
+            });
     }
 }
