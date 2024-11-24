@@ -48,6 +48,11 @@ public class Player : MonoBehaviour, IUpdateable
 
     private void FixedUpdate()
     {
+        if(GameManager.Instance.GetGameOver())
+        {
+            return;
+        }
+
         GroundCheck();
 
         HandleMovement();
@@ -64,7 +69,12 @@ public class Player : MonoBehaviour, IUpdateable
 
     public virtual void OnUpdate(float dt)
     {
-        if(GameManager.Instance.GetGameState())
+        if (GameManager.Instance.GetGameOver())
+        {
+            return;
+        }
+
+        if (GameManager.Instance.GetGameState())
         {
             AutoDecreaseSize();
         }

@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviour, IUpdateable
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
 
-    //[TabGroup("UI", "옵션"), LabelText("옵션 UI"), SerializeField]
-    //private GameObject optionUI;
-
     [TabGroup("UI", "게임오버"), LabelText("게임 오버 UI"), SerializeField]
     private GameObject gameOverUI;
 
@@ -329,6 +326,16 @@ public class GameManager : MonoBehaviour, IUpdateable
         gameOverSequence.Play();
 
         
+    }
+
+    public void GameOverForAchievement()
+    {
+        isGameOver = true;
+    }
+
+    public bool GetGameOver()
+    {
+        return isGameOver;
     }
 
     public bool GetGameState()
