@@ -58,6 +58,10 @@ public class UFO : NPCBase
         line = beam.GetComponent<LineRenderer>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+
+        AchievementManager.Instance.UpdateAchievement
+            (AchievementManager.Instance.achievements[3].achievementName, 1);
     }
 
     protected override void enemyAction()

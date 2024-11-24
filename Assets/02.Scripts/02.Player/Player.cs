@@ -16,8 +16,8 @@ public class Player : MonoBehaviour, IUpdateable
     private Rigidbody rb;
 
     private Vector3 movement;
-    
-    [BoxGroup("땅 체크"),LabelText("땅에 있는가?"), SerializeField]
+
+    [BoxGroup("땅 체크"), LabelText("땅에 있는가?"), SerializeField]
     private bool isGrounded = true; // 땅에 있는지 확인하는 플래그
     [BoxGroup("땅 체크"), LabelText("땅 체크 거리"), SerializeField]
     private float groundCheckDistance = 0.1f; // Raycast의 거리
@@ -32,23 +32,24 @@ public class Player : MonoBehaviour, IUpdateable
 
     private Vector3 lastMovementDirection; // 이전 프레임의 이동 방향
 
+    private bool isInvincibility = false;
 
     void Start()
     {
         // 컴포넌트 초기화
-        playerMovement = GetComponent<PlayerMovement>();      
+        playerMovement = GetComponent<PlayerMovement>();
         playerStat = GetComponent<PlayerStat>();
 
         rb = GetComponent<Rigidbody>();
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
 
-        smokeParticle = Instantiate(smoke,transform);
+        smokeParticle = Instantiate(smoke, transform);
     }
 
     private void FixedUpdate()
     {
-        if(GameManager.Instance.GetGameOver())
+        if (GameManager.Instance.GetGameOver())
         {
             return;
         }
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour, IUpdateable
         if (transform.position.y < -2f)
         {
             GameManager.Instance.GameOver();
+
 
             Destroy(gameObject);
         }
@@ -78,10 +80,10 @@ public class Player : MonoBehaviour, IUpdateable
         {
             AutoDecreaseSize();
         }
-        
+
         HandleJump();
     }
-    
+
     // 땅에 닿았는지 확인하는 함수
     private void GroundCheck()
     {
@@ -91,11 +93,11 @@ public class Player : MonoBehaviour, IUpdateable
         // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer);
 
-        if (!isGrounded && !playerStat.canJump )
+        if (!isGrounded && !playerStat.canJump)
         {
             playerStat.canJump = true; // 점프 초기화
         }
-        else if(isGrounded && !playerStat.canJump && rb.velocity.y < 0f)
+        else if (isGrounded && !playerStat.canJump && rb.velocity.y < 0f)
         {
             playerStat.canJump = true; // 점프 초기화
 
@@ -155,7 +157,7 @@ public class Player : MonoBehaviour, IUpdateable
 
     private void HandleJump()
     {
-        if (InputManager.Instance.jumpInput && isGrounded && playerStat.canJump) 
+        if (InputManager.Instance.jumpInput && isGrounded && playerStat.canJump)
         {
             rb.AddForce(playerMovement.Jump(playerStat.jumpForce), ForceMode.Impulse);
             playerStat.canJump = false; // 점프 후 땅에 있지 않음
@@ -175,6 +177,11 @@ public class Player : MonoBehaviour, IUpdateable
     // 자동 크기 감소 기능
     private void AutoDecreaseSize()
     {
+        if (isInvincibility)
+        {
+            return;
+        }
+
         // 매 프레임마다 초당 줄어드는 크기를 적용
         float sizeDecreaseAmount = playerStat.sizeDecreasePerSecond * Time.deltaTime;
 
@@ -186,8 +193,8 @@ public class Player : MonoBehaviour, IUpdateable
         {
             playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
         }
-        
-        if(playerStat.curSize <= 0.5f)
+
+        if (playerStat.curSize <= 0.5f)
         {
             GameManager.Instance.GameOver();
 
@@ -202,7 +209,7 @@ public class Player : MonoBehaviour, IUpdateable
 
         EatAbleObjectBase eatAbleObjectBase = eatAble.GetComponentInParent<EatAbleObjectBase>();
 
-    
+
         // 슬라임과 오브젝트의 size 변수 비교
         if (eatAbleObjectBase.GetSize() < playerStat.curSize)
         {
@@ -215,29 +222,36 @@ public class Player : MonoBehaviour, IUpdateable
                 rb.velocity = movement / 3;
             }
         }
-        else if(eatAble.GetComponentInParent<NPCBase>())
+        else if (eatAble.GetComponentInParent<NPCBase>())
         {
             NPCBase npcBase = eatAble.GetComponentInParent<NPCBase>();
-            if(npcBase.isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
+            if (npcBase.isEnemy) // 자신 보다 사이즈가 크고, 적일 경우
             {
                 TakeDamage(npcBase.collisionDamage);
-             
+
             }
 
-               KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
+            if (eatAble.GetComponent<PoliceCar>() != null)
+            {
+                AchievementManager.Instance.UpdateAchievement
+                    (AchievementManager.Instance.achievements[9].achievementName, 1);
+
+            }
+
+            KnockbackFromEnemy(eatAble); // 적 반대 방향으로 날아가기
 
         }
     }
 
-    private void Eat(EatAbleObjectBase eatAbleObjectBase) 
+    private void Eat(EatAbleObjectBase eatAbleObjectBase)
     {
-        if(!GameManager.Instance.GetGameState())
+        if (!GameManager.Instance.GetGameState())
         {
             GameManager.Instance.SetGameState();
         }
 
         AudioManager.Instance.PlaySFX("Slime");
-        
+
         // 먹을 수 있는 오브젝트를 자식 오브젝트에 추가
         eatAbleObjectBase.Eaten(transform);
 
@@ -246,7 +260,7 @@ public class Player : MonoBehaviour, IUpdateable
 
         if (transform.localScale.x >= 13)
         {
-            transform.localScale = new Vector3(13,13, 13);  
+            transform.localScale = new Vector3(13, 13, 13);
         }
         // 점수 증가
         GameManager.Instance.IncreaseScore(eatAbleObjectBase.GetPlusScore());
@@ -257,6 +271,11 @@ public class Player : MonoBehaviour, IUpdateable
 
     public void TakeDamage(float damage)
     {
+        if (isInvincibility)
+        {
+            return;
+        }
+
         transform.localScale -= new Vector3(damage, damage, damage);
         playerStat.curSize = transform.localScale.x;  // 현재 크기 업데이트
 
@@ -277,10 +296,10 @@ public class Player : MonoBehaviour, IUpdateable
         Vector3 knockbackDirection = (transform.position - enemyPosition).normalized;
 
         // 현재 이동 방향을 가져와서 더함
-        Vector3 currentMoveDirection = ( movement / 5) ;
+        Vector3 currentMoveDirection = (movement / 5);
 
         // 적의 반대 방향과 현재 이동 방향을 합산한 방향으로 밀려남
-        Vector3 combinedKnockbackDirection = (knockbackDirection  + Vector3.up).normalized;
+        Vector3 combinedKnockbackDirection = (knockbackDirection + Vector3.up).normalized;
 
         // 해당 방향으로 힘을 가해 밀어냄
         rb.AddForce(combinedKnockbackDirection * playerStat.knockbackForce, ForceMode.Impulse);
@@ -291,7 +310,13 @@ public class Player : MonoBehaviour, IUpdateable
         return movement;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetInvincibility(bool boolean)
+    {
+        isInvincibility = boolean;
+    }
+
+
+private void OnCollisionEnter(Collision collision)
     {
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
         if (collision.gameObject.GetComponentInParent<EatAbleObjectBase>())
@@ -304,6 +329,10 @@ public class Player : MonoBehaviour, IUpdateable
         if(collision.gameObject.CompareTag("Sea"))
         {
             GameManager.Instance.GameOver();
+
+            AchievementManager.Instance.UpdateAchievement
+                 (AchievementManager.Instance.achievements[8].achievementName, 1);
+
 
             Destroy(gameObject);
         }

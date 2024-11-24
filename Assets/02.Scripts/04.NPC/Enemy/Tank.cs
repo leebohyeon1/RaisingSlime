@@ -58,6 +58,11 @@ public class Tank : NPCBase
     protected override void Start()
     {
         base.Start();
+
+
+
+        AchievementManager.Instance.UpdateAchievement
+            (AchievementManager.Instance.achievements[2].achievementName, 1);
     }
 
     protected override void enemyAction()
