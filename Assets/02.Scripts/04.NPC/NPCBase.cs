@@ -45,11 +45,6 @@ public class NPCBase : MonoBehaviour, IUpdateable
 
     protected virtual void Start()
     {
-        if(target == null)
-        {
-            target = FindFirstObjectByType<Player>().transform; 
-        }
-
         //aiDestinationSetter.target = target;
         
         GameLogicManager.Instance.RegisterUpdatableObject(this);

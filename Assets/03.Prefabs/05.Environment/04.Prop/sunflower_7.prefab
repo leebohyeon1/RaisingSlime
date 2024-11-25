@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3329222326943012503}
   - component: {fileID: 3068179030384442418}
   - component: {fileID: 5579606748467024274}
-  - component: {fileID: 2037737387616480397}
   m_Layer: 0
   m_Name: sunflower_7
   m_TagString: Untagged
@@ -99,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  slimeIncreaseSize: 0.012
+  slimeIncreaseSize: 0.02
   plusScore: 10
   shrinkSpeed: 0.5
 --- !u!64 &5579606748467024274
@@ -117,26 +116,10 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3816266063549902285, guid: bbbfe627e5ae1de4dbd1f735d7fd64f3, type: 3}
---- !u!114 &2037737387616480397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426524650192586177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 1093069298961039662
-  updateError: 1
-  checkTime: 0.2

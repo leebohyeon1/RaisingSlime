@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Security.Cryptography;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [System.Serializable]
 public class Achievement
@@ -38,12 +36,13 @@ public class AchievementManager : Singleton<AchievementManager>
     [LabelText("도전 과제")]
     public List<Achievement> achievements { get; private set; } = new List<Achievement>();
 
+    // CSV 파일의 해시 값을 저장하기 위한 키
+    private const string CsvHashPlayerPrefsKey = "CsvHash";
 
     protected override void Start()
     {
         filePath = Path.Combine(Application.persistentDataPath, "Achievement.csv");
         LoadAchievementsFromCSV();
-   
     }
 
     // 고유 키 생성 메서드: 기본 키와 고유 장치 ID 조합
@@ -63,16 +62,70 @@ public class AchievementManager : Singleton<AchievementManager>
 
     void LoadAchievementsFromCSV()
     {
-        if (!File.Exists(filePath))
+        string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
+        string currentCsvHash = GetHash(csv.text); // 현재 CSV의 해시 값
+
+        // 이전에 저장된 CSV 해시 값 가져오기
+        string savedCsvHash = PlayerPrefs.GetString(CsvHashPlayerPrefsKey, "");
+
+        // CSV 파일이 변경되었는지 확인
+        if (!File.Exists(filePath) || currentCsvHash != savedCsvHash)
         {
-            CreateDefaultAchievementFile();  // 기본 파일 생성
+            // CSV 파일이 없거나, 변경되었을 경우 업데이트
+            CreateOrUpdateAchievementFile(currentCsvHash, encryptionKey);
         }
 
         // 파일 읽기
         string encryptedData = File.ReadAllText(filePath);
-        string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
         string csvData = Decrypt(encryptedData, encryptionKey); // 복호화
 
+        achievements = ParseAchievementsFromCSV(csvData);
+
+        Debug.Log("Achievements loaded: " + achievements.Count);
+    }
+
+    void CreateOrUpdateAchievementFile(string currentCsvHash, string encryptionKey)
+    {
+        // 기존에 저장된 성취도 데이터를 로드 (있을 경우)
+        List<Achievement> existingAchievements = new List<Achievement>();
+        if (File.Exists(filePath))
+        {
+            string encryptedData = File.ReadAllText(filePath);
+            string csvData = Decrypt(encryptedData, encryptionKey); // 복호화
+            existingAchievements = ParseAchievementsFromCSV(csvData);
+        }
+
+        // 새로운 CSV 데이터를 파싱
+        List<Achievement> newAchievements = ParseAchievementsFromCSV(csv.text);
+
+        // 기존 진행도를 유지하면서 새로운 성취도 추가
+        foreach (var newAchievement in newAchievements)
+        {
+            var existingAchievement = existingAchievements.Find(a => a.achievementName == newAchievement.achievementName);
+            if (existingAchievement != null)
+            {
+                // 기존 성취도가 있을 경우 진행도 유지
+                newAchievement.currentProgress = existingAchievement.currentProgress;
+                newAchievement.isCompleted = existingAchievement.isCompleted;
+            }
+        }
+
+        // 업데이트된 성취도 리스트 저장
+        achievements = newAchievements;
+
+        // CSV로 저장
+        SaveAchievementsToCSV();
+
+        // 새로운 CSV 해시 값 저장
+        PlayerPrefs.SetString(CsvHashPlayerPrefsKey, currentCsvHash);
+        PlayerPrefs.Save();
+
+        Debug.Log("Achievement file has been created or updated.");
+    }
+
+    List<Achievement> ParseAchievementsFromCSV(string csvData)
+    {
+        List<Achievement> parsedAchievements = new List<Achievement>();
         using (StringReader sr = new StringReader(csvData))
         {
             bool firstLine = true;
@@ -88,6 +141,13 @@ public class AchievementManager : Singleton<AchievementManager>
 
                 string[] data = line.Split(',');
 
+                // 데이터 유효성 검사
+                if (data.Length < 5)
+                {
+                    Debug.LogWarning("Invalid CSV line: " + line);
+                    continue;
+                }
+
                 // Achievement 클래스에 맞게 데이터 할당
                 Achievement achievement = new Achievement();
                 achievement.achievementName = data[0];
@@ -96,20 +156,10 @@ public class AchievementManager : Singleton<AchievementManager>
                 achievement.currentProgress = int.Parse(data[3]);
                 achievement.isCompleted = data[4].ToLower() == "true";
 
-                achievements.Add(achievement);
+                parsedAchievements.Add(achievement);
             }
         }
-
-        Debug.Log("Achievements loaded: " + achievements.Count);
-    }
-
-    void CreateDefaultAchievementFile()
-    {
-        string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
-        string encryptedData = Encrypt(csv.text, encryptionKey);
-        File.WriteAllText(filePath, encryptedData);
-
-        Debug.Log("기본 Achievement 파일이 생성되었습니다: " + filePath);
+        return parsedAchievements;
     }
 
     // 특정 조건이 만족되면 도전과제를 업데이트
@@ -162,13 +212,11 @@ public class AchievementManager : Singleton<AchievementManager>
             {
                 ms.Write(aesAlg.IV, 0, aesAlg.IV.Length);
                 using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                using (var sw = new StreamWriter(cs))
                 {
-                    using (var sw = new StreamWriter(cs))
-                    {
-                        sw.Write(text);
-                    }
+                    sw.Write(text);
                 }
-                return System.Convert.ToBase64String(ms.ToArray());
+                return Convert.ToBase64String(ms.ToArray());
             }
         }
     }
@@ -197,5 +245,14 @@ public class AchievementManager : Singleton<AchievementManager>
         }
     }
 
+    // 문자열의 해시 값을 계산하는 메서드
+    private string GetHash(string input)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(input);
+            byte[] hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+    }
 }
-

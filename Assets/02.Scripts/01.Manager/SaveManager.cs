@@ -9,6 +9,7 @@ using System;
 
 public class SaveManager : Singleton<SaveManager>
 {
+    public static int version = 2;
 
     protected override void Awake()
     {
@@ -35,22 +36,66 @@ public class SaveManager : Singleton<SaveManager>
         string path = Path.Combine(Application.persistentDataPath, "gameData.json");
         if (File.Exists(path))
         {
-            string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
-            // 암호화된 데이터를 불러와 복호화
-            string encryptedJson = File.ReadAllText(path);
-            string json = Decrypt(encryptedJson, encryptionKey);
+            try
+            {
+                string encryptionKey = GenerateEncryptionKey();
+                string encryptedJson = File.ReadAllText(path);
+                string json = Decrypt(encryptedJson, encryptionKey);
 
-            GameData data = JsonUtility.FromJson<GameData>(json);
-            return data;
+                GameData data = JsonUtility.FromJson<GameData>(json);
+
+                // 버전 체크 및 변환
+                if (data.version < version)
+                {
+                    data = MigrateData(data);
+                }
+
+                return data;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to load game data: " + e.Message);
+
+                // 데이터 손상 시 기본값 반환
+                GameData data = new GameData();
+                data.version = version;
+                SavePlayerData(data);
+                return data;
+            }
         }
         else
         {
-            // 기본값을 가진 새로운 GameData 생성
             GameData data = new GameData();
+            data.version = version;
             SavePlayerData(data);
             return data;
         }
     }
+
+
+    private GameData MigrateData(GameData oldData)
+    {
+        // 기존 데이터를 새 데이터 구조로 변환
+        GameData newData = new GameData();
+
+        // 기존 데이터의 값 복사
+        newData.money = oldData.money;
+        newData.score = oldData.score;
+        newData.bgmVolume = oldData.bgmVolume;
+        newData.sfxVolume = oldData.sfxVolume;
+        newData.isBgmMuted = oldData.isBgmMuted;
+        newData.isSfxMuted = oldData.isSfxMuted;
+
+        // 새 구조에 맞게 추가 데이터 초기화
+        int skinCount = SkinManager.Instance.GetSkinCount();
+        newData.openSkin = new bool[skinCount];
+        Array.Copy(oldData.openSkin, newData.openSkin, Math.Min(oldData.openSkin.Length, skinCount));
+
+        newData.curPlayerIndex = oldData.curPlayerIndex;
+
+        return newData;
+    }
+
 
     private string Encrypt(string text, string key)
     {
@@ -119,6 +164,8 @@ public class SaveManager : Singleton<SaveManager>
 [System.Serializable]
 public class GameData
 {
+    public int version = 1; // 데이터 버전 추가
+
     public uint money;
     public uint score;
 
@@ -134,6 +181,7 @@ public class GameData
     // 기본 생성자 (매개변수가 없는 경우)
     public GameData()
     {
+        this.version = 1; // 현재 데이터 버전
         // 기본값 설정
         this.money = 0;
         this.score = 0;
@@ -152,9 +200,10 @@ public class GameData
     }
 
     // 모든 매개변수를 받는 생성자
-    public GameData(uint money, uint score, float bgmVolume, float sfxVolume, bool isBgmMuted,
+    public GameData(int version, uint money, uint score, float bgmVolume, float sfxVolume, bool isBgmMuted,
         bool isSfxMuted, bool[] openSkin, int playerIndex)
     {
+        this.version = version;
         this.money = money;
         this.score = score;
         this.bgmVolume = bgmVolume;

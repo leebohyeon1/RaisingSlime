@@ -59,6 +59,9 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private Transform slimeTrans;
     private float bomberSpawnTimer = 0f;
 
+    [SerializeField, LabelText("스폰 가능한 레이어")]
+    private LayerMask surfaceLayerMask;
+
     private void Awake()
     {
         if (Instance == null)
@@ -393,7 +396,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private Vector3 GetValidSpawnPosition(int i)
     {
         Vector3 spawnPosition = Vector3.zero;
-        int maxAttempts = 10;
+        int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
         int attempts = 0;
 
         while (attempts < maxAttempts)
@@ -401,56 +404,65 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             // 랜덤한 위치를 생성
             spawnPosition = GetRandomCitizenSpawnPoint(i);
 
-            // 해당 위치에서 충돌이 발생하지 않는 경우
-            if (!Physics.CheckSphere(spawnPosition, 1.5f))
+            // 아래로 Raycast를 사용해 지정된 레이어(suface)에 닿는지 확인
+            if (Physics.Raycast(spawnPosition + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 20f, surfaceLayerMask))
             {
+                spawnPosition = hit.point; // 충돌한 지점으로 위치를 설정
+                spawnPosition.y += spawnHeight; // 스폰 높이를 적용
                 break;
             }
 
             attempts++;
         }
 
+        if (attempts >= maxAttempts)
+        {
+            Debug.LogWarning($"유효한 스폰 위치를 찾을 수 없습니다. 스폰 시도 횟수 초과 (Index: {i})");
+            return Vector3.zero; // 실패한 경우 (0, 0, 0) 반환
+        }
+
         return spawnPosition;
     }
 
-    // 시민을 스폰하는 함수
     private void SpawnCitizens(int i)
     {
         if (slimeTrans == null)
-        {
             return;
-        }
 
-        // 최대 시민 수보다 적으면 시민을 스폰
         while (currentCitizenList[i].Count < maxCitizen[i])
         {
             GameObject citizenPrefab = allCitizen[Random.Range(0, allCitizen.Length)];
             Vector3 spawnPosition = GetValidSpawnPosition(i);
-            GameObject newCitizen = Instantiate(citizenPrefab, spawnPosition, Quaternion.Euler(slimeTrans.position - spawnPosition));
+
+            if (spawnPosition == Vector3.zero)
+            {
+                Debug.LogWarning("유효하지 않은 시민 스폰 위치로 인해 스폰을 건너뜁니다.");
+                return;
+            }
+
+            GameObject newCitizen = Instantiate(
+                citizenPrefab,
+                spawnPosition,
+                Quaternion.Euler(slimeTrans.position - spawnPosition)
+            );
             newCitizen.transform.SetParent(parentTransforms[1]);
             currentCitizenList[i].Add(newCitizen);
 
-            // 시민 파괴 시 다시 스폰
             NPCBase citizenComponent = newCitizen.GetComponent<NPCBase>();
             if (citizenComponent != null)
             {
                 citizenComponent.OnDestroyed += () =>
                 {
-                    // 적이 파괴된 이후에도 스폰매니저가 파괴되지 않았는지 확인
                     if (this != null && newCitizen != null && !isSceneClosing && Application.isPlaying)
                     {
-                        SpawnCitizens(i); // 시민이 사라지면 다시 스폰
-
-                        if (currentCitizenList[i].Contains(newCitizen))
-                        {
-                            currentCitizenList[i].Remove(newCitizen);
-                        }
+                        SpawnCitizens(i);
+                        currentCitizenList[i].Remove(newCitizen);
                     }
                 };
             }
-            
         }
     }
+
 
     // 시민 수 관리 (시민이 사라졌을 때 다시 스폰)
     private void ManageCitizenSpawn(int i)
@@ -476,22 +488,38 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     // 랜덤한 위치
     private Vector3 GetRandomGoldSpawnPosition()
     {
-        // XZ 평면에서 랜덤한 방향을 선택하여 생성 범위 외부의 랜덤 위치를 계산
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(spawnRadius/3, spawnRadius);
-        Vector3 spawnPosition = new Vector3(randomDirection.x, spawnHeight, randomDirection.y);
+        Vector3 spawnPosition = Vector3.zero;
+        int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
+        int attempts = 0;
 
-        if (slimeTrans != null)
+        while (attempts < maxAttempts)
         {
-            // 플레이어 또는 맵 중앙에서 먼 위치에 스폰되도록 설정
-            spawnPosition += slimeTrans.position;
+            // 맵 전체에서 랜덤 위치를 계산
+            float randomX = Random.Range(-500, 500);
+            float randomZ = Random.Range(-500, 500);
+
+            // 랜덤 위치 계산
+            Vector3 randomPosition = new Vector3(randomX, spawnHeight + 10f, randomZ); // 위에서 아래로 레이캐스트
+
+            // Raycast로 surface 레이어 위의 위치를 찾음
+            if (Physics.Raycast(randomPosition, Vector3.down, out RaycastHit hit, 20f, surfaceLayerMask))
+            {
+                spawnPosition = hit.point; // 충돌한 지점을 스폰 위치로 설정
+                spawnPosition.y += 0.1f; // 약간 띄워서 스폰 (필요에 따라 조정 가능)
+                break;
+            }
+
+            attempts++;
         }
 
-        spawnPosition.y = spawnHeight;
+        if (spawnPosition == Vector3.zero)
+        {
+            Debug.LogWarning("유효한 골드 스폰 위치를 찾을 수 없습니다.");
+        }
 
         return spawnPosition;
-
-
     }
+
     // 랜덤한 위치가 없을 때 다시 찾는 함수
     private Vector3 GetValidGoldSpawnPosition()
     {
@@ -561,14 +589,13 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private void SpawnGold()
     {
         if (slimeTrans == null)
-        {
             return;
-        }
 
-        Vector3 spawnPosition = GetValidGoldSpawnPosition();
-        
+        Vector3 spawnPosition = GetRandomGoldSpawnPosition();
+
         if (spawnPosition == Vector3.zero)
         {
+            Debug.LogWarning("골드 스폰 실패: 유효한 위치를 찾지 못했습니다.");
             return;
         }
 
@@ -582,8 +609,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         gold.transform.position = spawnPosition;
         gold.transform.rotation = Quaternion.identity;
         activeGoldList.Add(gold);
-        
     }
+
 
     private void RemoveAllGold()
     {

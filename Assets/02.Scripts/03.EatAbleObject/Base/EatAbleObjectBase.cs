@@ -78,6 +78,9 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         if(GetComponent<AIPath>())
         {
             GetComponent<AIPath>().enabled = false;
+
+            AchievementManager.Instance.UpdateAchievement
+             (AchievementManager.Instance.achievements[0].achievementName, 1);
         }
         
         if(GetComponentInChildren<NavmeshCut>())
@@ -93,6 +96,12 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         if (GetComponent<Rigidbody>())
         {
             Destroy(GetComponent<Rigidbody>()); // Rigidbody가 있으면 비활성화
+        }
+
+        if (GetComponent<Citizen>() || GetComponent<TutorialCitizen>())
+        {
+            AchievementManager.Instance.UpdateAchievement
+                (AchievementManager.Instance.achievements[4].achievementName, 1);
         }
     }
 

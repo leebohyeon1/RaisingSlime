@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeSkin:
   - {fileID: 6467965117235312377, guid: 61d99211c7011984e88cd83bc758bea5, type: 3}
-  - {fileID: 4674357320495252882, guid: 76064f47cd36406459d85c96c761ff9c, type: 3}
   - {fileID: 2818947945637507369, guid: e9ac6452bd8ff6142859b8ac70ff0129, type: 3}
   - {fileID: 1270642918322516211, guid: 0d19b1eea536a544c96ac216c650bd2c, type: 3}
   - {fileID: 8793048854898435465, guid: f6bee4e927fb45f4b92e70f4756cf7b1, type: 3}
@@ -57,3 +56,4 @@ MonoBehaviour:
   - {fileID: 1286734534218367892, guid: 0e31fd84e55ff64418e2c20f3ffb82a3, type: 3}
   - {fileID: 141583315239951982, guid: 37d8389eb919da440b54f5892965245e, type: 3}
   - {fileID: 4586369349077067801, guid: 78c61c0f97ef3c34c9c8515de34e837d, type: 3}
+  - {fileID: 4674357320495252882, guid: 76064f47cd36406459d85c96c761ff9c, type: 3}

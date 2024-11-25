@@ -29,6 +29,10 @@ public class Police : NPCBase
         currentRotationSpeed = batonRotateSpeed;
 
         GameLogicManager.Instance.RegisterUpdatableObject(this);
+
+
+        AchievementManager.Instance.UpdateAchievement
+            (AchievementManager.Instance.achievements[1].achievementName, 1);
     }
 
     protected override void enemyAction()
