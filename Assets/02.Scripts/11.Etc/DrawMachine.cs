@@ -41,7 +41,7 @@ public class DrawMachine : MonoBehaviour
     public void SetDraw()
     {
         isDraw = !isDraw;
-        timer = 0.3f;
+        timer = -0.9f;
     }
 
     private void ShakeCapsule()

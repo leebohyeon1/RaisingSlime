@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -93,8 +94,18 @@ public class DrawManager : MonoBehaviour
         skin.transform.rotation = Quaternion.Euler(0, 180, 0);
         yield return new WaitForSeconds(1f);
 
+        // Reduce skin scale with DOTween
+        float scaleDuration = 0.5f;
+        skin.transform.DOScale(Vector3.zero, scaleDuration).OnComplete(() =>
+        {
+            Destroy(skin);
+        });
+
+
+        // Wait for the scale animation to complete
+        yield return new WaitForSeconds(scaleDuration);
+
         SetButtonsInteractable(true);
-        Destroy(skin);
     }
 
     private void DisableSkinComponents(GameObject skin)
@@ -119,7 +130,7 @@ public class DrawManager : MonoBehaviour
         if (prefabs[0] == null || spawnPoints[0] == null)
             return;
 
-        spawnedCapsule = Instantiate(prefabs[0], spawnPoints[0].position, spawnPoints[0].rotation, spawnPoints[0]);
+        spawnedCapsule = Instantiate(prefabs[Random.Range(0,4)], spawnPoints[0].position, spawnPoints[0].rotation, spawnPoints[0]);
         drawMachine.SetDraw();
         capsuleDirector = spawnedCapsule.GetComponent<PlayableDirector>();
         capsuleDirector.stopped += OnTimelineStopped;
@@ -127,10 +138,10 @@ public class DrawManager : MonoBehaviour
 
     public void SpawnCoin()
     {
-        if (prefabs[1] == null || spawnPoints[1] == null)
+        if (prefabs[4] == null || spawnPoints[1] == null)
             return;
 
-        var coin = Instantiate(prefabs[1], spawnPoints[1].position, spawnPoints[1].rotation, spawnPoints[1]);
+        var coin = Instantiate(prefabs[4], spawnPoints[1].position, spawnPoints[1].rotation, spawnPoints[1]);
         Destroy(coin, 1.5f);
     }
 

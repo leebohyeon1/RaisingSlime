@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     private bool canResume = true;
 
     // 게임오버 UI 기본 위치
-    private Vector2 gamOverOriginalPos;
+    private Vector2 gameOverOriginalPos;
     
 
     private void Awake()
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour, IUpdateable
 
         // 원래 UI의 위치
         pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition;
-        gamOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
+        gameOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
 
         restartBtn.onClick.AddListener(() => RetryBtn());
         exitBtn.onClick.AddListener(() => ExitBtn());
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour, IUpdateable
         }
     }
     
+
     #region 점수
 
     public void UpdateScore()
@@ -297,7 +298,7 @@ public class GameManager : MonoBehaviour, IUpdateable
         gameOverRect.anchoredPosition = offScreenPos;
 
         // 튕기는 듯한 애니메이션 효과
-        gameOverSequence.Append(gameOverRect.DOAnchorPos(gamOverOriginalPos, 0.8f).SetEase(Ease.OutBounce, 10));
+        gameOverSequence.Append(gameOverRect.DOAnchorPos(gameOverOriginalPos, 0.8f).SetEase(Ease.OutBounce, 10));
 
         // 0.1초 대기
         gameOverSequence.AppendInterval(0.1f).OnStart(() => totalScoreText.text = null);

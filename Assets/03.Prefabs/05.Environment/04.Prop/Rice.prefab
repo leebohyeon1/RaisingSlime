@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5845425141771906248}
   - component: {fileID: 3030442442878481711}
   - component: {fileID: 2433788311349649551}
-  - component: {fileID: 444224808007194185}
   - component: {fileID: 785961113427412797}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ricefield02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,22 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &444224808007194185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330408401086209576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  uniqueID: 4794722442445417091
-  updateError: 1
-  checkTime: 0.2
 --- !u!65 &785961113427412797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,7 +99,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5592140527179859861}
   - component: {fileID: 8468038110350593277}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Rice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
