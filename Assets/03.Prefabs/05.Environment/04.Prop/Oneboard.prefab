@@ -102,7 +102,7 @@ MonoBehaviour:
   size: 1
   slimeIncreaseSize: 0.02
   plusScore: 10
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!64 &3742947002132096000
 MeshCollider:
   m_ObjectHideFlags: 0

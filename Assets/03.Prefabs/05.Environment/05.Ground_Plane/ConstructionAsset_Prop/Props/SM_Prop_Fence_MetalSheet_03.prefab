@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0064001703, y: 0, z: 0.014227753}
-  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 5.033781, y: 4.0538154, z: 2.183524}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 6
-  slimeIncreaseSize: 0.05
-  plusScore: 60
+  slimeIncreaseSize: 0.03
+  plusScore: 25
   shrinkSpeed: 0.1
 --- !u!114 &1833861481887714122
 MonoBehaviour:

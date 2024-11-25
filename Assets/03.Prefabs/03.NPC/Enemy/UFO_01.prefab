@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.39, y: 7.44, z: 5.12}
-  m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8000001}
+  m_LocalScale: {x: -0.81, y: -0.81, z: -0.81}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2906721469063217518}
@@ -58,9 +58,9 @@ MonoBehaviour:
   collisionDamage: 1
   isExplosion: 0
   damagePerSecond: 0.1
-  rotationSpeed: 50
-  radius: 3
-  heightFactor: 1
+  rotationSpeed: 75
+  radius: 5
+  heightFactor: 1.5
   firePos: {fileID: 127341455046468130}
   lineRendererPrefab: {fileID: 108128, guid: cd749421939f0d74080e0ce8239d6432, type: 3}
   beamEndPrefab: {fileID: 154168, guid: 0752a83fe9350b9438cde0f607001f6b, type: 3}

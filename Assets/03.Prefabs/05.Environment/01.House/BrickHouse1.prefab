@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 3172673259904780818
+  uniqueID: 3239775599954223219
   updateError: 1
   checkTime: 0.2
 --- !u!114 &2830047322228606738
@@ -162,6 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7204403516014380345}
+  - component: {fileID: 2022245070124975729}
   m_Layer: 10
   m_Name: BrickHouse1
   m_TagString: Untagged
@@ -185,3 +186,19 @@ Transform:
   - {fileID: 948170712042778028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022245070124975729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851155036972477905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0300b81ab0becea44abebb9637399ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 11
+  slimeIncreaseSize: 0.03
+  plusScore: 25
+  shrinkSpeed: 0.1
