@@ -1,11 +1,11 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class DrawManager : MonoBehaviour
 {
@@ -23,6 +23,8 @@ public class DrawManager : MonoBehaviour
     private GameObject spawnedCapsule;
     private PlayableDirector capsuleDirector;
 
+    private Vector3[] defaultSize = new Vector3[2];
+
     private void Start()
     {
         Initialize();
@@ -35,6 +37,11 @@ public class DrawManager : MonoBehaviour
         haveMoney = gameData.money;
         UpdateMoneyText();
 
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            defaultSize[i] = buttons[i].transform.localScale;
+        }
+
         // Assign button listeners
         buttons[0].onClick.AddListener(() => Draw());
         buttons[1].onClick.AddListener(Exit);
@@ -42,27 +49,31 @@ public class DrawManager : MonoBehaviour
 
     private void Draw()
     {
-        var skinList = SkinManager.Instance.GetCloseSlime();
+        ExecuteButtonAction(buttons[1], defaultSize[1], () =>
+        {
 
-        if (haveMoney < drawPrice || skinList.Count == 0)
-            return;
+            var skinList = SkinManager.Instance.GetCloseSlime();
 
-        // Deduct money and start draw sequence
-        haveMoney -= drawPrice;
-        UpdateMoneyText();
+            if (haveMoney < drawPrice || skinList.Count == 0)
+                return;
 
-        drawMachine.SetDraw();
-        mainPlayableDirector.Play();
-        SetButtonsInteractable(false);
+            // Deduct money and start draw sequence
+            haveMoney -= drawPrice;
+            UpdateMoneyText();
 
-        // Select and unlock a random skin
-        newSkin = skinList[Random.Range(0, skinList.Count)];
-        SkinManager.Instance.OpenSlime(newSkin);
+            drawMachine.SetDraw();
+            mainPlayableDirector.Play();
+            SetButtonsInteractable(false);
 
-        // Save updated data
-        var gameData = SaveManager.Instance.LoadPlayerData();
-        gameData.money = haveMoney;
-        SaveManager.Instance.SavePlayerData(gameData);
+            // Select and unlock a random skin
+            newSkin = skinList[UnityEngine.Random.Range(0, skinList.Count)];
+            SkinManager.Instance.OpenSlime(newSkin);
+
+            // Save updated data
+            var gameData = SaveManager.Instance.LoadPlayerData();
+            gameData.money = haveMoney;
+            SaveManager.Instance.SavePlayerData(gameData);
+        });
     }
 
     private IEnumerator ShowSkin()
@@ -130,7 +141,7 @@ public class DrawManager : MonoBehaviour
         if (prefabs[0] == null || spawnPoints[0] == null)
             return;
 
-        spawnedCapsule = Instantiate(prefabs[Random.Range(0,4)], spawnPoints[0].position, spawnPoints[0].rotation, spawnPoints[0]);
+        spawnedCapsule = Instantiate(prefabs[UnityEngine.Random.Range(0,4)], spawnPoints[0].position, spawnPoints[0].rotation, spawnPoints[0]);
         drawMachine.SetDraw();
         capsuleDirector = spawnedCapsule.GetComponent<PlayableDirector>();
         capsuleDirector.stopped += OnTimelineStopped;
@@ -147,7 +158,11 @@ public class DrawManager : MonoBehaviour
 
     private void Exit()
     {
-        SceneManager.LoadScene(2);
+        ExecuteButtonAction(buttons[0], defaultSize[0], () =>
+        {
+            SceneManager.LoadScene(2);
+        });
+        
     }
 
     private void UpdateMoneyText()
@@ -161,5 +176,24 @@ public class DrawManager : MonoBehaviour
         {
             button.interactable = isInteractable;
         }
+    }
+
+    // 공통 애니메이션 및 액션 실행 함수
+    private void ExecuteButtonAction(Button button, Vector3 defaultScale, Action action)
+    {
+        AudioManager.Instance.PlaySFX("Btn");
+
+        RectTransform rectTransform = button.GetComponent<RectTransform>();
+        button.interactable = false;
+
+        rectTransform.DOScale(defaultScale / 2, 0.1f)
+            .OnComplete(() =>
+            {
+                rectTransform.DOScale(defaultScale, 0.1f).OnComplete(() =>
+                {
+                    button.interactable = true;
+                    action?.Invoke();
+                });
+            });
     }
 }
