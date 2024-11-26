@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraA : MonoBehaviour
 {
-    [SerializeField] private GameObject light;
+    [SerializeField] private GameObject lighta;
 
 
 
@@ -12,7 +12,7 @@ public class CameraA : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            light.SetActive(true);
+            lighta.SetActive(true);
             StartCoroutine(lightOff());
 
             AchievementManager.Instance.UpdateAchievement
@@ -24,7 +24,7 @@ public class CameraA : MonoBehaviour
     private IEnumerator lightOff()
     {
         yield return new WaitForSeconds(0.2f);
-        light.SetActive(false);
+        lighta.SetActive(false);
     }
 }
 

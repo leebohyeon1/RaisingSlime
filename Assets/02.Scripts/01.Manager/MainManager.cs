@@ -15,6 +15,8 @@ public class MainManager : MonoBehaviour
     private GameObject skinUi; 
     [TabGroup("UI"), LabelText("도전과제 UI"), SerializeField]
     private GameObject achievementUi;
+    [TabGroup("UI"), LabelText("도전과제 UI"), SerializeField]
+    private GameObject creditUi;
 
     //=================================================================================
     [TabGroup("UI", "버튼"), LabelText("메인 버튼"), SerializeField]
@@ -41,6 +43,13 @@ public class MainManager : MonoBehaviour
     private List<Vector3> defaultSkinScale = new List<Vector3>();
     private Vector2 skinUiOriginalPos;
     private Vector2 skinBtnOriginalPos;
+
+    [TabGroup("UI", "버튼"), LabelText("크레딧 종료 버튼"), SerializeField]
+    private Button creditExitBtn;
+
+    private Vector2 creditUiOriginalPos;
+    private Vector2 creditExitBtnOriginalPos;
+
 
     private float initialPositionX;
     private float scrollRange; // 스크롤 가능한 최대 범위
@@ -110,6 +119,9 @@ public class MainManager : MonoBehaviour
     {
         skinBtn[0].onClick.AddListener(() => MoveSkinGroupToRight());
         skinBtn[1].onClick.AddListener(() => MoveSkinGroupToLeft());
+        mainBtn[6].onClick.AddListener(() => CreditBtn());
+
+        creditExitBtn.onClick.AddListener(() => ExitCreditBtn());
 
         mainBtnDefaultScale = new Vector3[mainBtn.Length];
         for (int i = 0; i < mainBtn.Length; i++)
@@ -128,6 +140,9 @@ public class MainManager : MonoBehaviour
 
         achievementUiOriginalPos = achievementUi.GetComponent<RectTransform>().anchoredPosition;
         achievementBtnOriginalPos = achievementBtn.GetComponent<RectTransform>().anchoredPosition;
+
+        creditUiOriginalPos = creditUi.GetComponent<RectTransform>().anchoredPosition;
+        creditExitBtnOriginalPos = creditExitBtn.GetComponent<RectTransform>().anchoredPosition;
     }
 
     public void StartButton() // 게임 시작 버튼
@@ -164,7 +179,7 @@ public class MainManager : MonoBehaviour
     {
         ExecuteButtonAction(mainBtn[4], mainBtnDefaultScale[4], () => 
         { 
-            skinBtn[2].GetComponent<Button>().interactable = true; 
+            skinBtn[2].interactable = true; 
         });
 
         if (!skinUi.activeSelf)
@@ -299,6 +314,75 @@ public class MainManager : MonoBehaviour
  
     }
   
+    public void CreditBtn()
+    {
+        ExecuteButtonAction(mainBtn[6], mainBtnDefaultScale[6], () =>
+        {
+            creditExitBtn.interactable = true;
+        });
+
+        if (!creditUi.activeSelf)
+        {
+            RectTransform optionRect = creditUi.GetComponent<RectTransform>();
+            RectTransform btnRect = creditExitBtn.GetComponent<RectTransform>();
+
+            optionRect.anchoredPosition = creditUiOriginalPos;
+            btnRect.anchoredPosition = creditExitBtnOriginalPos;
+
+            creditUi.SetActive(true);
+
+            Vector2 offScreenPos = new Vector2(optionRect.anchoredPosition.x, Screen.height / 2 + optionRect.rect.height); // 화면 위의 임의 위치
+            Vector2 btnOffScreenPos = new Vector2(btnRect.anchoredPosition.x, Screen.height / 2 + btnRect.rect.height); // 화면 위의 임의 위치
+
+            optionRect.anchoredPosition = offScreenPos;
+            btnRect.anchoredPosition = btnOffScreenPos;
+
+            Sequence enterOptionSequence = DOTween.Sequence();
+
+            enterOptionSequence.Append(btnRect.DOAnchorPos(creditExitBtnOriginalPos, 0.8f).SetEase(Ease.OutElastic, 1.2f, 0.6f));
+            enterOptionSequence.Insert(0.1f, optionRect.DOAnchorPos(creditUiOriginalPos, 0.6f).SetEase(Ease.OutElastic, 1.2f, 0.6f).OnComplete(() => { MoveSkinGroupToCurSkin(); }));
+
+
+            enterOptionSequence.SetUpdate(true);
+        }
+    }
+
+    public void ExitCreditBtn()
+    {
+        AudioManager.Instance.PlaySFX("Btn");
+        creditExitBtn.interactable = false;
+
+        if (creditUi.activeSelf)
+        {
+            RectTransform optionRect = creditUi.GetComponent<RectTransform>();
+            RectTransform btnRect = creditExitBtn.GetComponent<RectTransform>();
+
+            // 화면 아래 위치 계산 (공통 코드로 이동)
+            Vector2 belowScreenPos = new Vector2(optionRect.anchoredPosition.x, -(Screen.height / 2 + optionRect.rect.height));
+            Vector2 btnBelowScreenPos = new Vector2(btnRect.anchoredPosition.x, belowScreenPos.y);
+
+            // 애니메이션 시퀀스
+            Sequence exitOptionSequence = DOTween.Sequence();
+
+            exitOptionSequence.Append(btnRect.DOAnchorPos(btnBelowScreenPos, 0.6f).SetEase(Ease.InBack, 0.5f));
+            exitOptionSequence.Insert(0.1f, optionRect.DOAnchorPos(belowScreenPos, 0.6f).SetEase(Ease.InBack, 1.7f));
+
+            // 애니메이션 완료 후, 원래 자리로 복귀하고 비활성화
+            exitOptionSequence.OnComplete(() =>
+            {
+                // 위치를 즉시 원래 자리로 설정
+                optionRect.anchoredPosition = creditUiOriginalPos;
+                btnRect.anchoredPosition = creditExitBtnOriginalPos;
+
+                creditUi.SetActive(false);
+            });
+
+            // 타임 스케일에 상관없이 애니메이션이 작동하도록 설정
+            exitOptionSequence.SetUpdate(true);
+
+        }
+
+    }
 
     // 공통 애니메이션 및 액션 실행 함수
     private void ExecuteButtonAction(Button button, Vector3 defaultScale, Action action)
