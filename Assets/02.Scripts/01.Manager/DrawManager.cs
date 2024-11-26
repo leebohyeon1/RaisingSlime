@@ -49,7 +49,7 @@ public class DrawManager : MonoBehaviour
 
     private void Draw()
     {
-        ExecuteButtonAction(buttons[1], defaultSize[1], () =>
+        ExecuteButtonAction(buttons[0], defaultSize[0], () =>
         {
 
             var skinList = SkinManager.Instance.GetCloseSlime();
@@ -158,7 +158,7 @@ public class DrawManager : MonoBehaviour
 
     private void Exit()
     {
-        ExecuteButtonAction(buttons[0], defaultSize[0], () =>
+        ExecuteButtonAction(buttons[1], defaultSize[1], () =>
         {
             SceneManager.LoadScene(2);
         });

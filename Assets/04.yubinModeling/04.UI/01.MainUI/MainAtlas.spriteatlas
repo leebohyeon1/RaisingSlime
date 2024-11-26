@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MainAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 427a02faef2ed9a4d8e6ceac5b7c50e1, type: 3}
+    - {fileID: 2800000, guid: f6aa7d773d0b73c42b26454ed98848ab, type: 3}
+    - {fileID: 2800000, guid: f4a8f9add6e835a49b7047f15cb66635, type: 3}
+    - {fileID: 2800000, guid: 86b0dec0310fedc458c632c7210c035f, type: 3}
+    - {fileID: 2800000, guid: e05c8ce7f04cca548ae17b4f41ebe4ee, type: 3}
+    - {fileID: 2800000, guid: 640adf74f9056ae4b86d78dc5398fb65, type: 3}
+    - {fileID: 2800000, guid: e6129419d96b78148b2950a1d093518d, type: 3}
+    - {fileID: 2800000, guid: 8234f1042021307439fc80abc09f1878, type: 3}
+    - {fileID: 2800000, guid: d69dcac2d9ab84a498762db47ab9c9d6, type: 3}
+    - {fileID: 2800000, guid: 82914ea3576eeb8429b61aa9d5675339, type: 3}
+    - {fileID: 2800000, guid: b473776c474fec84982fd95630025e96, type: 3}
+    - {fileID: 2800000, guid: d18cc26d6c5da314db9f7c3dc25ea398, type: 3}
+    - {fileID: 2800000, guid: 183c2f85591c95648adb7c6977f0d354, type: 3}
+    - {fileID: 2800000, guid: 7b324071efac6584d95ed18363b6f0bc, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 86b0dec0310fedc458c632c7210c035f: 21300000
+    - 7b324071efac6584d95ed18363b6f0bc: 21300000
+    - d69dcac2d9ab84a498762db47ab9c9d6: 21300000
+    - 82914ea3576eeb8429b61aa9d5675339: 21300000
+    - 8234f1042021307439fc80abc09f1878: 21300000
+    - 640adf74f9056ae4b86d78dc5398fb65: 21300000
+    - 183c2f85591c95648adb7c6977f0d354: 21300000
+    - f6aa7d773d0b73c42b26454ed98848ab: 21300000
+    - e05c8ce7f04cca548ae17b4f41ebe4ee: 21300000
+    - e6129419d96b78148b2950a1d093518d: 21300000
+    - 427a02faef2ed9a4d8e6ceac5b7c50e1: 21300000
+    - b473776c474fec84982fd95630025e96: 21300000
+    - d18cc26d6c5da314db9f7c3dc25ea398: 21300000
+    - f4a8f9add6e835a49b7047f15cb66635: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 86b0dec0310fedc458c632c7210c035f, type: 3}
+  - {fileID: 21300000, guid: 7b324071efac6584d95ed18363b6f0bc, type: 3}
+  - {fileID: 21300000, guid: d69dcac2d9ab84a498762db47ab9c9d6, type: 3}
+  - {fileID: 21300000, guid: 82914ea3576eeb8429b61aa9d5675339, type: 3}
+  - {fileID: 21300000, guid: 8234f1042021307439fc80abc09f1878, type: 3}
+  - {fileID: 21300000, guid: 640adf74f9056ae4b86d78dc5398fb65, type: 3}
+  - {fileID: 21300000, guid: 183c2f85591c95648adb7c6977f0d354, type: 3}
+  - {fileID: 21300000, guid: f6aa7d773d0b73c42b26454ed98848ab, type: 3}
+  - {fileID: 21300000, guid: e05c8ce7f04cca548ae17b4f41ebe4ee, type: 3}
+  - {fileID: 21300000, guid: e6129419d96b78148b2950a1d093518d, type: 3}
+  - {fileID: 21300000, guid: 427a02faef2ed9a4d8e6ceac5b7c50e1, type: 3}
+  - {fileID: 21300000, guid: b473776c474fec84982fd95630025e96, type: 3}
+  - {fileID: 21300000, guid: d18cc26d6c5da314db9f7c3dc25ea398, type: 3}
+  - {fileID: 21300000, guid: f4a8f9add6e835a49b7047f15cb66635, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - challenge_content_BG
+  - challenge_icon
+  - start_Button
+  - best_score
+  - skin_pick_icon
+  - setting_Button
+  - logo_Remake
+  - challenge_popup_BG
+  - MainTitle_Illustration 1
+  - skin_icon
+  - challenge_content_icon_BG
+  - credit
+  - exit_button
+  - challenge_popup_BG_2
+  m_RenderDataMap: {}
+  m_Tag: MainAtlas
+  m_IsVariant: 0

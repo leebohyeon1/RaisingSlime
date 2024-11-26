@@ -624,7 +624,7 @@ public class MainManager : MonoBehaviour
 
             AchievementPrefab achievementPrefab =achievementItem.GetComponent<AchievementPrefab>();
             // 도전 과제 UI 요소에 데이터 할당
-            achievementPrefab.InitialPrefab(achievement.achievementName, achievement.description);
+            achievementPrefab.InitialPrefab(achievement.achievementName, achievement.description, achievement.isCompleted, achievement.Icon);
             // = $"{achievement.currentProgress}/{achievement.goal}";
             //achievementItem.transform.Find("CompletedToggle").GetComponent<Toggle>().isOn = achievement.isCompleted;
         }

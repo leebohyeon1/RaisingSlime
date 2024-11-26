@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour, IUpdateable
     [TabGroup("UI", "게임"), LabelText("튜토리얼 이미지 삭제예정"), SerializeField]
     private GameObject tutorialUI;
     private float tutorialTimer = 0;
+    [TabGroup("UI", "게임"), LabelText("도전과제 배너"), SerializeField]
+    private GameObject achievementBanner;
+    private Vector2 bannerDefaultPos;
 
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
@@ -94,6 +97,8 @@ public class GameManager : MonoBehaviour, IUpdateable
         // 원래 UI의 위치
         pauseOriginalPos = pauseUI.GetComponent<RectTransform>().anchoredPosition;
         gameOverOriginalPos = gameOverUI.GetComponent<RectTransform>().anchoredPosition;
+        bannerDefaultPos = achievementBanner.GetComponent<RectTransform>().anchoredPosition;
+
 
         restartBtn.onClick.AddListener(() => RetryBtn());
         exitBtn.onClick.AddListener(() => ExitBtn());
@@ -151,6 +156,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         score += plusScore;
     }
+
     #endregion
 
     #region 돈
@@ -362,6 +368,38 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         return (int)score;
     }
+
+    public void ShowAchievementBanner(string achievementName)
+    {
+        DOTween.Kill(achievementBanner);
+
+        RectTransform bannerRect = achievementBanner.GetComponent<RectTransform>();
+        achievementBanner.transform.GetChild(0).GetComponent<TMP_Text>().text = achievementName;
+        // 시작 위치: 화면 아래로 이동
+        Vector2 offScreenPos = new Vector2(bannerDefaultPos.x, -(Screen.height / 2 + bannerRect.rect.height));
+        bannerRect.anchoredPosition = offScreenPos;
+
+        // 화면 너비 계산
+        float screenWidth = Screen.width;
+
+        // 애니메이션 시퀀스 생성
+        Sequence bannerSequence = DOTween.Sequence();
+
+        // 화면 아래에서 기본 위치로 이동 (0.8초)
+        bannerSequence.Append(bannerRect.DOAnchorPos(bannerDefaultPos, 0.5f).SetEase(Ease.OutBack))
+            .OnStart(() => { achievementBanner.SetActive(true); });
+
+        // 기본 위치에서 화면 밖으로 이동 (1.5초)
+        Vector2 moveRightPos = new Vector2(bannerDefaultPos.x + screenWidth + bannerRect.rect.width, bannerDefaultPos.y);
+        bannerSequence.Insert(1f,bannerRect.DOAnchorPos(moveRightPos, 0.5f).SetEase(Ease.Linear))
+            .OnComplete(() => { achievementBanner.SetActive(false); });
+
+        bannerSequence.SetUpdate(true);
+        // 시퀀스 실행
+        bannerSequence.Play();
+    }
+
+
 
     void OnDestroy()
     {

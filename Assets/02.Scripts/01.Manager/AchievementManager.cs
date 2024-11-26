@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Achievement
@@ -21,6 +22,8 @@ public class Achievement
     public int currentProgress;  // 현재 진행 상황
     [LabelText("완료")]
     public bool isCompleted;
+    [LabelText("아이콘")]
+    public Sprite Icon;
 
     public bool CheckCompletion()
     {
@@ -35,6 +38,8 @@ public class AchievementManager : Singleton<AchievementManager>
     private string baseKey = "default-base-key-32-byte-long"; // 기본 키 (32바이트로 설정)
     [LabelText("도전 과제")]
     public List<Achievement> achievements { get; private set; } = new List<Achievement>();
+
+    public Sprite[] sprites;
 
     // CSV 파일의 해시 값을 저장하기 위한 키
     private const string CsvHashPlayerPrefsKey = "CsvHash";
@@ -81,8 +86,27 @@ public class AchievementManager : Singleton<AchievementManager>
 
         achievements = ParseAchievementsFromCSV(csvData);
 
+        // **스프라이트 매핑 추가**
+        AssignSpritesToAchievements();
+
         Debug.Log("Achievements loaded: " + achievements.Count);
     }
+
+    void AssignSpritesToAchievements()
+    {
+        for (int i = 0; i < achievements.Count; i++)
+        {
+            if (i < sprites.Length) // sprites 배열 크기 이내일 때만 매핑
+            {
+                achievements[i].Icon = sprites[i];
+            }
+            else
+            {
+                Debug.LogWarning($"No sprite available for achievement: {achievements[i].achievementName}");
+            }
+        }
+    }
+
 
     void CreateOrUpdateAchievementFile(string currentCsvHash, string encryptionKey)
     {
@@ -172,10 +196,16 @@ public class AchievementManager : Singleton<AchievementManager>
             if (achievement.CheckCompletion())
             {
                 achievement.isCompleted = true;
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.ShowAchievementBanner(achievementName);
+                }
+
                 Debug.Log("Achievement completed: " + achievement.achievementName);
                 // UI 갱신 또는 보상 지급
             }
 
+         
             // CSV 파일에 저장
             SaveAchievementsToCSV();
         }

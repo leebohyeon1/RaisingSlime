@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IUpdateable
 
         ApplyExtraGravity(); // 공중에 있을 때 중력 가속도 적용
 
-        if (transform.position.y < -2f)
+        if (transform.position.y < -5f)
         {
             GameManager.Instance.GameOver();
 
@@ -328,12 +328,11 @@ private void OnCollisionEnter(Collision collision)
 
         if(collision.gameObject.CompareTag("Sea"))
         {
-            GameManager.Instance.GameOver();
-
             AchievementManager.Instance.UpdateAchievement
-                 (AchievementManager.Instance.achievements[8].achievementName, 1);
+               (AchievementManager.Instance.achievements[8].achievementName, 1);
 
-
+            GameManager.Instance.GameOver();
+          
             Destroy(gameObject);
         }
     }

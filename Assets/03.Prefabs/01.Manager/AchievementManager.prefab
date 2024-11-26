@@ -45,3 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csv: {fileID: 4900000, guid: c94763210abc78c43a0e851e387f66e6, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: da3d7ef4da8d40245b0650590793c9ea, type: 3}
+  - {fileID: 21300000, guid: c8df50b1359115840a7174c0493f88ee, type: 3}
+  - {fileID: 21300000, guid: 1c28c4b7dc8606740a9790260d5f07c9, type: 3}
+  - {fileID: 21300000, guid: fe691562489484c4aa6fe6e5c6f76ce8, type: 3}
+  - {fileID: 21300000, guid: 44c36ac8226ef5f458943060018e0358, type: 3}
+  - {fileID: 21300000, guid: 89eb9c3f034afa84a81dabce78bcbd43, type: 3}
+  - {fileID: 21300000, guid: 92a157e49647919438a65c1a23185b60, type: 3}
+  - {fileID: 21300000, guid: 06b569ddd3b92be4a878c5422c48fb2e, type: 3}
+  - {fileID: 21300000, guid: e47b2d2db98ad9546806a9706ecab75c, type: 3}
+  - {fileID: 21300000, guid: 308ffe831dd7a6146b87037ac9a4b056, type: 3}
+  - {fileID: 0}
