@@ -82,6 +82,9 @@ public class Soilder : NPCBase
         if (fireCooldown <= 0f)
         {
             Shoot();
+
+            AudioManager.Instance.PlaySFX("shoot1");
+
             fireCooldown = 1f / attackSpeed;
         }
     }

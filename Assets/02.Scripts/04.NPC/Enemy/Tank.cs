@@ -137,6 +137,7 @@ public class Tank : NPCBase
         if (fireCooldown <= 0f)
         {
             Shoot();
+            AudioManager.Instance.PlaySFX("cluster_impact");
             fireCooldown = 1f / attackSpeed;
         }
     }

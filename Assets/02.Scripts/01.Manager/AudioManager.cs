@@ -118,17 +118,39 @@ public class AudioManager : Singleton<AudioManager>
     #endregion
 
     #region SFX Methods
-    public void PlaySFX(string clipName)
+    public void PlaySFX(string clipName, bool isloop = false)
     {
         if (sfxDictionary.ContainsKey(clipName))
         {
             AudioSource source = sfxSources[currentSfxIndex];
-            source.PlayOneShot(sfxDictionary[clipName]);
+            if (isloop)
+            {
+                source.clip = sfxDictionary[clipName];
+                source.loop = true;
+                source.Play();
+            }
+            else
+            {
+                source.PlayOneShot(sfxDictionary[clipName]);
+           
+            }
             currentSfxIndex = (currentSfxIndex + 1) % sfxSources.Count; // 다음 인덱스로 이동
         }
         else
         {
             Debug.LogWarning($"SFX 클립 '{clipName}'을(를) 찾을 수 없습니다.");
+        }
+    }
+
+    public void StopSFX(string clipName)
+    {
+        foreach (var source in sfxSources)
+        {
+            if (source.isPlaying && source.clip != null && source.clip.name == clipName)
+            {
+                source.Stop();
+                source.loop = false; // 루프 해제
+            }
         }
     }
 

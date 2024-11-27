@@ -21,6 +21,8 @@ public class Gold : EatAbleObjectBase
         base.Eaten(slimeTrans);
 
         GameManager.Instance.IncreaseMoney();
+
+        AudioManager.Instance.PlaySFX("EatCoin");
     }
 
     public override void Digested()

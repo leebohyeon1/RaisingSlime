@@ -62,6 +62,14 @@ public class UFO : NPCBase
 
         AchievementManager.Instance.UpdateAchievement
             (AchievementManager.Instance.achievements[3].achievementName, 1);
+
+        AudioManager.Instance.PlaySFX("Laser",true);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        AudioManager.Instance.StopSFX("Laser");
     }
 
     protected override void enemyAction()

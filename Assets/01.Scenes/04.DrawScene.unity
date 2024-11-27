@@ -287,7 +287,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &179395694
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBF51\uAE30\n"
+  m_text: "50 \uACE8\uB4DC\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 228cdaff01faaaf4c90bf63f7606ae33, type: 2}
   m_sharedMaterial: {fileID: -6232037787564303727, guid: 228cdaff01faaaf4c90bf63f7606ae33,
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1605db58f8974dbebec9b02e6a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawPrice: 0
+  drawPrice: 10
   moneyText: {fileID: 265351542}
   buttons:
   - {fileID: 2075546169}
@@ -1310,6 +1310,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 41cfbdf100c3d724fbf0386a535b0528, type: 2}
     - {fileID: 11400000, guid: a6658283563329c48baa02ebc9d30f95, type: 2}
+    - {fileID: 11400000, guid: 6638c485313c3b04fa53b34f55582871, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -1330,6 +1331,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1232910709}
           m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
           m_MethodName: SpawnCoin
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1232910709}
+          m_TargetAssemblyTypeName: DrawManager, Assembly-CSharp
+          m_MethodName: PlayMachineSFX
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2433,7 +2448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dc8b8a76947ac584283e5d6c96694169, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5e9dc9d46e648244b631b36eb2f1425, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

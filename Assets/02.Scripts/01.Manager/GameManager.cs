@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     // 게임오버 UI 기본 위치
     private Vector2 gameOverOriginalPos;
     
-
+    private bool isBGM2 = false;
     private void Awake()
     {
         if (Instance == null)
@@ -149,6 +149,13 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         score += Time.deltaTime;
         scoreText.text = GetScore().ToString("F0");
+
+        if(score > 10000 && !isBGM2)
+        {
+            isBGM2 = true;
+            AudioManager.Instance.StopBGM();
+            AudioManager.Instance.PlayBGM("GameBGM2");
+        }
     }
 
     [Button]

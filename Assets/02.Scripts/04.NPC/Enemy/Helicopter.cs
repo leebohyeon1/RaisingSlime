@@ -144,6 +144,7 @@ public class Helicopter : NPCBase
         for (int i = 0; i < bulletsPerShot; i++)
         {
             FireBullet();
+            AudioManager.Instance.PlaySFX("shoot1");
             yield return new WaitForSeconds(shootInterval);
         }
 

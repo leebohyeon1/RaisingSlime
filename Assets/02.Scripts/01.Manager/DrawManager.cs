@@ -81,6 +81,8 @@ public class DrawManager : MonoBehaviour
         capsuleDirector.stopped -= OnTimelineStopped;
         Destroy(spawnedCapsule);
 
+        AudioManager.Instance.PlaySFX("OpenOrEnable4a");
+
         // Instantiate and configure skin
         var skin = Instantiate(newSkin, new Vector3(0, 3, -5), Quaternion.Euler(0, 180, 0));
         skin.transform.localScale = Vector3.one * 2;
@@ -153,7 +155,14 @@ public class DrawManager : MonoBehaviour
             return;
 
         var coin = Instantiate(prefabs[4], spawnPoints[1].position, spawnPoints[1].rotation, spawnPoints[1]);
+        AudioManager.Instance.PlaySFX("DrawCoin");
+        
         Destroy(coin, 1.5f);
+    }
+    
+    public void PlayMachineSFX()
+    {
+        AudioManager.Instance.PlaySFX("SlotMachine");
     }
 
     private void Exit()

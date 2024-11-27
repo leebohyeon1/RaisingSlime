@@ -51,5 +51,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5e265ec0dbd87d04fb2ff7e3a6bd0fe7, type: 3}
   sfxSourceCount: 5
   sfxClips:
-  - {fileID: 8300000, guid: ef6c112869eaa2849bbf62cd43fc7f8b, type: 3}
+  - {fileID: 8300000, guid: 028da1dc76fc74a9881aa389a9f19e60, type: 3}
   - {fileID: 8300000, guid: c2ba48f5a10a4d340b90fb084c9ae8ef, type: 3}
+  - {fileID: 8300000, guid: dff8046012e094b4ba40806fc5f32089, type: 3}
+  - {fileID: 8300000, guid: ee12793e95d724ef6835026245241b53, type: 3}
+  - {fileID: 8300000, guid: 807f092fa11d4bc4ea711b11c0993483, type: 3}
+  - {fileID: 8300000, guid: 9429470d56cbb4b438f0c13dc0617363, type: 3}
+  - {fileID: 8300000, guid: fdbc18edd950bf74ba6ef63190b4362c, type: 3}
+  - {fileID: 8300000, guid: 6791540a4977268429bfb64ca9240e4b, type: 3}
+  - {fileID: 8300000, guid: ca96f19a53c999e45b13c177033f31f8, type: 3}
+  - {fileID: 8300000, guid: d59021f1cef8f7941a450b1ef95bcd16, type: 3}
+  - {fileID: 8300000, guid: accf0e35b18b08f46a066245400ffe9a, type: 3}
+  - {fileID: 8300000, guid: b49002a66e090469eaf946684e9ef9f0, type: 3}

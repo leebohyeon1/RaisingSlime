@@ -204,7 +204,7 @@ public class Player : MonoBehaviour, IUpdateable
     }
 
     // 적을 흡수하는 기능
-    private void CompareSize(GameObject eatAble, bool isTrigger = false)
+    private void CompareSize(GameObject eatAble)
     {
 
         EatAbleObjectBase eatAbleObjectBase = eatAble.GetComponentInParent<EatAbleObjectBase>();
@@ -216,11 +216,6 @@ public class Player : MonoBehaviour, IUpdateable
 
             // 자신보다 사이즈가 작으면 먹는다.
             Eat(eatAbleObjectBase);
-
-            if (!isTrigger)
-            {
-                rb.velocity = movement / 3;
-            }
         }
         else if (eatAble.GetComponentInParent<NPCBase>())
         {
@@ -342,7 +337,7 @@ private void OnCollisionEnter(Collision collision)
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
         if (collider.GetComponentInParent<EatAbleObjectBase>())
         {
-            CompareSize(collider.gameObject,true);
+            CompareSize(collider.gameObject);
         }
 
     }

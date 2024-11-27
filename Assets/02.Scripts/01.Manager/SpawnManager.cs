@@ -1,5 +1,6 @@
 using Pathfinding;
 using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -61,6 +62,11 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
     [SerializeField, LabelText("스폰 가능한 레이어")]
     private LayerMask surfaceLayerMask;
+
+
+    private bool isPolice = false, isPoliceCar = false;
+    private Coroutine policeSoundCoroutine;
+    private Coroutine policeCarSoundCoroutine;
 
     private void Awake()
     {
@@ -327,7 +333,31 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
             enemyComponent.SetTarget(slimeTrans);
         }
-        
+
+        // Police 조건 확인
+        if (enemyPrefab.GetComponent<Police>() && !isPolice)
+        {
+            isPolice = true;
+
+            // Police 효과음 코루틴 시작
+            if (policeSoundCoroutine == null)
+            {
+                policeSoundCoroutine = StartCoroutine(PlayPoliceSoundRoutine());
+            }
+        }
+
+        // PoliceCar 조건 확인
+        if (enemyPrefab.GetComponent<PoliceCar>() && !isPoliceCar)
+        {
+            isPoliceCar = true;
+
+            // Police 효과음 코루틴 시작
+            if (policeCarSoundCoroutine == null)
+            {
+                policeCarSoundCoroutine = StartCoroutine(PlayPoliceCarSoundRoutine());
+            }
+        }
+
     }
 
     // 폭격기 스폰 함수
@@ -638,6 +668,27 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(citizenSpawnTransforms[i].position, citizenSpawnRange[i]);
+        }
+    }
+
+
+    // Police 효과음 타이머 코루틴
+    private IEnumerator PlayPoliceSoundRoutine()
+    {
+        while (isPolice)
+        {
+            AudioManager.Instance.PlaySFX("Police");
+            yield return new WaitForSeconds(5f); // 5초 간격으로 재생
+        }
+    }
+
+    // Police 효과음 타이머 코루틴
+    private IEnumerator PlayPoliceCarSoundRoutine()
+    {
+        while (isPoliceCar)
+        {
+            AudioManager.Instance.PlaySFX("PoliceCar");
+            yield return new WaitForSeconds(7f); // 5초 간격으로 재생
         }
     }
 }

@@ -15,6 +15,8 @@ public class CameraA : MonoBehaviour
             lighta.SetActive(true);
             StartCoroutine(lightOff());
 
+            AudioManager.Instance.PlaySFX("CameraSnapshot");
+
             AchievementManager.Instance.UpdateAchievement
                 (AchievementManager.Instance.achievements[7].achievementName, 1);
         }
