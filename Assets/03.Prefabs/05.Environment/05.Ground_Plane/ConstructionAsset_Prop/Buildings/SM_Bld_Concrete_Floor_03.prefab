@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 65606168981964342}
   - component: {fileID: 4418778454806501131}
   - component: {fileID: 1996518852714002036}
+  - component: {fileID: 3049268880413819942}
   m_Layer: 10
   m_Name: SM_Bld_Concrete_Floor_03
   m_TagString: Untagged
@@ -135,7 +136,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 1073741824
   uniqueID: 2095107936171018854
   updateError: 1
   checkTime: 0.2
+--- !u!114 &3049268880413819942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507543799964052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15bfe202f78a545b9c19d6b9b81feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

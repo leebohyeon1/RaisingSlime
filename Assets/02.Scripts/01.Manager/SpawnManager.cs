@@ -270,7 +270,7 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         slimeTrans = player.transform;
 
 
-        GetComponent<ProceduralGridMover>().target = player.transform;
+        GetComponent<ProceduralGraphMover>().target = player.transform;
     }
 
     public Transform GetPlayerTrans()
