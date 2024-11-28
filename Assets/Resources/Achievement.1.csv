@@ -1,4 +1,4 @@
-﻿AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsAcquisition
+﻿AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsReceipt
 첫 살생,움직이는 무언가 흡수,1,0,FALSE,10,FALSE
 경찰이다!,경찰 등장,1,0,FALSE,20,FALSE
 저건 강철 슬라임인가?,탱크 등장,1,0,FALSE,30,FALSE

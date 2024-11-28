@@ -714,7 +714,7 @@ public class MainManager : MonoBehaviour
                 achievement.description, 
                 achievement.isCompleted,
                 achievement.compensation,
-                achievement.isAcquisition, 
+                achievement.isReceipt, 
                 achievement.Icon,
                 this
                 );

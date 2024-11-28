@@ -13,7 +13,7 @@ public class AchievementPrefab : MonoBehaviour
     [SerializeField] private Image Icon;
     private Button compensationButton;
     private int compensationCoin;
-    private bool isAcquisition = false;
+    private bool isReceipt = false;
     [SerializeField] private GameObject compensationImage;
     
     //public Image unlockIcon;
@@ -31,7 +31,7 @@ public class AchievementPrefab : MonoBehaviour
     }
 
     public void InitialPrefab(string title, string description,
-     bool isCompleted, int compensation, bool isAcquisition, Sprite sprite, MainManager mainManager)
+     bool isCompleted, int compensation, bool isReceipt, Sprite sprite, MainManager mainManager)
     {
         this.mainManager = mainManager;
         // 버튼 컴포넌트 초기화
@@ -44,7 +44,7 @@ public class AchievementPrefab : MonoBehaviour
         titleText.text = title;
         descriptionText.text = description;
         compensationCoin = compensation;
-        this.isAcquisition = isAcquisition;
+        this.isReceipt = isReceipt;
 
         if (isCompleted)
         {
@@ -57,7 +57,7 @@ public class AchievementPrefab : MonoBehaviour
             compensationImage.GetComponent<TMP_Text>().text = "+ " +  compensationCoin.ToString();
 
 
-            if (!isAcquisition)
+            if (!isReceipt)
             {
                 compensationButton.interactable = true;
             }
@@ -76,9 +76,9 @@ public class AchievementPrefab : MonoBehaviour
 
     private void GetCompensation()
     {
-        if (!isAcquisition)
+        if (!isReceipt)
         {
-            isAcquisition = true;
+            isReceipt = true;
             compensationButton.interactable = false;
             compensationImage.GetComponent<TMP_Text>().text = "수령 완료";
 

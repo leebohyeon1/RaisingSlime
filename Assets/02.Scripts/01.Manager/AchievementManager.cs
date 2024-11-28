@@ -26,7 +26,7 @@ public class Achievement
     [LabelText("보상")]
     public int compensation;
     [LabelText("보상")]
-    public bool isAcquisition;
+    public bool isReceipt;
 
     [LabelText("아이콘")]
     public Sprite Icon;
@@ -79,7 +79,7 @@ public class AchievementManager : Singleton<AchievementManager>
 
         // 이전에 저장된 CSV 해시 값 가져오기
         string savedCsvHash = PlayerPrefs.GetString(CsvHashPlayerPrefsKey, "");
-        Debug.Log(currentCsvHash + " /====/ " + savedCsvHash);
+
         // CSV 파일이 변경되었는지 확인
         if (!File.Exists(filePath) || currentCsvHash != savedCsvHash)
         {
@@ -95,8 +95,6 @@ public class AchievementManager : Singleton<AchievementManager>
 
         // **스프라이트 매핑 추가**
         AssignSpritesToAchievements();
-
-        Debug.Log("Achievements loaded: " + achievements.Count);
     }
 
     void AssignSpritesToAchievements()
@@ -141,7 +139,7 @@ public class AchievementManager : Singleton<AchievementManager>
                 // 기존 성취도가 있을 경우 진행도 유지
                 newAchievement.currentProgress = existingAchievement.currentProgress;
                 newAchievement.isCompleted = existingAchievement.isCompleted;
-                newAchievement.isAcquisition = existingAchievement.isAcquisition;
+                newAchievement.isReceipt = existingAchievement.isReceipt;
             }
         }
 
@@ -198,7 +196,7 @@ public class AchievementManager : Singleton<AchievementManager>
                     currentProgress = headerIndexMap.ContainsKey("CurrentProgress") && !string.IsNullOrWhiteSpace(data[headerIndexMap["CurrentProgress"]]) ? int.Parse(data[headerIndexMap["CurrentProgress"]]) : 0,
                     isCompleted = headerIndexMap.ContainsKey("IsCompleted") && !string.IsNullOrWhiteSpace(data[headerIndexMap["IsCompleted"]]) && data[headerIndexMap["IsCompleted"]].ToLower() == "true",
                     compensation = headerIndexMap.ContainsKey("Compensation") && !string.IsNullOrWhiteSpace(data[headerIndexMap["Compensation"]]) ? int.Parse(data[headerIndexMap["Compensation"]]) : 0,
-                    isAcquisition = headerIndexMap.ContainsKey("IsAcquisition") && !string.IsNullOrWhiteSpace(data[headerIndexMap["IsAcquisition"]]) && data[headerIndexMap["IsAcquisition"]].ToLower() == "true",                 
+                    isReceipt = headerIndexMap.ContainsKey("IsReceipt") && !string.IsNullOrWhiteSpace(data[headerIndexMap["IsReceipt"]]) && data[headerIndexMap["IsReceipt"]].ToLower() == "true",                 
                 };
 
                 parsedAchievements.Add(achievement);
@@ -216,7 +214,7 @@ public class AchievementManager : Singleton<AchievementManager>
 
         if (isAcquisition)
         {
-            achievement.isAcquisition = true;
+            achievement.isReceipt = true;
         }
 
         if (!achievement.isCompleted)
@@ -246,11 +244,11 @@ public class AchievementManager : Singleton<AchievementManager>
     void SaveAchievementsToCSV()
     {
         StringBuilder csvData = new StringBuilder();
-        csvData.AppendLine("AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsAcquisition");
+        csvData.AppendLine("AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsReceipt");
 
         foreach (var achievement in achievements)
         {
-            csvData.AppendLine($"{achievement.achievementName},{achievement.description},{achievement.goal},{achievement.currentProgress},{achievement.isCompleted},{achievement.compensation},{achievement.isAcquisition}");
+            csvData.AppendLine($"{achievement.achievementName},{achievement.description},{achievement.goal},{achievement.currentProgress},{achievement.isCompleted},{achievement.compensation},{achievement.isReceipt}");
         }
 
         string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
