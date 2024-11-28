@@ -25,9 +25,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604004903245822830}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9238728, z: -0, w: -0.38269967}
+  m_LocalRotation: {x: -0, y: -0.923873, z: 0, w: -0.38269934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1179910491336302688}
@@ -48,7 +48,7 @@ MonoBehaviour:
   size: 10
   slimeIncreaseSize: 0.1
   plusScore: 0
-  shrinkSpeed: 0.5
+  shrinkSpeed: 0.1
 --- !u!1 &7907173924309024445
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,8 +79,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -1.7763568e-15, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4648042651110825269}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
