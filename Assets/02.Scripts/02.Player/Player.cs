@@ -152,6 +152,7 @@ public class Player : MonoBehaviour, IUpdateable
         movement = newMovement;
         lastMovementDirection = movement.normalized; // 현재 방향 저장
 
+      
         rb.AddForce(movement * Time.deltaTime, ForceMode.VelocityChange);
     }
 

@@ -199,6 +199,18 @@ public class SpawnManager : MonoBehaviour, IUpdateable
         {
             step++;
             SpawnEnemiesForCurrentStep();
+
+            switch (step)
+            { 
+                case 1:
+                case 2:
+                case 3:
+                case 6:
+                case 12:
+                    GameManager.Instance.UpdateStar();
+                    break;
+            }
+
         }
     }
 

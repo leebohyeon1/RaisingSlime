@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour, IUpdateable
     [TabGroup("UI", "게임"), LabelText("도전과제 배너"), SerializeField]
     private GameObject achievementBanner;
     private Vector2 bannerDefaultPos;
+    [TabGroup("UI", "게임"), LabelText("별"), SerializeField]
+    private GameObject[] starIccn;
+    private int curStarCount = 0;
+
 
     [TabGroup("UI", "일시정지"), LabelText("일시정지 UI"), SerializeField]
     private GameObject pauseUI;
@@ -113,6 +117,11 @@ public class GameManager : MonoBehaviour, IUpdateable
         AudioManager.Instance.PlayBGM("GameBGM1");
 
         Cursor.lockState = CursorLockMode.None;
+
+        for (int i = 0; i < starIccn.Length; i++)
+        {
+            starIccn[i].transform.localScale = Vector3.zero;
+        }
     }
 
     public virtual void OnUpdate(float dt) 
@@ -162,6 +171,13 @@ public class GameManager : MonoBehaviour, IUpdateable
     public void IncreaseScore(float plusScore)
     {
         score += plusScore;
+    }
+
+    public void UpdateStar()
+    {
+        starIccn[curStarCount].SetActive(true);
+        starIccn[curStarCount].transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutElastic);
+        curStarCount++;
     }
 
     #endregion
