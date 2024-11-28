@@ -69,6 +69,7 @@ public class MainManager : MonoBehaviour
     [TabGroup("UI", "버튼"), LabelText("도전과제 버튼"), SerializeField]
     private Button achievementBtn;
 
+
     private Vector2 achievementUiOriginalPos;
     private Vector2 achievementBtnOriginalPos;
 
@@ -708,11 +709,18 @@ public class MainManager : MonoBehaviour
 
             AchievementPrefab achievementPrefab =achievementItem.GetComponent<AchievementPrefab>();
             // 도전 과제 UI 요소에 데이터 할당
-            achievementPrefab.InitialPrefab(achievement.achievementName, achievement.description, achievement.isCompleted, achievement.Icon);
-            // = $"{achievement.currentProgress}/{achievement.goal}";
-            //achievementItem.transform.Find("CompletedToggle").GetComponent<Toggle>().isOn = achievement.isCompleted;
+            achievementPrefab.InitialPrefab(
+                achievement.achievementName, 
+                achievement.description, 
+                achievement.isCompleted,
+                achievement.compensation,
+                achievement.isAcquisition, 
+                achievement.Icon,
+                this
+                );
         }
     }
+
     #endregion
 
     // 저장된 데이터 불러오기
@@ -725,9 +733,13 @@ public class MainManager : MonoBehaviour
         skinIndex = data.curPlayerIndex;
 
         bestScoreText.text = bestScore.ToString();
+        moneyText.text = money.ToString(); 
+    }
+
+    public void UpdateGold(GameData data)
+    {
+        money = data.money;
         moneyText.text = money.ToString();
-
-
     }
 
     // 버튼 클릭 시 흔들리는 애니메이션 적용

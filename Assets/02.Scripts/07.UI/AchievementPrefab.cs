@@ -6,16 +6,23 @@ using UnityEngine.UI;
 
 public class AchievementPrefab : MonoBehaviour
 {
+    private MainManager mainManager;
     [SerializeField] private Image IconImage;
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Image Icon;
+    private Button compensationButton;
+    private int compensationCoin;
+    private bool isAcquisition = false;
+    [SerializeField] private GameObject compensationImage;
+    
     //public Image unlockIcon;
     //public Image lockIcon;
 
     void Start()
     {
-        
+        compensationButton = GetComponent<Button>();
+        compensationButton.onClick.AddListener(GetCompensation);
     }
 
     void Update()
@@ -23,14 +30,66 @@ public class AchievementPrefab : MonoBehaviour
         
     }
 
-    public void InitialPrefab(string title, string description, bool isCompleted, Sprite sprite)
+    public void InitialPrefab(string title, string description,
+     bool isCompleted, int compensation, bool isAcquisition, Sprite sprite, MainManager mainManager)
     {
+        this.mainManager = mainManager;
+        // 버튼 컴포넌트 초기화
+        if (compensationButton == null)
+        {
+            compensationButton = GetComponent<Button>();
+            
+        }
+
         titleText.text = title;
         descriptionText.text = description;
+        compensationCoin = compensation;
+        this.isAcquisition = isAcquisition;
 
         if (isCompleted)
         {
-            Icon.sprite = sprite;
+            if (Icon != null)
+            {
+                Icon.sprite = sprite;
+            }
+
+            compensationImage.SetActive(true);
+            compensationImage.GetComponent<TMP_Text>().text = "+ " +  compensationCoin.ToString();
+
+
+            if (!isAcquisition)
+            {
+                compensationButton.interactable = true;
+            }
+            else
+            {
+                compensationImage.GetComponent<TMP_Text>().text = "수령 완료";
+            }
         }
+        else
+        {
+            compensationButton.interactable = false;
+            compensationImage.SetActive(false);
+        }
+    }
+
+
+    private void GetCompensation()
+    {
+        if (!isAcquisition)
+        {
+            isAcquisition = true;
+            compensationButton.interactable = false;
+            compensationImage.GetComponent<TMP_Text>().text = "수령 완료";
+
+
+            GameData gameData = SaveManager.Instance.LoadPlayerData();
+            gameData.money += (uint)compensationCoin;
+            SaveManager.Instance.SavePlayerData(gameData);
+
+            mainManager.UpdateGold(gameData);
+
+            AchievementManager.Instance.UpdateAchievement(titleText.text, 0, true);
+        }   
     }
 }

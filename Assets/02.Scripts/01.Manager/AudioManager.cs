@@ -80,6 +80,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         return bgmSource.clip == bgmDictionary[clipName]? true : false;
     }
+
     public void PlayBGM(string clipName, bool loop = true)
     {
         if (bgmDictionary.ContainsKey(clipName))
@@ -123,6 +124,7 @@ public class AudioManager : Singleton<AudioManager>
         if (sfxDictionary.ContainsKey(clipName))
         {
             AudioSource source = sfxSources[currentSfxIndex];
+            
             if (isloop)
             {
                 source.clip = sfxDictionary[clipName];
@@ -134,6 +136,7 @@ public class AudioManager : Singleton<AudioManager>
                 source.PlayOneShot(sfxDictionary[clipName]);
            
             }
+
             currentSfxIndex = (currentSfxIndex + 1) % sfxSources.Count; // 다음 인덱스로 이동
         }
         else

@@ -1,0 +1,12 @@
+﻿AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsAcquisition
+첫 살생,움직이는 무언가 흡수,1,0,FALSE,10,FALSE
+경찰이다!,경찰 등장,1,0,FALSE,20,FALSE
+저건 강철 슬라임인가?,탱크 등장,1,0,FALSE,30,FALSE
+이건 좀…,우주선 등장,1,0,FALSE,40,FALSE
+무자비한 학살자,시민 100명 흡수,100,0,FALSE,23,FALSE
+마지막 관람,대관람차 탑승,1,0,FALSE,35,FALSE
+무적이야!,무적 장소 찾기,1,0,FALSE,70,FALSE
+찰칵,카메라에서 사진 찍기,1,0,FALSE,15,FALSE
+녹아내린다….,물에 빠지기,1,0,FALSE,5,FALSE
+교통사고!!!!!,차에 치이기,1,0,FALSE,3,FALSE
+테스트,테스트 ,1,0,FALSE,20,FALSE

@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1605db58f8974dbebec9b02e6a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawPrice: 10
+  drawPrice: 50
   moneyText: {fileID: 265351542}
   buttons:
   - {fileID: 2075546169}

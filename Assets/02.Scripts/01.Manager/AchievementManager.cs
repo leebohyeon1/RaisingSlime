@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -22,6 +23,11 @@ public class Achievement
     public int currentProgress;  // 현재 진행 상황
     [LabelText("완료")]
     public bool isCompleted;
+    [LabelText("보상")]
+    public int compensation;
+    [LabelText("보상")]
+    public bool isAcquisition;
+
     [LabelText("아이콘")]
     public Sprite Icon;
 
@@ -67,12 +73,13 @@ public class AchievementManager : Singleton<AchievementManager>
 
     void LoadAchievementsFromCSV()
     {
+     
         string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
         string currentCsvHash = GetHash(csv.text); // 현재 CSV의 해시 값
 
         // 이전에 저장된 CSV 해시 값 가져오기
         string savedCsvHash = PlayerPrefs.GetString(CsvHashPlayerPrefsKey, "");
-
+        Debug.Log(currentCsvHash + " /====/ " + savedCsvHash);
         // CSV 파일이 변경되었는지 확인
         if (!File.Exists(filePath) || currentCsvHash != savedCsvHash)
         {
@@ -94,15 +101,18 @@ public class AchievementManager : Singleton<AchievementManager>
 
     void AssignSpritesToAchievements()
     {
+        Sprite defaultSprite = null; // 기본값 설정 가능
+
         for (int i = 0; i < achievements.Count; i++)
         {
-            if (i < sprites.Length) // sprites 배열 크기 이내일 때만 매핑
+            if (i < sprites.Length && sprites[i] != null)
             {
                 achievements[i].Icon = sprites[i];
             }
             else
             {
-                Debug.LogWarning($"No sprite available for achievement: {achievements[i].achievementName}");
+                Debug.LogWarning($"No sprite available for achievement: {achievements[i].achievementName}. Assigning default sprite.");
+                achievements[i].Icon = defaultSprite; // 기본값 할당
             }
         }
     }
@@ -131,6 +141,7 @@ public class AchievementManager : Singleton<AchievementManager>
                 // 기존 성취도가 있을 경우 진행도 유지
                 newAchievement.currentProgress = existingAchievement.currentProgress;
                 newAchievement.isCompleted = existingAchievement.isCompleted;
+                newAchievement.isAcquisition = existingAchievement.isAcquisition;
             }
         }
 
@@ -152,73 +163,94 @@ public class AchievementManager : Singleton<AchievementManager>
         List<Achievement> parsedAchievements = new List<Achievement>();
         using (StringReader sr = new StringReader(csvData))
         {
-            bool firstLine = true;
+            string headerLine = sr.ReadLine(); // 헤더 읽기
+            if (headerLine == null)
+            {
+                Debug.LogError("CSV file is empty or invalid.");
+                return parsedAchievements;
+            }
+
+            // 헤더를 기준으로 인덱스 매핑
+            string[] headers = headerLine.Split(',');
+            Dictionary<string, int> headerIndexMap = new Dictionary<string, int>();
+            for (int i = 0; i < headers.Length; i++)
+            {
+                headerIndexMap[headers[i]] = i;
+            }
 
             while (sr.Peek() != -1)
             {
                 string line = sr.ReadLine();
-                if (firstLine)
-                {
-                    firstLine = false; // 첫 줄(헤더)은 스킵
-                    continue;
-                }
-
                 string[] data = line.Split(',');
 
-                // 데이터 유효성 검사
-                if (data.Length < 5)
+                // 데이터가 헤더 개수보다 부족하면 기본값 추가
+                if (data.Length < headers.Length)
                 {
-                    Debug.LogWarning("Invalid CSV line: " + line);
-                    continue;
+                    Array.Resize(ref data, headers.Length); // 데이터 배열 크기 확장
                 }
 
-                // Achievement 클래스에 맞게 데이터 할당
-                Achievement achievement = new Achievement();
-                achievement.achievementName = data[0];
-                achievement.description = data[1];
-                achievement.goal = int.Parse(data[2]);
-                achievement.currentProgress = int.Parse(data[3]);
-                achievement.isCompleted = data[4].ToLower() == "true";
+                // Achievement 객체 생성
+                Achievement achievement = new Achievement
+                {
+                    achievementName = headerIndexMap.ContainsKey("AchievementName") && !string.IsNullOrWhiteSpace(data[headerIndexMap["AchievementName"]]) ? data[headerIndexMap["AchievementName"]] : "Unknown",
+                    description = headerIndexMap.ContainsKey("Description") && !string.IsNullOrWhiteSpace(data[headerIndexMap["Description"]]) ? data[headerIndexMap["Description"]] : "No Description",
+                    goal = headerIndexMap.ContainsKey("Goal") && !string.IsNullOrWhiteSpace(data[headerIndexMap["Goal"]]) ? int.Parse(data[headerIndexMap["Goal"]]) : 0,
+                    currentProgress = headerIndexMap.ContainsKey("CurrentProgress") && !string.IsNullOrWhiteSpace(data[headerIndexMap["CurrentProgress"]]) ? int.Parse(data[headerIndexMap["CurrentProgress"]]) : 0,
+                    isCompleted = headerIndexMap.ContainsKey("IsCompleted") && !string.IsNullOrWhiteSpace(data[headerIndexMap["IsCompleted"]]) && data[headerIndexMap["IsCompleted"]].ToLower() == "true",
+                    compensation = headerIndexMap.ContainsKey("Compensation") && !string.IsNullOrWhiteSpace(data[headerIndexMap["Compensation"]]) ? int.Parse(data[headerIndexMap["Compensation"]]) : 0,
+                    isAcquisition = headerIndexMap.ContainsKey("IsAcquisition") && !string.IsNullOrWhiteSpace(data[headerIndexMap["IsAcquisition"]]) && data[headerIndexMap["IsAcquisition"]].ToLower() == "true",                 
+                };
 
                 parsedAchievements.Add(achievement);
             }
         }
+
         return parsedAchievements;
     }
 
-    // 특정 조건이 만족되면 도전과제를 업데이트
-    public void UpdateAchievement(string achievementName, int progress)
+
+
+    public void UpdateAchievement(string achievementName, int progress, bool isAcquisition = false)
     {
         Achievement achievement = achievements.Find(a => a.achievementName == achievementName);
-        if (achievement != null && !achievement.isCompleted)
+
+        if (isAcquisition)
+        {
+            achievement.isAcquisition = true;
+        }
+
+        if (!achievement.isCompleted)
         {
             achievement.currentProgress += progress;
             if (achievement.CheckCompletion())
             {
                 achievement.isCompleted = true;
+
                 if (GameManager.Instance != null)
                 {
                     GameManager.Instance.ShowAchievementBanner(achievementName);
                 }
 
-                Debug.Log("Achievement completed: " + achievement.achievementName);
-                // UI 갱신 또는 보상 지급
-            }
+                Debug.Log($"Achievement completed: {achievement.achievementName}");
 
-         
-            // CSV 파일에 저장
-            SaveAchievementsToCSV();
+            
+            }
         }
+
+        // 완료된 도전 과제를 즉시 저장
+        SaveAchievementsToCSV();
     }
+
+
 
     void SaveAchievementsToCSV()
     {
         StringBuilder csvData = new StringBuilder();
-        csvData.AppendLine("AchievementName,Description,Goal,CurrentProgress,IsCompleted");
+        csvData.AppendLine("AchievementName,Description,Goal,CurrentProgress,IsCompleted,Compensation,IsAcquisition");
 
         foreach (var achievement in achievements)
         {
-            csvData.AppendLine($"{achievement.achievementName},{achievement.description},{achievement.goal},{achievement.currentProgress},{achievement.isCompleted}");
+            csvData.AppendLine($"{achievement.achievementName},{achievement.description},{achievement.goal},{achievement.currentProgress},{achievement.isCompleted},{achievement.compensation},{achievement.isAcquisition}");
         }
 
         string encryptionKey = GenerateEncryptionKey(); // 고유 키 생성
@@ -227,6 +259,7 @@ public class AchievementManager : Singleton<AchievementManager>
 
         Debug.Log("Achievements saved to CSV.");
     }
+
 
     private string Encrypt(string text, string key)
     {

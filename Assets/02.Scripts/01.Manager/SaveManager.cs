@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
 using System;
+using Sirenix.OdinInspector;
 
 public class SaveManager : Singleton<SaveManager>
 {
@@ -176,6 +177,7 @@ public class GameData
 
     public bool[] openSkin = new bool[SkinManager.Instance.GetSkinCount()];
 
+
     public int curPlayerIndex;
 
     // 기본 생성자 (매개변수가 없는 경우)
@@ -196,7 +198,7 @@ public class GameData
             this.openSkin[i] = false;
         }
 
-        this.curPlayerIndex = 0;
+        this.curPlayerIndex = 0;        
     }
 
     // 모든 매개변수를 받는 생성자
