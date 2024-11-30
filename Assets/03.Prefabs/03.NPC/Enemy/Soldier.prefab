@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 1073741824
   drawGizmos: 1
   detailedGizmos: 0
   startEndModifier:
@@ -140,7 +140,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3326413482773854155, guid: 14c8f79dbfbb00248873b630354bdf7b,
     type: 3}
   firePosistion: {fileID: 3662648903529845496}
-  bulletSpeed: 10
+  bulletSpeed: 8
   bulletDamage: 0.2
   backPos: {fileID: 7725011976659862919}
 --- !u!114 &5409208259650990421
@@ -171,9 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  unwrap: 1
+  version: 1073741824
+  quality: 0
   splitAtEveryPortal: 0
+  accountForGridPenalties: 0
 --- !u!114 &6556029887094081192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 1073741824
   radius: 0.5
   height: 1
   canMove: 1
@@ -195,7 +196,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  centerOffsetCompatibility: NaN
+  endReachedDistance: 0
+  whenCloseToDestination: 0
+  rvoDensityBehavior:
+    enabled: 0
+    densityThreshold: 0.5
+    returnAfterBeingPushedAway: 0
+    progressAverage: 0
+    lastJobDensityResult: 0
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 0
@@ -206,15 +214,13 @@ MonoBehaviour:
     sensitivity: 10
     maximumPeriod: 2
     visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0
   pickNextWaypointDist: 2
-  endReachedDistance: 0
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  preventMovingBackwards: 0
   constrainInsideGraph: 1
 --- !u!114 &1616804358714513378
 MonoBehaviour:
@@ -228,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 2
+  version: 1073741824
   radiusBackingField: 0.5
   heightBackingField: 2
   centerBackingField: 1

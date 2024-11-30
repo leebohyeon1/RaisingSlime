@@ -59,7 +59,7 @@ MonoBehaviour:
   isExplosion: 0
   damagePerSecond: 0.1
   rotationSpeed: 75
-  radius: 5
+  radius: 12
   heightFactor: 1.5
   firePos: {fileID: 127341455046468130}
   lineRendererPrefab: {fileID: 108128, guid: cd749421939f0d74080e0ce8239d6432, type: 3}
