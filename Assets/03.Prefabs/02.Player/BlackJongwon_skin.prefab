@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinName: " \uD751\uBC31 \uC2AC\uB77C\uC784"
   isGrounded: 1
-  groundCheckDistance: 0.55
+  groundCheckDistance: 0.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 1279
