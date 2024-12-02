@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64926370280644018}
   - component: {fileID: 4758516398219401867}
   - component: {fileID: 1833861481887714122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Prop_Fence_MetalSheet_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
