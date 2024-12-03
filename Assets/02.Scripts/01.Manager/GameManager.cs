@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour, IUpdateable
     {
         AudioManager.Instance.PlaySFX("Btn");
 
-        SceneManager.LoadScene("03.GameScene");
+        LoadingScene.LoadScene("03.GameScene");
     }
 
     public void ExitBtn()   // 메인화면으로 돌아감

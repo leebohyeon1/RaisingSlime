@@ -26,8 +26,6 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     protected float timer;
     protected float checkTime = 0.5f;
 
-    private PlayerStat playerStat;
-
     public virtual void OnUpdate(float dt)
     {
         if (isGetEaten)
@@ -36,7 +34,6 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         }
        
     }
-
 
     public virtual void Eaten(Transform slimeTrans) // ธิศ๗ดย วิผ๖
     {
@@ -117,7 +114,6 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
 
         if (transform.localScale.x < 0.1f)
         {
-
             Destroy(gameObject);
         }
     }
@@ -153,6 +149,14 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     }
 
     protected virtual void OnDestroy()
+    {
+        if (GameLogicManager.Instance != null)
+        {
+            GameLogicManager.Instance.DeregisterUpdatableObject(this);
+        }
+    }
+
+    private void OnApplicationQuit()
     {
         if (GameLogicManager.Instance != null)
         {

@@ -116,7 +116,7 @@ namespace Pathfinding {
 
 		/// <summary>Update is called once per frame</summary>
 		void Update () {
-			if (AstarPath.active == null || graph == null || !graph.isScanned) return;
+			if (AstarPath.active == null || graph == null || !graph.isScanned || target == null) return;
 
 			if (graph is GridGraph gg) {
 				// Calculate where the graph center and the target position is in graph space

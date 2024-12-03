@@ -123,8 +123,8 @@ public class SpawnManager : MonoBehaviour, IUpdateable
 
         AstarPath.active?.PausePathfinding();  // 경로 탐색 중지
         AstarPath.active?.FlushGraphUpdates();  // 그래프 업데이트 비우기
-        Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
-        System.GC.Collect();  // 가비지 컬렉션 강제 실행
+       // Resources.UnloadUnusedAssets();  // 불필요한 리소스 정리
+       // System.GC.Collect();  // 가비지 컬렉션 강제 실행
     }
 
     public virtual void OnUpdate(float dt)

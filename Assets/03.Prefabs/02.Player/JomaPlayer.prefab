@@ -435,7 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinName: "\uC911\uC131\uB9C8\uB140"
   isGrounded: 1
-  groundCheckDistance: 0.55
+  groundCheckDistance: 0.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 1279
