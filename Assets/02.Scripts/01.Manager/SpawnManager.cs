@@ -40,8 +40,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     [BoxGroup("골드 세팅"), LabelText("스폰할 골드 수"), SerializeField]
     private int maxGoldCount = 10; // 스폰할 골드 수
 
-    [FoldoutGroup("특수 오브젝트"), LabelText("폭격기"), SerializeField]
-    private GameObject bomberPrefab;
     [FoldoutGroup("특수 오브젝트"), LabelText("모든 시민"), SerializeField]
     private GameObject[] allCitizen;
     [FoldoutGroup("특수 오브젝트"), LabelText("돈"), SerializeField]
@@ -58,7 +56,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
     private bool isSceneClosing = false; // 씬이 닫히는 중인지 여부를 확인하는 플래그
 
     private Transform slimeTrans;
-    private float bomberSpawnTimer = 0f;
 
     [SerializeField, LabelText("스폰 가능한 레이어")]
     private LayerMask surfaceLayerMask;
@@ -139,9 +136,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             // 스폰매니저의 위치를 플레이어(슬라임) 위치로 설정 (나중에 삭제)
             transform.position = new Vector3(slimeTrans.position.x, 0, slimeTrans.position.z);
         }
-
-        //폭격기 스폰
-        SpawnBomber();
 
         // 점수 체크
         CheckScore();
@@ -370,30 +364,6 @@ public class SpawnManager : MonoBehaviour, IUpdateable
             }
         }
 
-    }
-
-    // 폭격기 스폰 함수
-    private void SpawnBomber()
-    {
-        bomberSpawnTimer += Time.deltaTime;
-
-        if ( spawnObjectsList[step].isBomber && 
-            bomberSpawnTimer >= spawnObjectsList[step].spawnInterval )
-        {
-            bomberSpawnTimer = 0f;
-
-            Vector3 spawnPosition = GetValidSpawnPosition();
-
-            // 유효한 NavMesh 위의 위치를 찾았을 때만 적을 스폰
-            if (spawnPosition != Vector3.zero)
-            {
-                GameObject newEnemy = Instantiate(bomberPrefab, spawnPosition, Quaternion.identity);
-                
-                // 적이 파괴되었을 때 다시 스폰하지 않도록 이전 스텝의 적인지 확인
-                NPCBase enemyComponent = newEnemy.GetComponent<NPCBase>();
-                enemyComponent.SetTarget(slimeTrans);
-            }
-        }
     }
 
     private void RemoveEnemyFromList(GameObject enemy)
@@ -710,9 +680,4 @@ public struct SpawnObjectsList
 {
     [LabelText("단계별 스폰되는 오브젝트")]
     public GameObject[] SpawnObjects;
-
-    [FoldoutGroup("폭격기"), LabelText("폭격기 On"), Space(10f)]
-    public bool isBomber;
-    [FoldoutGroup("폭격기"), LabelText("스폰 주기(초)")]
-    public float spawnInterval;
 }
