@@ -26,13 +26,22 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
     protected float timer;
     protected float checkTime = 0.5f;
 
+    public virtual void Start()
+    {
+        GameLogicManager.Instance.RegisterUpdatableObject(this);
+    }
+
     public virtual void OnUpdate(float dt)
     {
         if (isGetEaten)
         {
             Digested();
         }
-       
+     
+        if (transform.position.y < -5f && !isGetEaten)
+        {
+            Eaten(transform);
+        }
     }
 
     public virtual void Eaten(Transform slimeTrans) // 먹히는 함수
@@ -45,7 +54,7 @@ public class EatAbleObjectBase : MonoBehaviour, IUpdateable
         isLock = true;
         isGetEaten = !isGetEaten;
 
-        GameLogicManager.Instance.RegisterUpdatableObject(this);
+     
 
         // 부모가 바뀌기 전의 월드 스케일을 저장
         Vector3 originalWorldScale = transform.lossyScale;
