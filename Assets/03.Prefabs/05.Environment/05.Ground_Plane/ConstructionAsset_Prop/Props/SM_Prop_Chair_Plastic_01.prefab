@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23342812703681672}
   - component: {fileID: 64266975274662734}
   - component: {fileID: -9112376134775465539}
+  - component: {fileID: 261597479444461561}
   m_Layer: 0
   m_Name: SM_Prop_Chair_Plastic_01
   m_TagString: Untagged
@@ -123,3 +124,15 @@ MonoBehaviour:
   slimeIncreaseSize: 0
   plusScore: 0
   shrinkSpeed: 0.5
+--- !u!114 &261597479444461561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021656722006978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af34d8cf03e0e5a4da6d45c1ad22d050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

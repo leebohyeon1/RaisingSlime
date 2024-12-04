@@ -1,3 +1,4 @@
+using Pathfinding;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,11 +88,21 @@ public class Player : MonoBehaviour, IUpdateable
     // 땅에 닿았는지 확인하는 함수
     private void GroundCheck()
     {
+
         // 플레이어의 현재 크기에 따라 groundCheckDistance를 동적으로 조정
         float adjustedGroundCheckDistance = groundCheckDistance * transform.localScale.y;
 
         // 플레이어 중심에서 아래로 Ray를 쏴서 땅에 닿았는지 확인
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, adjustedGroundCheckDistance, groundLayer) ||
+                    Physics.Raycast(transform.position + (Vector3.right / 2.2f), Vector3.down, out RaycastHit hit1, adjustedGroundCheckDistance / 1.2f, groundLayer) ||
+                    Physics.Raycast(transform.position - (Vector3.right / 2.2f), Vector3.down, out RaycastHit hit2, adjustedGroundCheckDistance / 1.2f, groundLayer) ||
+                    Physics.Raycast(transform.position + (Vector3.forward / 2.2f), Vector3.down, out RaycastHit hit3, adjustedGroundCheckDistance / 1.2f, groundLayer) ||
+                    Physics.Raycast(transform.position - (Vector3.forward / 2.2f), Vector3.down, out RaycastHit hit4, adjustedGroundCheckDistance / 1.2f, groundLayer);
+        
+        if (isGrounded && playerStat.canJump && rb.velocity.y < 0f)
+        {
+            playerStat.jumpCount = 1;
+        }
 
         if (!isGrounded && !playerStat.canJump)
         {
@@ -99,8 +110,8 @@ public class Player : MonoBehaviour, IUpdateable
         }
         else if (isGrounded && !playerStat.canJump && rb.velocity.y < 0f)
         {
+           
             playerStat.canJump = true; // 점프 초기화
-
         }
         // planeHeight 값을 Raycast로 구한 지점의 y좌표로 설정
         if (isGrounded && rb.velocity.magnitude > 0)
@@ -158,10 +169,11 @@ public class Player : MonoBehaviour, IUpdateable
 
     private void HandleJump()
     {
-        if (InputManager.Instance.jumpInput && isGrounded && playerStat.canJump)
+        if (InputManager.Instance.jumpInput && playerStat.jumpCount == 1&& playerStat.canJump)
         {
             rb.AddForce(playerMovement.Jump(playerStat.jumpForce), ForceMode.Impulse);
             playerStat.canJump = false; // 점프 후 땅에 있지 않음
+            playerStat.jumpCount = 0;
         }
     }
 
@@ -312,7 +324,7 @@ public class Player : MonoBehaviour, IUpdateable
     }
 
 
-private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         // 흡수할 수 있는 오브젝트와 충돌했는지 확인
         if (collision.gameObject.GetComponentInParent<EatAbleObjectBase>())
@@ -331,6 +343,20 @@ private void OnCollisionEnter(Collision collision)
           
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        float adjustedGroundCheckDistance = groundCheckDistance * transform.localScale.y;
+
+        Gizmos.DrawRay(transform.position, Vector3.down * adjustedGroundCheckDistance);
+        Gizmos.DrawRay(transform.position + (Vector3.right / 2.2f), Vector3.down * (adjustedGroundCheckDistance));
+        Gizmos.DrawRay(transform.position - (Vector3.right / 2.5f), Vector3.down * adjustedGroundCheckDistance);
+        Gizmos.DrawRay(transform.position + (Vector3.forward / 2.5f), Vector3.down * adjustedGroundCheckDistance);
+        Gizmos.DrawRay(transform.position - (Vector3.forward / 2.5f), Vector3.down * adjustedGroundCheckDistance);
+
     }
 
     private void OnTriggerEnter(Collider collider)
