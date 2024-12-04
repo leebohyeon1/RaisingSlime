@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  slimeIncreaseSize: 0.02
+  slimeIncreaseSize: 0.03
   plusScore: 10
   shrinkSpeed: 0.1
 --- !u!114 &8956482545293447820
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpDuration: 0.4
+  jumpHeight: 0.6
 --- !u!65 &4456400203534477357
 BoxCollider:
   m_ObjectHideFlags: 0
