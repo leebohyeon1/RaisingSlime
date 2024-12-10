@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour, IUpdateable
         // CinemachineTransposer의 Follow Offset에서 Z축(거리) 조정
         transposer.m_FollowOffset.z = - newCameraDistance; // 음수 값으로 멀어지도록 설정
         transposer.m_FollowOffset.x = newCameraDistance;
-        transposer.m_FollowOffset.y = newCameraDistance;
+        transposer.m_FollowOffset.y = newCameraDistance * 1.3f;
     }
 
     void OnDestroy()
