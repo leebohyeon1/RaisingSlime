@@ -185,6 +185,10 @@ namespace Pathfinding {
 				ctx => {
 				// Find the direction that we want to move the graph in.
 				// Calculate this in graph space (where a distance of one is the size of one node)
+				if(target == null )
+				{
+					return;
+				}
 				Vector3 dir = graph.transform.InverseTransformVector(target.position - graph.center);
 
 				// Snap to a whole number of nodes to offset in each direction

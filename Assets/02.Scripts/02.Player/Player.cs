@@ -334,15 +334,7 @@ public class Player : MonoBehaviour, IUpdateable
          
         }
 
-        if(collision.gameObject.CompareTag("Sea"))
-        {
-            AchievementManager.Instance.UpdateAchievement
-               (AchievementManager.Instance.achievements[8].achievementName, 1);
-
-            GameManager.Instance.GameOver();
-          
-            Destroy(gameObject);
-        }
+   
     }
 
     private void OnDrawGizmos()
@@ -365,6 +357,16 @@ public class Player : MonoBehaviour, IUpdateable
         if (collider.GetComponentInParent<EatAbleObjectBase>())
         {
             CompareSize(collider.gameObject);
+        }
+
+        if (collider.gameObject.CompareTag("Sea"))
+        {
+            AchievementManager.Instance.UpdateAchievement
+               (AchievementManager.Instance.achievements[8].achievementName, 1);
+
+            GameManager.Instance.GameOver();
+
+            Destroy(gameObject);
         }
 
     }
